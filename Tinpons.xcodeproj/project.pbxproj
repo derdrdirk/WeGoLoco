@@ -1,0 +1,752 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E7A30F040024501400000000 /* AWSDynamoDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29BC3E8A3700000000 /* AWSDynamoDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7A30F040024501400000001 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29BC3E8A3700000000 /* AWSDynamoDB.framework */; };
+		E7A30F0400925D1700000000 /* AWSMobileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E2946C3AB3000000000 /* AWSMobileClient.swift */; };
+		E7A30F04023CE26000000000 /* FacebookIdentityProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29329951CD00000000 /* FacebookIdentityProfile.swift */; };
+		E7A30F040879B56F00000000 /* AWSCognito.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29412E6AC500000000 /* AWSCognito.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7A30F040879B56F00000001 /* AWSCognito.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29412E6AC500000000 /* AWSCognito.framework */; };
+		E7A30F040AAE5A4B00000000 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29E394D56000000000 /* AppDelegate.swift */; };
+		E7A30F040E0E6CF100000000 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E297A4F404000000000 /* UIKit.framework */; };
+		E7A30F0410C789CB00000000 /* NoSQLQueryResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29F23CDC3600000000 /* NoSQLQueryResultViewController.swift */; };
+		E7A30F041123764F00000000 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29EB7704B900000000 /* libz.tbd */; };
+		E7A30F0418F7B7D900000000 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29EB555D3E00000000 /* FBSDKCoreKit.framework */; };
+		E7A30F04274F6B6700000000 /* AWSFacebookSignInResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E2925334DDE00000000 /* AWSFacebookSignInResources.bundle */; };
+		E7A30F042B278B4700000000 /* UserPoolSignUpConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29F45CC74200000000 /* UserPoolSignUpConfirmationViewController.swift */; };
+		E7A30F043DD4F57200000000 /* FormTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29AE6C88F800000000 /* FormTableCell.swift */; };
+		E7A30F04414B914C00000000 /* UserSettings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E29AEA02B6900000000 /* UserSettings.storyboard */; };
+		E7A30F0441B6CF8A00000000 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29098E246A00000000 /* MediaPlayer.framework */; };
+		E7A30F04490C0AB000000000 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E292554733E00000000 /* Images.xcassets */; };
+		E7A30F044B6ABE3800000000 /* UserPoolSignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29F05B7FDC00000000 /* UserPoolSignUpViewController.swift */; };
+		E7A30F044C3EA71500000000 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29313635AF00000000 /* libsqlite3.tbd */; };
+		E7A30F045560C2B200000000 /* AWSMobileHubHelper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29FF24C27A00000000 /* AWSMobileHubHelper.framework */; };
+		E7A30F045CD4428C00000000 /* UserDataStorage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E295310083B00000000 /* UserDataStorage.storyboard */; };
+		E7A30F045CF37CF300000000 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29964685F000000000 /* AVFoundation.framework */; };
+		E7A30F045D6A367800000000 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E2925A0F34000000000 /* Security.framework */; };
+		E7A30F045DA4FE2500000000 /* UserIdentityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E297EA9536800000000 /* UserIdentityViewController.swift */; };
+		E7A30F0460A2A9A000000000 /* UserPoolsUIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E294594B81400000000 /* UserPoolsUIHelper.swift */; };
+		E7A30F0462463B0A00000000 /* NoSQLModelHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E2941B10D1200000000 /* NoSQLModelHelpers.swift */; };
+		E7A30F046317E39C00000000 /* AWSS3.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29F77E3E0700000000 /* AWSS3.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7A30F046317E39C00000001 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29F77E3E0700000000 /* AWSS3.framework */; };
+		E7A30F046362ECD700000000 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E292BFC031A00000000 /* FBSDKLoginKit.framework */; };
+		E7A30F046FFFB5F100000000 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E29A8F4FCAE00000000 /* Launch Screen.storyboard */; };
+		E7A30F04741B216700000000 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E2927114D4C00000000 /* MainViewController.swift */; };
+		E7A30F04751D7C8300000000 /* UserDataStorageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E297713C00B00000000 /* UserDataStorageViewController.swift */; };
+		E7A30F0479F95AEB00000000 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E29E9CCE5D700000000 /* SignIn.storyboard */; };
+		E7A30F047BEED6DB00000000 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29113800C600000000 /* SystemConfiguration.framework */; };
+		E7A30F047C56666000000000 /* UserSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E290D2D509D00000000 /* UserSettingsViewController.swift */; };
+		E7A30F0483A9E71300000000 /* NoSQLTableListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29DCAA2CD800000000 /* NoSQLTableListViewController.swift */; };
+		E7A30F0489AA356400000000 /* UserPools.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E290F8AE36000000000 /* UserPools.storyboard */; };
+		E7A30F048D6E5D3400000000 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E2969DFF7BE00000000 /* CFNetwork.framework */; };
+		E7A30F048DE0B1CD00000000 /* Tinpons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29C919AF3300000000 /* Tinpons.swift */; };
+		E7A30F048EEF138700000000 /* AWSCognitoUserPoolsSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E2956CE98CA00000000 /* AWSCognitoUserPoolsSignIn.framework */; };
+		E7A30F0493F7667400000000 /* UtilityFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29A0CFD2E900000000 /* UtilityFunctions.swift */; };
+		E7A30F0495E1F5E000000000 /* ContentDelivery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E29C2FE49CE00000000 /* ContentDelivery.storyboard */; };
+		E7A30F0497C0BECE00000000 /* FormTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29C88EACA200000000 /* FormTableDelegate.swift */; };
+		E7A30F049A3B079A00000000 /* UserPoolNewPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E2982A5337600000000 /* UserPoolNewPasswordViewController.swift */; };
+		E7A30F049A8F6DAE00000000 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29F74071EF00000000 /* SignInViewController.swift */; };
+		E7A30F049BE818D100000000 /* UserFiles.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E29475659F900000000 /* UserFiles.storyboard */; };
+		E7A30F049F2DB49800000000 /* ColorThemeSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E295C943A8900000000 /* ColorThemeSettings.swift */; };
+		E7A30F04A0099EDA00000000 /* UserPoolForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29B09FED7000000000 /* UserPoolForgotPasswordViewController.swift */; };
+		E7A30F04A7471B5D00000000 /* UserFilesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E297CDA840D00000000 /* UserFilesViewController.swift */; };
+		E7A30F04AE9F230100000000 /* TinponsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29786CD84600000000 /* TinponsTable.swift */; };
+		E7A30F04B3A3013500000000 /* NoSQLTableFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E296E67149200000000 /* NoSQLTableFactory.swift */; };
+		E7A30F04B52582EF00000000 /* DemoFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29183C593800000000 /* DemoFeature.swift */; };
+		E7A30F04B8261BDC00000000 /* UserPoolsIdentityProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E291472F28E00000000 /* UserPoolsIdentityProfile.swift */; };
+		E7A30F04C071CC9E00000000 /* UserPoolMFAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E290654A9EC00000000 /* UserPoolMFAViewController.swift */; };
+		E7A30F04C2DDB4B200000000 /* SignInViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E292F06ACDE00000000 /* SignInViewControllerExtensions.swift */; };
+		E7A30F04C6AE9E9200000000 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E292E74B0A400000000 /* SafariServices.framework */; };
+		E7A30F04C7BD61B600000000 /* UserIdentity.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E29B6EEC83E00000000 /* UserIdentity.storyboard */; };
+		E7A30F04CB38085200000000 /* NoSQLTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29393C69F400000000 /* NoSQLTableViewController.swift */; };
+		E7A30F04D8A4937D00000000 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E292FF4A7CA00000000 /* Foundation.framework */; };
+		E7A30F04D987431800000000 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E29001F5DDA00000000 /* Main.storyboard */; };
+		E7A30F04DDC5AA4700000000 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29A937017200000000 /* AVKit.framework */; };
+		E7A30F04DE26F06A00000000 /* NoSQLDatabase.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E29F345191400000000 /* NoSQLDatabase.storyboard */; };
+		E7A30F04E3BD48B900000000 /* NoSQLSampleDataGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29D11FE69400000000 /* NoSQLSampleDataGenerator.swift */; };
+		E7A30F04F1802C3300000000 /* AWSCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E296E5253F900000000 /* AWSCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7A30F04F1802C3300000001 /* AWSCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E296E5253F900000000 /* AWSCore.framework */; };
+		E7A30F04F1E5184200000000 /* AWSFacebookSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E2906D374E400000000 /* AWSFacebookSignIn.framework */; };
+		E7A30F04F3C9207500000000 /* AWSCognitoIdentityProvider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E292C3FBFB900000000 /* AWSCognitoIdentityProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E7A30F04F3C9207500000001 /* AWSCognitoIdentityProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E292C3FBFB900000000 /* AWSCognitoIdentityProvider.framework */; };
+		E7A30F04FE04727700000000 /* TableInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29C459CAC000000000 /* TableInputCell.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		FAF5FAC90000000000000000 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E7A30F04F3C9207500000000 /* AWSCognitoIdentityProvider.framework in Embed Frameworks */,
+				E7A30F040024501400000000 /* AWSDynamoDB.framework in Embed Frameworks */,
+				E7A30F04F1802C3300000000 /* AWSCore.framework in Embed Frameworks */,
+				E7A30F040879B56F00000000 /* AWSCognito.framework in Embed Frameworks */,
+				E7A30F046317E39C00000000 /* AWSS3.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		1DD70E29001F5DDA00000000 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Tinpons/App/Main.storyboard; sourceTree = SOURCE_ROOT; };
+		1DD70E290654A9EC00000000 /* UserPoolMFAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserPoolMFAViewController.swift; path = Tinpons/App/SignIn/UserPools/UserPoolMFAViewController.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E2906D374E400000000 /* AWSFacebookSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSFacebookSignIn.framework; path = Tinpons/AmazonAws/AWSFacebookSignIn.framework; sourceTree = "<group>"; };
+		1DD70E29098E246A00000000 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		1DD70E290D2D509D00000000 /* UserSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserSettingsViewController.swift; path = Tinpons/Demo/UserSettings/UserSettingsViewController.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E290F8AE36000000000 /* UserPools.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = UserPools.storyboard; path = Tinpons/App/SignIn/UserPools/UserPools.storyboard; sourceTree = SOURCE_ROOT; };
+		1DD70E29113800C600000000 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		1DD70E291472F28E00000000 /* UserPoolsIdentityProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserPoolsIdentityProfile.swift; path = Tinpons/App/SignIn/UserPools/UserPoolsIdentityProfile.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29183C593800000000 /* DemoFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DemoFeature.swift; path = Tinpons/Demo/DemoFeature.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E2925334DDE00000000 /* AWSFacebookSignInResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AWSFacebookSignInResources.bundle; path = Tinpons/AmazonAws/AWSFacebookSignInResources.bundle; sourceTree = "<group>"; };
+		1DD70E292554733E00000000 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Tinpons/App/Images.xcassets; sourceTree = SOURCE_ROOT; };
+		1DD70E2925A0F34000000000 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		1DD70E2927114D4C00000000 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = Tinpons/App/MainViewController.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E292BFC031A00000000 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Tinpons/Sdk/Facebook/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		1DD70E292C3FBFB900000000 /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognitoIdentityProvider.framework; path = Tinpons/Sdk/Aws/AWSCognitoIdentityProvider.framework; sourceTree = "<group>"; };
+		1DD70E292E74B0A400000000 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
+		1DD70E292F06ACDE00000000 /* SignInViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignInViewControllerExtensions.swift; path = Tinpons/App/SignIn/UserPools/SignInViewControllerExtensions.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E292FF4A7CA00000000 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1DD70E29313635AF00000000 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		1DD70E29329951CD00000000 /* FacebookIdentityProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FacebookIdentityProfile.swift; path = Tinpons/App/SignIn/FacebookIdentityProfile.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29393C69F400000000 /* NoSQLTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NoSQLTableViewController.swift; path = Tinpons/Demo/NoSQL/NoSQLTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29412E6AC500000000 /* AWSCognito.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognito.framework; path = Tinpons/Sdk/Aws/extras/AWSCognito.framework; sourceTree = "<group>"; };
+		1DD70E2941B10D1200000000 /* NoSQLModelHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NoSQLModelHelpers.swift; path = Tinpons/Demo/NoSQL/NoSQLModelHelpers.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E294594B81400000000 /* UserPoolsUIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserPoolsUIHelper.swift; path = Tinpons/App/SignIn/UserPools/UserPoolsUIHelper.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E2946C3AB3000000000 /* AWSMobileClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AWSMobileClient.swift; path = Tinpons/AmazonAws/AWSMobileClient.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29475659F900000000 /* UserFiles.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = UserFiles.storyboard; path = Tinpons/Demo/UserFiles/UserFiles.storyboard; sourceTree = SOURCE_ROOT; };
+		1DD70E295310083B00000000 /* UserDataStorage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = UserDataStorage.storyboard; path = Tinpons/Demo/UserDataStorage/UserDataStorage.storyboard; sourceTree = SOURCE_ROOT; };
+		1DD70E2956CE98CA00000000 /* AWSCognitoUserPoolsSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognitoUserPoolsSignIn.framework; path = Tinpons/AmazonAws/AWSCognitoUserPoolsSignIn.framework; sourceTree = "<group>"; };
+		1DD70E295C943A8900000000 /* ColorThemeSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorThemeSettings.swift; path = Tinpons/Demo/UserSettings/ColorThemeSettings.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29687DA31D00000000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tinpons/App/SupportingFiles/Info.plist; sourceTree = SOURCE_ROOT; };
+		1DD70E2969DD7ECE00000000 /* Tinpons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = Tinpons.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DD70E2969DFF7BE00000000 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		1DD70E296E5253F900000000 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = Tinpons/Sdk/Aws/AWSCore.framework; sourceTree = "<group>"; };
+		1DD70E296E67149200000000 /* NoSQLTableFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NoSQLTableFactory.swift; path = Tinpons/Demo/NoSQL/NoSQLTableFactory.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E297713C00B00000000 /* UserDataStorageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserDataStorageViewController.swift; path = Tinpons/Demo/UserDataStorage/UserDataStorageViewController.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29786CD84600000000 /* TinponsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TinponsTable.swift; path = Tinpons/Demo/NoSQL/TinponsTable.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E297A4F404000000000 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		1DD70E297CDA840D00000000 /* UserFilesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserFilesViewController.swift; path = Tinpons/Demo/UserFiles/UserFilesViewController.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E297EA9536800000000 /* UserIdentityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserIdentityViewController.swift; path = Tinpons/Demo/UserIdentity/UserIdentityViewController.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E2982A5337600000000 /* UserPoolNewPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserPoolNewPasswordViewController.swift; path = Tinpons/App/SignIn/UserPools/UserPoolNewPasswordViewController.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29964685F000000000 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		1DD70E299FE8008200000000 /* Tinpons.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Tinpons.entitlements; path = Tinpons/Tinpons.entitlements; sourceTree = SOURCE_ROOT; };
+		1DD70E29A0CFD2E900000000 /* UtilityFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UtilityFunctions.swift; path = Tinpons/App/Utility/UtilityFunctions.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29A8F4FCAE00000000 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = "Launch Screen.storyboard"; path = "Tinpons/App/Launch Screen.storyboard"; sourceTree = SOURCE_ROOT; };
+		1DD70E29A937017200000000 /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
+		1DD70E29AE6C88F800000000 /* FormTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormTableCell.swift; path = Tinpons/App/SignIn/UserPools/FormTableCell.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29AEA02B6900000000 /* UserSettings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = UserSettings.storyboard; path = Tinpons/Demo/UserSettings/UserSettings.storyboard; sourceTree = SOURCE_ROOT; };
+		1DD70E29B09FED7000000000 /* UserPoolForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserPoolForgotPasswordViewController.swift; path = Tinpons/App/SignIn/UserPools/UserPoolForgotPasswordViewController.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29B6EEC83E00000000 /* UserIdentity.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = UserIdentity.storyboard; path = Tinpons/Demo/UserIdentity/UserIdentity.storyboard; sourceTree = SOURCE_ROOT; };
+		1DD70E29BC3E8A3700000000 /* AWSDynamoDB.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSDynamoDB.framework; path = Tinpons/Sdk/Aws/AWSDynamoDB.framework; sourceTree = "<group>"; };
+		1DD70E29C2FE49CE00000000 /* ContentDelivery.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ContentDelivery.storyboard; path = Tinpons/Demo/ContentDelivery/ContentDelivery.storyboard; sourceTree = SOURCE_ROOT; };
+		1DD70E29C459CAC000000000 /* TableInputCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TableInputCell.swift; path = Tinpons/App/SignIn/UserPools/TableInputCell.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29C88EACA200000000 /* FormTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FormTableDelegate.swift; path = Tinpons/App/SignIn/UserPools/FormTableDelegate.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29C919AF3300000000 /* Tinpons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Tinpons.swift; path = Tinpons/AmazonAws/Models/NoSQL/Tinpons.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29D11FE69400000000 /* NoSQLSampleDataGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NoSQLSampleDataGenerator.swift; path = Tinpons/Demo/NoSQL/NoSQLSampleDataGenerator.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29DCAA2CD800000000 /* NoSQLTableListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NoSQLTableListViewController.swift; path = Tinpons/Demo/NoSQL/NoSQLTableListViewController.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29E394D56000000000 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Tinpons/App/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29E9CCE5D700000000 /* SignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = SignIn.storyboard; path = Tinpons/App/SignIn/SignIn.storyboard; sourceTree = SOURCE_ROOT; };
+		1DD70E29EB555D3E00000000 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = Tinpons/Sdk/Facebook/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		1DD70E29EB7704B900000000 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		1DD70E29F05B7FDC00000000 /* UserPoolSignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserPoolSignUpViewController.swift; path = Tinpons/App/SignIn/UserPools/UserPoolSignUpViewController.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29F23CDC3600000000 /* NoSQLQueryResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NoSQLQueryResultViewController.swift; path = Tinpons/Demo/NoSQL/NoSQLQueryResultViewController.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29F345191400000000 /* NoSQLDatabase.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = NoSQLDatabase.storyboard; path = Tinpons/Demo/NoSQL/NoSQLDatabase.storyboard; sourceTree = SOURCE_ROOT; };
+		1DD70E29F45CC74200000000 /* UserPoolSignUpConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserPoolSignUpConfirmationViewController.swift; path = Tinpons/App/SignIn/UserPools/UserPoolSignUpConfirmationViewController.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29F74071EF00000000 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = Tinpons/App/SignIn/SignInViewController.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E29F77E3E0700000000 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = Tinpons/Sdk/Aws/AWSS3.framework; sourceTree = "<group>"; };
+		1DD70E29FF24C27A00000000 /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSMobileHubHelper.framework; path = Tinpons/AmazonAws/AWSMobileHubHelper.framework; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4F426D880000000000000000 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7A30F04F3C9207500000001 /* AWSCognitoIdentityProvider.framework in Frameworks */,
+				E7A30F040024501400000001 /* AWSDynamoDB.framework in Frameworks */,
+				E7A30F04F1802C3300000001 /* AWSCore.framework in Frameworks */,
+				E7A30F046362ECD700000000 /* FBSDKLoginKit.framework in Frameworks */,
+				E7A30F048EEF138700000000 /* AWSCognitoUserPoolsSignIn.framework in Frameworks */,
+				E7A30F0418F7B7D900000000 /* FBSDKCoreKit.framework in Frameworks */,
+				E7A30F040879B56F00000001 /* AWSCognito.framework in Frameworks */,
+				E7A30F046317E39C00000001 /* AWSS3.framework in Frameworks */,
+				E7A30F045560C2B200000000 /* AWSMobileHubHelper.framework in Frameworks */,
+				E7A30F04F1E5184200000000 /* AWSFacebookSignIn.framework in Frameworks */,
+				E7A30F040E0E6CF100000000 /* UIKit.framework in Frameworks */,
+				E7A30F047BEED6DB00000000 /* SystemConfiguration.framework in Frameworks */,
+				E7A30F045D6A367800000000 /* Security.framework in Frameworks */,
+				E7A30F048D6E5D3400000000 /* CFNetwork.framework in Frameworks */,
+				E7A30F041123764F00000000 /* libz.tbd in Frameworks */,
+				E7A30F044C3EA71500000000 /* libsqlite3.tbd in Frameworks */,
+				E7A30F04D8A4937D00000000 /* Foundation.framework in Frameworks */,
+				E7A30F0441B6CF8A00000000 /* MediaPlayer.framework in Frameworks */,
+				E7A30F045CF37CF300000000 /* AVFoundation.framework in Frameworks */,
+				E7A30F04DDC5AA4700000000 /* AVKit.framework in Frameworks */,
+				E7A30F04C6AE9E9200000000 /* SafariServices.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B401C9792DF24DB900000000 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				1DD70E29E394D56000000000 /* AppDelegate.swift */,
+				1DD70E292554733E00000000 /* Images.xcassets */,
+				1DD70E29A8F4FCAE00000000 /* Launch Screen.storyboard */,
+				1DD70E29001F5DDA00000000 /* Main.storyboard */,
+				1DD70E2927114D4C00000000 /* MainViewController.swift */,
+				B401C979550308D500000000 /* SignIn */,
+				B401C9794FB6A0BD00000000 /* SupportingFiles */,
+				B401C979583E47AD00000000 /* Utility */,
+			);
+			name = App;
+			path = Tinpons/app;
+			sourceTree = "<group>";
+		};
+		B401C9792ED981A800000000 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DD70E29964685F000000000 /* AVFoundation.framework */,
+				1DD70E29A937017200000000 /* AVKit.framework */,
+				1DD70E29412E6AC500000000 /* AWSCognito.framework */,
+				1DD70E292C3FBFB900000000 /* AWSCognitoIdentityProvider.framework */,
+				1DD70E2956CE98CA00000000 /* AWSCognitoUserPoolsSignIn.framework */,
+				1DD70E296E5253F900000000 /* AWSCore.framework */,
+				1DD70E29BC3E8A3700000000 /* AWSDynamoDB.framework */,
+				1DD70E2906D374E400000000 /* AWSFacebookSignIn.framework */,
+				1DD70E2925334DDE00000000 /* AWSFacebookSignInResources.bundle */,
+				1DD70E29FF24C27A00000000 /* AWSMobileHubHelper.framework */,
+				1DD70E29F77E3E0700000000 /* AWSS3.framework */,
+				1DD70E2969DFF7BE00000000 /* CFNetwork.framework */,
+				1DD70E29EB555D3E00000000 /* FBSDKCoreKit.framework */,
+				1DD70E292BFC031A00000000 /* FBSDKLoginKit.framework */,
+				1DD70E292FF4A7CA00000000 /* Foundation.framework */,
+				1DD70E29098E246A00000000 /* MediaPlayer.framework */,
+				1DD70E292E74B0A400000000 /* SafariServices.framework */,
+				1DD70E2925A0F34000000000 /* Security.framework */,
+				1DD70E29113800C600000000 /* SystemConfiguration.framework */,
+				1DD70E297A4F404000000000 /* UIKit.framework */,
+				1DD70E29313635AF00000000 /* libsqlite3.tbd */,
+				1DD70E29EB7704B900000000 /* libz.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B401C9792EF2543B00000000 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1DD70E2969DD7ECE00000000 /* Tinpons.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B401C979332CBDA300000000 /* UserDataStorage */ = {
+			isa = PBXGroup;
+			children = (
+				1DD70E295310083B00000000 /* UserDataStorage.storyboard */,
+				1DD70E297713C00B00000000 /* UserDataStorageViewController.swift */,
+			);
+			name = UserDataStorage;
+			path = Tinpons/demo/userdatastorage;
+			sourceTree = "<group>";
+		};
+		B401C9793DAC23B500000000 /* mainGroup */ = {
+			isa = PBXGroup;
+			children = (
+				B401C9792ED981A800000000 /* Frameworks */,
+				B401C9793F3D745900000000 /* Tinpons */,
+				B401C9792EF2543B00000000 /* Products */,
+			);
+			name = mainGroup;
+			sourceTree = "<group>";
+		};
+		B401C9793F3D745900000000 /* Tinpons */ = {
+			isa = PBXGroup;
+			children = (
+				B401C97953B32C8900000000 /* AmazonAws */,
+				B401C9792DF24DB900000000 /* App */,
+				B401C979AC9B992D00000000 /* Demo */,
+				1DD70E299FE8008200000000 /* Tinpons.entitlements */,
+			);
+			path = Tinpons;
+			sourceTree = "<group>";
+		};
+		B401C9794FB6A0BD00000000 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				1DD70E29687DA31D00000000 /* Info.plist */,
+			);
+			name = SupportingFiles;
+			path = Tinpons/app/supportingfiles;
+			sourceTree = "<group>";
+		};
+		B401C97953B32C8900000000 /* AmazonAws */ = {
+			isa = PBXGroup;
+			children = (
+				1DD70E2946C3AB3000000000 /* AWSMobileClient.swift */,
+				B401C979FD4026CD00000000 /* Models */,
+			);
+			name = AmazonAws;
+			path = Tinpons/amazonaws;
+			sourceTree = "<group>";
+		};
+		B401C979550308D500000000 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				1DD70E29329951CD00000000 /* FacebookIdentityProfile.swift */,
+				1DD70E29E9CCE5D700000000 /* SignIn.storyboard */,
+				1DD70E29F74071EF00000000 /* SignInViewController.swift */,
+				B401C9797133028C00000000 /* UserPools */,
+			);
+			name = SignIn;
+			path = Tinpons/app/signin;
+			sourceTree = "<group>";
+		};
+		B401C979583E47AD00000000 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				1DD70E29A0CFD2E900000000 /* UtilityFunctions.swift */,
+			);
+			name = Utility;
+			path = Tinpons/app/utility;
+			sourceTree = "<group>";
+		};
+		B401C9797133028C00000000 /* UserPools */ = {
+			isa = PBXGroup;
+			children = (
+				1DD70E29AE6C88F800000000 /* FormTableCell.swift */,
+				1DD70E29C88EACA200000000 /* FormTableDelegate.swift */,
+				1DD70E292F06ACDE00000000 /* SignInViewControllerExtensions.swift */,
+				1DD70E29C459CAC000000000 /* TableInputCell.swift */,
+				1DD70E29B09FED7000000000 /* UserPoolForgotPasswordViewController.swift */,
+				1DD70E290654A9EC00000000 /* UserPoolMFAViewController.swift */,
+				1DD70E2982A5337600000000 /* UserPoolNewPasswordViewController.swift */,
+				1DD70E29F45CC74200000000 /* UserPoolSignUpConfirmationViewController.swift */,
+				1DD70E29F05B7FDC00000000 /* UserPoolSignUpViewController.swift */,
+				1DD70E290F8AE36000000000 /* UserPools.storyboard */,
+				1DD70E291472F28E00000000 /* UserPoolsIdentityProfile.swift */,
+				1DD70E294594B81400000000 /* UserPoolsUIHelper.swift */,
+			);
+			name = UserPools;
+			path = Tinpons/app/signin/userpools;
+			sourceTree = "<group>";
+		};
+		B401C979882F603200000000 /* NoSQL */ = {
+			isa = PBXGroup;
+			children = (
+				1DD70E29C919AF3300000000 /* Tinpons.swift */,
+			);
+			name = NoSQL;
+			path = Tinpons/amazonaws/models/nosql;
+			sourceTree = "<group>";
+		};
+		B401C979AC9B992D00000000 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				B401C979B369D35D00000000 /* ContentDelivery */,
+				1DD70E29183C593800000000 /* DemoFeature.swift */,
+				B401C979E60DA1DD00000000 /* NoSQL */,
+				B401C979332CBDA300000000 /* UserDataStorage */,
+				B401C979CD86FF6700000000 /* UserFiles */,
+				B401C979CD18F99500000000 /* UserIdentity */,
+				B401C979E56DF7E300000000 /* UserSettings */,
+			);
+			name = Demo;
+			path = Tinpons/demo;
+			sourceTree = "<group>";
+		};
+		B401C979B369D35D00000000 /* ContentDelivery */ = {
+			isa = PBXGroup;
+			children = (
+				1DD70E29C2FE49CE00000000 /* ContentDelivery.storyboard */,
+			);
+			name = ContentDelivery;
+			path = Tinpons/demo/contentdelivery;
+			sourceTree = "<group>";
+		};
+		B401C979CD18F99500000000 /* UserIdentity */ = {
+			isa = PBXGroup;
+			children = (
+				1DD70E29B6EEC83E00000000 /* UserIdentity.storyboard */,
+				1DD70E297EA9536800000000 /* UserIdentityViewController.swift */,
+			);
+			name = UserIdentity;
+			path = Tinpons/demo/useridentity;
+			sourceTree = "<group>";
+		};
+		B401C979CD86FF6700000000 /* UserFiles */ = {
+			isa = PBXGroup;
+			children = (
+				1DD70E29475659F900000000 /* UserFiles.storyboard */,
+				1DD70E297CDA840D00000000 /* UserFilesViewController.swift */,
+			);
+			name = UserFiles;
+			path = Tinpons/demo/userfiles;
+			sourceTree = "<group>";
+		};
+		B401C979E56DF7E300000000 /* UserSettings */ = {
+			isa = PBXGroup;
+			children = (
+				1DD70E295C943A8900000000 /* ColorThemeSettings.swift */,
+				1DD70E29AEA02B6900000000 /* UserSettings.storyboard */,
+				1DD70E290D2D509D00000000 /* UserSettingsViewController.swift */,
+			);
+			name = UserSettings;
+			path = Tinpons/demo/usersettings;
+			sourceTree = "<group>";
+		};
+		B401C979E60DA1DD00000000 /* NoSQL */ = {
+			isa = PBXGroup;
+			children = (
+				1DD70E29F345191400000000 /* NoSQLDatabase.storyboard */,
+				1DD70E2941B10D1200000000 /* NoSQLModelHelpers.swift */,
+				1DD70E29F23CDC3600000000 /* NoSQLQueryResultViewController.swift */,
+				1DD70E29D11FE69400000000 /* NoSQLSampleDataGenerator.swift */,
+				1DD70E296E67149200000000 /* NoSQLTableFactory.swift */,
+				1DD70E29DCAA2CD800000000 /* NoSQLTableListViewController.swift */,
+				1DD70E29393C69F400000000 /* NoSQLTableViewController.swift */,
+				1DD70E29786CD84600000000 /* TinponsTable.swift */,
+			);
+			name = NoSQL;
+			path = Tinpons/demo/nosql;
+			sourceTree = "<group>";
+		};
+		B401C979FD4026CD00000000 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B401C979882F603200000000 /* NoSQL */,
+			);
+			name = Models;
+			path = Tinpons/amazonaws/models;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E66DC04E0000000000000000 /* Tinpons */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 218C37090000000000000001 /* Build configuration list for PBXNativeTarget "Tinpons" */;
+			buildPhases = (
+				E1F174220000000000000001 /* ShellScript */,
+				1870857F0000000000000000 /* Sources */,
+				4F426D880000000000000000 /* Frameworks */,
+				8A032D2C0000000000000000 /* Resources */,
+				FAF5FAC90000000000000000 /* Embed Frameworks */,
+				E1F174220000000000000000 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Tinpons;
+			productName = Tinpons;
+			productReference = 1DD70E2969DD7ECE00000000 /* Tinpons.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		96C847930000000000000000 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0820;
+				LastUpgradeCheck = 0820;
+				TargetAttributes = {
+					E66DC04E0000000000000000 = {
+						DevelopmentTeam = 92GPW8PJ56;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 218C37090000000000000000 /* Build configuration list for PBXProject "Tinpons" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B401C9793DAC23B500000000 /* mainGroup */;
+			productRefGroup = B401C9792EF2543B00000000 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E66DC04E0000000000000000 /* Tinpons */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8A032D2C0000000000000000 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7A30F0479F95AEB00000000 /* SignIn.storyboard in Resources */,
+				E7A30F04414B914C00000000 /* UserSettings.storyboard in Resources */,
+				E7A30F04C7BD61B600000000 /* UserIdentity.storyboard in Resources */,
+				E7A30F04DE26F06A00000000 /* NoSQLDatabase.storyboard in Resources */,
+				E7A30F0495E1F5E000000000 /* ContentDelivery.storyboard in Resources */,
+				E7A30F045CD4428C00000000 /* UserDataStorage.storyboard in Resources */,
+				E7A30F046FFFB5F100000000 /* Launch Screen.storyboard in Resources */,
+				E7A30F04490C0AB000000000 /* Images.xcassets in Resources */,
+				E7A30F049BE818D100000000 /* UserFiles.storyboard in Resources */,
+				E7A30F0489AA356400000000 /* UserPools.storyboard in Resources */,
+				E7A30F04274F6B6700000000 /* AWSFacebookSignInResources.bundle in Resources */,
+				E7A30F04D987431800000000 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E1F174220000000000000000 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "bash \"${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework/strip-frameworks.sh\"";
+		};
+		E1F174220000000000000001 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FILE=${SRCROOT}/Tinpons/Sdk/CheckXcodeVersion.sh\nif [ -e $FILE ]; then\n    $FILE\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1870857F0000000000000000 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E7A30F049A3B079A00000000 /* UserPoolNewPasswordViewController.swift in Sources */,
+				E7A30F04A7471B5D00000000 /* UserFilesViewController.swift in Sources */,
+				E7A30F042B278B4700000000 /* UserPoolSignUpConfirmationViewController.swift in Sources */,
+				E7A30F0483A9E71300000000 /* NoSQLTableListViewController.swift in Sources */,
+				E7A30F04B3A3013500000000 /* NoSQLTableFactory.swift in Sources */,
+				E7A30F04C071CC9E00000000 /* UserPoolMFAViewController.swift in Sources */,
+				E7A30F040AAE5A4B00000000 /* AppDelegate.swift in Sources */,
+				E7A30F04751D7C8300000000 /* UserDataStorageViewController.swift in Sources */,
+				E7A30F043DD4F57200000000 /* FormTableCell.swift in Sources */,
+				E7A30F04FE04727700000000 /* TableInputCell.swift in Sources */,
+				E7A30F04A0099EDA00000000 /* UserPoolForgotPasswordViewController.swift in Sources */,
+				E7A30F04B52582EF00000000 /* DemoFeature.swift in Sources */,
+				E7A30F049F2DB49800000000 /* ColorThemeSettings.swift in Sources */,
+				E7A30F04E3BD48B900000000 /* NoSQLSampleDataGenerator.swift in Sources */,
+				E7A30F0493F7667400000000 /* UtilityFunctions.swift in Sources */,
+				E7A30F04CB38085200000000 /* NoSQLTableViewController.swift in Sources */,
+				E7A30F04741B216700000000 /* MainViewController.swift in Sources */,
+				E7A30F04B8261BDC00000000 /* UserPoolsIdentityProfile.swift in Sources */,
+				E7A30F04AE9F230100000000 /* TinponsTable.swift in Sources */,
+				E7A30F044B6ABE3800000000 /* UserPoolSignUpViewController.swift in Sources */,
+				E7A30F0410C789CB00000000 /* NoSQLQueryResultViewController.swift in Sources */,
+				E7A30F049A8F6DAE00000000 /* SignInViewController.swift in Sources */,
+				E7A30F048DE0B1CD00000000 /* Tinpons.swift in Sources */,
+				E7A30F04023CE26000000000 /* FacebookIdentityProfile.swift in Sources */,
+				E7A30F047C56666000000000 /* UserSettingsViewController.swift in Sources */,
+				E7A30F04C2DDB4B200000000 /* SignInViewControllerExtensions.swift in Sources */,
+				E7A30F0460A2A9A000000000 /* UserPoolsUIHelper.swift in Sources */,
+				E7A30F0462463B0A00000000 /* NoSQLModelHelpers.swift in Sources */,
+				E7A30F045DA4FE2500000000 /* UserIdentityViewController.swift in Sources */,
+				E7A30F0400925D1700000000 /* AWSMobileClient.swift in Sources */,
+				E7A30F0497C0BECE00000000 /* FormTableDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		49524373386D956C00000000 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_LDFLAGS = "$(OTHER_LDFLAGS)";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		49524373386D956C00000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Tinpons/Tinpons.entitlements;
+				CODE_SIGN_IDENTITY = "iphone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 92GPW8PJ56;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Tinpons/Sdk/**",
+					"$(PROJECT_DIR)/Tinpons/Sdk/Aws",
+					"$(PROJECT_DIR)/Tinpons/AmazonAws",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Tinpons/App/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.amazon.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		4952437346F3E10800000000 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(OTHER_LDFLAGS)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4952437346F3E10800000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Tinpons/Tinpons.entitlements;
+				CODE_SIGN_IDENTITY = "iphone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 92GPW8PJ56;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/Tinpons/Sdk/**",
+					"$(PROJECT_DIR)/Tinpons/Sdk/Aws",
+					"$(PROJECT_DIR)/Tinpons/AmazonAws",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Tinpons/App/SupportingFiles/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.amazon.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		218C37090000000000000000 /* Build configuration list for PBXProject "Tinpons" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4952437346F3E10800000000 /* Debug */,
+				49524373386D956C00000000 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		218C37090000000000000001 /* Build configuration list for PBXNativeTarget "Tinpons" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4952437346F3E10800000001 /* Debug */,
+				49524373386D956C00000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 96C847930000000000000000 /* Project object */;
+}
