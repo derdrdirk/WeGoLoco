@@ -7,12 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F51EEC699D00FD148F /* SwiperViewController.swift */; };
+		D443C0F81EEC6CA300FD148F /* BackgroundKolodaAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */; };
 		D480D0541EEBEEF300B4193A /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0531EEBEEF300B4193A /* pop.framework */; };
 		D480D0551EEBEEF300B4193A /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0531EEBEEF300B4193A /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D480D0581EEBEF7200B4193A /* Koloda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0561EEBEF3500B4193A /* Koloda.framework */; };
 		D480D0591EEBEF7200B4193A /* Koloda.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0561EEBEF3500B4193A /* Koloda.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D480D05C1EEBF0FF00B4193A /* Swiper.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D480D05B1EEBF0FF00B4193A /* Swiper.storyboard */; };
-		D480D05E1EEBF11800B4193A /* SwiperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D480D05D1EEBF11800B4193A /* SwiperViewController.swift */; };
+		D4E258211EEC1A6400B2B986 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E2581F1EEC1A6400B2B986 /* CustomOverlayView.swift */; };
+		D4E258221EEC1A6400B2B986 /* CustomOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */; };
+		D4E258241EEC625400B2B986 /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E258231EEC625400B2B986 /* CustomKolodaView.swift */; };
 		E7A30F040024501400000000 /* AWSDynamoDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29BC3E8A3700000000 /* AWSDynamoDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7A30F040024501400000001 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29BC3E8A3700000000 /* AWSDynamoDB.framework */; };
 		E7A30F0400925D1700000000 /* AWSMobileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E2946C3AB3000000000 /* AWSMobileClient.swift */; };
@@ -172,10 +176,14 @@
 		1DD70E29F74071EF00000000 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = Tinpons/App/SignIn/SignInViewController.swift; sourceTree = SOURCE_ROOT; };
 		1DD70E29F77E3E0700000000 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = Tinpons/Sdk/Aws/AWSS3.framework; sourceTree = "<group>"; };
 		1DD70E29FF24C27A00000000 /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSMobileHubHelper.framework; path = Tinpons/AmazonAws/AWSMobileHubHelper.framework; sourceTree = "<group>"; };
+		D443C0F51EEC699D00FD148F /* SwiperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiperViewController.swift; path = Tinpons/App/Swiper/SwiperViewController.swift; sourceTree = SOURCE_ROOT; };
+		D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundKolodaAnimator.swift; path = Tinpons/App/Swiper/BackgroundKolodaAnimator.swift; sourceTree = SOURCE_ROOT; };
 		D480D0531EEBEEF300B4193A /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = Carthage/Build/iOS/pop.framework; sourceTree = "<group>"; };
 		D480D0561EEBEF3500B4193A /* Koloda.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Koloda.framework; path = Carthage/Build/iOS/Koloda.framework; sourceTree = "<group>"; };
 		D480D05B1EEBF0FF00B4193A /* Swiper.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Swiper.storyboard; path = Tinpons/App/Swiper/Swiper.storyboard; sourceTree = SOURCE_ROOT; };
-		D480D05D1EEBF11800B4193A /* SwiperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiperViewController.swift; path = Tinpons/App/Swiper/SwiperViewController.swift; sourceTree = SOURCE_ROOT; };
+		D4E2581F1EEC1A6400B2B986 /* CustomOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomOverlayView.swift; path = Tinpons/App/Swiper/CustomOverlayView.swift; sourceTree = SOURCE_ROOT; };
+		D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomOverlayView.xib; path = Tinpons/App/Swiper/CustomOverlayView.xib; sourceTree = SOURCE_ROOT; };
+		D4E258231EEC625400B2B986 /* CustomKolodaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomKolodaView.swift; path = Tinpons/App/Swiper/CustomKolodaView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -452,9 +460,14 @@
 			isa = PBXGroup;
 			children = (
 				D480D05B1EEBF0FF00B4193A /* Swiper.storyboard */,
-				D480D05D1EEBF11800B4193A /* SwiperViewController.swift */,
+				D4E2581F1EEC1A6400B2B986 /* CustomOverlayView.swift */,
+				D4E258231EEC625400B2B986 /* CustomKolodaView.swift */,
+				D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */,
+				D443C0F51EEC699D00FD148F /* SwiperViewController.swift */,
+				D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */,
 			);
 			name = Swiper;
+			path = Tinpons/App/Swiper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -525,6 +538,7 @@
 				E7A30F0495E1F5E000000000 /* ContentDelivery.storyboard in Resources */,
 				E7A30F045CD4428C00000000 /* UserDataStorage.storyboard in Resources */,
 				E7A30F046FFFB5F100000000 /* Launch Screen.storyboard in Resources */,
+				D4E258221EEC1A6400B2B986 /* CustomOverlayView.xib in Resources */,
 				E7A30F04490C0AB000000000 /* Images.xcassets in Resources */,
 				D480D05C1EEBF0FF00B4193A /* Swiper.storyboard in Resources */,
 				E7A30F049BE818D100000000 /* UserFiles.storyboard in Resources */,
@@ -570,6 +584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4E258211EEC1A6400B2B986 /* CustomOverlayView.swift in Sources */,
 				E7A30F049A3B079A00000000 /* UserPoolNewPasswordViewController.swift in Sources */,
 				E7A30F04A7471B5D00000000 /* UserFilesViewController.swift in Sources */,
 				E7A30F042B278B4700000000 /* UserPoolSignUpConfirmationViewController.swift in Sources */,
@@ -583,8 +598,9 @@
 				E7A30F04A0099EDA00000000 /* UserPoolForgotPasswordViewController.swift in Sources */,
 				E7A30F04B52582EF00000000 /* DemoFeature.swift in Sources */,
 				E7A30F049F2DB49800000000 /* ColorThemeSettings.swift in Sources */,
+				D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */,
+				D443C0F81EEC6CA300FD148F /* BackgroundKolodaAnimator.swift in Sources */,
 				E7A30F04E3BD48B900000000 /* NoSQLSampleDataGenerator.swift in Sources */,
-				D480D05E1EEBF11800B4193A /* SwiperViewController.swift in Sources */,
 				E7A30F0493F7667400000000 /* UtilityFunctions.swift in Sources */,
 				E7A30F04CB38085200000000 /* NoSQLTableViewController.swift in Sources */,
 				E7A30F04741B216700000000 /* MainViewController.swift in Sources */,
@@ -600,6 +616,7 @@
 				E7A30F0460A2A9A000000000 /* UserPoolsUIHelper.swift in Sources */,
 				E7A30F0462463B0A00000000 /* NoSQLModelHelpers.swift in Sources */,
 				E7A30F045DA4FE2500000000 /* UserIdentityViewController.swift in Sources */,
+				D4E258241EEC625400B2B986 /* CustomKolodaView.swift in Sources */,
 				E7A30F0400925D1700000000 /* AWSMobileClient.swift in Sources */,
 				E7A30F0497C0BECE00000000 /* FormTableDelegate.swift in Sources */,
 			);

@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,20 +21,50 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Swiper" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SWB-d8-lyl">
-                                <rect key="frame" x="147" y="356" width="53" height="21"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LLs-yn-BWu" customClass="CustomKolodaView" customModule="Tinpons" customModuleProvider="target">
+                                <rect key="frame" x="16" y="20" width="343" height="627"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o8M-Jz-ZIv">
+                                <rect key="frame" x="76" y="479" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="X"/>
+                                <connections>
+                                    <action selector="leftButtonTapped:" destination="yj9-7j-OHl" eventType="touchUpInside" id="11Q-J8-F85"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yJQ-nM-Zxb">
+                                <rect key="frame" x="180" y="479" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="YES"/>
+                                <connections>
+                                    <action selector="rightButtonTapped:" destination="yj9-7j-OHl" eventType="touchUpInside" id="BnS-hN-g54"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AaU-uG-Zs9">
+                                <rect key="frame" x="272" y="479" width="38" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Undo"/>
+                                <connections>
+                                    <action selector="undoButtonTapped:" destination="yj9-7j-OHl" eventType="touchUpInside" id="isd-cH-egx"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LLs-yn-BWu" firstAttribute="trailing" secondItem="QpI-Nm-Uch" secondAttribute="trailingMargin" id="5Ta-te-0Ln"/>
+                            <constraint firstItem="LLs-yn-BWu" firstAttribute="leading" secondItem="QpI-Nm-Uch" secondAttribute="leadingMargin" id="GKV-RS-jYx"/>
+                            <constraint firstAttribute="bottom" secondItem="LLs-yn-BWu" secondAttribute="bottom" constant="20" symbolic="YES" id="IhU-Ys-8ya"/>
+                            <constraint firstItem="LLs-yn-BWu" firstAttribute="top" secondItem="nOd-yZ-auZ" secondAttribute="bottom" id="cAF-ft-oH7"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="kolodaView" destination="LLs-yn-BWu" id="ACh-yF-a7D"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UK8-9c-SUn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="162" y="-28"/>
+            <point key="canvasLocation" x="381.60000000000002" y="-63.418290854572717"/>
         </scene>
     </scenes>
 </document>
