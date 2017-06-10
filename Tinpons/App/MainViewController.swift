@@ -71,6 +71,16 @@ class MainViewController: UITableViewController {
             icon: "NoSQLIcon", storyboard: "NoSQLDatabase")
         
         demoFeatures.append(demoFeature)
+        
+        // added by me
+        demoFeature = DemoFeature.init(
+            name: NSLocalizedString("Swiper",
+                                    comment: "To Swiper MVC."),
+            detail: NSLocalizedString("Store data in the cloud.",
+                                      comment: "Description for demo menu option."),
+            icon: "NoSQLIcon", storyboard: "Swiper")
+        demoFeatures.append(demoFeature)
+
     }
 
     

@@ -1,0 +1,18 @@
+{
+  "iOS" : [
+    {
+      "hash" : "a0fb6156572c46635c7639bd8c98ccd7899865965ab38c667e65fb8eccbf01f7",
+      "name" : "Koloda"
+    }
+  ],
+  "commitish" : "4.1",
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "Mac" : [
+
+  ]
+}

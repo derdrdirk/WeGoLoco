@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D480D0541EEBEEF300B4193A /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0531EEBEEF300B4193A /* pop.framework */; };
+		D480D0551EEBEEF300B4193A /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0531EEBEEF300B4193A /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D480D0581EEBEF7200B4193A /* Koloda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0561EEBEF3500B4193A /* Koloda.framework */; };
+		D480D0591EEBEF7200B4193A /* Koloda.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0561EEBEF3500B4193A /* Koloda.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D480D05C1EEBF0FF00B4193A /* Swiper.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D480D05B1EEBF0FF00B4193A /* Swiper.storyboard */; };
+		D480D05E1EEBF11800B4193A /* SwiperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D480D05D1EEBF11800B4193A /* SwiperViewController.swift */; };
 		E7A30F040024501400000000 /* AWSDynamoDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29BC3E8A3700000000 /* AWSDynamoDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7A30F040024501400000001 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29BC3E8A3700000000 /* AWSDynamoDB.framework */; };
 		E7A30F0400925D1700000000 /* AWSMobileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E2946C3AB3000000000 /* AWSMobileClient.swift */; };
@@ -86,9 +92,11 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E7A30F04F3C9207500000000 /* AWSCognitoIdentityProvider.framework in Embed Frameworks */,
+				D480D0591EEBEF7200B4193A /* Koloda.framework in Embed Frameworks */,
 				E7A30F040024501400000000 /* AWSDynamoDB.framework in Embed Frameworks */,
 				E7A30F04F1802C3300000000 /* AWSCore.framework in Embed Frameworks */,
 				E7A30F040879B56F00000000 /* AWSCognito.framework in Embed Frameworks */,
+				D480D0551EEBEEF300B4193A /* pop.framework in Embed Frameworks */,
 				E7A30F046317E39C00000000 /* AWSS3.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -164,6 +172,10 @@
 		1DD70E29F74071EF00000000 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = Tinpons/App/SignIn/SignInViewController.swift; sourceTree = SOURCE_ROOT; };
 		1DD70E29F77E3E0700000000 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = Tinpons/Sdk/Aws/AWSS3.framework; sourceTree = "<group>"; };
 		1DD70E29FF24C27A00000000 /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSMobileHubHelper.framework; path = Tinpons/AmazonAws/AWSMobileHubHelper.framework; sourceTree = "<group>"; };
+		D480D0531EEBEEF300B4193A /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = Carthage/Build/iOS/pop.framework; sourceTree = "<group>"; };
+		D480D0561EEBEF3500B4193A /* Koloda.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Koloda.framework; path = Carthage/Build/iOS/Koloda.framework; sourceTree = "<group>"; };
+		D480D05B1EEBF0FF00B4193A /* Swiper.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Swiper.storyboard; path = Tinpons/App/Swiper/Swiper.storyboard; sourceTree = SOURCE_ROOT; };
+		D480D05D1EEBF11800B4193A /* SwiperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiperViewController.swift; path = Tinpons/App/Swiper/SwiperViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +185,7 @@
 			files = (
 				E7A30F04F3C9207500000001 /* AWSCognitoIdentityProvider.framework in Frameworks */,
 				E7A30F040024501400000001 /* AWSDynamoDB.framework in Frameworks */,
+				D480D0581EEBEF7200B4193A /* Koloda.framework in Frameworks */,
 				E7A30F04F1802C3300000001 /* AWSCore.framework in Frameworks */,
 				E7A30F046362ECD700000000 /* FBSDKLoginKit.framework in Frameworks */,
 				E7A30F048EEF138700000000 /* AWSCognitoUserPoolsSignIn.framework in Frameworks */,
@@ -191,6 +204,7 @@
 				E7A30F0441B6CF8A00000000 /* MediaPlayer.framework in Frameworks */,
 				E7A30F045CF37CF300000000 /* AVFoundation.framework in Frameworks */,
 				E7A30F04DDC5AA4700000000 /* AVKit.framework in Frameworks */,
+				D480D0541EEBEEF300B4193A /* pop.framework in Frameworks */,
 				E7A30F04C6AE9E9200000000 /* SafariServices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +215,7 @@
 		B401C9792DF24DB900000000 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				D480D05A1EEBF0ED00B4193A /* Swiper */,
 				1DD70E29E394D56000000000 /* AppDelegate.swift */,
 				1DD70E292554733E00000000 /* Images.xcassets */,
 				1DD70E29A8F4FCAE00000000 /* Launch Screen.storyboard */,
@@ -217,6 +232,8 @@
 		B401C9792ED981A800000000 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D480D0561EEBEF3500B4193A /* Koloda.framework */,
+				D480D0531EEBEEF300B4193A /* pop.framework */,
 				1DD70E29964685F000000000 /* AVFoundation.framework */,
 				1DD70E29A937017200000000 /* AVKit.framework */,
 				1DD70E29412E6AC500000000 /* AWSCognito.framework */,
@@ -431,6 +448,15 @@
 			path = Tinpons/amazonaws/models;
 			sourceTree = "<group>";
 		};
+		D480D05A1EEBF0ED00B4193A /* Swiper */ = {
+			isa = PBXGroup;
+			children = (
+				D480D05B1EEBF0FF00B4193A /* Swiper.storyboard */,
+				D480D05D1EEBF11800B4193A /* SwiperViewController.swift */,
+			);
+			name = Swiper;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -500,6 +526,7 @@
 				E7A30F045CD4428C00000000 /* UserDataStorage.storyboard in Resources */,
 				E7A30F046FFFB5F100000000 /* Launch Screen.storyboard in Resources */,
 				E7A30F04490C0AB000000000 /* Images.xcassets in Resources */,
+				D480D05C1EEBF0FF00B4193A /* Swiper.storyboard in Resources */,
 				E7A30F049BE818D100000000 /* UserFiles.storyboard in Resources */,
 				E7A30F0489AA356400000000 /* UserPools.storyboard in Resources */,
 				E7A30F04274F6B6700000000 /* AWSFacebookSignInResources.bundle in Resources */,
@@ -557,6 +584,7 @@
 				E7A30F04B52582EF00000000 /* DemoFeature.swift in Sources */,
 				E7A30F049F2DB49800000000 /* ColorThemeSettings.swift in Sources */,
 				E7A30F04E3BD48B900000000 /* NoSQLSampleDataGenerator.swift in Sources */,
+				D480D05E1EEBF11800B4193A /* SwiperViewController.swift in Sources */,
 				E7A30F0493F7667400000000 /* UtilityFunctions.swift in Sources */,
 				E7A30F04CB38085200000000 /* NoSQLTableViewController.swift in Sources */,
 				E7A30F04741B216700000000 /* MainViewController.swift in Sources */,
@@ -637,6 +665,7 @@
 					"$(PROJECT_DIR)/Tinpons/Sdk/**",
 					"$(PROJECT_DIR)/Tinpons/Sdk/Aws",
 					"$(PROJECT_DIR)/Tinpons/AmazonAws",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Tinpons/App/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -713,6 +742,7 @@
 					"$(PROJECT_DIR)/Tinpons/Sdk/**",
 					"$(PROJECT_DIR)/Tinpons/Sdk/Aws",
 					"$(PROJECT_DIR)/Tinpons/AmazonAws",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "$(SRCROOT)/Tinpons/App/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
