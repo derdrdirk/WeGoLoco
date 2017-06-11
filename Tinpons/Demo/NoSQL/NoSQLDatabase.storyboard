@@ -19,10 +19,10 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="NoSQLTableListCell" rowHeight="115" id="j14-eK-yzb" customClass="NoSQLTableListCell" customModule="MySampleApp">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="115"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="115"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="j14-eK-yzb" id="sFY-nv-WBZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="342" height="114.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="342" height="114"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="TableName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eF3-7K-bo6">
@@ -166,10 +166,10 @@
                         <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoSQLTableCell" rowHeight="79" id="b2r-9B-xxE" customClass="NoSQLTableCell" customModule="MySampleApp">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="79"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="79"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="b2r-9B-xxE" id="p3L-lo-nJp">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="78.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="78"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="QueryType" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sCa-jl-aAx">
@@ -307,7 +307,7 @@
                         </view>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NoSQLQueryResultCell" rowHeight="66" id="Om7-Qo-HXF" customClass="NoSQLQueryResultCell" customModule="MySampleApp">
-                                <rect key="frame" x="0.0" y="129.5" width="375" height="66"/>
+                                <rect key="frame" x="0.0" y="130" width="375" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Om7-Qo-HXF" id="rhE-hC-tB5">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
@@ -370,7 +370,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoSQLQueryNoResultCell" id="lmn-V2-uFF">
-                                <rect key="frame" x="0.0" y="195.5" width="375" height="66"/>
+                                <rect key="frame" x="0.0" y="196" width="375" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lmn-V2-uFF" id="mam-tI-WVb">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="66"/>
