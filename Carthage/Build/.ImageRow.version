@@ -1,0 +1,18 @@
+{
+  "iOS" : [
+    {
+      "hash" : "e7244052167ba2905924581c6ce1a6146b6e4e0f1ec31b74d41f168abd35b2ec",
+      "name" : "ImageRow"
+    }
+  ],
+  "commitish" : "1.0.1",
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "Mac" : [
+
+  ]
+}

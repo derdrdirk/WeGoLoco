@@ -9,6 +9,12 @@
 /* Begin PBXBuildFile section */
 		D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F51EEC699D00FD148F /* SwiperViewController.swift */; };
 		D443C0F81EEC6CA300FD148F /* BackgroundKolodaAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */; };
+		D443C0FA1EEC728100FD148F /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F91EEC728100FD148F /* AddProductViewController.swift */; };
+		D443C0FD1EEC734700FD148F /* AddProduct.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D443C0FC1EEC734700FD148F /* AddProduct.storyboard */; };
+		D47F96E81EED8D0000B9FCE3 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */; };
+		D47F96E91EED8D0000B9FCE3 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D47F96F01EED938400B9FCE3 /* ImageRow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47F96EF1EED938400B9FCE3 /* ImageRow.framework */; };
+		D47F96F11EED938400B9FCE3 /* ImageRow.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D47F96EF1EED938400B9FCE3 /* ImageRow.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D480D0541EEBEEF300B4193A /* pop.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0531EEBEEF300B4193A /* pop.framework */; };
 		D480D0551EEBEEF300B4193A /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0531EEBEEF300B4193A /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D480D0581EEBEF7200B4193A /* Koloda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0561EEBEF3500B4193A /* Koloda.framework */; };
@@ -96,6 +102,8 @@
 			dstSubfolderSpec = 10;
 			files = (
 				E7A30F04F3C9207500000000 /* AWSCognitoIdentityProvider.framework in Embed Frameworks */,
+				D47F96E91EED8D0000B9FCE3 /* Eureka.framework in Embed Frameworks */,
+				D47F96F11EED938400B9FCE3 /* ImageRow.framework in Embed Frameworks */,
 				D480D0591EEBEF7200B4193A /* Koloda.framework in Embed Frameworks */,
 				E7A30F040024501400000000 /* AWSDynamoDB.framework in Embed Frameworks */,
 				E7A30F04F1802C3300000000 /* AWSCore.framework in Embed Frameworks */,
@@ -178,6 +186,12 @@
 		1DD70E29FF24C27A00000000 /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSMobileHubHelper.framework; path = Tinpons/AmazonAws/AWSMobileHubHelper.framework; sourceTree = "<group>"; };
 		D443C0F51EEC699D00FD148F /* SwiperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiperViewController.swift; path = Tinpons/App/Swiper/SwiperViewController.swift; sourceTree = SOURCE_ROOT; };
 		D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundKolodaAnimator.swift; path = Tinpons/App/Swiper/BackgroundKolodaAnimator.swift; sourceTree = SOURCE_ROOT; };
+		D443C0F91EEC728100FD148F /* AddProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddProductViewController.swift; path = Tinpons/App/AddProduct/AddProductViewController.swift; sourceTree = SOURCE_ROOT; };
+		D443C0FC1EEC734700FD148F /* AddProduct.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AddProduct.storyboard; path = Tinpons/App/AddProduct/AddProduct.storyboard; sourceTree = SOURCE_ROOT; };
+		D47F96E51EED8C2A00B9FCE3 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
+		D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
+		D47F96EC1EED932600B9FCE3 /* ImageRow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageRow.framework; path = Carthage/Build/iOS/ImageRow.framework; sourceTree = "<group>"; };
+		D47F96EF1EED938400B9FCE3 /* ImageRow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageRow.framework; path = Carthage/Build/iOS/ImageRow.framework; sourceTree = "<group>"; };
 		D480D0531EEBEEF300B4193A /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = Carthage/Build/iOS/pop.framework; sourceTree = "<group>"; };
 		D480D0561EEBEF3500B4193A /* Koloda.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Koloda.framework; path = Carthage/Build/iOS/Koloda.framework; sourceTree = "<group>"; };
 		D480D05B1EEBF0FF00B4193A /* Swiper.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Swiper.storyboard; path = Tinpons/App/Swiper/Swiper.storyboard; sourceTree = SOURCE_ROOT; };
@@ -199,6 +213,7 @@
 				E7A30F048EEF138700000000 /* AWSCognitoUserPoolsSignIn.framework in Frameworks */,
 				E7A30F0418F7B7D900000000 /* FBSDKCoreKit.framework in Frameworks */,
 				E7A30F040879B56F00000001 /* AWSCognito.framework in Frameworks */,
+				D47F96F01EED938400B9FCE3 /* ImageRow.framework in Frameworks */,
 				E7A30F046317E39C00000001 /* AWSS3.framework in Frameworks */,
 				E7A30F045560C2B200000000 /* AWSMobileHubHelper.framework in Frameworks */,
 				E7A30F04F1E5184200000000 /* AWSFacebookSignIn.framework in Frameworks */,
@@ -214,6 +229,7 @@
 				E7A30F04DDC5AA4700000000 /* AVKit.framework in Frameworks */,
 				D480D0541EEBEEF300B4193A /* pop.framework in Frameworks */,
 				E7A30F04C6AE9E9200000000 /* SafariServices.framework in Frameworks */,
+				D47F96E81EED8D0000B9FCE3 /* Eureka.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +248,7 @@
 				B401C979550308D500000000 /* SignIn */,
 				B401C9794FB6A0BD00000000 /* SupportingFiles */,
 				B401C979583E47AD00000000 /* Utility */,
+				D443C0FB1EEC728C00FD148F /* AddProduct */,
 			);
 			name = App;
 			path = Tinpons/app;
@@ -240,6 +257,8 @@
 		B401C9792ED981A800000000 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D47F96EC1EED932600B9FCE3 /* ImageRow.framework */,
+				D47F96E51EED8C2A00B9FCE3 /* Eureka.framework */,
 				D480D0561EEBEF3500B4193A /* Koloda.framework */,
 				D480D0531EEBEEF300B4193A /* pop.framework */,
 				1DD70E29964685F000000000 /* AVFoundation.framework */,
@@ -289,6 +308,8 @@
 		B401C9793DAC23B500000000 /* mainGroup */ = {
 			isa = PBXGroup;
 			children = (
+				D47F96EF1EED938400B9FCE3 /* ImageRow.framework */,
+				D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */,
 				B401C9792ED981A800000000 /* Frameworks */,
 				B401C9793F3D745900000000 /* Tinpons */,
 				B401C9792EF2543B00000000 /* Products */,
@@ -456,6 +477,15 @@
 			path = Tinpons/amazonaws/models;
 			sourceTree = "<group>";
 		};
+		D443C0FB1EEC728C00FD148F /* AddProduct */ = {
+			isa = PBXGroup;
+			children = (
+				D443C0F91EEC728100FD148F /* AddProductViewController.swift */,
+				D443C0FC1EEC734700FD148F /* AddProduct.storyboard */,
+			);
+			name = AddProduct;
+			sourceTree = "<group>";
+		};
 		D480D05A1EEBF0ED00B4193A /* Swiper */ = {
 			isa = PBXGroup;
 			children = (
@@ -531,6 +561,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D443C0FD1EEC734700FD148F /* AddProduct.storyboard in Resources */,
 				E7A30F0479F95AEB00000000 /* SignIn.storyboard in Resources */,
 				E7A30F04414B914C00000000 /* UserSettings.storyboard in Resources */,
 				E7A30F04C7BD61B600000000 /* UserIdentity.storyboard in Resources */,
@@ -610,6 +641,7 @@
 				E7A30F0410C789CB00000000 /* NoSQLQueryResultViewController.swift in Sources */,
 				E7A30F049A8F6DAE00000000 /* SignInViewController.swift in Sources */,
 				E7A30F048DE0B1CD00000000 /* Tinpons.swift in Sources */,
+				D443C0FA1EEC728100FD148F /* AddProductViewController.swift in Sources */,
 				E7A30F04023CE26000000000 /* FacebookIdentityProfile.swift in Sources */,
 				E7A30F047C56666000000000 /* UserSettingsViewController.swift in Sources */,
 				E7A30F04C2DDB4B200000000 /* SignInViewControllerExtensions.swift in Sources */,

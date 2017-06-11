@@ -80,6 +80,14 @@ class MainViewController: UITableViewController {
                                       comment: "Description for demo menu option."),
             icon: "NoSQLIcon", storyboard: "Swiper")
         demoFeatures.append(demoFeature)
+        
+        demoFeature = DemoFeature.init(
+            name: NSLocalizedString("AddProduct",
+                                    comment: "To AddProduct MVC."),
+            detail: NSLocalizedString("Store data in the cloud.",
+                                      comment: "Description for demo menu option."),
+            icon: "NoSQLIcon", storyboard: "AddProduct")
+        demoFeatures.append(demoFeature)
 
     }
 
