@@ -5,6 +5,7 @@
     </device>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -13,7 +14,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="Main" title="My Sample App" id="HKv-yk-r7M" userLabel="Tinpons" customClass="MainViewController" customModule="Tinpons" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="22" sectionFooterHeight="22" id="3oO-xQ-WqP">
-                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -56,7 +57,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0lx-xM-3gj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1432" y="467"/>
+            <point key="canvasLocation" x="1454" y="-217"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iLu-if-voD">
@@ -75,12 +76,70 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="HKv-yk-r7M" kind="relationship" relationship="rootViewController" id="vLB-Hq-tnt"/>
+                        <segue destination="gfq-04-FT2" kind="relationship" relationship="rootViewController" id="WFD-ds-CMX"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5ih-jC-buG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="665.625" y="467.95774647887322"/>
+        </scene>
+        <!--Swiper View Controller-->
+        <scene sceneID="csY-G8-4MX">
+            <objects>
+                <viewController storyboardIdentifier="Swiper" id="gfq-04-FT2" customClass="SwiperViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="X32-br-pVi"/>
+                        <viewControllerLayoutGuide type="bottom" id="kCt-oL-c4I"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="4kG-LK-x3N">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9LJ-Ha-R53" customClass="CustomKolodaView" customModule="Tinpons" customModuleProvider="target">
+                                <rect key="frame" x="16" y="0.0" width="343" height="583"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Geh-EI-gqj">
+                                <rect key="frame" x="76" y="479" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="X"/>
+                                <connections>
+                                    <action selector="leftButtonTapped:" destination="gfq-04-FT2" eventType="touchUpInside" id="GeS-mK-z6b"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Inf-tG-HFp">
+                                <rect key="frame" x="180" y="479" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="YES"/>
+                                <connections>
+                                    <action selector="rightButtonTapped:" destination="gfq-04-FT2" eventType="touchUpInside" id="zLD-wW-IgW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bjv-6N-TcH">
+                                <rect key="frame" x="272" y="479" width="38" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Undo"/>
+                                <connections>
+                                    <action selector="undoButtonTapped:" destination="gfq-04-FT2" eventType="touchUpInside" id="TCY-qg-RuM"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="9LJ-Ha-R53" secondAttribute="bottom" constant="20" symbolic="YES" id="Y2z-dI-0rl"/>
+                            <constraint firstItem="9LJ-Ha-R53" firstAttribute="trailing" secondItem="4kG-LK-x3N" secondAttribute="trailingMargin" id="fUQ-YH-HK6"/>
+                            <constraint firstItem="9LJ-Ha-R53" firstAttribute="top" secondItem="X32-br-pVi" secondAttribute="bottom" id="jWh-lo-Ave"/>
+                            <constraint firstItem="9LJ-Ha-R53" firstAttribute="leading" secondItem="4kG-LK-x3N" secondAttribute="leadingMargin" id="mq6-Og-EhG"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="keu-zp-Ez7"/>
+                    <connections>
+                        <outlet property="kolodaView" destination="9LJ-Ha-R53" id="CHB-fs-hlm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HKV-kl-Ne2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1495" y="467"/>
         </scene>
     </scenes>
     <resources>

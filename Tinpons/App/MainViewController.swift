@@ -43,7 +43,7 @@ class MainViewController: UITableViewController {
             self.updateTheme()
         }
 
-            presentSignInViewController()
+        presentSignInViewController()
         
         var demoFeature = DemoFeature.init(
             name: NSLocalizedString("User Sign-in",

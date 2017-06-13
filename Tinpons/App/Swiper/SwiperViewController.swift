@@ -9,6 +9,7 @@
 import UIKit
 import Koloda
 import pop
+import AWSMobileHubHelper
 
 private let numberOfCards: Int = 5
 private let frameAnimationSpringBounciness: CGFloat = 9
@@ -20,9 +21,16 @@ class SwiperViewController: UIViewController {
     
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
+    fileprivate let loginButton: UIBarButtonItem = UIBarButtonItem(title: nil, style: .done, target: nil, action: nil)
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setupRightBarButtonItem()
+        presentSignInViewController()
+        
+        
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
         kolodaView.delegate = self
@@ -73,6 +81,51 @@ extension SwiperViewController: KolodaViewDelegate {
         animation?.springSpeed = frameAnimationSpringSpeed
         return animation
     }
+    
+    // MARK: Start Screen
+    func setupRightBarButtonItem() {
+        navigationItem.rightBarButtonItem = loginButton
+        navigationItem.rightBarButtonItem!.target = self
+        
+        if (AWSSignInManager.sharedInstance().isLoggedIn) {
+            navigationItem.rightBarButtonItem!.title = NSLocalizedString("Sign-Out", comment: "Label for the logout button.")
+            navigationItem.rightBarButtonItem!.action = #selector(SwiperViewController.handleLogout)
+        }
+    }
+    
+    func presentSignInViewController() {
+        if !AWSSignInManager.sharedInstance().isLoggedIn {
+            let loginStoryboard = UIStoryboard(name: "SignIn", bundle: nil)
+            let loginController: SignInViewController = loginStoryboard.instantiateViewController(withIdentifier: "SignIn") as! SignInViewController
+            loginController.canCancel = false
+            loginController.didCompleteSignIn = onSignIn
+            let navController = UINavigationController(rootViewController: loginController)
+            navigationController?.present(navController, animated: true, completion: nil)
+        }
+    }
+    
+    func onSignIn (_ success: Bool) {
+        // handle successful sign in
+        if (success) {
+            self.setupRightBarButtonItem()
+        } else {
+            // handle cancel operation from user
+        }
+    }
+    
+    func handleLogout() {
+        if (AWSSignInManager.sharedInstance().isLoggedIn) {
+            ColorThemeSettings.sharedInstance.wipe()
+            AWSSignInManager.sharedInstance().logout(completionHandler: {(result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) in
+                self.navigationController!.popToRootViewController(animated: false)
+                self.setupRightBarButtonItem()
+                self.presentSignInViewController()
+            })
+            // print("Logout Successful: \(signInProvider.getDisplayName)");
+        } else {
+            assert(false)
+        }
+    }
 }
 
 // MARK: KolodaViewDataSource
@@ -94,3 +147,4 @@ extension SwiperViewController: KolodaViewDataSource {
         return Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? OverlayView
     }
 }
+

@@ -239,12 +239,12 @@
 		B401C9792DF24DB900000000 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				D480D05A1EEBF0ED00B4193A /* Swiper */,
 				1DD70E29E394D56000000000 /* AppDelegate.swift */,
 				1DD70E292554733E00000000 /* Images.xcassets */,
 				1DD70E29A8F4FCAE00000000 /* Launch Screen.storyboard */,
 				1DD70E29001F5DDA00000000 /* Main.storyboard */,
 				1DD70E2927114D4C00000000 /* MainViewController.swift */,
+				D480D05A1EEBF0ED00B4193A /* Swiper */,
 				B401C979550308D500000000 /* SignIn */,
 				B401C9794FB6A0BD00000000 /* SupportingFiles */,
 				B401C979583E47AD00000000 /* Utility */,
