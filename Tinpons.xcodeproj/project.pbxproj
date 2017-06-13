@@ -19,7 +19,6 @@
 		D480D0551EEBEEF300B4193A /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0531EEBEEF300B4193A /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D480D0581EEBEF7200B4193A /* Koloda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0561EEBEF3500B4193A /* Koloda.framework */; };
 		D480D0591EEBEF7200B4193A /* Koloda.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0561EEBEF3500B4193A /* Koloda.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		D480D05C1EEBF0FF00B4193A /* Swiper.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D480D05B1EEBF0FF00B4193A /* Swiper.storyboard */; };
 		D4E258211EEC1A6400B2B986 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E2581F1EEC1A6400B2B986 /* CustomOverlayView.swift */; };
 		D4E258221EEC1A6400B2B986 /* CustomOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */; };
 		D4E258241EEC625400B2B986 /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E258231EEC625400B2B986 /* CustomKolodaView.swift */; };
@@ -194,7 +193,6 @@
 		D47F96EF1EED938400B9FCE3 /* ImageRow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageRow.framework; path = Carthage/Build/iOS/ImageRow.framework; sourceTree = "<group>"; };
 		D480D0531EEBEEF300B4193A /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = Carthage/Build/iOS/pop.framework; sourceTree = "<group>"; };
 		D480D0561EEBEF3500B4193A /* Koloda.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Koloda.framework; path = Carthage/Build/iOS/Koloda.framework; sourceTree = "<group>"; };
-		D480D05B1EEBF0FF00B4193A /* Swiper.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Swiper.storyboard; path = Tinpons/App/Swiper/Swiper.storyboard; sourceTree = SOURCE_ROOT; };
 		D4E2581F1EEC1A6400B2B986 /* CustomOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomOverlayView.swift; path = Tinpons/App/Swiper/CustomOverlayView.swift; sourceTree = SOURCE_ROOT; };
 		D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomOverlayView.xib; path = Tinpons/App/Swiper/CustomOverlayView.xib; sourceTree = SOURCE_ROOT; };
 		D4E258231EEC625400B2B986 /* CustomKolodaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomKolodaView.swift; path = Tinpons/App/Swiper/CustomKolodaView.swift; sourceTree = SOURCE_ROOT; };
@@ -489,7 +487,6 @@
 		D480D05A1EEBF0ED00B4193A /* Swiper */ = {
 			isa = PBXGroup;
 			children = (
-				D480D05B1EEBF0FF00B4193A /* Swiper.storyboard */,
 				D4E2581F1EEC1A6400B2B986 /* CustomOverlayView.swift */,
 				D4E258231EEC625400B2B986 /* CustomKolodaView.swift */,
 				D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */,
@@ -571,7 +568,6 @@
 				E7A30F046FFFB5F100000000 /* Launch Screen.storyboard in Resources */,
 				D4E258221EEC1A6400B2B986 /* CustomOverlayView.xib in Resources */,
 				E7A30F04490C0AB000000000 /* Images.xcassets in Resources */,
-				D480D05C1EEBF0FF00B4193A /* Swiper.storyboard in Resources */,
 				E7A30F049BE818D100000000 /* UserFiles.storyboard in Resources */,
 				E7A30F0489AA356400000000 /* UserPools.storyboard in Resources */,
 				E7A30F04274F6B6700000000 /* AWSFacebookSignInResources.bundle in Resources */,

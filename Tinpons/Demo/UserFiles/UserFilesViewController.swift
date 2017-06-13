@@ -111,7 +111,6 @@ class UserFilesViewController: UITableViewController {
         if (success) {
             if let mainViewController = self.navigationController?.viewControllers[0] as? MainViewController {
                 mainViewController.setupRightBarButtonItem()
-                mainViewController.updateTheme()
             }
         } else {
             // handle cancel operation from user
