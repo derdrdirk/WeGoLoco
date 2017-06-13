@@ -110,7 +110,7 @@ class UserFilesViewController: UITableViewController {
         // handle successful sign in
         if (success) {
             if let mainViewController = self.navigationController?.viewControllers[0] as? MainViewController {
-                mainViewController.setupRightBarButtonItem()
+                mainViewController.setupLeftBarButtonItem()
             }
         } else {
             // handle cancel operation from user

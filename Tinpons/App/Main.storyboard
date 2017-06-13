@@ -33,7 +33,7 @@
             </objects>
             <point key="canvasLocation" x="665.625" y="467.95774647887322"/>
         </scene>
-        <!--Main View Controller-->
+        <!--Tinpons-->
         <scene sceneID="csY-G8-4MX">
             <objects>
                 <viewController storyboardIdentifier="Swiper" id="gfq-04-FT2" customClass="MainViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
@@ -82,14 +82,70 @@
                             <constraint firstItem="9LJ-Ha-R53" firstAttribute="leading" secondItem="4kG-LK-x3N" secondAttribute="leadingMargin" id="mq6-Og-EhG"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="keu-zp-Ez7"/>
+                    <navigationItem key="navigationItem" title="Tinpons" id="keu-zp-Ez7">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="s0f-6y-Bba">
+                            <connections>
+                                <segue destination="PSp-l8-uMg" kind="presentation" id="qXS-EK-G8c"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="kolodaView" destination="9LJ-Ha-R53" id="CHB-fs-hlm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKV-kl-Ne2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1495" y="467"/>
+            <point key="canvasLocation" x="2432.8000000000002" y="466.41679160419795"/>
+        </scene>
+        <!--Add Product View Controller-->
+        <scene sceneID="gwK-Kj-gQz">
+            <objects>
+                <viewController storyboardIdentifier="AddProduct" id="p5A-2U-bQ0" customClass="AddProductViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="U9P-Vl-BVk"/>
+                        <viewControllerLayoutGuide type="bottom" id="DJd-NR-8Uj"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="SHZ-ep-rn9">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="8gs-cq-S64">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="4NC-2D-GIZ">
+                            <connections>
+                                <action selector="cancel:" destination="p5A-2U-bQ0" id="ZQw-1n-JvN"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="e0w-R7-Whz">
+                            <connections>
+                                <action selector="save:" destination="p5A-2U-bQ0" id="svy-zE-zxW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dPT-Zg-8Ue" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2432.8000000000002" y="-169.56521739130437"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Exa-E9-bsA">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PSp-l8-uMg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ibH-rO-W8K">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="p5A-2U-bQ0" kind="relationship" relationship="rootViewController" id="JqN-Us-EwE"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ybN-JY-0t4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1493.5999999999999" y="-169.56521739130437"/>
         </scene>
     </scenes>
 </document>

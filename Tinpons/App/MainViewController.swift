@@ -23,7 +23,7 @@ class MainViewController: SwiperViewController {
     func onSignIn (_ success: Bool) {
         // handle successful sign in
         if (success) {
-            self.setupRightBarButtonItem()
+            self.setupLeftBarButtonItem()
         } else {
             // handle cancel operation from user
         }
@@ -31,19 +31,19 @@ class MainViewController: SwiperViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.setupRightBarButtonItem()
+        self.setupLeftBarButtonItem()
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         
         presentSignInViewController()
     }
 
-    func setupRightBarButtonItem() {
-            navigationItem.rightBarButtonItem = loginButton
-            navigationItem.rightBarButtonItem!.target = self
+    func setupLeftBarButtonItem() {
+            navigationItem.leftBarButtonItem = loginButton
+            navigationItem.leftBarButtonItem!.target = self
             
             if (AWSSignInManager.sharedInstance().isLoggedIn) {
-                navigationItem.rightBarButtonItem!.title = NSLocalizedString("Sign-Out", comment: "Label for the logout button.")
-                navigationItem.rightBarButtonItem!.action = #selector(MainViewController.handleLogout)
+                navigationItem.leftBarButtonItem!.title = NSLocalizedString("Sign-Out", comment: "Label for the logout button.")
+                navigationItem.leftBarButtonItem!.action = #selector(MainViewController.handleLogout)
             }
     }
     
@@ -63,7 +63,7 @@ class MainViewController: SwiperViewController {
             ColorThemeSettings.sharedInstance.wipe()
             AWSSignInManager.sharedInstance().logout(completionHandler: {(result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) in
                 self.navigationController!.popToRootViewController(animated: false)
-                self.setupRightBarButtonItem()
+                self.setupLeftBarButtonItem()
                     self.presentSignInViewController()
             })
             // print("Logout Successful: \(signInProvider.getDisplayName)");

@@ -10,7 +10,6 @@
 		D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F51EEC699D00FD148F /* SwiperViewController.swift */; };
 		D443C0F81EEC6CA300FD148F /* BackgroundKolodaAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */; };
 		D443C0FA1EEC728100FD148F /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F91EEC728100FD148F /* AddProductViewController.swift */; };
-		D443C0FD1EEC734700FD148F /* AddProduct.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D443C0FC1EEC734700FD148F /* AddProduct.storyboard */; };
 		D47F96E81EED8D0000B9FCE3 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */; };
 		D47F96E91EED8D0000B9FCE3 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D47F96F01EED938400B9FCE3 /* ImageRow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47F96EF1EED938400B9FCE3 /* ImageRow.framework */; };
@@ -186,7 +185,6 @@
 		D443C0F51EEC699D00FD148F /* SwiperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiperViewController.swift; path = Tinpons/App/Swiper/SwiperViewController.swift; sourceTree = SOURCE_ROOT; };
 		D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundKolodaAnimator.swift; path = Tinpons/App/Swiper/BackgroundKolodaAnimator.swift; sourceTree = SOURCE_ROOT; };
 		D443C0F91EEC728100FD148F /* AddProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddProductViewController.swift; path = Tinpons/App/AddProduct/AddProductViewController.swift; sourceTree = SOURCE_ROOT; };
-		D443C0FC1EEC734700FD148F /* AddProduct.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = AddProduct.storyboard; path = Tinpons/App/AddProduct/AddProduct.storyboard; sourceTree = SOURCE_ROOT; };
 		D47F96E51EED8C2A00B9FCE3 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		D47F96EC1EED932600B9FCE3 /* ImageRow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageRow.framework; path = Carthage/Build/iOS/ImageRow.framework; sourceTree = "<group>"; };
@@ -479,7 +477,6 @@
 			isa = PBXGroup;
 			children = (
 				D443C0F91EEC728100FD148F /* AddProductViewController.swift */,
-				D443C0FC1EEC734700FD148F /* AddProduct.storyboard */,
 			);
 			name = AddProduct;
 			sourceTree = "<group>";
@@ -558,7 +555,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D443C0FD1EEC734700FD148F /* AddProduct.storyboard in Resources */,
 				E7A30F0479F95AEB00000000 /* SignIn.storyboard in Resources */,
 				E7A30F04414B914C00000000 /* UserSettings.storyboard in Resources */,
 				E7A30F04C7BD61B600000000 /* UserIdentity.storyboard in Resources */,
