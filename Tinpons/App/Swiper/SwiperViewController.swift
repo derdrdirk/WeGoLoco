@@ -11,6 +11,8 @@ import Koloda
 import pop
 import AWSMobileHubHelper
 import AWSDynamoDB
+import AWSS3
+
 
 private let numberOfCards: Int = 5
 private let frameAnimationSpringBounciness: CGFloat = 9
@@ -22,11 +24,11 @@ class SwiperViewController: UIViewController {
     
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
+    var tinpons = [UIImage(named: "cards_1"), UIImage(named: "cards_2"), UIImage(named: "cards_3")]
+    
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        retrieveNewTinpons()
         
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
@@ -49,7 +51,7 @@ class SwiperViewController: UIViewController {
     }
     
     // MARK: reload Tinpons
-    private func retrieveNewTinpons() {
+    fileprivate func retrieveNewTinpons() {
         let dynamoDBOBjectMapper = AWSDynamoDBObjectMapper.default()
         let queryExpression = AWSDynamoDBQueryExpression()
         
@@ -57,17 +59,44 @@ class SwiperViewController: UIViewController {
         //queryExpression.expressionAttributeNames = [ "#name" : "name" ]
         queryExpression.expressionAttributeValues = [":test" : "7165EBFD-75C8-4696-BFFD-084F1631D9A2" ]
         
-        dynamoDBOBjectMapper.query(Tinpons.self, expression: queryExpression).continueWith(block: { (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Any? in
+        dynamoDBOBjectMapper.query(Tinpons.self, expression: queryExpression).continueWith(block: { [weak self] (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Any? in
             if let error = task.error as? NSError {
                 print("The request failed DYNAMODB. Error: \(error)")
             } else if let paginatedOutput = task.result {
                 for tinpon in paginatedOutput.items as! [Tinpons] {
                     print("Tinpon: \(tinpon._imgUrl)")
+                    let manager = AWSUserFileManager.defaultUserFileManager()
+                    let content = manager.content(withKey: tinpon._imgUrl!)
+                    self?.downloadContent(content: content, pinOnCompletion: true)
                 }
             }
             return nil
         })
     }
+    
+    private func downloadContent(content: AWSContent, pinOnCompletion: Bool) {
+        content.download(
+            with: .ifNewerExists,
+            pinOnCompletion: pinOnCompletion,
+            progressBlock: {[weak self](content: AWSContent, progress: Progress) -> Void in
+                guard let strongSelf = self else { return }
+                /* Show progress in UI. */
+            },
+            completionHandler: {[weak self](content: AWSContent?, data: Data?, error: Error?) -> Void in
+                guard let strongSelf = self else { return }
+                if let error = error {
+                    print("Failed to download a content from a server. \(error)")
+                    return
+                }
+                print("Object download complete.")
+                if self?.tinpons.append(UIImage(data: data!)!) == nil {
+                    self?.tinpons = [UIImage(data: data!)!]
+                }
+                self?.kolodaView.reloadData()
+                
+        })
+    }
+
 }
 
 //MARK: KolodaViewDelegate
@@ -109,15 +138,21 @@ extension SwiperViewController: KolodaViewDataSource {
     }
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
-        return numberOfCards
+        return tinpons.count
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        return UIImageView(image: UIImage(named: "cards_\(index + 1)"))
+        
+        //return UIImageView(image: UIImage(named: "cards_\(index + 1)"))
+        return UIImageView(image: tinpons[index])
     }
     
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {
         return Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? OverlayView
+    }
+    
+    func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+        retrieveNewTinpons()
     }
 }
 
