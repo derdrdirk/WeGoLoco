@@ -19,7 +19,7 @@ class Tinpons: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     
     var _id: String?
     var _created: NSNumber?
-    var _img: String?
+    var _imgUrl: String?
     var _name: String?
     var _preis: NSNumber?
     var _productType: String?
@@ -39,7 +39,7 @@ class Tinpons: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
         return [
                "_id" : "Id",
                "_created" : "Created",
-               "_img" : "Img",
+               "_imgUrl" : "ImgUrl",
                "_name" : "Name",
                "_preis" : "Preis",
                "_productType" : "ProductType",

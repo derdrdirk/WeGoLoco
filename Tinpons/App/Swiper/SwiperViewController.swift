@@ -10,6 +10,7 @@ import UIKit
 import Koloda
 import pop
 import AWSMobileHubHelper
+import AWSDynamoDB
 
 private let numberOfCards: Int = 5
 private let frameAnimationSpringBounciness: CGFloat = 9
@@ -23,7 +24,9 @@ class SwiperViewController: UIViewController {
     
     //MARK: Lifecycle
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
+        
+        retrieveNewTinpons()
         
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
@@ -43,6 +46,27 @@ class SwiperViewController: UIViewController {
     }
     @IBAction func undoButtonTapped(_ sender: UIButton) {
         kolodaView?.revertAction()
+    }
+    
+    // MARK: reload Tinpons
+    private func retrieveNewTinpons() {
+        let dynamoDBOBjectMapper = AWSDynamoDBObjectMapper.default()
+        let queryExpression = AWSDynamoDBQueryExpression()
+        
+        queryExpression.keyConditionExpression = "Id = :test"
+        //queryExpression.expressionAttributeNames = [ "#name" : "name" ]
+        queryExpression.expressionAttributeValues = [":test" : "7165EBFD-75C8-4696-BFFD-084F1631D9A2" ]
+        
+        dynamoDBOBjectMapper.query(Tinpons.self, expression: queryExpression).continueWith(block: { (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Any? in
+            if let error = task.error as? NSError {
+                print("The request failed DYNAMODB. Error: \(error)")
+            } else if let paginatedOutput = task.result {
+                for tinpon in paginatedOutput.items as! [Tinpons] {
+                    print("Tinpon: \(tinpon._imgUrl)")
+                }
+            }
+            return nil
+        })
     }
 }
 

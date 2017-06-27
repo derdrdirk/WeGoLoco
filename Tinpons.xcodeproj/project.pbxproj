@@ -242,9 +242,9 @@
 				1DD70E2927114D4C00000000 /* MainViewController.swift */,
 				D480D05A1EEBF0ED00B4193A /* Swiper */,
 				B401C979550308D500000000 /* SignIn */,
+				D443C0FB1EEC728C00FD148F /* AddProduct */,
 				B401C9794FB6A0BD00000000 /* SupportingFiles */,
 				B401C979583E47AD00000000 /* Utility */,
-				D443C0FB1EEC728C00FD148F /* AddProduct */,
 			);
 			name = App;
 			path = Tinpons/app;

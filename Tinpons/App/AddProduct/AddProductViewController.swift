@@ -18,10 +18,9 @@ class AddProductViewController: FormViewController {
     
     var table = TinponsTable()
     var product = Product()
-    var s3Prefix = "public/"
-    
     
     struct Product {
+        let uuid = UUID().uuidString
         var name: String?
         var image: UIImage?
         var imageData: Data? {
@@ -30,6 +29,10 @@ class AddProductViewController: FormViewController {
             } else {
                 return nil
             }
+        }
+        let s3Prefix = "public/"
+        var imageS3Path: String {
+            return "\(s3Prefix)\(uuid)"
         }
     }
 
@@ -67,44 +70,31 @@ class AddProductViewController: FormViewController {
     }
     
     // MARK: Actions
-    
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         presentingViewController?.dismiss(animated: true)
     }
     
     @IBAction func save(_ sender: UIBarButtonItem) {
-        print("Name: \(product.name), Image: \(product.image)")
         
-        let imageId = product.name!
-        let s3UploadUrl = "\(s3Prefix)\(imageId)"
-        uploadWithData(data: product.imageData!, forKey: s3UploadUrl)
-        
-//        insertDataWithCompletionHandler({(errors: [NSError]?) -> Void in
-//            //self.activityIndicator.stopAnimating()
-//            var message: String = "Data inserted."
-//            if errors != nil {
-//                message = "Failed to insert sample items to your table."
-//            }
-//            let alartController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-//            let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-//            alartController.addAction(dismissAction)
-//            self.present(alartController, animated: true, completion: nil)
-//        })
+        insertDataWithCompletionHandler({(errors: [NSError]?) -> Void in
+            //self.activityIndicator.stopAnimating()
+            self.uploadWithData(data: self.product.imageData!, forKey: self.product.imageS3Path)
+        })
 
     }
     
     
-    // MARK: AWS Saver
-    
-    func insertDataWithCompletionHandler(_ completionHandler: @escaping (_ errors: [NSError]?) -> Void) {
+    // MARK: AWS DynamoDB
+    private func insertDataWithCompletionHandler(_ completionHandler: @escaping (_ errors: [NSError]?) -> Void) {
         let objectMapper = AWSDynamoDBObjectMapper.default()
         var errors: [NSError] = []
         let group: DispatchGroup = DispatchGroup()
         
         
         let item: Tinpons = Tinpons()
-        item._id = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("Id")
+        item._id = product.uuid
         item._name = product.name
+        item._imgUrl = product.imageS3Path
         
         group.enter()
         
@@ -127,6 +117,7 @@ class AddProductViewController: FormViewController {
         })
     }
     
+    // MARK: AWS S3
     private func uploadWithData(data: Data, forKey key: String) {
         let manager = AWSUserFileManager.defaultUserFileManager()
         let localContent = manager.localContent(with: data as Data, key: key)
@@ -140,9 +131,21 @@ class AddProductViewController: FormViewController {
             completionHandler: {[weak self](content: AWSLocalContent?, error: Error?) -> Void in
                 guard let strongSelf = self else { return }
                 if let error = error {
-                    print("Failed to upload an object. \(error)")
+                    // image upload failed
+                    // => delete DynamoDB entry
+                    let objectMapper = AWSDynamoDBObjectMapper.default()
+                    let itemToDelete: Tinpons = Tinpons()
+                    itemToDelete._id = self?.product.uuid
+                    objectMapper.remove(itemToDelete)
+                    
+                    let message = "Uups something went wrong"
+                    let alartController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+                    let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+                    alartController.addAction(dismissAction)
+                    self?.present(alartController, animated: true, completion: nil)
                 } else {
-                    print("Object upload complete. \(error)")
+                    // image sucessfully uploaded
+                    self?.presentingViewController?.dismiss(animated: true)
                 }
         })
     }

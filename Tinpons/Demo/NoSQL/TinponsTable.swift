@@ -120,7 +120,7 @@ class TinponsTable: NSObject, Table {
         
         itemForGet._id = "demo-Id-500000"
         itemForGet._created = NoSQLSampleDataGenerator.randomSampleNumber()
-        itemForGet._img = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("Img")
+        itemForGet._imgUrl = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("ImgUrl")
         itemForGet._name = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("Name")
         itemForGet._preis = NoSQLSampleDataGenerator.randomSampleNumber()
         itemForGet._productType = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("ProductType")
@@ -144,7 +144,7 @@ class TinponsTable: NSObject, Table {
             let item: Tinpons = Tinpons()
             item._id = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("Id")
             item._created = NoSQLSampleDataGenerator.randomSampleNumber()
-            item._img = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("Img")
+            item._imgUrl = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("ImgUrl")
             item._name = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("Name")
             item._preis = NoSQLSampleDataGenerator.randomSampleNumber()
             item._productType = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("ProductType")
@@ -217,7 +217,7 @@ class TinponsTable: NSObject, Table {
         let itemToUpdate: Tinpons = item as! Tinpons
         
         itemToUpdate._created = NoSQLSampleDataGenerator.randomSampleNumber()
-        itemToUpdate._img = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("Img")
+        itemToUpdate._imgUrl = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("ImgUrl")
         itemToUpdate._name = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("Name")
         itemToUpdate._preis = NoSQLSampleDataGenerator.randomSampleNumber()
         itemToUpdate._productType = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("ProductType")
