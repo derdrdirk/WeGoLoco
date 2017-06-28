@@ -14,6 +14,10 @@ private let overlayLeftImageName = "overlay_skip"
 
 class CustomOverlayView: OverlayView {
     
+    @IBOutlet weak var title: UILabel!
+    
+    @IBOutlet weak var image: UIImageView!
+    
     @IBOutlet lazy var overlayImageView: UIImageView! = {
         [unowned self] in
         

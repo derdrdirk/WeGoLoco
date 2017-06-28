@@ -119,7 +119,7 @@ class TinponsTable: NSObject, Table {
         let itemForGet: Tinpons! = Tinpons()
         
         itemForGet._id = "demo-Id-500000"
-        itemForGet._created = NoSQLSampleDataGenerator.randomSampleNumber()
+        //itemForGet._createdAt = NoSQLSampleDataGenerator.randomSampleNumber()
         itemForGet._imgUrl = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("ImgUrl")
         itemForGet._name = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("Name")
         itemForGet._preis = NoSQLSampleDataGenerator.randomSampleNumber()
@@ -143,7 +143,7 @@ class TinponsTable: NSObject, Table {
 
             let item: Tinpons = Tinpons()
             item._id = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("Id")
-            item._created = NoSQLSampleDataGenerator.randomSampleNumber()
+            //item._createdAt = NoSQLSampleDataGenerator.randomSampleNumber()
             item._imgUrl = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("ImgUrl")
             item._name = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("Name")
             item._preis = NoSQLSampleDataGenerator.randomSampleNumber()
@@ -216,7 +216,7 @@ class TinponsTable: NSObject, Table {
 
         let itemToUpdate: Tinpons = item as! Tinpons
         
-        itemToUpdate._created = NoSQLSampleDataGenerator.randomSampleNumber()
+        //itemToUpdate._createdAt = NoSQLSampleDataGenerator.randomSampleNumber()
         itemToUpdate._imgUrl = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("ImgUrl")
         itemToUpdate._name = NoSQLSampleDataGenerator.randomSampleStringWithAttributeName("Name")
         itemToUpdate._preis = NoSQLSampleDataGenerator.randomSampleNumber()

@@ -24,6 +24,7 @@ class SwiperViewController: UIViewController {
     
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
+    
     var tinpons = [UIImage(named: "cards_1"), UIImage(named: "cards_2"), UIImage(named: "cards_3")]
     
     //MARK: Lifecycle
@@ -51,13 +52,20 @@ class SwiperViewController: UIViewController {
     }
     
     // MARK: reload Tinpons
+    private func loadTinpons(limit: Int = 1) {
+        
+    }
+    
+    
     fileprivate func retrieveNewTinpons() {
         let dynamoDBOBjectMapper = AWSDynamoDBObjectMapper.default()
         let queryExpression = AWSDynamoDBQueryExpression()
-        
-        queryExpression.keyConditionExpression = "Id = :test"
+        queryExpression.indexName = "CreatedAtSortIndex"
+        queryExpression.limit = 1
+        queryExpression.keyConditionExpression = "Category = :category"
         //queryExpression.expressionAttributeNames = [ "#name" : "name" ]
-        queryExpression.expressionAttributeValues = [":test" : "7165EBFD-75C8-4696-BFFD-084F1631D9A2" ]
+        queryExpression.expressionAttributeValues = [":category" : "Shoe" ]
+        
         
         dynamoDBOBjectMapper.query(Tinpons.self, expression: queryExpression).continueWith(block: { [weak self] (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Any? in
             if let error = task.error as? NSError {
@@ -92,6 +100,7 @@ class SwiperViewController: UIViewController {
                 if self?.tinpons.append(UIImage(data: data!)!) == nil {
                     self?.tinpons = [UIImage(data: data!)!]
                 }
+                self?.tinpons.removeFirst()
                 self?.kolodaView.reloadData()
                 
         })
@@ -142,9 +151,10 @@ extension SwiperViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
-        
-        //return UIImageView(image: UIImage(named: "cards_\(index + 1)"))
-        return UIImageView(image: tinpons[index])
+        let cell = Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? CustomOverlayView
+        cell?.image.image = tinpons[index]
+        cell?.title.text = "Jojojo"
+        return cell!
     }
     
     func koloda(_ koloda: KolodaView, viewForCardOverlayAt index: Int) -> OverlayView? {

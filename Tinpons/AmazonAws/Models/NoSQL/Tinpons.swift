@@ -18,12 +18,13 @@ import AWSDynamoDB
 class Tinpons: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     
     var _id: String?
-    var _created: NSNumber?
+    var _createdAt: String?
     var _imgUrl: String?
     var _name: String?
     var _preis: NSNumber?
     var _productType: String?
     var _tags: Set<String>?
+    var _category: String?
     
     class func dynamoDBTableName() -> String {
 
@@ -38,12 +39,13 @@ class Tinpons: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     override class func jsonKeyPathsByPropertyKey() -> [AnyHashable: Any] {
         return [
                "_id" : "Id",
-               "_created" : "Created",
+               "_createdAt" : "CreatedAt",
                "_imgUrl" : "ImgUrl",
                "_name" : "Name",
                "_preis" : "Preis",
                "_productType" : "ProductType",
                "_tags" : "Tags",
+               "_category" : "Category",
         ]
     }
 }

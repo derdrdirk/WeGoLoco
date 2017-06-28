@@ -17,17 +17,31 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nSH-Wk-A2T">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Co-kI-SSt">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="WjV-He-0Hc"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="1Co-kI-SSt" firstAttribute="top" secondItem="nSH-Wk-A2T" secondAttribute="top" id="6AQ-yx-LdE"/>
                 <constraint firstAttribute="trailing" secondItem="nSH-Wk-A2T" secondAttribute="trailing" id="DcM-Yc-vSf"/>
+                <constraint firstItem="1Co-kI-SSt" firstAttribute="leading" secondItem="nSH-Wk-A2T" secondAttribute="leading" id="GmJ-3o-QQl"/>
                 <constraint firstItem="nSH-Wk-A2T" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="LHA-QZ-mHI"/>
+                <constraint firstItem="1Co-kI-SSt" firstAttribute="trailing" secondItem="nSH-Wk-A2T" secondAttribute="trailing" id="WEB-j4-eGm"/>
                 <constraint firstItem="nSH-Wk-A2T" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="e9Z-ZT-Ady"/>
                 <constraint firstAttribute="bottom" secondItem="nSH-Wk-A2T" secondAttribute="bottom" id="haI-fQ-N7j"/>
             </constraints>
             <connections>
-                <outlet property="overlayImageView" destination="nSH-Wk-A2T" id="DdO-hO-Jj4"/>
+                <outlet property="Title" destination="1Co-kI-SSt" id="5FS-yE-i4W"/>
+                <outlet property="image" destination="nSH-Wk-A2T" id="fIf-ap-7gJ"/>
             </connections>
+            <point key="canvasLocation" x="35.5" y="53.5"/>
         </view>
     </objects>
 </document>

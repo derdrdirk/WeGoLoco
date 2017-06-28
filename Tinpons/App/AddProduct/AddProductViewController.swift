@@ -90,11 +90,12 @@ class AddProductViewController: FormViewController {
         var errors: [NSError] = []
         let group: DispatchGroup = DispatchGroup()
         
-        
         let item: Tinpons = Tinpons()
         item._id = product.uuid
         item._name = product.name
         item._imgUrl = product.imageS3Path
+        item._createdAt = Date().iso8601.dateFromISO8601?.iso8601 // "2017-03-22T13:22:13.933Z"
+        item._category = "Shoe"
         
         group.enter()
         
@@ -149,6 +150,26 @@ class AddProductViewController: FormViewController {
                 }
         })
     }
+}
 
+extension Formatter {
+    static let iso8601: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.calendar = Calendar(identifier: .iso8601)
+        formatter.locale = Locale(identifier: "es_ES_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+        return formatter
+    }()
+}
+extension Date {
+    var iso8601: String {
+        return Formatter.iso8601.string(from: self)
+    }
+}
 
+extension String {
+    var dateFromISO8601: Date? {
+        return Formatter.iso8601.date(from: self)   // "Mar 22, 2017, 10:22 AM"
+    }
 }
