@@ -24,12 +24,21 @@ class SwiperViewController: UIViewController {
     
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
-    
-    var tinpons = [UIImage(named: "cards_1"), UIImage(named: "cards_2"), UIImage(named: "cards_3")]
+    var tinpons : [Tinpons]?
     
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // create first 3 Tinpons
+        let tinpon = Tinpons()
+        tinpon?._name = "Name"
+        tinpon?.image = UIImage(named: "cards_1")
+        tinpons = [tinpon!]
+        tinpon?.image = UIImage(named: "cards_2")
+        tinpons!.append(tinpon!)
+        tinpon?.image = UIImage(named: "cards_3")
+        tinpons!.append(tinpon!)
         
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
@@ -72,6 +81,7 @@ class SwiperViewController: UIViewController {
                 print("The request failed DYNAMODB. Error: \(error)")
             } else if let paginatedOutput = task.result {
                 for tinpon in paginatedOutput.items as! [Tinpons] {
+                    self?.tinpons?.append(tinpon)
                     print("Tinpon: \(tinpon._imgUrl)")
                     let manager = AWSUserFileManager.defaultUserFileManager()
                     let content = manager.content(withKey: tinpon._imgUrl!)
@@ -97,10 +107,9 @@ class SwiperViewController: UIViewController {
                     return
                 }
                 print("Object download complete.")
-                if self?.tinpons.append(UIImage(data: data!)!) == nil {
-                    self?.tinpons = [UIImage(data: data!)!]
-                }
-                self?.tinpons.removeFirst()
+                
+                self?.tinpons?.last?.image = UIImage(data: data!)!
+                self?.tinpons?.removeFirst()
                 self?.kolodaView.reloadData()
                 
         })
@@ -147,13 +156,13 @@ extension SwiperViewController: KolodaViewDataSource {
     }
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
-        return tinpons.count
+        return tinpons!.count
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let cell = Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? CustomOverlayView
-        cell?.image.image = tinpons[index]
-        cell?.title.text = "Jojojo"
+        cell?.image.image = tinpons?[index].image
+        cell?.title.text = tinpons?[index]._name
         return cell!
     }
     

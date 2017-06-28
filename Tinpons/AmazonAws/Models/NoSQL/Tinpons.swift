@@ -25,6 +25,7 @@ class Tinpons: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     var _productType: String?
     var _tags: Set<String>?
     var _category: String?
+    var image: UIImage?
     
     class func dynamoDBTableName() -> String {
 
