@@ -25,20 +25,24 @@ class SwiperViewController: UIViewController {
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
     var tinpons : [Tinpons]?
+    var lastEvaluatedKey : [String: AWSDynamoDBAttributeValue]?
     
     //MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // create first 3 Tinpons
-        let tinpon = Tinpons()
-        tinpon?._name = "Name"
-        tinpon?.image = UIImage(named: "cards_1")
-        tinpons = [tinpon!]
-        tinpon?.image = UIImage(named: "cards_2")
-        tinpons!.append(tinpon!)
-        tinpon?.image = UIImage(named: "cards_3")
-        tinpons!.append(tinpon!)
+        
+        
+        getTinpons(5, onCompleted: { (tinpons) in
+            for tinpon in tinpons {
+                if self.tinpons?.append(tinpon) == nil {
+                    self.tinpons = [tinpon]
+                }
+            }
+            DispatchQueue.main.async {
+                self.kolodaView.reloadData()
+            }
+        })
         
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
@@ -61,60 +65,27 @@ class SwiperViewController: UIViewController {
     }
     
     // MARK: reload Tinpons
-    private func loadTinpons(limit: Int = 1) {
-        
-    }
-    
-    
-    fileprivate func retrieveNewTinpons() {
+    func getTinpons(_ limit: NSNumber, onCompleted: @escaping ([Tinpons]) -> Void) {
         let dynamoDBOBjectMapper = AWSDynamoDBObjectMapper.default()
         let queryExpression = AWSDynamoDBQueryExpression()
         queryExpression.indexName = "CreatedAtSortIndex"
-        queryExpression.limit = 1
+        queryExpression.limit = limit
         queryExpression.keyConditionExpression = "Category = :category"
         //queryExpression.expressionAttributeNames = [ "#name" : "name" ]
         queryExpression.expressionAttributeValues = [":category" : "Shoe" ]
+        if lastEvaluatedKey != nil {
+            queryExpression.exclusiveStartKey = lastEvaluatedKey!
+        }
         
-        
-        dynamoDBOBjectMapper.query(Tinpons.self, expression: queryExpression).continueWith(block: { [weak self] (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Any? in
+        dynamoDBOBjectMapper.query(Tinpons.self, expression: queryExpression).continueWith(block: { [weak self] (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Void in
             if let error = task.error as? NSError {
+                print("Object download complete.")
                 print("The request failed DYNAMODB. Error: \(error)")
             } else if let paginatedOutput = task.result {
-                for tinpon in paginatedOutput.items as! [Tinpons] {
-                    self?.tinpons?.append(tinpon)
-                    print("Tinpon: \(tinpon._imgUrl)")
-                    let manager = AWSUserFileManager.defaultUserFileManager()
-                    let content = manager.content(withKey: tinpon._imgUrl!)
-                    self?.downloadContent(content: content, pinOnCompletion: true)
-                }
+               onCompleted(paginatedOutput.items as! [Tinpons])
             }
-            return nil
         })
-    }
-    
-    private func downloadContent(content: AWSContent, pinOnCompletion: Bool) {
-        content.download(
-            with: .ifNewerExists,
-            pinOnCompletion: pinOnCompletion,
-            progressBlock: {[weak self](content: AWSContent, progress: Progress) -> Void in
-                guard let strongSelf = self else { return }
-                /* Show progress in UI. */
-            },
-            completionHandler: {[weak self](content: AWSContent?, data: Data?, error: Error?) -> Void in
-                guard let strongSelf = self else { return }
-                if let error = error {
-                    print("Failed to download a content from a server. \(error)")
-                    return
-                }
-                print("Object download complete.")
-                
-                self?.tinpons?.last?.image = UIImage(data: data!)!
-                self?.tinpons?.removeFirst()
-                self?.kolodaView.reloadData()
-                
-        })
-    }
-
+    } 
 }
 
 //MARK: KolodaViewDelegate
@@ -156,13 +127,19 @@ extension SwiperViewController: KolodaViewDataSource {
     }
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
-        return tinpons!.count
+        if tinpons != nil {
+            return tinpons!.count
+        } else {
+            return 0
+        }
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let cell = Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? CustomOverlayView
-        cell?.image.image = tinpons?[index].image
+        //cell?.image.setImageWithUrl(url: NSURL(string: (tinpons?[index]._imgUrl)!)!)
         cell?.title.text = tinpons?[index]._name
+        print(tinpons?[index]._imgUrl)
+        cell?.image.imageFromServerURL(urlString: "https://s3-eu-west-1.amazonaws.com/tinpons-userfiles-mobilehub-1827971537/public/12C98393-0BA8-4350-B810-ED8B05DAFDA5")
         return cell!
     }
     
@@ -171,7 +148,31 @@ extension SwiperViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
-        retrieveNewTinpons()
+        getTinpons(1, onCompleted: {(tinpons) in
+            for tinpon in tinpons {
+                self.tinpons?.append(tinpon)
+            }
+            DispatchQueue.main.async {
+                self.kolodaView.reloadData()
+            }
+        })
     }
 }
+
+extension UIImageView {
+    public func imageFromServerURL(urlString: String) {
+        
+        URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
+            
+            if error != nil {
+                print(error)
+                return
+            }
+            DispatchQueue.main.async(execute: { () -> Void in
+                let image = UIImage(data: data!)
+                self.image = image
+            })
+            
+        }).resume()
+    }}
 
