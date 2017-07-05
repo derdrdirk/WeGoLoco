@@ -21,18 +21,15 @@ private let kolodaCountOfVisibleCards = 2
 private let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
 
 class SwiperViewController: UIViewController {
-    
+    @IBOutlet weak var OutOfTinponsLabel: UILabel!
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
     var tinpons : [Tinpons]?
     var lastEvaluatedKey : [String: AWSDynamoDBAttributeValue]?
     
     //MARK: Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-        
+    override func viewWillAppear(_ animated: Bool) {      
+        getCognitoID()
         getTinpons(5, onCompleted: { (tinpons) in
             for tinpon in tinpons {
                 if self.tinpons?.append(tinpon) == nil {
@@ -43,6 +40,10 @@ class SwiperViewController: UIViewController {
                 self.kolodaView.reloadData()
             }
         })
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
         
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
@@ -75,24 +76,48 @@ class SwiperViewController: UIViewController {
         queryExpression.expressionAttributeValues = [":category" : "Shoe" ]
         if lastEvaluatedKey != nil {
             queryExpression.exclusiveStartKey = lastEvaluatedKey!
+        } else if tinpons != nil {
+            // if lastEvaluatedKey == nil then there are no more tinpons
+            return
         }
         
         dynamoDBOBjectMapper.query(Tinpons.self, expression: queryExpression).continueWith(block: { [weak self] (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Void in
             if let error = task.error as? NSError {
-                print("Object download complete.")
                 print("The request failed DYNAMODB. Error: \(error)")
             } else if let paginatedOutput = task.result {
                onCompleted(paginatedOutput.items as! [Tinpons])
             }
         })
-    } 
+    }
+    
+    // MARK: get Cognito ID
+    func getCognitoID() {
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:8088e7da-a496-4ae3-818c-2b9025180888")
+        let configuration = AWSServiceConfiguration(region: .EUWest1, credentialsProvider: credentialsProvider)
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
+        
+        // Retrieve your Amazon Cognito ID
+        credentialsProvider.getIdentityId().continueWith(block: { (task) -> AnyObject? in
+            if (task.error != nil) {
+                print("Error: " + task.error!.localizedDescription)
+            }
+            else {
+                // the task result will contain the identity id
+                let cognitoId = task.result!
+                print("Cognito id: \(cognitoId)")
+            }
+            return task;
+        })
+    }
 }
 
 //MARK: KolodaViewDelegate
 extension SwiperViewController: KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-        kolodaView.resetCurrentCardIndex()
+        print("koloda no cards")
+        OutOfTinponsLabel.isHidden = false
+        //kolodaView.resetCurrentCardIndex()
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
@@ -138,8 +163,9 @@ extension SwiperViewController: KolodaViewDataSource {
         let cell = Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? CustomOverlayView
         //cell?.image.setImageWithUrl(url: NSURL(string: (tinpons?[index]._imgUrl)!)!)
         cell?.title.text = tinpons?[index]._name
-        print(tinpons?[index]._imgUrl)
-        cell?.image.imageFromServerURL(urlString: "https://s3-eu-west-1.amazonaws.com/tinpons-userfiles-mobilehub-1827971537/public/12C98393-0BA8-4350-B810-ED8B05DAFDA5")
+        let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+(tinpons![index]._imgUrl)!
+        print(index)
+        cell?.image.imageFromServerURL(urlString: resizedImageUrl)
         return cell!
     }
     

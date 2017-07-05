@@ -11,6 +11,7 @@ import Eureka
 import ImageRow
 import AWSDynamoDB
 import AWSMobileHubHelper
+import AWSS3
 
 class AddProductViewController: FormViewController {
     
@@ -30,7 +31,7 @@ class AddProductViewController: FormViewController {
                 return nil
             }
         }
-        let s3Prefix = "public/"
+        let s3Prefix = ""
         var imageS3Path: String {
             return "\(s3Prefix)\(uuid)"
         }
@@ -96,6 +97,8 @@ class AddProductViewController: FormViewController {
         item._imgUrl = product.imageS3Path
         item._createdAt = Date().iso8601.dateFromISO8601?.iso8601 // "2017-03-22T13:22:13.933Z"
         item._category = "Shoe"
+        
+        
         
         group.enter()
         

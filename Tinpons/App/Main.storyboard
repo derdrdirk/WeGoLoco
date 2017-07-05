@@ -47,7 +47,23 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9LJ-Ha-R53" customClass="CustomKolodaView" customModule="Tinpons" customModuleProvider="target">
                                 <rect key="frame" x="16" y="0.0" width="343" height="583"/>
+                                <subviews>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No More Tinpons 😭 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsb-lN-R7k">
+                                        <rect key="frame" x="0.0" y="274" width="343" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="h9E-YJ-Nw3"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="Zsb-lN-R7k" firstAttribute="leading" secondItem="9LJ-Ha-R53" secondAttribute="leading" id="1OU-Xd-b4Z"/>
+                                    <constraint firstAttribute="trailing" secondItem="Zsb-lN-R7k" secondAttribute="trailing" id="MIR-96-kxl"/>
+                                    <constraint firstItem="Zsb-lN-R7k" firstAttribute="centerY" secondItem="9LJ-Ha-R53" secondAttribute="centerY" id="oTu-bD-ItJ"/>
+                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Geh-EI-gqj">
                                 <rect key="frame" x="76" y="479" width="30" height="30"/>
@@ -90,6 +106,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="OutOfTinponsLabel" destination="Zsb-lN-R7k" id="LBT-G0-ZJJ"/>
                         <outlet property="kolodaView" destination="9LJ-Ha-R53" id="CHB-fs-hlm"/>
                     </connections>
                 </viewController>
