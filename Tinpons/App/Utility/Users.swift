@@ -15,7 +15,7 @@ class Users: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     var _createdAt: String?
     var _birthdate: String?
     var _gender: String?
-    var _height: String?
+    var _height: NSNumber?
     var _tinponCategories: Set<String>?
     var _updatedAt: String?
     
