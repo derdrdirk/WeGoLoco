@@ -24,12 +24,14 @@ class SwiperViewController: UIViewController {
     @IBOutlet weak var OutOfTinponsLabel: UILabel!
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
+    var userId: String?
     var tinpons : [Tinpons]?
     var lastEvaluatedKey : [String: AWSDynamoDBAttributeValue]?
     
     //MARK: Lifecycle
-    override func viewWillAppear(_ animated: Bool) {      
+    override func viewWillAppear(_ animated: Bool) {
         getCognitoID()
+        
         getTinpons(5, onCompleted: { (tinpons) in
             for tinpon in tinpons {
                 if self.tinpons?.append(tinpon) == nil {
@@ -97,16 +99,36 @@ class SwiperViewController: UIViewController {
         AWSServiceManager.default().defaultServiceConfiguration = configuration
         
         // Retrieve your Amazon Cognito ID
-        credentialsProvider.getIdentityId().continueWith(block: { (task) -> AnyObject? in
+        credentialsProvider.getIdentityId().continueWith(block: { [weak self] (task) -> AnyObject? in
             if (task.error != nil) {
                 print("Error: " + task.error!.localizedDescription)
             }
             else {
                 // the task result will contain the identity id
                 let cognitoId = task.result!
-                print("Cognito id: \(cognitoId)")
+                self?.userId = cognitoId as String
             }
-            return task;
+            print("task return")
+            return task
+        })
+    }
+    
+    // MARK: swipe DynamoDB
+    func saveSwipedTinpon(tinponId: String, liked: Bool) {
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        let swipedTinpon = SwipedTinpons()
+        swipedTinpon?._userId = userId
+        swipedTinpon?._like = NSNumber(value: liked)
+        swipedTinpon?._tinponId = tinponId
+        swipedTinpon?._swipedAt = Date().iso8601.dateFromISO8601?.iso8601 // "2017-03-22T13:22:13.933Z"
+        
+        dynamoDBObjectMapper.save(swipedTinpon!).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
+            if let error = task.error as? NSError {
+                print("The request failed. Error: \(error)")
+            } else {
+                print("SwipedTinpon saved")
+                // Do something with task.result or perform other operations.
+            }
         })
     }
 }
@@ -174,6 +196,17 @@ extension SwiperViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+        // save swipedTinpon
+        var liked = false
+        switch direction {
+        case .right:
+            liked = true
+        default:
+            liked = false
+        }
+        saveSwipedTinpon(tinponId: (tinpons?[index]._id)!, liked: liked)
+        
+        // load next Tinpon
         getTinpons(1, onCompleted: {(tinpons) in
             for tinpon in tinpons {
                 self.tinpons?.append(tinpon)
