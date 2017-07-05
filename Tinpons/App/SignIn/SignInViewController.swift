@@ -152,7 +152,6 @@ class SignInViewController : UIViewController {
         signInButton.addTarget(self, action: #selector(handleUserPoolSignIn), for: .touchUpInside)
         forgotPasswordButton.addTarget(self, action: #selector(handleUserPoolForgotPassword), for: .touchUpInside)
     }
-    
 }
 
 extension SignInViewController: AWSSignInDelegate {
@@ -161,6 +160,7 @@ extension SignInViewController: AWSSignInDelegate {
         // dismiss view controller if no error
         if error == nil {
             print("Signed in with: \(signInProvider)")
+
             self.presentingViewController?.dismiss(animated: true, completion: nil)
             if let didCompleteSignIn = self.didCompleteSignIn {
                 didCompleteSignIn(true)

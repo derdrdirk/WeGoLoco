@@ -8,8 +8,11 @@
 
 import UIKit
 import Eureka
+import AWSCore
+import AWSDynamoDB
 
 class ProfileViewController: FormViewController {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,8 +34,8 @@ class ProfileViewController: FormViewController {
         form +++ Section("Tinpons")
             <<< MultipleSelectorRow<String>() {
                 $0.title = "Categories"
-                $0.options = ["👕", "👖", "👟", "👜", "🕶"]
-                $0.value = ["👕", "👖", "👟"]
+                $0.options = ["👕", "👖", "👞", "👜", "🕶"]
+                $0.value = ["👕", "👖", "👞"]
                 }
                 .onPresent { from, to in
                     to.sectionKeyForValue = { option in
@@ -45,10 +48,15 @@ class ProfileViewController: FormViewController {
                 }
         
     }
-
+    
+    
+    
+    
     @IBAction func cancel(_ sender: UIBarButtonItem) {
         presentingViewController?.dismiss(animated: true)
     }
+    
+    
     
     
    }

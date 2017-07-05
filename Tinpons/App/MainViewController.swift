@@ -13,9 +13,10 @@
 
 import UIKit
 import AWSMobileHubHelper
+import AWSDynamoDB
 
 class MainViewController: SwiperViewController {
-   
+    
     fileprivate let loginButton: UIBarButtonItem = UIBarButtonItem(title: nil, style: .done, target: nil, action: nil)
 
     // MARK: - View lifecycle
@@ -23,6 +24,7 @@ class MainViewController: SwiperViewController {
     func onSignIn (_ success: Bool) {
         // handle successful sign in
         if (success) {
+            createUserAccountIfNotExisting()
             self.setupLeftBarButtonItem()
         } else {
             // handle cancel operation from user
@@ -70,5 +72,35 @@ class MainViewController: SwiperViewController {
         } else {
             assert(false)
         }
+    }
+
+
+    
+    func createUserAccountIfNotExisting() {
+        //check if User Account exists
+        let dynamoDBOBjectMapper = AWSDynamoDBObjectMapper.default()
+        dynamoDBOBjectMapper.load(Users.self, hashKey: userId, rangeKey: nil).continueWith(block: { [weak self] (task:AWSTask<AnyObject>!) -> Any? in
+            if let error = task.error as? NSError {
+                print("The request failed. Error: \(error)")
+            } else if let resultUser = task.result as? Users {
+                print("found something")
+                print(resultUser._userId)
+            } else if task.result == nil {
+                // User does not exist => create
+                let user = Users()
+                user?._userId = self?.userId
+                user?._createdAt = Date().iso8601.dateFromISO8601?.iso8601 // "2017-03-22T13:22:13.933Z"
+                user?._tinponCategories = ["👕", "👖", "👞"]
+                dynamoDBOBjectMapper.save(user!).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
+                    if let error = task.error as? NSError {
+                        print("The request failed. Error: \(error)")
+                    } else {
+                        print("User created")
+                        // Do something with task.result or perform other operations.
+                    }
+                })
+            }
+            return nil
+        })
     }
 }

@@ -108,7 +108,6 @@ class SwiperViewController: UIViewController {
                 let cognitoId = task.result!
                 self?.userId = cognitoId as String
             }
-            print("task return")
             return task
         })
     }
