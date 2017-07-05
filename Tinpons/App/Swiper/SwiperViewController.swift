@@ -126,8 +126,7 @@ class SwiperViewController: UIViewController {
             if let error = task.error as? NSError {
                 print("The request failed. Error: \(error)")
             } else {
-                print("SwipedTinpon saved")
-                // Do something with task.result or perform other operations.
+                // succesfully saved
             }
         })
     }
@@ -186,7 +185,6 @@ extension SwiperViewController: KolodaViewDataSource {
         //cell?.image.setImageWithUrl(url: NSURL(string: (tinpons?[index]._imgUrl)!)!)
         cell?.title.text = tinpons?[index]._name
         let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+(tinpons![index]._imgUrl)!
-        print(index)
         cell?.image.imageFromServerURL(urlString: resizedImageUrl)
         return cell!
     }

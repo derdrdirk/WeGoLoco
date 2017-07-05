@@ -22,6 +22,7 @@
 		D4E258221EEC1A6400B2B986 /* CustomOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */; };
 		D4E258241EEC625400B2B986 /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E258231EEC625400B2B986 /* CustomKolodaView.swift */; };
 		D4FA2EC91F0CD0C100B287FB /* SwipedTinpons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA2EC81F0CD0C100B287FB /* SwipedTinpons.swift */; };
+		D4FA2ECC1F0CE85B00B287FB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA2ECB1F0CE85B00B287FB /* ProfileViewController.swift */; };
 		E7A30F040024501400000000 /* AWSDynamoDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29BC3E8A3700000000 /* AWSDynamoDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7A30F040024501400000001 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29BC3E8A3700000000 /* AWSDynamoDB.framework */; };
 		E7A30F0400925D1700000000 /* AWSMobileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E2946C3AB3000000000 /* AWSMobileClient.swift */; };
@@ -196,6 +197,7 @@
 		D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomOverlayView.xib; path = Tinpons/App/Swiper/CustomOverlayView.xib; sourceTree = SOURCE_ROOT; };
 		D4E258231EEC625400B2B986 /* CustomKolodaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomKolodaView.swift; path = Tinpons/App/Swiper/CustomKolodaView.swift; sourceTree = SOURCE_ROOT; };
 		D4FA2EC81F0CD0C100B287FB /* SwipedTinpons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipedTinpons.swift; path = Tinpons/AmazonAws/Models/NoSQL/SwipedTinpons.swift; sourceTree = SOURCE_ROOT; };
+		D4FA2ECB1F0CE85B00B287FB /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Tinpons/App/Profile/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,6 +239,7 @@
 		B401C9792DF24DB900000000 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				D4FA2ECA1F0CE83A00B287FB /* Profile */,
 				1DD70E29E394D56000000000 /* AppDelegate.swift */,
 				1DD70E292554733E00000000 /* Images.xcassets */,
 				1DD70E29A8F4FCAE00000000 /* Launch Screen.storyboard */,
@@ -497,6 +500,15 @@
 			path = Tinpons/App/Swiper;
 			sourceTree = "<group>";
 		};
+		D4FA2ECA1F0CE83A00B287FB /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				D4FA2ECB1F0CE85B00B287FB /* ProfileViewController.swift */,
+			);
+			name = Profile;
+			path = Tinpons/App/Profile;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -645,6 +657,7 @@
 				E7A30F0462463B0A00000000 /* NoSQLModelHelpers.swift in Sources */,
 				E7A30F045DA4FE2500000000 /* UserIdentityViewController.swift in Sources */,
 				D4E258241EEC625400B2B986 /* CustomKolodaView.swift in Sources */,
+				D4FA2ECC1F0CE85B00B287FB /* ProfileViewController.swift in Sources */,
 				E7A30F0400925D1700000000 /* AWSMobileClient.swift in Sources */,
 				E7A30F0497C0BECE00000000 /* FormTableDelegate.swift in Sources */,
 			);
