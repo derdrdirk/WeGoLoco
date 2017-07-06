@@ -28,20 +28,25 @@ class ProfileViewController: FormViewController {
                 $0.value = Date()
                 $0.title = "Date of Birth"
                 $0.tag = "Birthdate"
+                }.onChange{[weak self] in
+                    self?.user?._birthdate = $0.value?.iso8601
             }
             <<< SegmentedRow<String>() {
                 $0.title = "Gender"
                 $0.tag = "Gender"
                 $0.options = ["👨‍💼", "👩‍💼"]
-                $0.value = "👨‍💼"
+                }.onChange{[weak self] in
+                    self?.user?._gender = $0.value
             }
             <<< SliderRow() {
                 $0.title = "Height"
-                $0.value = 1.70
+                $0.value = 1.0
                 $0.tag = "Height"
                 $0.minimumValue = 1.00
                 $0.maximumValue = 2.00
                 $0.steps = 100
+                }.onChange{ [weak self] in
+                    self?.user?._height = NSNumber(value: $0.value!)
         }
         form +++ Section("Tinpons")
             <<< MultipleSelectorRow<String>() {
@@ -58,6 +63,8 @@ class ProfileViewController: FormViewController {
                         default: return ""
                         }
                     }
+                }.onChange{[weak self] in
+                    self?.user?._tinponCategories = $0.value
         }
         
         // load User
@@ -76,7 +83,7 @@ class ProfileViewController: FormViewController {
         
         let heightRow = form.rowBy(tag: "Height") as? SliderRow
         if let height = user?._height {
-            heightRow?.value = height as! Float
+            heightRow?.value = height as? Float
         } else {
             heightRow?.value = 1.0
         }
@@ -89,7 +96,6 @@ class ProfileViewController: FormViewController {
 
     // MARK: get Cognito ID
     func getUserProfile() {
-        print("getUser")
         let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:8088e7da-a496-4ae3-818c-2b9025180888")
         let configuration = AWSServiceConfiguration(region: .EUWest1, credentialsProvider: credentialsProvider)
         AWSServiceManager.default().defaultServiceConfiguration = configuration
@@ -103,13 +109,11 @@ class ProfileViewController: FormViewController {
                 // the task result will contain the identity id
                 let cognitoId = task.result!
                 let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
-                print(cognitoId)
                 dynamoDBObjectMapper.load(Users.self, hashKey: cognitoId, rangeKey:nil).continueWith(block: {[weak self] (task:AWSTask<AnyObject>!) -> Any? in
                     if let error = task.error {
                         print("The request failed. Error: \(error)")
                     } else if let resultUser = task.result as? Users {
                         // Do something with task.result.
-                        print("set user")
                         self?.user = resultUser
                         DispatchQueue.main.async {
                             self?.updateUI()
@@ -117,7 +121,6 @@ class ProfileViewController: FormViewController {
                     }
                     return nil
                 })
-
             }
             return task
         })
@@ -129,6 +132,19 @@ class ProfileViewController: FormViewController {
         presentingViewController?.dismiss(animated: true)
     }
     
+    @IBAction func Save(_ sender: UIBarButtonItem) {
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        dynamoDBObjectMapper.save(user!).continueWith(block: { [weak self] (task:AWSTask<AnyObject>!) -> Void in
+            if let error = task.error {
+                print("The request failed. Error: \(error)")
+            } else {
+                // Do something with task.result or perform other operations.
+                DispatchQueue.main.async {
+                    self?.presentingViewController?.dismiss(animated: true)
+                }
+            }
+        })
+    }
     
     
     

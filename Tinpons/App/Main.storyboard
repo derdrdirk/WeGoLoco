@@ -157,6 +157,11 @@
                                 <action selector="cancel:" destination="hY0-aP-LQ0" id="fvF-Lr-Yaj"/>
                             </connections>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="GFK-TD-SOs">
+                            <connections>
+                                <action selector="Save:" destination="hY0-aP-LQ0" id="sHU-XZ-YpM"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rwg-wv-QDq" userLabel="First Responder" sceneMemberID="firstResponder"/>
