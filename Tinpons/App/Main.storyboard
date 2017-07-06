@@ -57,14 +57,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IwN-mp-udk">
-                                        <rect key="frame" x="106" y="464" width="46" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Button"/>
-                                        <connections>
-                                            <segue destination="MTT-mu-4Gx" kind="presentation" id="HeO-jH-V4o"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -116,6 +108,7 @@
                     <connections>
                         <outlet property="OutOfTinponsLabel" destination="Zsb-lN-R7k" id="LBT-G0-ZJJ"/>
                         <outlet property="kolodaView" destination="9LJ-Ha-R53" id="CHB-fs-hlm"/>
+                        <segue destination="MTT-mu-4Gx" kind="presentation" identifier="presentProfile" id="HzM-UL-ymq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKV-kl-Ne2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -163,8 +156,12 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="RL8-Ik-vgw" kind="unwind" identifier="unwindProfileViewController" unwindAction="unwindProfileViewControllerWithSegue:" id="ra8-AN-eUm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rwg-wv-QDq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="RL8-Ik-vgw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2433" y="1199"/>
         </scene>

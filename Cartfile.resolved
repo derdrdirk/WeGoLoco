@@ -1,4 +1,5 @@
+github "0x73/SwiftIconFont" "2.6.0"
 github "EurekaCommunity/ImageRow" "1.0.1"
 github "Yalantis/Koloda" "4.1"
-github "facebook/pop" "1.0.9"
+github "facebook/pop" "1.0.10"
 github "xmartlabs/Eureka" "3.0.0"

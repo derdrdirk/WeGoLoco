@@ -1,18 +1,9 @@
 {
+  "commitish" : "4.1",
   "iOS" : [
     {
-      "hash" : "693fc58c64f3118519cb7d24840ba6fb1563827dbc434295da24fe151863fab5",
+      "hash" : "db8c7449b66a594af0a068cf83f7d685bd7030bb63bb962dd878485336204d21",
       "name" : "Koloda"
     }
-  ],
-  "commitish" : "4.1",
-  "watchOS" : [
-
-  ],
-  "tvOS" : [
-
-  ],
-  "Mac" : [
-
   ]
 }

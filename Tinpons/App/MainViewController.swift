@@ -14,10 +14,11 @@
 import UIKit
 import AWSMobileHubHelper
 import AWSDynamoDB
+import SwiftIconFont
 
 class MainViewController: SwiperViewController {
     
-    fileprivate let loginButton: UIBarButtonItem = UIBarButtonItem(title: nil, style: .done, target: nil, action: nil)
+    //fileprivate let loginButton: UIBarButtonItem = UIBarButtonItem(title: nil, style: .done, target: nil, action: nil)
 
     // MARK: - View lifecycle
 
@@ -30,23 +31,27 @@ class MainViewController: SwiperViewController {
             // handle cancel operation from user
         }
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setupLeftBarButtonItem()
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .plain, target: nil, action: nil)
         
         presentSignInViewController()
     }
 
     func setupLeftBarButtonItem() {
-            navigationItem.leftBarButtonItem = loginButton
-            navigationItem.leftBarButtonItem!.target = self
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .done, target: self, action: #selector(profileButtonTapped))
+            navigationItem.leftBarButtonItem?.icon(from: .Ionicon, code: "person", ofSize: 20)
             
-            if (AWSSignInManager.sharedInstance().isLoggedIn) {
-                navigationItem.leftBarButtonItem!.title = NSLocalizedString("Sign-Out", comment: "Label for the logout button.")
-                navigationItem.leftBarButtonItem!.action = #selector(MainViewController.handleLogout)
-            }
+        
+//            if (AWSSignInManager.sharedInstance().isLoggedIn) {
+//                navigationItem.leftBarButtonItem!.title = NSLocalizedString("Sign-Out", comment: "Label for the logout button.")
+//                navigationItem.leftBarButtonItem!.action = #selector(MainViewController.handleLogout)
+//            }
+    }
+    
+    func profileButtonTapped() {
+        performSegue(withIdentifier: "presentProfile", sender: nil)
     }
     
     func presentSignInViewController() {
@@ -102,5 +107,11 @@ class MainViewController: SwiperViewController {
             }
             return nil
         })
+    }
+    
+    
+    // MARK: Unwind Profile
+    @IBAction func unwindProfileViewController(segue: UIStoryboardSegue) {
+        handleLogout()
     }
 }

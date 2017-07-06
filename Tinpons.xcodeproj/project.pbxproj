@@ -18,6 +18,8 @@
 		D480D0551EEBEEF300B4193A /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0531EEBEEF300B4193A /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D480D0581EEBEF7200B4193A /* Koloda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0561EEBEF3500B4193A /* Koloda.framework */; };
 		D480D0591EEBEF7200B4193A /* Koloda.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0561EEBEF3500B4193A /* Koloda.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4DA42471F0E13CD00A1C69E /* SwiftIconFont.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DA42451F0E123100A1C69E /* SwiftIconFont.framework */; };
+		D4DA42481F0E13CD00A1C69E /* SwiftIconFont.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4DA42451F0E123100A1C69E /* SwiftIconFont.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4E258211EEC1A6400B2B986 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E2581F1EEC1A6400B2B986 /* CustomOverlayView.swift */; };
 		D4E258221EEC1A6400B2B986 /* CustomOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */; };
 		D4E258241EEC625400B2B986 /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E258231EEC625400B2B986 /* CustomKolodaView.swift */; };
@@ -110,6 +112,7 @@
 				E7A30F04F1802C3300000000 /* AWSCore.framework in Embed Frameworks */,
 				E7A30F040879B56F00000000 /* AWSCognito.framework in Embed Frameworks */,
 				D480D0551EEBEEF300B4193A /* pop.framework in Embed Frameworks */,
+				D4DA42481F0E13CD00A1C69E /* SwiftIconFont.framework in Embed Frameworks */,
 				E7A30F046317E39C00000000 /* AWSS3.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -194,6 +197,7 @@
 		D47F96EF1EED938400B9FCE3 /* ImageRow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageRow.framework; path = Carthage/Build/iOS/ImageRow.framework; sourceTree = "<group>"; };
 		D480D0531EEBEEF300B4193A /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = Carthage/Build/iOS/pop.framework; sourceTree = "<group>"; };
 		D480D0561EEBEF3500B4193A /* Koloda.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Koloda.framework; path = Carthage/Build/iOS/Koloda.framework; sourceTree = "<group>"; };
+		D4DA42451F0E123100A1C69E /* SwiftIconFont.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftIconFont.framework; path = Carthage/Build/iOS/SwiftIconFont.framework; sourceTree = "<group>"; };
 		D4E2581F1EEC1A6400B2B986 /* CustomOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomOverlayView.swift; path = Tinpons/App/Swiper/CustomOverlayView.swift; sourceTree = SOURCE_ROOT; };
 		D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomOverlayView.xib; path = Tinpons/App/Swiper/CustomOverlayView.xib; sourceTree = SOURCE_ROOT; };
 		D4E258231EEC625400B2B986 /* CustomKolodaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomKolodaView.swift; path = Tinpons/App/Swiper/CustomKolodaView.swift; sourceTree = SOURCE_ROOT; };
@@ -221,6 +225,7 @@
 				E7A30F04F1E5184200000000 /* AWSFacebookSignIn.framework in Frameworks */,
 				E7A30F040E0E6CF100000000 /* UIKit.framework in Frameworks */,
 				E7A30F047BEED6DB00000000 /* SystemConfiguration.framework in Frameworks */,
+				D4DA42471F0E13CD00A1C69E /* SwiftIconFont.framework in Frameworks */,
 				E7A30F045D6A367800000000 /* Security.framework in Frameworks */,
 				E7A30F048D6E5D3400000000 /* CFNetwork.framework in Frameworks */,
 				E7A30F041123764F00000000 /* libz.tbd in Frameworks */,
@@ -260,6 +265,7 @@
 		B401C9792ED981A800000000 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4DA42451F0E123100A1C69E /* SwiftIconFont.framework */,
 				D47F96EC1EED932600B9FCE3 /* ImageRow.framework */,
 				D47F96E51EED8C2A00B9FCE3 /* Eureka.framework */,
 				D480D0561EEBEF3500B4193A /* Koloda.framework */,

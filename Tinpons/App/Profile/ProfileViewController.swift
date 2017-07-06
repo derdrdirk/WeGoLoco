@@ -10,6 +10,7 @@ import UIKit
 import Eureka
 import AWSCore
 import AWSDynamoDB
+import AWSMobileHubHelper
 
 class ProfileViewController: FormViewController {
     
@@ -66,6 +67,13 @@ class ProfileViewController: FormViewController {
                 }.onChange{[weak self] in
                     self?.user?._tinponCategories = $0.value
         }
+        form +++ Section("Logout")
+            <<< ButtonRow() {
+                $0.title = "Sign Out"
+                }.onCellSelection{[weak self] _,_ in
+                    self?.performSegue(withIdentifier: "unwindProfileViewController", sender: nil)
+                    
+        }
         
         // load User
         getUserProfile()
@@ -93,7 +101,7 @@ class ProfileViewController: FormViewController {
         tinponCategoriesRow?.value = user?._tinponCategories
         tinponCategoriesRow?.reload()
     }
-
+    
     // MARK: get Cognito ID
     func getUserProfile() {
         let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:8088e7da-a496-4ae3-818c-2b9025180888")

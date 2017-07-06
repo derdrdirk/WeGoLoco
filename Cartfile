@@ -2,3 +2,5 @@ github "Yalantis/Koloda"
 github "facebook/pop"
 github "xmartlabs/Eureka" ~> 3.0.0
 github "EurekaCommunity/ImageRow" ~> 1.0
+github "0x73/SwiftIconFont"
+
