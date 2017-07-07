@@ -25,23 +25,23 @@ class SwiperViewController: UIViewController {
     @IBOutlet weak var kolodaView: CustomKolodaView!
     
     var userId: String?
-    var tinpons : [Tinpons]?
+    var tinpons : [Tinpon]?
     var lastEvaluatedKey : [String: AWSDynamoDBAttributeValue]?
     
     //MARK: Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         getCognitoID()
         
-        getTinpons(5, onCompleted: { (tinpons) in
-            for tinpon in tinpons {
-                if self.tinpons?.append(tinpon) == nil {
-                    self.tinpons = [tinpon]
-                }
-            }
-            DispatchQueue.main.async {
-                self.kolodaView.reloadData()
-            }
-        })
+//        getTinpons(5, onCompleted: { (tinpons) in
+//            for tinpon in tinpons {
+//                if self.tinpons?.append(tinpon) == nil {
+//                    self.tinpons = [tinpon]
+//                }
+//            }
+//            DispatchQueue.main.async {
+//                self.kolodaView.reloadData()
+//            }
+//        })
     }
     
     override func viewDidLoad() {
@@ -68,7 +68,7 @@ class SwiperViewController: UIViewController {
     }
     
     // MARK: reload Tinpons
-    func getTinpons(_ limit: NSNumber, onCompleted: @escaping ([Tinpons]) -> Void) {
+    func getTinpons(_ limit: NSNumber, onCompleted: @escaping ([Tinpon]) -> Void) {
         let dynamoDBOBjectMapper = AWSDynamoDBObjectMapper.default()
         let queryExpression = AWSDynamoDBQueryExpression()
         queryExpression.indexName = "CreatedAtSortIndex"
@@ -83,11 +83,11 @@ class SwiperViewController: UIViewController {
             return
         }
         
-        dynamoDBOBjectMapper.query(Tinpons.self, expression: queryExpression).continueWith(block: { [weak self] (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Void in
+        dynamoDBOBjectMapper.query(Tinpon.self, expression: queryExpression).continueWith(block: { [weak self] (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Void in
             if let error = task.error as? NSError {
                 print("The request failed DYNAMODB. Error: \(error)")
             } else if let paginatedOutput = task.result {
-               onCompleted(paginatedOutput.items as! [Tinpons])
+               onCompleted(paginatedOutput.items as! [Tinpon])
             }
         })
     }
@@ -182,8 +182,8 @@ extension SwiperViewController: KolodaViewDataSource {
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let cell = Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? CustomOverlayView
         //cell?.image.setImageWithUrl(url: NSURL(string: (tinpons?[index]._imgUrl)!)!)
-        cell?.title.text = tinpons?[index]._name
-        let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+(tinpons![index]._imgUrl)!
+        cell?.title.text = tinpons?[index].name
+        let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+tinpons![index].imgUrl
         cell?.image.imageFromServerURL(urlString: resizedImageUrl)
         return cell!
     }
@@ -201,7 +201,7 @@ extension SwiperViewController: KolodaViewDataSource {
         default:
             liked = false
         }
-        saveSwipedTinpon(tinponId: (tinpons?[index]._id)!, liked: liked)
+        saveSwipedTinpon(tinponId: (tinpons?[index].tinponId)!, liked: liked)
         
         // load next Tinpon
         getTinpons(1, onCompleted: {(tinpons) in

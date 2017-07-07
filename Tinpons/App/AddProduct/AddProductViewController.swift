@@ -17,25 +17,7 @@ class AddProductViewController: FormViewController {
     
     @IBOutlet weak var progressBar: UIProgressView!
     
-    var table = TinponsTable()
-    var product = Product()
-    
-    struct Product {
-        let uuid = UUID().uuidString
-        var name: String?
-        var image: UIImage?
-        var imageData: Data? {
-            if image != nil {
-                return UIImagePNGRepresentation(image!)
-            } else {
-                return nil
-            }
-        }
-        let s3Prefix = ""
-        var imageS3Path: String {
-            return "\(s3Prefix)\(uuid)"
-        }
-    }
+    var tinpon = Tinpon()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,7 +40,7 @@ class AddProductViewController: FormViewController {
                 row.placeholder = "Shoes"
                 row.tag = "name"
                 }.onChange{ [weak self] in
-                    self?.product.name = $0.value
+                    self?.tinpon.name = $0.value
             }
             <<< ImageRow() {
                 $0.title = "Image"
@@ -66,8 +48,37 @@ class AddProductViewController: FormViewController {
                 $0.clearAction = .yes(style: .default)
                 $0.tag = "image"
                 }.onChange{ [weak self] in
-                    self?.product.image = $0.value
+                    self?.tinpon.image = $0.value
             }
+            <<< DecimalRow() {
+                $0.title = "Price"
+                $0.value = 5
+                $0.formatter = DecimalFormatter()
+                $0.useFormatterDuringInput = true
+            }.cellSetup { [weak self] cell, row  in
+                cell.textField.keyboardType = .numberPad
+                self?.tinpon.price = row.value as NSNumber?
+                }.onChange{ [weak self] in
+                    self?.tinpon.price = $0.value as NSNumber?
+            }
+            <<< PushRow<String>() {
+                $0.title = "Category"
+                $0.options = ["👕", "👖", "👞", "👜", "🕶"]
+                $0.value = "👕"
+                $0.selectorTitle = "Choose an Emoji!"
+                }.cellSetup{ [weak self] in
+                    self?.tinpon.category = $1.value
+                }.onPresent { from, to in
+                    to.sectionKeyForValue = { option in
+                        switch option {
+                        case "👕", "👖", "👞": return "Clothing"
+                        case "👜", "🕶": return "Accessoires"
+                        default: return ""
+                        }
+                    }
+                }.onChange{ [weak self] in
+                    self?.tinpon.category = $0.value
+        }
     }
     
     // MARK: Actions
@@ -76,82 +87,7 @@ class AddProductViewController: FormViewController {
     }
     
     @IBAction func save(_ sender: UIBarButtonItem) {
-        
-        insertDataWithCompletionHandler({(errors: [NSError]?) -> Void in
-            //self.activityIndicator.stopAnimating()
-            self.uploadWithData(data: self.product.imageData!, forKey: self.product.imageS3Path)
-        })
-
-    }
-    
-    
-    // MARK: AWS DynamoDB
-    private func insertDataWithCompletionHandler(_ completionHandler: @escaping (_ errors: [NSError]?) -> Void) {
-        let objectMapper = AWSDynamoDBObjectMapper.default()
-        var errors: [NSError] = []
-        let group: DispatchGroup = DispatchGroup()
-        
-        let item: Tinpons = Tinpons()
-        item._id = product.uuid
-        item._name = product.name
-        item._imgUrl = product.imageS3Path
-        item._createdAt = Date().iso8601.dateFromISO8601?.iso8601 // "2017-03-22T13:22:13.933Z"
-        item._category = "Shoe"
-        
-        
-        
-        group.enter()
-        
-        objectMapper.save(item, completionHandler: {(error: Error?) -> Void in
-            if error != nil {
-                DispatchQueue.main.async(execute: {
-                    errors.append(error! as NSError)
-                })
-            }
-            group.leave()
-        })
-        
-        group.notify(queue: DispatchQueue.main, execute: {
-            if errors.count > 0 {
-                completionHandler(errors)
-            }
-            else {
-                completionHandler(nil)
-            }
-        })
-    }
-    
-    // MARK: AWS S3
-    private func uploadWithData(data: Data, forKey key: String) {
-        let manager = AWSUserFileManager.defaultUserFileManager()
-        let localContent = manager.localContent(with: data as Data, key: key)
-        localContent.uploadWithPin(
-            onCompletion: false,
-            progressBlock: {[weak self](content: AWSLocalContent, progress: Progress) -> Void in
-                guard let strongSelf = self else { return }
-                /* Show progress in UI. */
-                self?.progressBar.progress = Float(progress.fractionCompleted)
-            },
-            completionHandler: {[weak self](content: AWSLocalContent?, error: Error?) -> Void in
-                guard let strongSelf = self else { return }
-                if let error = error {
-                    // image upload failed
-                    // => delete DynamoDB entry
-                    let objectMapper = AWSDynamoDBObjectMapper.default()
-                    let itemToDelete: Tinpons = Tinpons()
-                    itemToDelete._id = self?.product.uuid
-                    objectMapper.remove(itemToDelete)
-                    
-                    let message = "Uups something went wrong"
-                    let alartController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-                    let dismissAction = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
-                    alartController.addAction(dismissAction)
-                    self?.present(alartController, animated: true, completion: nil)
-                } else {
-                    // image sucessfully uploaded
-                    self?.presentingViewController?.dismiss(animated: true)
-                }
-        })
+        tinpon.save()
     }
 }
 

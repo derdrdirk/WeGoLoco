@@ -10,16 +10,15 @@ import Foundation
 import UIKit
 import AWSDynamoDB
 
-class SwipedTinpons: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
-    
-    
+class Stores: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     var _userId: String?
-    var _swipedAt: String?
-    var _like: NSNumber?
-    var _tinponId: String?
+    var _storeId: String?
+    var _latitude: NSNumber?
+    var _longitude: NSNumber?
+    var _name: String?
     
     class func dynamoDBTableName() -> String {
-        return "tinpons-mobilehub-1827971537-SwipedTinpons"
+        return "tinpons-mobilehub-1827971537-Stores"
     }
     
     class func hashKeyAttribute() -> String {
@@ -27,15 +26,16 @@ class SwipedTinpons: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     }
     
     class func rangeKeyAttribute() -> String {
-        return "_swipedAt"
+        return "_storeId"
     }
     
     override class func jsonKeyPathsByPropertyKey() -> [AnyHashable: Any] {
         return [
             "_userId" : "userId",
-            "_swipedAt" : "swipedAt",
-            "_like" : "like",
-            "_tinponId" : "tinponId",
+            "_storeId" : "storeId",
+            "_latitude" : "latitude",
+            "_longitude" : "longitude",
+            "_name" : "name",
         ]
     }
 }

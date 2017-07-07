@@ -11,10 +11,11 @@ import Eureka
 import AWSCore
 import AWSDynamoDB
 import AWSMobileHubHelper
+import CoreLocation
 
 class ProfileViewController: FormViewController {
     
-    var user : Users?
+    var user : User?
     
     override func viewWillAppear(_ animated: Bool) {
        
@@ -30,14 +31,14 @@ class ProfileViewController: FormViewController {
                 $0.title = "Date of Birth"
                 $0.tag = "Birthdate"
                 }.onChange{[weak self] in
-                    self?.user?._birthdate = $0.value?.iso8601
+                    self?.user?.birthdate = $0.value?.iso8601
             }
             <<< SegmentedRow<String>() {
                 $0.title = "Gender"
                 $0.tag = "Gender"
                 $0.options = ["👨‍💼", "👩‍💼"]
                 }.onChange{[weak self] in
-                    self?.user?._gender = $0.value
+                    self?.user?.gender = $0.value
             }
             <<< SliderRow() {
                 $0.title = "Height"
@@ -47,7 +48,7 @@ class ProfileViewController: FormViewController {
                 $0.maximumValue = 2.00
                 $0.steps = 100
                 }.onChange{ [weak self] in
-                    self?.user?._height = NSNumber(value: $0.value!)
+                    self?.user?.height = NSNumber(value: $0.value!)
         }
         form +++ Section("Tinpons")
             <<< MultipleSelectorRow<String>() {
@@ -59,13 +60,34 @@ class ProfileViewController: FormViewController {
                 .onPresent { from, to in
                     to.sectionKeyForValue = { option in
                         switch option {
-                        case "👕", "👖", "👟": return "Clothing"
+                        case "👕", "👖", "👞": return "Clothing"
                         case "👜", "🕶": return "Accessoires"
                         default: return ""
                         }
                     }
                 }.onChange{[weak self] in
-                    self?.user?._tinponCategories = $0.value
+                    self?.user?.tinponCategories = $0.value
+        }
+        form +++ Section("Distributor") {
+            $0.tag = "Distributor"
+            $0.hidden = true
+        }
+            <<< SwitchRow() {
+                $0.title = "Distributor"
+                $0.value = false
+                $0.tag = "DistributorSwitch"
+            }
+            <<< TextRow() {
+                $0.title = "Store Name"
+                $0.placeholder = "Nike Store"
+                $0.tag = "ShopName"
+            }
+            <<< LocationRow(){
+                $0.title = "Store Location"
+                $0.value = CLLocation(latitude: -34.91, longitude: -56.1646)
+                $0.tag = "StoreLocation"
+                }.onChange{
+                    $0.reload()
         }
         form +++ Section("Logout")
             <<< ButtonRow() {
@@ -81,16 +103,16 @@ class ProfileViewController: FormViewController {
     
     func updateUI() {
         let birthdateRow = form.rowBy(tag: "Birthdate") as? DateRow
-        birthdateRow?.value = user?._birthdate?.dateFromISO8601
+        birthdateRow?.value = user?.birthdate?.dateFromISO8601
         birthdateRow?.reload()
         
         let genderRow = form.rowBy(tag: "Gender") as? SegmentedRow<String>
-        genderRow?.value = user?._gender
+        genderRow?.value = user?.gender
         genderRow?.reload()
         
         
         let heightRow = form.rowBy(tag: "Height") as? SliderRow
-        if let height = user?._height {
+        if let height = user?.height {
             heightRow?.value = height as? Float
         } else {
             heightRow?.value = 1.0
@@ -98,8 +120,11 @@ class ProfileViewController: FormViewController {
         heightRow?.reload()
         
         let tinponCategoriesRow = form.rowBy(tag: "tinponCategories") as? MultipleSelectorRow<String>
-        tinponCategoriesRow?.value = user?._tinponCategories
+        tinponCategoriesRow?.value = user?.tinponCategories
         tinponCategoriesRow?.reload()
+
+        
+        
     }
     
     // MARK: get Cognito ID
@@ -117,10 +142,10 @@ class ProfileViewController: FormViewController {
                 // the task result will contain the identity id
                 let cognitoId = task.result!
                 let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
-                dynamoDBObjectMapper.load(Users.self, hashKey: cognitoId, rangeKey:nil).continueWith(block: {[weak self] (task:AWSTask<AnyObject>!) -> Any? in
+                dynamoDBObjectMapper.load(User.self, hashKey: cognitoId, rangeKey:nil).continueWith(block: {[weak self] (task:AWSTask<AnyObject>!) -> Any? in
                     if let error = task.error {
                         print("The request failed. Error: \(error)")
-                    } else if let resultUser = task.result as? Users {
+                    } else if let resultUser = task.result as? User {
                         // Do something with task.result.
                         self?.user = resultUser
                         DispatchQueue.main.async {
