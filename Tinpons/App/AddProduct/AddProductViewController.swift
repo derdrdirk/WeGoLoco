@@ -35,10 +35,16 @@ class AddProductViewController: FormViewController {
         
         // Set up Eureka form
         form +++ Section("Product")
-            <<< TextRow(){ row in
-                row.title = "Name"
-                row.placeholder = "Shoes"
-                row.tag = "name"
+            <<< TextRow(){
+                $0.title = "Name"
+                $0.placeholder = "Shoes"
+                $0.tag = "name"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+                }.cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
                 }.onChange{ [weak self] in
                     self?.tinpon.name = $0.value
             }
@@ -47,6 +53,12 @@ class AddProductViewController: FormViewController {
                 $0.sourceTypes = [.PhotoLibrary]
                 $0.clearAction = .yes(style: .default)
                 $0.tag = "image"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+                }.cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.textLabel?.textColor = .red
+                    }
                 }.onChange{ [weak self] in
                     self?.tinpon.image = $0.value
             }
@@ -69,6 +81,7 @@ class AddProductViewController: FormViewController {
                 }.cellSetup{ [weak self] in
                     self?.tinpon.category = $1.value
                 }.onPresent { from, to in
+                    to.enableDeselection = false
                     to.sectionKeyForValue = { option in
                         switch option {
                         case "👕", "👖", "👞": return "Clothing"
@@ -87,7 +100,13 @@ class AddProductViewController: FormViewController {
     }
     
     @IBAction func save(_ sender: UIBarButtonItem) {
-        tinpon.save()
+        if (form.validate().count == 0) {
+            tinpon.save()
+        } else {
+            let alert = UIAlertController(title: "Form Invalid", message: "Check the red marked fields.", preferredStyle: UIAlertControllerStyle.alert)
+            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
     }
 }
 
