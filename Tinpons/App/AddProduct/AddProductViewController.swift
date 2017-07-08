@@ -17,6 +17,8 @@ class AddProductViewController: FormViewController {
     
     @IBOutlet weak var progressBar: UIProgressView!
     
+    var overlay : UIView?
+    var indicator: UIActivityIndicatorView?
     var tinpon = Tinpon()
 
     override func viewDidLoad() {
@@ -101,7 +103,33 @@ class AddProductViewController: FormViewController {
     
     @IBAction func save(_ sender: UIBarButtonItem) {
         if (form.validate().count == 0) {
-            tinpon.save()
+            // Set up overlay
+            overlay = UIView(frame: view.frame)
+            overlay!.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            overlay!.alpha = 0.7
+            view.addSubview(overlay!)
+            
+            // Set up activity indicator
+            indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+            indicator!.color = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+            indicator!.frame = CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
+            indicator!.center = view.center
+            view.addSubview(indicator!)
+            indicator!.bringSubview(toFront: view)
+            indicator!.startAnimating()
+            
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+
+            tinpon.save{ [weak self] in
+                DispatchQueue.main.async {
+                    guard let strongSelf = self else { return }
+                    
+                    strongSelf.indicator!.stopAnimating()
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    strongSelf.presentingViewController?.dismiss(animated: true)
+                    strongSelf.overlay?.removeFromSuperview()
+                }
+            }
         } else {
             let alert = UIAlertController(title: "Form Invalid", message: "Check the red marked fields.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))

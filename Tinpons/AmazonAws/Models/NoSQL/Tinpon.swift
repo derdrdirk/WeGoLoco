@@ -62,7 +62,7 @@ class Tinpon : CustomStringConvertible {
         return tinpon!
     }
     
-    func save() {
+    func save(_ onComplete: @escaping () -> Void) {
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
         dynamoDBObjectMapper.save(dynamoDBTinpon()).continueOnSuccessWith(block: {[weak self] (task:AWSTask<AnyObject>!) -> Any? in
             guard let strongSelf = self else { print("nil"); return nil }
@@ -97,6 +97,7 @@ class Tinpon : CustomStringConvertible {
             }
             
             // S3 upload complete
+            onComplete()
             return nil
         })
     }
