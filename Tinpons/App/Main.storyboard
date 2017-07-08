@@ -199,7 +199,7 @@
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="progressBar" destination="PXM-bb-I6X" id="Ndb-Lz-UZO"/>
+                        <outlet property="progressView" destination="PXM-bb-I6X" id="b6R-dk-Dcs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPT-Zg-8Ue" userLabel="First Responder" sceneMemberID="firstResponder"/>

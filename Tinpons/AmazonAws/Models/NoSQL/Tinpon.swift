@@ -62,7 +62,7 @@ class Tinpon : CustomStringConvertible {
         return tinpon!
     }
     
-    func save(_ onComplete: @escaping () -> Void) {
+    func save(_ onComplete: @escaping () -> Void, _ progressView: UIProgressView?) {
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
         dynamoDBObjectMapper.save(dynamoDBTinpon()).continueOnSuccessWith(block: {[weak self] (task:AWSTask<AnyObject>!) -> Any? in
             guard let strongSelf = self else { print("nil"); return nil }
@@ -79,6 +79,14 @@ class Tinpon : CustomStringConvertible {
             uploadRequest?.bucket = "tinpons-userfiles-mobilehub-1827971537"
             uploadRequest?.key = strongSelf.tinponId
             uploadRequest?.body = fileUrl as URL!
+            uploadRequest?.uploadProgress = { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
+                DispatchQueue.main.async(execute: {
+                    let sent = Float(totalBytesSent)
+                    let total = Float(totalBytesExpectedToSend)
+                    progressView?.progress = sent/total
+//                    progressView?.progress = totalBytesSent/totalBytesExpectedToSend
+                })
+            }
             
             return transferManager.upload(uploadRequest!)
         }).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in

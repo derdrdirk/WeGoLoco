@@ -15,7 +15,7 @@ import AWSS3
 
 class AddProductViewController: FormViewController {
     
-    @IBOutlet weak var progressBar: UIProgressView!
+    @IBOutlet weak var progressView: UIProgressView!
     
     var overlay : UIView?
     var indicator: UIActivityIndicatorView?
@@ -27,13 +27,13 @@ class AddProductViewController: FormViewController {
         // Set up progress bar (right under the navigationController tob bar)
         let navBar = self.navigationController?.navigationBar
         let navBarHeight = navBar?.frame.height
-        let progressFrame = progressBar.frame
+        let progressFrame = progressView.frame
         let pSetX = CGFloat(0)
         let pSetY = CGFloat(navBarHeight!)
         let pSetWidth = view.frame.size.width
         let pSetHeight = progressFrame.height
-        progressBar.frame = CGRect(x: pSetX, y: pSetY, width: pSetWidth, height: pSetHeight)
-        self.navigationController?.navigationBar.addSubview(progressBar)
+        progressView.frame = CGRect(x: pSetX, y: pSetY, width: pSetWidth, height: pSetHeight)
+        self.navigationController?.navigationBar.addSubview(progressView)
         
         // Set up Eureka form
         form +++ Section("Product")
@@ -119,8 +119,7 @@ class AddProductViewController: FormViewController {
             indicator!.startAnimating()
             
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
-
-            tinpon.save{ [weak self] in
+            tinpon.save({ [weak self] in
                 DispatchQueue.main.async {
                     guard let strongSelf = self else { return }
                     
@@ -129,7 +128,7 @@ class AddProductViewController: FormViewController {
                     strongSelf.presentingViewController?.dismiss(animated: true)
                     strongSelf.overlay?.removeFromSuperview()
                 }
-            }
+                }, progressView)
         } else {
             let alert = UIAlertController(title: "Form Invalid", message: "Check the red marked fields.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
