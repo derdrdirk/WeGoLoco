@@ -11,31 +11,42 @@ import UIKit
 import AWSDynamoDB
 
 class SwipedTinpons: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
-    
-    
-    var _userId: String?
-    var _swipedAt: String?
-    var _like: NSNumber?
-    var _tinponId: String?
+    var userId: String?
+    var swipedAt: String?
+    var like: NSNumber?
+    var tinponId: String?
     
     class func dynamoDBTableName() -> String {
         return "tinpons-mobilehub-1827971537-SwipedTinpons"
     }
     
     class func hashKeyAttribute() -> String {
-        return "_userId"
+        return "userId"
     }
     
     class func rangeKeyAttribute() -> String {
-        return "_swipedAt"
+        return "tinponId"
     }
     
     override class func jsonKeyPathsByPropertyKey() -> [AnyHashable: Any] {
         return [
-            "_userId" : "userId",
-            "_swipedAt" : "swipedAt",
-            "_like" : "like",
-            "_tinponId" : "tinponId",
+            "userId" : "userId",
+            "swipedAt" : "swipedAt",
+            "like" : "like",
+            "tinponId" : "tinponId",
         ]
+    }
+    
+    func save() {
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        
+        dynamoDBObjectMapper.save(self).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
+            if let error = task.error as NSError? {
+                print("The request failed. Error: \(error)")
+            } else {
+                // succesfully saved
+            }
+        })
+
     }
 }

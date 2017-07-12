@@ -21,31 +21,37 @@ private let kolodaCountOfVisibleCards = 2
 private let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
 
 class SwiperViewController: UIViewController {
-    @IBOutlet weak var OutOfTinponsLabel: UILabel!
+  
     @IBOutlet weak var kolodaView: CustomKolodaView!
+    @IBOutlet weak var outOfTinponsStack: UIStackView!
     
     var userId: String?
-    var tinpons : [Tinpon]?
+    var tinponLoader = Tinpon()
+    var tinpons : [Tinpon] = []
     var lastEvaluatedKey : [String: AWSDynamoDBAttributeValue]?
     
     //MARK: Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         getCognitoID()
-        
-//        getTinpons(5, onCompleted: { (tinpons) in
-//            for tinpon in tinpons {
-//                if self.tinpons?.append(tinpon) == nil {
-//                    self.tinpons = [tinpon]
-//                }
-//            }
-//            DispatchQueue.main.async {
-//                self.kolodaView.reloadData()
-//            }
-//        })
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tinponLoader.loadNotSwipedItems(limit: 5, onComplete: { [weak self] (tinpons) in
+            guard let strongSelf = self else { return }
+            if tinpons.isEmpty {
+                DispatchQueue.main.async {
+                    strongSelf.outOfTinponsStack.isHidden = false
+                }
+            }
+            print("loaded count: \(tinpons.count)")
+            strongSelf.tinpons.append(contentsOf: tinpons)
+            DispatchQueue.main.async {
+                strongSelf.kolodaView.reloadData()
+            }
+        })
+
         
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
@@ -65,31 +71,6 @@ class SwiperViewController: UIViewController {
     }
     @IBAction func undoButtonTapped(_ sender: UIButton) {
         kolodaView?.revertAction()
-    }
-    
-    // MARK: reload Tinpons
-    func getTinpons(_ limit: NSNumber, onCompleted: @escaping ([Tinpon]) -> Void) {
-        let dynamoDBOBjectMapper = AWSDynamoDBObjectMapper.default()
-        let queryExpression = AWSDynamoDBQueryExpression()
-        queryExpression.indexName = "CreatedAtSortIndex"
-        queryExpression.limit = limit
-        queryExpression.keyConditionExpression = "Category = :category"
-        //queryExpression.expressionAttributeNames = [ "#name" : "name" ]
-        queryExpression.expressionAttributeValues = [":category" : "Shoe" ]
-        if lastEvaluatedKey != nil {
-            queryExpression.exclusiveStartKey = lastEvaluatedKey!
-        } else if tinpons != nil {
-            // if lastEvaluatedKey == nil then there are no more tinpons
-            return
-        }
-        
-        dynamoDBOBjectMapper.query(Tinpon.self, expression: queryExpression).continueWith(block: { [weak self] (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Void in
-            if let error = task.error as? NSError {
-                print("The request failed DYNAMODB. Error: \(error)")
-            } else if let paginatedOutput = task.result {
-               onCompleted(paginatedOutput.items as! [Tinpon])
-            }
-        })
     }
     
     // MARK: get Cognito ID
@@ -114,20 +95,19 @@ class SwiperViewController: UIViewController {
     
     // MARK: swipe DynamoDB
     func saveSwipedTinpon(tinponId: String, liked: Bool) {
-        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
         let swipedTinpon = SwipedTinpons()
-        swipedTinpon?._userId = userId
-        swipedTinpon?._like = NSNumber(value: liked)
-        swipedTinpon?._tinponId = tinponId
-        swipedTinpon?._swipedAt = Date().iso8601.dateFromISO8601?.iso8601 // "2017-03-22T13:22:13.933Z"
+        swipedTinpon?.userId = userId
+        swipedTinpon?.like = NSNumber(value: liked)
+        swipedTinpon?.tinponId = tinponId
+        swipedTinpon?.swipedAt = Date().iso8601.dateFromISO8601?.iso8601 // "2017-03-22T13:22:13.933Z"
         
-        dynamoDBObjectMapper.save(swipedTinpon!).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
-            if let error = task.error as? NSError {
-                print("The request failed. Error: \(error)")
-            } else {
-                // succesfully saved
-            }
-        })
+        swipedTinpon?.save()
+
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let swipedTinponCore = SwipedTinponsCore(context: context)
+        swipedTinponCore.tinponId = swipedTinpon?.tinponId
+        swipedTinponCore.userId = swipedTinpon?.userId
+        (UIApplication.shared.delegate as! AppDelegate).saveContext()
     }
 }
 
@@ -135,13 +115,12 @@ class SwiperViewController: UIViewController {
 extension SwiperViewController: KolodaViewDelegate {
     
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
-        print("koloda no cards")
-        OutOfTinponsLabel.isHidden = false
+        outOfTinponsStack.isHidden = false
         //kolodaView.resetCurrentCardIndex()
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
-        UIApplication.shared.openURL(URL(string: "https://yalantis.com/")!)
+        //UIApplication.shared.openURL(URL(string: "https://yalantis.com/")!)
     }
     
     func kolodaShouldApplyAppearAnimation(_ koloda: KolodaView) -> Bool {
@@ -172,18 +151,14 @@ extension SwiperViewController: KolodaViewDataSource {
     }
     
     func kolodaNumberOfCards(_ koloda: KolodaView) -> Int {
-        if tinpons != nil {
-            return tinpons!.count
-        } else {
-            return 0
-        }
+        return tinpons.count
     }
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let cell = Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? CustomOverlayView
         //cell?.image.setImageWithUrl(url: NSURL(string: (tinpons?[index]._imgUrl)!)!)
-        cell?.title.text = tinpons?[index].name
-        let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+tinpons![index].imgUrl
+        cell?.title.text = tinpons[index].name
+        let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+tinpons[index].imgUrl!
         cell?.image.imageFromServerURL(urlString: resizedImageUrl)
         return cell!
     }
@@ -201,17 +176,20 @@ extension SwiperViewController: KolodaViewDataSource {
         default:
             liked = false
         }
-        saveSwipedTinpon(tinponId: (tinpons?[index].tinponId)!, liked: liked)
+        saveSwipedTinpon(tinponId: (tinpons[index].tinponId)!, liked: liked)
         
-        // load next Tinpon
-        getTinpons(1, onCompleted: {(tinpons) in
-            for tinpon in tinpons {
-                self.tinpons?.append(tinpon)
-            }
-            DispatchQueue.main.async {
-                self.kolodaView.reloadData()
-            }
-        })
+        // if less than 10 tinpons load next Tinpon
+        if tinpons.count - koloda.currentCardIndex < 5 {
+            print("load after swipe")
+            tinponLoader.loadNotSwipedItems(limit: 5, onComplete: {[weak self] (tinpons) in
+                guard let strongSelf = self else { return }
+                print("loaded count: \(tinpons.count)")
+                strongSelf.tinpons.append(contentsOf: tinpons)
+                DispatchQueue.main.async {
+                    strongSelf.kolodaView.reloadData()
+                }
+            })
+        }
     }
 }
 
@@ -221,7 +199,7 @@ extension UIImageView {
         URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
             
             if error != nil {
-                print(error)
+                print(error.debugDescription)
                 return
             }
             DispatchQueue.main.async(execute: { () -> Void in

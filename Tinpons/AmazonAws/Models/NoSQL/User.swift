@@ -68,4 +68,8 @@ class User: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
             return nil
         })
     }
+    
+    public func load() {
+    
+    }
 }

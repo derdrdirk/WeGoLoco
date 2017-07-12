@@ -22,7 +22,9 @@ class Tinpon : CustomStringConvertible {
     var tinponId: String?
     var updatedAt: String?
     var userId: String?
+    var imgUrl: String?
     
+    let s3BucketName = "tinpons-userfiles-mobilehub-1827971537"
     var image: UIImage?
     var imageData: Data? {
         if image != nil {
@@ -31,12 +33,11 @@ class Tinpon : CustomStringConvertible {
             return nil
         }
     }
-    var imgUrl: String {
-        return tinponId ?? ""
-    }
-    var imageS3Path: String {
+    var s3ImagePath: String {
         return tinponId!
     }
+    var noMoreTinponsToLoad = false
+    var lastEvaluatedKey: [String: AWSDynamoDBAttributeValue]?
 
     init() {
         tinponId = UUID().uuidString
@@ -51,7 +52,7 @@ class Tinpon : CustomStringConvertible {
         let tinpon = DynamoDBTinpon()
         tinpon?.category = category
         tinpon?.createdAt = createdAt
-        tinpon?.imgUrl = imageS3Path
+        tinpon?.imgUrl = s3ImagePath
         tinpon?.latitude = latitude
         tinpon?.longitude = longitude
         tinpon?.name = name
@@ -60,6 +61,21 @@ class Tinpon : CustomStringConvertible {
         tinpon?.updatedAt = updatedAt
         tinpon?.userId = userId
         return tinpon!
+    }
+    
+    private func castDynamoDBTinponToTinpon(dynamoDBTinpon: DynamoDBTinpon) -> Tinpon {
+        let tinpon = Tinpon()
+        tinpon.category = dynamoDBTinpon.category
+        tinpon.createdAt = dynamoDBTinpon.createdAt
+        tinpon.imgUrl = dynamoDBTinpon.imgUrl
+        tinpon.latitude = dynamoDBTinpon.latitude
+        tinpon.longitude = dynamoDBTinpon.longitude
+        tinpon.name = dynamoDBTinpon.name
+        tinpon.price = dynamoDBTinpon.price
+        tinpon.tinponId = dynamoDBTinpon.tinponId
+        tinpon.updatedAt = dynamoDBTinpon.updatedAt
+        tinpon.userId = dynamoDBTinpon.userId
+        return tinpon
     }
     
     func save(_ onComplete: @escaping () -> Void, _ progressView: UIProgressView?) {
@@ -84,7 +100,6 @@ class Tinpon : CustomStringConvertible {
                     let sent = Float(totalBytesSent)
                     let total = Float(totalBytesExpectedToSend)
                     progressView?.progress = sent/total
-//                    progressView?.progress = totalBytesSent/totalBytesExpectedToSend
                 })
             }
             
@@ -109,5 +124,85 @@ class Tinpon : CustomStringConvertible {
             return nil
         })
     }
-
+    
+    // load x=limit Items
+    // 1. query x tinpons
+    // 2. filter with SwipedTinponsCore
+    // 3. if x >= limit: done! | else repeat
+    // update lastEvaluated key to dont query same objects
+    func loadNotSwipedItems(limit: Int, onComplete: @escaping ([Tinpon])->Void) {
+        if noMoreTinponsToLoad {
+            onComplete([])
+        } else {
+            let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+            
+            let queryExpression = AWSDynamoDBQueryExpression()
+            queryExpression.indexName = "category-tinponId-index"
+            
+            queryExpression.limit = limit as NSNumber
+            queryExpression.keyConditionExpression = "category = :category"
+            queryExpression.expressionAttributeValues = [":category" : "👕"]
+            if lastEvaluatedKey != nil {
+                queryExpression.exclusiveStartKey = lastEvaluatedKey
+            }
+            
+            //        queryExpression.filterExpression = "tinponId <> :tinponId"
+            //        queryExpression.keyConditionExpression = "#name = :category"
+            //        queryExpression.expressionAttributeNames = [ "#name" : "name" ]
+            //        queryExpression.expressionAttributeValues = [":category" : "Asdf" ]
+            
+            dynamoDBObjectMapper.query(DynamoDBTinpon.self, expression: queryExpression).continueWith(block: { [weak self] (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Any? in
+                guard let strongSelf = self else {return nil}
+                
+                if let error = task.error as NSError? {
+                    print("The request failed. Error: \(error)")
+                } else if let paginatedOutput = task.result {
+                    var tinpons = [Tinpon]()
+                    for dynamoDBTinpon in (paginatedOutput.items as? [DynamoDBTinpon])! {
+                        tinpons.append(strongSelf.castDynamoDBTinponToTinpon(dynamoDBTinpon: dynamoDBTinpon))
+                    }
+                    
+                    // filter already swiped Tinpons
+                    tinpons = strongSelf.filterAlreadySwipedTinpons(tinpons: tinpons)
+                    
+                    // check if more tinpons available
+                    if let lastEvaluatedKey = task.result?.lastEvaluatedKey {
+                        if tinpons.count >= limit {
+                            onComplete(tinpons)
+                            return nil
+                        } else {
+                            strongSelf.lastEvaluatedKey = lastEvaluatedKey
+                            strongSelf.loadNotSwipedItems(limit: limit, onComplete: onComplete)
+                        }
+                    } else {
+                        // no more Tinpons in Database
+                        strongSelf.noMoreTinponsToLoad = true
+                        onComplete(tinpons)
+                        return nil
+                    }
+                }
+                return nil
+            })
+        }
+    }
+    
+    public func filterAlreadySwipedTinpons(tinpons: [Tinpon]) -> [Tinpon] {
+        var filteredTinpons: [Tinpon] = []
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        for tinpon in tinpons {
+            var fetchSwipedTinpons : [SwipedTinponsCore] = []
+            do {
+                let fetchRequest : NSFetchRequest<SwipedTinponsCore> = SwipedTinponsCore.fetchRequest()
+                fetchRequest.predicate = NSPredicate(format: "tinponId == %@", tinpon.tinponId!)
+                fetchSwipedTinpons = try context.fetch(fetchRequest)
+                if fetchSwipedTinpons.count != 1 {
+                    filteredTinpons.append(tinpon)
+                }
+            } catch {
+                print("filterTinpons: Fetching Failed")
+            }
+        }
+        return filteredTinpons
+    }
 }
