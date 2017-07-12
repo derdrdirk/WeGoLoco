@@ -45,7 +45,7 @@ class Tinpon : CustomStringConvertible {
     }
     
     var description: String {
-        return "Name: \(name ?? "") \nImage: \(imgUrl) \nPrice: \(String(Double(price ?? 0))) \nCategory: \(category ?? "")"
+        return "Name: \(name ?? "") \nImage: \(String(describing: imgUrl)) \nPrice: \(String(Double(price ?? 0))) \nCategory: \(category ?? "")"
     }
     
     private func dynamoDBTinpon() -> DynamoDBTinpon {
@@ -194,9 +194,9 @@ class Tinpon : CustomStringConvertible {
             var fetchSwipedTinpons : [SwipedTinponsCore] = []
             do {
                 let fetchRequest : NSFetchRequest<SwipedTinponsCore> = SwipedTinponsCore.fetchRequest()
-                fetchRequest.predicate = NSPredicate(format: "tinponId == %@", tinpon.tinponId!)
+                fetchRequest.predicate = NSPredicate(format: "(tinponId == %@)", tinpon.tinponId!)
                 fetchSwipedTinpons = try context.fetch(fetchRequest)
-                if fetchSwipedTinpons.count != 1 {
+                if fetchSwipedTinpons.count < 1 {
                     filteredTinpons.append(tinpon)
                 }
             } catch {

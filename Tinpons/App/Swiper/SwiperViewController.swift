@@ -45,7 +45,6 @@ class SwiperViewController: UIViewController {
                     strongSelf.outOfTinponsStack.isHidden = false
                 }
             }
-            print("loaded count: \(tinpons.count)")
             strongSelf.tinpons.append(contentsOf: tinpons)
             DispatchQueue.main.async {
                 strongSelf.kolodaView.reloadData()
@@ -95,7 +94,7 @@ class SwiperViewController: UIViewController {
     
     // MARK: swipe DynamoDB
     func saveSwipedTinpon(tinponId: String, liked: Bool) {
-        let swipedTinpon = SwipedTinpons()
+        let swipedTinpon = DynamoDBSwipedTinpon()
         swipedTinpon?.userId = userId
         swipedTinpon?.like = NSNumber(value: liked)
         swipedTinpon?.tinponId = tinponId
@@ -180,10 +179,8 @@ extension SwiperViewController: KolodaViewDataSource {
         
         // if less than 10 tinpons load next Tinpon
         if tinpons.count - koloda.currentCardIndex < 5 {
-            print("load after swipe")
             tinponLoader.loadNotSwipedItems(limit: 5, onComplete: {[weak self] (tinpons) in
                 guard let strongSelf = self else { return }
-                print("loaded count: \(tinpons.count)")
                 strongSelf.tinpons.append(contentsOf: tinpons)
                 DispatchQueue.main.async {
                     strongSelf.kolodaView.reloadData()

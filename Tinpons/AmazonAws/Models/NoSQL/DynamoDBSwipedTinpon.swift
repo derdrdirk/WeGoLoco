@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import AWSDynamoDB
 
-class SwipedTinpons: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
+class DynamoDBSwipedTinpon: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     var userId: String?
     var swipedAt: String?
     var like: NSNumber?
@@ -47,6 +47,5 @@ class SwipedTinpons: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
                 // succesfully saved
             }
         })
-
     }
 }

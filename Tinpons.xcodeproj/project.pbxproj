@@ -29,9 +29,11 @@
 		D4E258211EEC1A6400B2B986 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E2581F1EEC1A6400B2B986 /* CustomOverlayView.swift */; };
 		D4E258221EEC1A6400B2B986 /* CustomOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */; };
 		D4E258241EEC625400B2B986 /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E258231EEC625400B2B986 /* CustomKolodaView.swift */; };
-		D4FA2EC91F0CD0C100B287FB /* SwipedTinpons.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA2EC81F0CD0C100B287FB /* SwipedTinpons.swift */; };
+		D4FA2EC91F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA2EC81F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift */; };
 		D4FA2ECC1F0CE85B00B287FB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA2ECB1F0CE85B00B287FB /* ProfileViewController.swift */; };
 		D4FA2ED21F0D10FD00B287FB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA2ED11F0D10FD00B287FB /* User.swift */; };
+		D4FC90E31F163328002A6F9E /* SwipedTinpon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC90E21F163328002A6F9E /* SwipedTinpon.swift */; };
+		D4FC90E51F1669F8002A6F9E /* CoreDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC90E41F1669F8002A6F9E /* CoreDataHelper.swift */; };
 		E7A30F040024501400000000 /* AWSDynamoDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29BC3E8A3700000000 /* AWSDynamoDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		E7A30F040024501400000001 /* AWSDynamoDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29BC3E8A3700000000 /* AWSDynamoDB.framework */; };
 		E7A30F0400925D1700000000 /* AWSMobileClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E2946C3AB3000000000 /* AWSMobileClient.swift */; };
@@ -175,9 +177,11 @@
 		D4E2581F1EEC1A6400B2B986 /* CustomOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomOverlayView.swift; path = Tinpons/App/Swiper/CustomOverlayView.swift; sourceTree = SOURCE_ROOT; };
 		D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomOverlayView.xib; path = Tinpons/App/Swiper/CustomOverlayView.xib; sourceTree = SOURCE_ROOT; };
 		D4E258231EEC625400B2B986 /* CustomKolodaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomKolodaView.swift; path = Tinpons/App/Swiper/CustomKolodaView.swift; sourceTree = SOURCE_ROOT; };
-		D4FA2EC81F0CD0C100B287FB /* SwipedTinpons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipedTinpons.swift; path = Tinpons/AmazonAws/Models/NoSQL/SwipedTinpons.swift; sourceTree = SOURCE_ROOT; };
+		D4FA2EC81F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamoDBSwipedTinpon.swift; path = Tinpons/AmazonAws/Models/NoSQL/DynamoDBSwipedTinpon.swift; sourceTree = SOURCE_ROOT; };
 		D4FA2ECB1F0CE85B00B287FB /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Tinpons/App/Profile/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		D4FA2ED11F0D10FD00B287FB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Tinpons/AmazonAws/Models/NoSQL/User.swift; sourceTree = SOURCE_ROOT; };
+		D4FC90E21F163328002A6F9E /* SwipedTinpon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipedTinpon.swift; path = Tinpons/AmazonAws/Models/NoSQL/SwipedTinpon.swift; sourceTree = SOURCE_ROOT; };
+		D4FC90E41F1669F8002A6F9E /* CoreDataHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CoreDataHelper.swift; path = Tinpons/AmazonAws/Models/NoSQL/CoreDataHelper.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -367,11 +371,13 @@
 			isa = PBXGroup;
 			children = (
 				1DD70E29C919AF3300000000 /* DynamoDBTinpon.swift */,
-				D4FA2EC81F0CD0C100B287FB /* SwipedTinpons.swift */,
+				D4FA2EC81F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift */,
 				D4FA2ED11F0D10FD00B287FB /* User.swift */,
 				D4306C801F0E6BEC0073A11E /* Stores.swift */,
 				D4306C821F0E73780073A11E /* AWSHelper.swift */,
 				D40308451F0FCBDE00BF1BD5 /* Tinpon.swift */,
+				D4FC90E21F163328002A6F9E /* SwipedTinpon.swift */,
+				D4FC90E41F1669F8002A6F9E /* CoreDataHelper.swift */,
 			);
 			name = NoSQL;
 			path = Tinpons/amazonaws/models/nosql;
@@ -447,7 +453,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0830;
 				TargetAttributes = {
 					E66DC04E0000000000000000 = {
 						DevelopmentTeam = 92GPW8PJ56;
@@ -533,7 +539,7 @@
 				E7A30F040AAE5A4B00000000 /* AppDelegate.swift in Sources */,
 				D4306C811F0E6BEC0073A11E /* Stores.swift in Sources */,
 				E7A30F043DD4F57200000000 /* FormTableCell.swift in Sources */,
-				D4FA2EC91F0CD0C100B287FB /* SwipedTinpons.swift in Sources */,
+				D4FA2EC91F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift in Sources */,
 				E7A30F04FE04727700000000 /* TableInputCell.swift in Sources */,
 				E7A30F04A0099EDA00000000 /* UserPoolForgotPasswordViewController.swift in Sources */,
 				D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */,
@@ -541,6 +547,7 @@
 				E7A30F0493F7667400000000 /* UtilityFunctions.swift in Sources */,
 				E7A30F04741B216700000000 /* MainViewController.swift in Sources */,
 				E7A30F04B8261BDC00000000 /* UserPoolsIdentityProfile.swift in Sources */,
+				D4FC90E31F163328002A6F9E /* SwipedTinpon.swift in Sources */,
 				D4FA2ED21F0D10FD00B287FB /* User.swift in Sources */,
 				E7A30F044B6ABE3800000000 /* UserPoolSignUpViewController.swift in Sources */,
 				D4306C831F0E73780073A11E /* AWSHelper.swift in Sources */,
@@ -553,6 +560,7 @@
 				D4D2712A1F12ACD2003A7287 /* TinponsModel.xcdatamodeld in Sources */,
 				D4E258241EEC625400B2B986 /* CustomKolodaView.swift in Sources */,
 				D4FA2ECC1F0CE85B00B287FB /* ProfileViewController.swift in Sources */,
+				D4FC90E51F1669F8002A6F9E /* CoreDataHelper.swift in Sources */,
 				E7A30F0400925D1700000000 /* AWSMobileClient.swift in Sources */,
 				E7A30F0497C0BECE00000000 /* FormTableDelegate.swift in Sources */,
 			);
@@ -598,6 +606,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(OTHER_LDFLAGS)";
 				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
