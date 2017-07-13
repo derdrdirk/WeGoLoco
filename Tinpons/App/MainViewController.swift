@@ -102,13 +102,8 @@ class MainViewController: SwiperViewController {
     
     func syncCoreDataWithDynamoDB() {
         SwipedTinponsCore.resetAllRecords()
-        let tests = SwipedTinponsCore.fetchData()
-        //print("test \(tests!.count)")
-
 
         SwipedTinpon().loadAllSwipedTinponsFor(userId: userId!, onComplete: { swipedTinpons in
-            print("load tinponswiped")
-            print(swipedTinpons.count)
             for swipedTinpon in swipedTinpons {
                 SwipedTinponsCore.save(swipedTinpon: swipedTinpon)
             }

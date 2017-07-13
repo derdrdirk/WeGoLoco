@@ -51,11 +51,10 @@ class SwiperViewController: UIViewController {
     
     func resetUI() {
         tinpons = []
-        tinponLoader = Tinpon()
         
+        tinponLoader = Tinpon()
         tinponLoader.loadNotSwipedItems(limit: 5, onComplete: { [weak self] (tinpons) in
             guard let strongSelf = self else { return }
-            print(tinpons.count)
             if tinpons.isEmpty {
                 DispatchQueue.main.async {
                     strongSelf.outOfTinponsStack.isHidden = false
@@ -67,13 +66,18 @@ class SwiperViewController: UIViewController {
             }
             strongSelf.tinpons.append(contentsOf: tinpons)
             DispatchQueue.main.async {
+                (strongSelf.tinpons.count > 0) ? strongSelf.outOfTinponsStack.isHidden = true : ()
                 strongSelf.kolodaView.resetCurrentCardIndex()
                 strongSelf.kolodaView.reloadData()
             }
         })
+
     }
     
     //MARK: IBActions
+    @IBAction func tryAgain(_ sender: UIButton) {
+        resetUI()
+    }
     @IBAction func leftButtonTapped(_ sender: Any) {
         kolodaView?.swipe(.left)
     }
@@ -114,13 +118,6 @@ class SwiperViewController: UIViewController {
         
         swipedTinpon.save()
         SwipedTinponsCore.save(swipedTinpon: swipedTinpon)
-//        let context = AppDelegate.viewContext
-//        context.perform {
-//            let swipedTinonCore = SwipedTinponsCore(context: context)
-//            swipedTinonCore.tinponId = swipedTinpon.tinponId
-//            swipedTinonCore.userId = swipedTinpon.userId
-//            try? context.save()
-//        }
     }
 }
 

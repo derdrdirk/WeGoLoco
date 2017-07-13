@@ -164,6 +164,7 @@ class Tinpon : CustomStringConvertible {
                     
                     // filter already swiped Tinpons
                     tinpons = strongSelf.filterAlreadySwipedTinpons(tinpons: tinpons)
+                    print("filtered Tinpons : \(tinpons.count) name: \(tinpons.count == 1 ? tinpons[0].name : ""), lastEvaluatedKey \(strongSelf.lastEvaluatedKey)")
                     
                     // check if more tinpons available
                     if let lastEvaluatedKey = task.result?.lastEvaluatedKey {
@@ -171,6 +172,7 @@ class Tinpon : CustomStringConvertible {
                             onComplete(tinpons)
                             return nil
                         } else {
+                            onComplete(tinpons)
                             strongSelf.lastEvaluatedKey = lastEvaluatedKey
                             strongSelf.loadNotSwipedItems(limit: limit, onComplete: onComplete)
                         }
