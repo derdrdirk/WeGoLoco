@@ -51,6 +51,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     // MARK: - Core Data stack
+    static var sharedDelegate: AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
+    static var persistentContainer: NSPersistentContainer {
+        return (UIApplication.shared.delegate as! AppDelegate).persistentContainer
+    }
+    static var viewContext: NSManagedObjectContext {
+        return persistentContainer.viewContext
+    }
     
     lazy var persistentContainer: NSPersistentContainer = {
         /*
@@ -85,6 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let context = persistentContainer.viewContext
         if context.hasChanges {
             do {
+                
                 try context.save()
             } catch {
                 // Replace this implementation with code to handle the error appropriately.

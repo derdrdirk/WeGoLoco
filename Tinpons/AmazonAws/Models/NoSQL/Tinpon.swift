@@ -188,7 +188,7 @@ class Tinpon : CustomStringConvertible {
     
     public func filterAlreadySwipedTinpons(tinpons: [Tinpon]) -> [Tinpon] {
         var filteredTinpons: [Tinpon] = []
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        let context = AppDelegate.viewContext
         
         for tinpon in tinpons {
             var fetchSwipedTinpons : [SwipedTinponsCore] = []

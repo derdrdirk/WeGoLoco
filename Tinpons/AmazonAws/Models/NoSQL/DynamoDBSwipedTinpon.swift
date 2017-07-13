@@ -36,16 +36,4 @@ class DynamoDBSwipedTinpon: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
             "tinponId" : "tinponId",
         ]
     }
-    
-    func save() {
-        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
-        
-        dynamoDBObjectMapper.save(self).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
-            if let error = task.error as NSError? {
-                print("The request failed. Error: \(error)")
-            } else {
-                // succesfully saved
-            }
-        })
-    }
 }

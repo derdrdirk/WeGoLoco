@@ -38,19 +38,7 @@ class SwiperViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tinponLoader.loadNotSwipedItems(limit: 5, onComplete: { [weak self] (tinpons) in
-            guard let strongSelf = self else { return }
-            if tinpons.isEmpty {
-                DispatchQueue.main.async {
-                    strongSelf.outOfTinponsStack.isHidden = false
-                }
-            }
-            strongSelf.tinpons.append(contentsOf: tinpons)
-            DispatchQueue.main.async {
-                strongSelf.kolodaView.reloadData()
-            }
-        })
-
+        resetUI()
         
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
@@ -59,6 +47,30 @@ class SwiperViewController: UIViewController {
         kolodaView.animator = BackgroundKolodaAnimator(koloda: kolodaView)
         
         self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
+    }
+    
+    func resetUI() {
+        tinpons = []
+        tinponLoader = Tinpon()
+        
+        tinponLoader.loadNotSwipedItems(limit: 5, onComplete: { [weak self] (tinpons) in
+            guard let strongSelf = self else { return }
+            print(tinpons.count)
+            if tinpons.isEmpty {
+                DispatchQueue.main.async {
+                    strongSelf.outOfTinponsStack.isHidden = false
+                }
+            } else {
+                DispatchQueue.main.async {
+                    strongSelf.outOfTinponsStack.isHidden = true
+                }
+            }
+            strongSelf.tinpons.append(contentsOf: tinpons)
+            DispatchQueue.main.async {
+                strongSelf.kolodaView.resetCurrentCardIndex()
+                strongSelf.kolodaView.reloadData()
+            }
+        })
     }
     
     //MARK: IBActions
@@ -94,19 +106,21 @@ class SwiperViewController: UIViewController {
     
     // MARK: swipe DynamoDB
     func saveSwipedTinpon(tinponId: String, liked: Bool) {
-        let swipedTinpon = DynamoDBSwipedTinpon()
-        swipedTinpon?.userId = userId
-        swipedTinpon?.like = NSNumber(value: liked)
-        swipedTinpon?.tinponId = tinponId
-        swipedTinpon?.swipedAt = Date().iso8601.dateFromISO8601?.iso8601 // "2017-03-22T13:22:13.933Z"
+        let swipedTinpon = SwipedTinpon()
+        swipedTinpon.userId = userId
+        swipedTinpon.like = NSNumber(value: liked)
+        swipedTinpon.tinponId = tinponId
+        swipedTinpon.swipedAt = Date().iso8601.dateFromISO8601?.iso8601 // "2017-03-22T13:22:13.933Z"
         
-        swipedTinpon?.save()
-
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        let swipedTinponCore = SwipedTinponsCore(context: context)
-        swipedTinponCore.tinponId = swipedTinpon?.tinponId
-        swipedTinponCore.userId = swipedTinpon?.userId
-        (UIApplication.shared.delegate as! AppDelegate).saveContext()
+        swipedTinpon.save()
+        SwipedTinponsCore.save(swipedTinpon: swipedTinpon)
+//        let context = AppDelegate.viewContext
+//        context.perform {
+//            let swipedTinonCore = SwipedTinponsCore(context: context)
+//            swipedTinonCore.tinponId = swipedTinpon.tinponId
+//            swipedTinonCore.userId = swipedTinpon.userId
+//            try? context.save()
+//        }
     }
 }
 

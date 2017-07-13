@@ -16,9 +16,12 @@ class SwipedTinpon {
     var tinponId: String?
     
     private func dynamoDBSwipedTinpon() -> DynamoDBSwipedTinpon {
-        let swipedTinpon = DynamoDBSwipedTinpon()
-        swipedTinpon?.userId = userId
-        return swipedTinpon!
+        let dynamoDBSwipedTinpon = DynamoDBSwipedTinpon()
+        dynamoDBSwipedTinpon?.userId = userId
+        dynamoDBSwipedTinpon?.swipedAt = swipedAt
+        dynamoDBSwipedTinpon?.like = like
+        dynamoDBSwipedTinpon?.tinponId = tinponId
+        return dynamoDBSwipedTinpon!
     }
     
     private static func castDynamoDBTinponToTinpon(dynamoDBTinpon: DynamoDBSwipedTinpon) -> SwipedTinpon {
@@ -28,6 +31,18 @@ class SwipedTinpon {
         swipedTinpon.like = dynamoDBTinpon.like
         swipedTinpon.tinponId = dynamoDBTinpon.tinponId
         return swipedTinpon
+    }
+    
+    func save() {
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        
+        dynamoDBObjectMapper.save(dynamoDBSwipedTinpon()).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
+            if let error = task.error as NSError? {
+                print("The request failed. Error: \(error)")
+            } else {
+                // succesfully saved
+            }
+        })
     }
     
     func loadAllSwipedTinponsFor(userId: String, onComplete: @escaping ([SwipedTinpon]) -> ()) {

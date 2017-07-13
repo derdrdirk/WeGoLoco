@@ -23,8 +23,9 @@ class MainViewController: SwiperViewController {
         // handle successful sign in
         if (success) {
             createUserAccountIfNotExisting()
-            syncCoreDataWithDynamoDB()
             self.setupLeftBarButtonItem()
+            syncCoreDataWithDynamoDB()
+            resetUI()
         } else {
             // handle cancel operation from user
         }
@@ -74,7 +75,6 @@ class MainViewController: SwiperViewController {
     func createUserAccountIfNotExisting() {
         //check if User Account exists
         let dynamoDBOBjectMapper = AWSDynamoDBObjectMapper.default()
-        print(userId)
         dynamoDBOBjectMapper.load(User.self, hashKey: userId!, rangeKey: nil).continueWith(block: { [weak self] (task:AWSTask<AnyObject>!) -> Any? in
             if let error = task.error {
                 print("The request failed. Error: \(error)")
@@ -101,14 +101,16 @@ class MainViewController: SwiperViewController {
     }
     
     func syncCoreDataWithDynamoDB() {
-        resetAllRecords(in: "SwipedTinponsCore")
+        SwipedTinponsCore.resetAllRecords()
+        let tests = SwipedTinponsCore.fetchData()
+        //print("test \(tests!.count)")
+
+
         SwipedTinpon().loadAllSwipedTinponsFor(userId: userId!, onComplete: { swipedTinpons in
-            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-            var swipedTinponCore = SwipedTinponsCore(context: context)
+            print("load tinponswiped")
+            print(swipedTinpons.count)
             for swipedTinpon in swipedTinpons {
-                swipedTinponCore.tinponId = swipedTinpon.tinponId
-                swipedTinponCore.userId = swipedTinpon.userId
-                (UIApplication.shared.delegate as! AppDelegate).saveContext()
+                SwipedTinponsCore.save(swipedTinpon: swipedTinpon)
             }
         })
     }
