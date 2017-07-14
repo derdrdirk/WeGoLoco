@@ -12,23 +12,29 @@ class FavouritesTableViewController: UITableViewController {
 
     var tinpons: [Tinpon] = []
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        updateDataSource()
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl?.addTarget(self, action: #selector(updateDataSource), for: UIControlEvents.valueChanged)
+    }
+
+    func updateDataSource() {
+        tinpons = []
         SwipedTinpon.loadAllFavouriteTinpons{ [weak self] tinpons in
             guard let strongSelf = self else { return }
             strongSelf.tinpons.append(contentsOf: tinpons)
             
             DispatchQueue.main.async {
                 strongSelf.tableView.reloadData()
+                strongSelf.refreshControl?.endRefreshing()
             }
         }
-
-        // Uncomment the following line to preserve selection between presentations
-        self.clearsSelectionOnViewWillAppear = false
     }
-
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
