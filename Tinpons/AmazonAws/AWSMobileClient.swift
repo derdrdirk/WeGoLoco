@@ -21,6 +21,7 @@ import AWSFacebookSignIn
 /**
  * AWSMobileClient is a singleton that bootstraps the app. It creates an identity manager to establish the user identity with Amazon Cognito.
  */
+
 class AWSMobileClient: NSObject {
     
     // Shared instance of this class
@@ -32,6 +33,8 @@ class AWSMobileClient: NSObject {
         isInitialized = false
         super.init()
     }
+    
+    static let cognitoId = AWSIdentityManager.default().credentialsProvider.identityId
     
     deinit {
         // Should never be called
@@ -98,5 +101,4 @@ class AWSMobileClient: NSObject {
 
         return didFinishLaunching
     }
-
 }

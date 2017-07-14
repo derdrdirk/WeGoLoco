@@ -79,7 +79,8 @@ class SwiperViewController: UIViewController {
         resetUI()
     }
     @IBAction func leftButtonTapped(_ sender: Any) {
-        kolodaView?.swipe(.left)
+        kolodaView.swipe(.down)
+        //kolodaView?.swipe(.left)
     }
     @IBAction func rightButtonTapped(_ sender: UIButton) {
         kolodaView?.swipe(.right)
@@ -93,7 +94,7 @@ class SwiperViewController: UIViewController {
         let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:8088e7da-a496-4ae3-818c-2b9025180888")
         let configuration = AWSServiceConfiguration(region: .EUWest1, credentialsProvider: credentialsProvider)
         AWSServiceManager.default().defaultServiceConfiguration = configuration
-        
+                
         // Retrieve your Amazon Cognito ID
         credentialsProvider.getIdentityId().continueWith(block: { [weak self] (task) -> AnyObject? in
             if (task.error != nil) {
@@ -119,6 +120,18 @@ class SwiperViewController: UIViewController {
         swipedTinpon.save()
         SwipedTinponsCore.save(swipedTinpon: swipedTinpon)
     }
+    
+    func favouriteTinpon(tinponId: String) {        
+        let swipedTinpon = SwipedTinpon()
+        swipedTinpon.userId = userId
+        swipedTinpon.like = NSNumber(value: true)
+        swipedTinpon.tinponId = tinponId
+        swipedTinpon.swipedAt = Date().iso8601.dateFromISO8601?.iso8601 // "2017-03-22T13:22:13.933Z"
+        swipedTinpon.favourite = NSNumber(value: 1)
+        
+        swipedTinpon.save()
+        SwipedTinponsCore.save(swipedTinpon: swipedTinpon)
+    }
 }
 
 //MARK: KolodaViewDelegate
@@ -127,6 +140,10 @@ extension SwiperViewController: KolodaViewDelegate {
     func kolodaDidRunOutOfCards(_ koloda: KolodaView) {
         outOfTinponsStack.isHidden = false
         //kolodaView.resetCurrentCardIndex()
+    }
+    
+    func koloda(_ koloda: KolodaView, allowedDirectionsForIndex index: Int) -> [SwipeResultDirection] {
+        return [.left, .right, .down]
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
@@ -183,10 +200,14 @@ extension SwiperViewController: KolodaViewDataSource {
         switch direction {
         case .right:
             liked = true
-        default:
+            saveSwipedTinpon(tinponId: (tinpons[index].tinponId)!, liked: liked)
+        case .left:
             liked = false
+            saveSwipedTinpon(tinponId: (tinpons[index].tinponId)!, liked: liked)
+        case .down:
+            favouriteTinpon(tinponId: (tinpons[index].tinponId)!)
+        default: ()
         }
-        saveSwipedTinpon(tinponId: (tinpons[index].tinponId)!, liked: liked)
         
         // if less than 10 tinpons load next Tinpon
         if tinpons.count - koloda.currentCardIndex < 5 {
