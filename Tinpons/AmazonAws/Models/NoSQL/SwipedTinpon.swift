@@ -27,13 +27,13 @@ class SwipedTinpon {
         return dynamoDBSwipedTinpon!
     }
     
-    private static func castDynamoDBTinponToTinpon(dynamoDBTinpon: DynamoDBSwipedTinpon) -> SwipedTinpon {
+    static func castDynamoDBSwipedTinponToSwipedTinpon(dynamoDBSwipedTinpon: DynamoDBSwipedTinpon) -> SwipedTinpon {
         let swipedTinpon = SwipedTinpon()
-        swipedTinpon.userId = dynamoDBTinpon.userId
-        swipedTinpon.swipedAt = dynamoDBTinpon.swipedAt
-        swipedTinpon.like = dynamoDBTinpon.like
-        swipedTinpon.tinponId = dynamoDBTinpon.tinponId
-        swipedTinpon.favourite = dynamoDBTinpon.favourite
+        swipedTinpon.userId = dynamoDBSwipedTinpon.userId
+        swipedTinpon.swipedAt = dynamoDBSwipedTinpon.swipedAt
+        swipedTinpon.like = dynamoDBSwipedTinpon.like
+        swipedTinpon.tinponId = dynamoDBSwipedTinpon.tinponId
+        swipedTinpon.favourite = dynamoDBSwipedTinpon.favourite
         return swipedTinpon
     }
     
@@ -69,7 +69,7 @@ class SwipedTinpon {
                 let dynamoDBSwipedTinpons = (paginatedOutput.items as? [DynamoDBSwipedTinpon])!
                 var swipedTinpons: [SwipedTinpon] = []
                 for dynamoDBSwipedTinpon in dynamoDBSwipedTinpons {
-                    swipedTinpons.append(SwipedTinpon.castDynamoDBTinponToTinpon(dynamoDBTinpon: dynamoDBSwipedTinpon))
+                    swipedTinpons.append(SwipedTinpon.castDynamoDBSwipedTinponToSwipedTinpon(dynamoDBSwipedTinpon: dynamoDBSwipedTinpon))
                 }
                 
                 onComplete(swipedTinpons)
@@ -78,9 +78,9 @@ class SwipedTinpon {
         })
     }
     
-    static func loadAllFavouriteTinpons(onComplete: @escaping ([SwipedTinpon]) -> (),
+    static func loadAllFavouriteTinpons(lastEvaluatedKey: [String: AWSDynamoDBAttributeValue]? = nil,
                                         //swipedTinpons: [DynamoDBSwipedTinpon]?,
-                                        lastEvaluatedKey: [String: AWSDynamoDBAttributeValue]? = nil)
+                                        _ onComplete: @escaping ([Tinpon]) -> ())
     {
         let favourite = NSNumber(value: 1)
         if let cognitoId = AWSMobileClient.cognitoId {
@@ -92,26 +92,31 @@ class SwipedTinpon {
                 queryExpression.exclusiveStartKey = lastEvaluatedKey
             }
             let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
-            dynamoDBObjectMapper.query(DynamoDBSwipedTinpon.self, expression: queryExpression).continueWith(block: { (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Any? in
-
-                if let error = task.error as NSError? {
-                    print("The request failed. Error: \(error)")
-                } else if let paginatedOutput = task.result {
+            dynamoDBObjectMapper.query(DynamoDBSwipedTinpon.self, expression: queryExpression).continueOnSuccessWith(block: { (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> AWSTask<AnyObject>? in
+                
+                if let paginatedOutput = task.result {
                     let dynamoDBSwipedTinpons = (paginatedOutput.items as? [DynamoDBSwipedTinpon])!
                     
-                    // if more Items queryable, repeat
-//                    if let lastEvaluatedKey = task.result?.lastEvaluatedKey {
-//                        loadAllFavouriteTinpons(onComplete: onComplete, lastEvaluatedKey: lastEvaluatedKey)
-//                    } else {
-                        var swipedTinpons: [SwipedTinpon] = []
-                        for dynamoDBSwipedTinpon in dynamoDBSwipedTinpons {
-                            swipedTinpons.append(castDynamoDBTinponToTinpon(dynamoDBTinpon: dynamoDBSwipedTinpon))
-                        }
-                        onComplete(swipedTinpons)
-//                    }
+                    var tasks = Array<AWSTask<AnyObject>>()
+                    dynamoDBSwipedTinpons.forEach({
+                        tasks.append(dynamoDBObjectMapper.load(DynamoDBTinpon.self, hashKey: $0.tinponId, rangeKey: nil))
+                    })
+                    return AWSTask(forCompletionOfAllTasksWithResults: tasks)
                 }
                 return nil
-            })
+            }).continueWith { task in
+                if let dynamoDBTinpons = task.result as? [DynamoDBTinpon] {
+                    var tinpons = Array<Tinpon>()
+                    dynamoDBTinpons.forEach{
+                        tinpons.append(Tinpon.castDynamoDBTinponToTinpon(dynamoDBTinpon: $0))
+                    }
+                    onComplete(tinpons)
+                } else if let error = task.error {
+                    print("Fetching Favourites error: \(error.localizedDescription)")
+                }
+                return nil
+            }
+        
         } else {
             onComplete([])
         }

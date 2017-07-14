@@ -10,8 +10,20 @@ import UIKit
 
 class FavouritesTableViewController: UITableViewController {
 
+    var tinpons: [Tinpon] = []
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        SwipedTinpon.loadAllFavouriteTinpons{ [weak self] tinpons in
+            guard let strongSelf = self else { return }
+            strongSelf.tinpons.append(contentsOf: tinpons)
+            
+            DispatchQueue.main.async {
+                strongSelf.tableView.reloadData()
+            }
+        }
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -20,32 +32,27 @@ class FavouritesTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        return tinpons.count
     }
 
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
 
-        // Configure the cell...
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "tinponCell", for: indexPath) as! TinponTableViewCell
+        cell.nameLabel.text = tinpons[indexPath.row].name
+         
 
         return cell
     }
-    */
+
 
     /*
     // Override to support conditional editing of the table view.

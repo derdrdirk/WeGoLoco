@@ -33,9 +33,7 @@ class MainViewController: SwiperViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        SwipedTinpon.loadAllFavouriteTinpons(onComplete: { test in print(test.count)})
-        
+                
         self.setupLeftBarButtonItem()
         presentSignInViewController()
     }

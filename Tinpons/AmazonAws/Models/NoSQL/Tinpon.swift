@@ -63,7 +63,7 @@ class Tinpon : CustomStringConvertible {
         return tinpon!
     }
     
-    private func castDynamoDBTinponToTinpon(dynamoDBTinpon: DynamoDBTinpon) -> Tinpon {
+    static func castDynamoDBTinponToTinpon(dynamoDBTinpon: DynamoDBTinpon) -> Tinpon {
         let tinpon = Tinpon()
         tinpon.category = dynamoDBTinpon.category
         tinpon.createdAt = dynamoDBTinpon.createdAt
@@ -159,7 +159,7 @@ class Tinpon : CustomStringConvertible {
                 } else if let paginatedOutput = task.result {
                     var tinpons = [Tinpon]()
                     for dynamoDBTinpon in (paginatedOutput.items as? [DynamoDBTinpon])! {
-                        tinpons.append(strongSelf.castDynamoDBTinponToTinpon(dynamoDBTinpon: dynamoDBTinpon))
+                        tinpons.append(Tinpon.castDynamoDBTinponToTinpon(dynamoDBTinpon: dynamoDBTinpon))
                     }
                     
                     // filter already swiped Tinpons
