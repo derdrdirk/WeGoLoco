@@ -206,4 +206,31 @@ class Tinpon : CustomStringConvertible {
         }
         return filteredTinpons
     }
+    
+    // MARK: Updates
+    func removeFromFavourites() {
+        
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        
+        // dont overwrite other attributes
+        let updateMapperConfig = AWSDynamoDBObjectMapperConfiguration()
+        updateMapperConfig.saveBehavior = .updateSkipNullAttributes
+        
+        let dynamoDBSwipedTinpon = DynamoDBSwipedTinpon()
+        if let cognitoId = AWSMobileClient.cognitoId {
+            dynamoDBSwipedTinpon?.tinponId = tinponId
+            dynamoDBSwipedTinpon?.userId = cognitoId
+            dynamoDBSwipedTinpon?.favourite = NSNumber(value: 0)
+                
+                dynamoDBObjectMapper.save(dynamoDBSwipedTinpon!, configuration: updateMapperConfig).continueWith{ task in
+                    if let error = task.error {
+                        print("Could not update favourite: Error : \(error)")
+                    } else {
+                        print("Favourite updated")
+                    }
+                    return nil
+            }
+        }
+    }
+    
 }
