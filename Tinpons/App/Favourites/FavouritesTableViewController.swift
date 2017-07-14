@@ -47,7 +47,12 @@ class FavouritesTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tinponCell", for: indexPath) as! TinponTableViewCell
-        cell.nameLabel.text = tinpons[indexPath.row].name
+        let tinpon = tinpons[indexPath.row]
+        cell.nameLabel.text = tinpon.name
+        cell.categoryLabel.text = tinpon.category
+        cell.priceLabel.text = String(tinpon.price as! Int)+" €"
+        let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+tinpon.imgUrl!
+        cell.tinponImageView.imageFromServerURL(urlString: resizedImageUrl)
          
 
         return cell

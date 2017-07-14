@@ -10,7 +10,12 @@ import UIKit
 
 class TinponTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var tinponImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
