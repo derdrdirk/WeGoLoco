@@ -15,6 +15,8 @@
 		D443C0FA1EEC728100FD148F /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F91EEC728100FD148F /* AddProductViewController.swift */; };
 		D4512B441F189D6E009B109C /* FavouritesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4512B431F189D6E009B109C /* FavouritesTableViewController.swift */; };
 		D4512B461F18A159009B109C /* TinponTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4512B451F18A159009B109C /* TinponTableViewCell.swift */; };
+		D4512B481F18E448009B109C /* TinponTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4512B471F18E448009B109C /* TinponTableViewController.swift */; };
+		D4512B4A1F1930BE009B109C /* TinponManagerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4512B491F1930BE009B109C /* TinponManagerTableViewCell.swift */; };
 		D47F96E81EED8D0000B9FCE3 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */; };
 		D47F96E91EED8D0000B9FCE3 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D47F96F01EED938400B9FCE3 /* ImageRow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47F96EF1EED938400B9FCE3 /* ImageRow.framework */; };
@@ -168,6 +170,8 @@
 		D443C0F91EEC728100FD148F /* AddProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddProductViewController.swift; path = Tinpons/App/AddProduct/AddProductViewController.swift; sourceTree = SOURCE_ROOT; };
 		D4512B431F189D6E009B109C /* FavouritesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouritesTableViewController.swift; path = Tinpons/App/Favourites/FavouritesTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		D4512B451F18A159009B109C /* TinponTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponTableViewCell.swift; path = Tinpons/App/Favourites/TinponTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		D4512B471F18E448009B109C /* TinponTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponTableViewController.swift; path = Tinpons/App/Favourites/TinponTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		D4512B491F1930BE009B109C /* TinponManagerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponManagerTableViewCell.swift; path = Tinpons/App/Favourites/TinponManagerTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		D47F96E51EED8C2A00B9FCE3 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		D47F96EC1EED932600B9FCE3 /* ImageRow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageRow.framework; path = Carthage/Build/iOS/ImageRow.framework; sourceTree = "<group>"; };
@@ -409,7 +413,9 @@
 			isa = PBXGroup;
 			children = (
 				D4512B431F189D6E009B109C /* FavouritesTableViewController.swift */,
+				D4512B491F1930BE009B109C /* TinponManagerTableViewCell.swift */,
 				D4512B451F18A159009B109C /* TinponTableViewCell.swift */,
+				D4512B471F18E448009B109C /* TinponTableViewController.swift */,
 			);
 			name = Favourites;
 			path = Tinpons/App/Favourites;
@@ -554,6 +560,7 @@
 				E7A30F042B278B4700000000 /* UserPoolSignUpConfirmationViewController.swift in Sources */,
 				E7A30F04C071CC9E00000000 /* UserPoolMFAViewController.swift in Sources */,
 				E7A30F040AAE5A4B00000000 /* AppDelegate.swift in Sources */,
+				D4512B481F18E448009B109C /* TinponTableViewController.swift in Sources */,
 				D4306C811F0E6BEC0073A11E /* Stores.swift in Sources */,
 				E7A30F043DD4F57200000000 /* FormTableCell.swift in Sources */,
 				D4FA2EC91F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift in Sources */,
@@ -578,6 +585,7 @@
 				D4E258241EEC625400B2B986 /* CustomKolodaView.swift in Sources */,
 				D4FA2ECC1F0CE85B00B287FB /* ProfileViewController.swift in Sources */,
 				D4FC90E51F1669F8002A6F9E /* SwipedTinponsCore.swift in Sources */,
+				D4512B4A1F1930BE009B109C /* TinponManagerTableViewCell.swift in Sources */,
 				E7A30F0400925D1700000000 /* AWSMobileClient.swift in Sources */,
 				E7A30F0497C0BECE00000000 /* FormTableDelegate.swift in Sources */,
 			);

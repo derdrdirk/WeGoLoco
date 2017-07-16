@@ -23,6 +23,7 @@ class Tinpon : CustomStringConvertible {
     var updatedAt: String?
     var userId: String?
     var imgUrl: String?
+    var active: NSNumber?
     
     let s3BucketName = "tinpons-userfiles-mobilehub-1827971537"
     var image: UIImage?
@@ -41,11 +42,12 @@ class Tinpon : CustomStringConvertible {
 
     init() {
         tinponId = UUID().uuidString
-        userId = User().userId
+        userId = AWSMobileClient.cognitoId
+        active = NSNumber(value: true)
     }
     
     var description: String {
-        return "Name: \(name ?? "") \nImage: \(String(describing: imgUrl)) \nPrice: \(String(Double(price ?? 0))) \nCategory: \(category ?? "")"
+        return "Name: \(name ?? "") \nImage: \(String(describing: imgUrl)) \nPrice: \(String(Double(price ?? 0))) \nCategory: \(category ?? "") \nActive: \(active)"
     }
     
     private func dynamoDBTinpon() -> DynamoDBTinpon {
@@ -60,6 +62,7 @@ class Tinpon : CustomStringConvertible {
         tinpon?.tinponId = tinponId
         tinpon?.updatedAt = updatedAt
         tinpon?.userId = userId
+        tinpon?.active = active
         return tinpon!
     }
     
@@ -75,6 +78,7 @@ class Tinpon : CustomStringConvertible {
         tinpon.tinponId = dynamoDBTinpon.tinponId
         tinpon.updatedAt = dynamoDBTinpon.updatedAt
         tinpon.userId = dynamoDBTinpon.userId
+        tinpon.active = dynamoDBTinpon.active
         return tinpon
     }
     
@@ -124,6 +128,8 @@ class Tinpon : CustomStringConvertible {
             return nil
         })
     }
+    
+    // MARK: Loader
     
     // load x=limit Items
     // 1. query x tinpons
@@ -207,9 +213,36 @@ class Tinpon : CustomStringConvertible {
         return filteredTinpons
     }
     
+    static func loadAllTinponsForUser(onComplete: @escaping (([Tinpon]) -> ())) {
+        if let cognitoId = AWSMobileClient.cognitoId {
+            let queryExpression = AWSDynamoDBQueryExpression()
+            queryExpression.indexName = "userId-index"
+            
+            queryExpression.keyConditionExpression = "userId = :userId"
+            queryExpression.expressionAttributeValues = [":userId" : cognitoId]
+//            if lastEvaluatedKey != nil {
+//                queryExpression.exclusiveStartKey = lastEvaluatedKey
+//            }
+            
+            let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+            dynamoDBObjectMapper.query(DynamoDBTinpon.self, expression: queryExpression).continueWith{ task in
+                if let error = task.error {
+                    print("loading user Tinpons failed. Error: \(error.localizedDescription)")
+                } else if let dynamoDBTinpons = task.result?.items as! [DynamoDBTinpon]? {                    
+                    var tinpons = Array<Tinpon>()
+                    dynamoDBTinpons.forEach{
+                        tinpons.append(castDynamoDBTinponToTinpon(dynamoDBTinpon: $0))
+                    }
+                    
+                    onComplete(tinpons)
+                }
+                return nil
+            }
+        }
+    }
+    
     // MARK: Updates
     func removeFromFavourites() {
-        
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
         
         // dont overwrite other attributes
@@ -225,11 +258,45 @@ class Tinpon : CustomStringConvertible {
                 dynamoDBObjectMapper.save(dynamoDBSwipedTinpon!, configuration: updateMapperConfig).continueWith{ task in
                     if let error = task.error {
                         print("Could not update favourite: Error : \(error)")
-                    } else {
-                        print("Favourite updated")
                     }
                     return nil
             }
+        }
+    }
+    
+    func deactivateTinpon() {
+        // dont overwrite other attributes
+        let updateMapperConfig = AWSDynamoDBObjectMapperConfiguration()
+        updateMapperConfig.saveBehavior = .updateSkipNullAttributes
+        
+        let dynamoDBTinpon = DynamoDBTinpon()
+        dynamoDBTinpon?.tinponId = tinponId
+        dynamoDBTinpon?.active = NSNumber(value: false)
+        
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        dynamoDBObjectMapper.save(dynamoDBTinpon!, configuration: updateMapperConfig).continueWith{ task in
+            if let error = task.error {
+                print("Could not deactivate Tinpon: Error : \(error)")
+            }
+            return nil
+        }
+    }
+    
+    func activateTinpon() {
+        // dont overwrite other attributes
+        let updateMapperConfig = AWSDynamoDBObjectMapperConfiguration()
+        updateMapperConfig.saveBehavior = .updateSkipNullAttributes
+        
+        let dynamoDBTinpon = DynamoDBTinpon()
+        dynamoDBTinpon?.tinponId = tinponId
+        dynamoDBTinpon?.active = NSNumber(value: true)
+        
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        dynamoDBObjectMapper.save(dynamoDBTinpon!, configuration: updateMapperConfig).continueWith{ task in
+            if let error = task.error {
+                print("Could not deactivate Tinpon: Error : \(error)")
+            }
+            return nil
         }
     }
     

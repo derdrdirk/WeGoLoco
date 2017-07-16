@@ -48,6 +48,7 @@
                     <connections>
                         <segue destination="p1Q-oH-ibG" kind="relationship" relationship="viewControllers" id="XDi-Yz-VUF"/>
                         <segue destination="ddS-sC-jhU" kind="relationship" relationship="viewControllers" id="8ic-K6-6LC"/>
+                        <segue destination="o7V-gW-8HN" kind="relationship" relationship="viewControllers" id="7px-h4-FfK"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xQj-X9-uT2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -67,18 +68,19 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9LJ-Ha-R53" customClass="CustomKolodaView" customModule="Tinpons" customModuleProvider="target">
-                                <rect key="frame" x="16" y="0.0" width="343" height="583"/>
+                                <rect key="frame" x="16" y="0.0" width="343" height="554"/>
                                 <subviews>
-                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dJB-iD-02l" userLabel="outOfTinpons Stack">
+                                    <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dJB-iD-02l" userLabel="outOfTinpons Stack">
                                         <rect key="frame" x="45" y="260" width="253" height="63.5"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No More Tinpons 😭 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsb-lN-R7k">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="No More Tinpons 😭 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsb-lN-R7k">
                                                 <rect key="frame" x="0.0" y="0.0" width="253" height="33.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2v-x2-sVS">
+                                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2v-x2-sVS">
                                                 <rect key="frame" x="95" y="33.5" width="63" height="30"/>
                                                 <state key="normal" title="Try again"/>
                                                 <connections>
@@ -89,10 +91,6 @@
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="dJB-iD-02l" firstAttribute="centerX" secondItem="9LJ-Ha-R53" secondAttribute="centerX" id="r9z-cu-QlE"/>
-                                    <constraint firstItem="dJB-iD-02l" firstAttribute="centerY" secondItem="9LJ-Ha-R53" secondAttribute="centerY" id="zcB-Ea-2cy"/>
-                                </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Geh-EI-gqj">
                                 <rect key="frame" x="76" y="479" width="30" height="30"/>
@@ -121,13 +119,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="9LJ-Ha-R53" secondAttribute="bottom" constant="20" symbolic="YES" id="Y2z-dI-0rl"/>
-                            <constraint firstItem="9LJ-Ha-R53" firstAttribute="trailing" secondItem="4kG-LK-x3N" secondAttribute="trailingMargin" id="fUQ-YH-HK6"/>
-                            <constraint firstItem="9LJ-Ha-R53" firstAttribute="top" secondItem="X32-br-pVi" secondAttribute="bottom" id="jWh-lo-Ave"/>
-                            <constraint firstItem="9LJ-Ha-R53" firstAttribute="leading" secondItem="4kG-LK-x3N" secondAttribute="leadingMargin" id="mq6-Og-EhG"/>
+                            <constraint firstItem="9LJ-Ha-R53" firstAttribute="bottom" secondItem="kCt-oL-c4I" secondAttribute="top" id="8DV-xK-E3a"/>
+                            <constraint firstItem="9LJ-Ha-R53" firstAttribute="trailing" secondItem="4kG-LK-x3N" secondAttribute="trailingMargin" id="BxK-Qf-yTw"/>
+                            <constraint firstItem="9LJ-Ha-R53" firstAttribute="leading" secondItem="4kG-LK-x3N" secondAttribute="leadingMargin" id="QjT-YW-Oup"/>
+                            <constraint firstItem="9LJ-Ha-R53" firstAttribute="top" secondItem="X32-br-pVi" secondAttribute="bottom" id="nKd-5L-5h3"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" badgeValue="Swiper" id="BfZ-Eq-zfK"/>
+                    <tabBarItem key="tabBarItem" title="Swiper" image="faTags" id="BfZ-Eq-zfK"/>
                     <navigationItem key="navigationItem" title="Tinpons" id="keu-zp-Ez7">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="s0f-6y-Bba">
                             <connections>
@@ -162,7 +160,7 @@
             </objects>
             <point key="canvasLocation" x="1689" y="1221"/>
         </scene>
-        <!--Favourites Table View Controller-->
+        <!--Favourites-->
         <scene sceneID="IZb-JR-25j">
             <objects>
                 <tableViewController id="gbY-HX-BFr" customClass="FavouritesTableViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
@@ -222,7 +220,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" systemItem="favorites" id="uCM-ZH-pf0"/>
-                    <navigationItem key="navigationItem" id="6hF-9b-dTn"/>
+                    <navigationItem key="navigationItem" title="Favourites" id="6hF-9b-dTn"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IfV-vN-fIt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -380,5 +378,88 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G2R-HB-eyA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Item-->
+        <scene sceneID="hpP-5X-TVq">
+            <objects>
+                <navigationController id="o7V-gW-8HN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="hcs-Nb-vM5"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WUr-7k-hFm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="EEM-2p-Tew" kind="relationship" relationship="rootViewController" id="Dh1-z4-Jtm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nZF-m4-JcU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1689" y="1979"/>
+        </scene>
+        <!--My Tinpons-->
+        <scene sceneID="AFQ-pa-ylr">
+            <objects>
+                <tableViewController id="EEM-2p-Tew" customClass="TinponTableViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="82w-W2-lYv">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tinponManagerCell" rowHeight="100" id="pIy-ak-5JN" customClass="TinponManagerTableViewCell" customModule="Tinpons" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pIy-ak-5JN" id="40z-b7-c5r">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SpX-wI-OoG">
+                                            <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        </imageView>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DVp-Lu-cFO">
+                                            <rect key="frame" x="318" y="35" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="tabActivationSwitch:" destination="pIy-ak-5JN" eventType="valueChanged" id="zLm-It-TMM"/>
+                                            </connections>
+                                        </switch>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YNZ-Uy-RIy">
+                                            <rect key="frame" x="165" y="39" width="45" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="SpX-wI-OoG" firstAttribute="centerY" secondItem="40z-b7-c5r" secondAttribute="centerY" id="GOO-QZ-w0J"/>
+                                        <constraint firstItem="YNZ-Uy-RIy" firstAttribute="centerX" secondItem="40z-b7-c5r" secondAttribute="centerX" id="HO6-8i-sGh"/>
+                                        <constraint firstItem="SpX-wI-OoG" firstAttribute="centerY" secondItem="DVp-Lu-cFO" secondAttribute="centerY" id="Hpc-W9-GPy"/>
+                                        <constraint firstItem="SpX-wI-OoG" firstAttribute="top" secondItem="40z-b7-c5r" secondAttribute="top" id="RSp-wu-tBC"/>
+                                        <constraint firstItem="SpX-wI-OoG" firstAttribute="leading" secondItem="40z-b7-c5r" secondAttribute="leading" id="j4a-0C-WiN"/>
+                                        <constraint firstItem="SpX-wI-OoG" firstAttribute="centerY" secondItem="YNZ-Uy-RIy" secondAttribute="centerY" id="jKw-GQ-DKu"/>
+                                        <constraint firstItem="DVp-Lu-cFO" firstAttribute="trailing" secondItem="40z-b7-c5r" secondAttribute="trailingMargin" id="m04-c8-KkC"/>
+                                        <constraint firstItem="YNZ-Uy-RIy" firstAttribute="leading" secondItem="SpX-wI-OoG" secondAttribute="trailing" constant="65" id="x9i-dR-sdF"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="activationSwitch" destination="DVp-Lu-cFO" id="dpM-ZM-vka"/>
+                                    <outlet property="nameLabel" destination="YNZ-Uy-RIy" id="fZw-hE-vVS"/>
+                                    <outlet property="tinponImage" destination="SpX-wI-OoG" id="vhJ-qd-47s"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="EEM-2p-Tew" id="EhN-cC-ytg"/>
+                            <outlet property="delegate" destination="EEM-2p-Tew" id="jA2-GX-VC6"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="My Tinpons" image="faDatabase" id="rl9-7H-Fjf"/>
+                    <navigationItem key="navigationItem" title="My Tinpons" id="bQC-jh-fc4"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4jh-kz-E6X" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2432.8000000000002" y="1979.4602698650676"/>
+        </scene>
     </scenes>
+    <resources>
+        <image name="faDatabase" width="16" height="16"/>
+        <image name="faTags" width="16" height="16"/>
+    </resources>
 </document>

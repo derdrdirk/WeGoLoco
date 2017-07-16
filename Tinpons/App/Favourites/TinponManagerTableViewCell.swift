@@ -1,5 +1,5 @@
 //
-//  TinponTableViewCell.swift
+//  TinponManagerTableViewCell.swift
 //  Tinpons
 //
 //  Created by Dirk Hornung on 14/7/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TinponTableViewCell: UITableViewCell {
+class TinponManagerTableViewCell: UITableViewCell {
 
     var tinpon: Tinpon? {
         didSet {
@@ -16,23 +16,28 @@ class TinponTableViewCell: UITableViewCell {
         }
     }
     
-    @IBOutlet weak var tinponImageView: UIImageView!
+    @IBOutlet weak var tinponImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var categoryLabel: UILabel!
-    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var activationSwitch: UISwitch!
     
     func updateUI() {
         if let tinpon = tinpon {
             nameLabel.text = tinpon.name
-            categoryLabel.text = tinpon.category
-            priceLabel.text = String(tinpon.price as! Int)+"€"
             let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+tinpon.imgUrl!
-            tinponImageView.imageFromServerURL(urlString: resizedImageUrl)
-        
-            setNeedsDisplay()
+            tinponImage.imageFromServerURL(urlString: resizedImageUrl)
+            activationSwitch.isOn = tinpon.active == true
         }
+        
+        setNeedsDisplay()
     }
     
+    @IBAction func tabActivationSwitch(_ sender: UISwitch) {
+        if sender.isOn {
+            tinpon?.activateTinpon()
+        } else {
+            tinpon?.deactivateTinpon()
+        }
+    }
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

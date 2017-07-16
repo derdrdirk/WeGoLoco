@@ -183,10 +183,7 @@ extension SwiperViewController: KolodaViewDataSource {
     
     func koloda(_ koloda: KolodaView, viewForCardAt index: Int) -> UIView {
         let cell = Bundle.main.loadNibNamed("CustomOverlayView", owner: self, options: nil)?[0] as? CustomOverlayView
-        //cell?.image.setImageWithUrl(url: NSURL(string: (tinpons?[index]._imgUrl)!)!)
-        cell?.title.text = tinpons[index].name
-        let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+tinpons[index].imgUrl!
-        cell?.image.imageFromServerURL(urlString: resizedImageUrl)
+        cell?.tinpon = tinpons[index]
         return cell!
     }
     

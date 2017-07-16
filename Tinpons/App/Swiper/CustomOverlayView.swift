@@ -8,6 +8,7 @@
 
 import UIKit
 import Koloda
+import MapKit
 
 private let overlayRightImageName = "overlay_like"
 private let overlayLeftImageName = "overlay_skip"
@@ -15,10 +16,20 @@ private let overlayFavouriteImageName = "kolodaFavouriteOverlay"
 
 class CustomOverlayView: OverlayView {
     
+    var tinpon: Tinpon? {
+        didSet {
+            title.text = tinpon?.name
+            priceLabel.text = (tinpon?.category)!+" | "+(tinpon?.price?.stringValue)!+" €"
+            let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+(tinpon?.imgUrl)!
+            image.imageFromServerURL(urlString: resizedImageUrl)
+        }
+    }
+    
+    @IBOutlet weak var descriptionStack: UIStackView!
     @IBOutlet weak var title: UILabel!
-    
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var mapMarkerButton: UIButton!
     @IBOutlet weak var image: UIImageView!
-    
     @IBOutlet lazy var overlayImageView: UIImageView! = {
         [unowned self] in
         
@@ -26,7 +37,29 @@ class CustomOverlayView: OverlayView {
         self.addSubview(imageView)
         
         return imageView
-        }()
+    }()
+    
+    @IBAction func tabMapMarkerButton(_ sender: UIButton) {
+        openMapForPlace()
+    }
+    
+    func openMapForPlace() {
+        
+        let latitude: CLLocationDegrees = (tinpon?.latitude?.doubleValue)!
+        let longitude: CLLocationDegrees = (tinpon?.longitude?.doubleValue)!
+        
+        let regionDistance:CLLocationDistance = 10000
+        let coordinates = CLLocationCoordinate2DMake(latitude, longitude)
+        let regionSpan = MKCoordinateRegionMakeWithDistance(coordinates, regionDistance, regionDistance)
+        let options = [
+            MKLaunchOptionsMapCenterKey: NSValue(mkCoordinate: regionSpan.center),
+            MKLaunchOptionsMapSpanKey: NSValue(mkCoordinateSpan: regionSpan.span)
+        ]
+        let placemark = MKPlacemark(coordinate: coordinates, addressDictionary: nil)
+        let mapItem = MKMapItem(placemark: placemark)
+        mapItem.name = tinpon?.name
+        mapItem.openInMaps(launchOptions: options)
+    }
     
     override var overlayState: SwipeResultDirection?  {
         didSet {
@@ -42,6 +75,30 @@ class CustomOverlayView: OverlayView {
             }
             
         }
+    }
+    
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        
+        // round corner
+        self.layer.cornerRadius = 10
+        self.layer.masksToBounds = true
+        
+        // add Gradient
+        let mGradient = CAGradientLayer()
+        mGradient.frame = self.bounds
+        var colors = [CGColor]()
+        colors.append(UIColor(red: 0, green: 0, blue: 0, alpha: 0).cgColor)
+        colors.append(UIColor(red: 0, green: 0, blue: 0, alpha: 0.6).cgColor)
+        colors.append(UIColor(red: 0, green: 0, blue: 0, alpha: 0.9).cgColor)
+        mGradient.locations = [0, 0.2, 1]
+        mGradient.startPoint = CGPoint(x: 0, y: 0.4)
+        mGradient.endPoint = CGPoint(x: 0, y: 1)
+        mGradient.colors = colors
+        self.layer.addSublayer(mGradient)
+        
+
+        self.bringSubview(toFront: descriptionStack)
     }
     
 }

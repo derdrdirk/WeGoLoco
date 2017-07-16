@@ -27,6 +27,7 @@ class DynamoDBTinpon: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     var tinponId: String?
     var updatedAt: String?
     var userId: String?
+    var active: NSNumber?
     
     class func dynamoDBTableName() -> String {
         return "tinpons-mobilehub-1827971537-Tinpons"

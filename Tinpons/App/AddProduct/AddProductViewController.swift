@@ -12,9 +12,12 @@ import ImageRow
 import AWSDynamoDB
 import AWSMobileHubHelper
 import AWSS3
+import MapKit
+import CoreLocation
 
-class AddProductViewController: FormViewController {
+class AddProductViewController: FormViewController, CLLocationManagerDelegate {
     
+    let locationManager = CLLocationManager()
     @IBOutlet weak var progressView: UIProgressView!
     
     var overlay : UIView?
@@ -23,6 +26,15 @@ class AddProductViewController: FormViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // get location
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+        }
         
         // Set up progress bar (right under the navigationController tob bar)
         let navBar = self.navigationController?.navigationBar
@@ -94,6 +106,13 @@ class AddProductViewController: FormViewController {
                 }.onChange{ [weak self] in
                     self?.tinpon.category = $0.value
         }
+    }
+    
+    // MARK: Location
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let locValue:CLLocationCoordinate2D = manager.location!.coordinate
+        tinpon.latitude = NSNumber(value: locValue.latitude)
+        tinpon.longitude = NSNumber(value: locValue.longitude)
     }
     
     // MARK: Actions

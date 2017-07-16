@@ -9,15 +9,15 @@
 import UIKit
 import Koloda
 
-let defaultTopOffset: CGFloat = 20
-let defaultHorizontalOffset: CGFloat = 10
-let defaultHeightRatio: CGFloat = 1.25
+let defaultTopOffset: CGFloat = 10
+let defaultHorizontalOffset: CGFloat = 0
+let defaultHeightRatio: CGFloat = 1.5
 let backgroundCardHorizontalMarginMultiplier: CGFloat = 0.25
 let backgroundCardScalePercent: CGFloat = 1.5
 
 class CustomKolodaView: KolodaView {
 
-    override func frameForCard(at index: Int) -> CGRect {
+    override func frameForCard(at index: Int) -> CGRect {        
         if index == 0 {
             let topOffset: CGFloat = defaultTopOffset
             let xOffset: CGFloat = defaultHorizontalOffset
@@ -35,5 +35,7 @@ class CustomKolodaView: KolodaView {
         }
         return CGRect.zero
     }
+    
+    
 
 }
