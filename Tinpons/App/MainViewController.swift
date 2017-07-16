@@ -23,7 +23,6 @@ class MainViewController: SwiperViewController {
         // handle successful sign in
         if (success) {
             createUserAccountIfNotExisting()
-            self.setupLeftBarButtonItem()
             syncCoreDataWithDynamoDB()
             resetUI()
         } else {
@@ -33,19 +32,10 @@ class MainViewController: SwiperViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-                
-        self.setupLeftBarButtonItem()
+        
         presentSignInViewController()
     }
 
-    func setupLeftBarButtonItem() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Profile", style: .done, target: self, action: #selector(profileButtonTapped))
-            navigationItem.leftBarButtonItem?.icon(from: .Ionicon, code: "person", ofSize: 20)
-    }
-    func profileButtonTapped() {
-        performSegue(withIdentifier: "presentProfile", sender: nil)
-    }
-    
     func presentSignInViewController() {
         if !AWSSignInManager.sharedInstance().isLoggedIn {
             let loginStoryboard = UIStoryboard(name: "SignIn", bundle: nil)
@@ -61,7 +51,6 @@ class MainViewController: SwiperViewController {
         if (AWSSignInManager.sharedInstance().isLoggedIn) {
             AWSSignInManager.sharedInstance().logout(completionHandler: {(result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) in
                 self.navigationController!.popToRootViewController(animated: false)
-                self.setupLeftBarButtonItem()
                     self.presentSignInViewController()
             })
             // print("Logout Successful: \(signInProvider.getDisplayName)");
@@ -108,11 +97,5 @@ class MainViewController: SwiperViewController {
                 SwipedTinponsCore.save(swipedTinpon: swipedTinpon)
             }
         })
-    }
-    
-    
-    // MARK: Unwind Profile
-    @IBAction func unwindProfileViewController(segue: UIStoryboardSegue) {
-        handleLogout()
     }
 }

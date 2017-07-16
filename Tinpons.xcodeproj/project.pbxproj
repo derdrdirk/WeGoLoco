@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		D40308461F0FCBDE00BF1BD5 /* Tinpon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40308451F0FCBDE00BF1BD5 /* Tinpon.swift */; };
+		D42DC6BB1F1BF9800087EB4F /* Whisper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D42DC6B91F1BF8D40087EB4F /* Whisper.framework */; };
+		D42DC6BC1F1BF9800087EB4F /* Whisper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D42DC6B91F1BF8D40087EB4F /* Whisper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4306C811F0E6BEC0073A11E /* Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4306C801F0E6BEC0073A11E /* Stores.swift */; };
 		D4306C831F0E73780073A11E /* AWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4306C821F0E73780073A11E /* AWSHelper.swift */; };
 		D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F51EEC699D00FD148F /* SwiperViewController.swift */; };
@@ -106,6 +108,7 @@
 				E7A30F040879B56F00000000 /* AWSCognito.framework in Embed Frameworks */,
 				D480D0551EEBEEF300B4193A /* pop.framework in Embed Frameworks */,
 				D4DA42481F0E13CD00A1C69E /* SwiftIconFont.framework in Embed Frameworks */,
+				D42DC6BC1F1BF9800087EB4F /* Whisper.framework in Embed Frameworks */,
 				E7A30F046317E39C00000000 /* AWSS3.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -163,6 +166,7 @@
 		1DD70E29F77E3E0700000000 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = Tinpons/Sdk/Aws/AWSS3.framework; sourceTree = "<group>"; };
 		1DD70E29FF24C27A00000000 /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSMobileHubHelper.framework; path = Tinpons/AmazonAws/AWSMobileHubHelper.framework; sourceTree = "<group>"; };
 		D40308451F0FCBDE00BF1BD5 /* Tinpon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tinpon.swift; path = Tinpons/AmazonAws/Models/NoSQL/Tinpon.swift; sourceTree = SOURCE_ROOT; };
+		D42DC6B91F1BF8D40087EB4F /* Whisper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Whisper.framework; path = Carthage/Build/iOS/Whisper.framework; sourceTree = "<group>"; };
 		D4306C801F0E6BEC0073A11E /* Stores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stores.swift; path = Tinpons/AmazonAws/Models/NoSQL/Stores.swift; sourceTree = SOURCE_ROOT; };
 		D4306C821F0E73780073A11E /* AWSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AWSHelper.swift; path = Tinpons/AmazonAws/Models/NoSQL/AWSHelper.swift; sourceTree = SOURCE_ROOT; };
 		D443C0F51EEC699D00FD148F /* SwiperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiperViewController.swift; path = Tinpons/App/Swiper/SwiperViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -212,6 +216,7 @@
 				E7A30F04F1E5184200000000 /* AWSFacebookSignIn.framework in Frameworks */,
 				E7A30F040E0E6CF100000000 /* UIKit.framework in Frameworks */,
 				E7A30F047BEED6DB00000000 /* SystemConfiguration.framework in Frameworks */,
+				D42DC6BB1F1BF9800087EB4F /* Whisper.framework in Frameworks */,
 				D4DA42471F0E13CD00A1C69E /* SwiftIconFont.framework in Frameworks */,
 				E7A30F045D6A367800000000 /* Security.framework in Frameworks */,
 				E7A30F048D6E5D3400000000 /* CFNetwork.framework in Frameworks */,
@@ -253,6 +258,7 @@
 		B401C9792ED981A800000000 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D42DC6B91F1BF8D40087EB4F /* Whisper.framework */,
 				D4DA424A1F0E2C4200A1C69E /* MapKit.framework */,
 				D4DA42451F0E123100A1C69E /* SwiftIconFont.framework */,
 				D47F96EC1EED932600B9FCE3 /* ImageRow.framework */,

@@ -3,7 +3,8 @@
 [![Build Status](https://travis-ci.org/0x73/SwiftIconFont.svg)](https://travis-ci.org/0x73/SwiftIconFont)
 [![Version](https://img.shields.io/cocoapods/v/SwiftIconFont.svg?style=flat)](http://cocoapods.org/pods/SwiftIconFont)
 [![License](https://img.shields.io/cocoapods/l/SwiftIconFont.svg?style=flat)](http://cocoapods.org/pods/SwiftIconFont)
-[![Platform](https://img.shields.io/cocoapods/p/SwiftIconFont.svg?style=flat)](http://cocoapods.org/pods/SwiftIconFont)
+[![Platform](https://img.shields.io/badge/Platforms-iOS%20%7C%20tvOS-green.svg)](http://cocoapods.org/pods/SwiftIconFont)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 ## Installation
 
@@ -72,10 +73,10 @@ public enum Fonts: String {
 ````
 
 ## Runtime Structure
-> ###< Prefix >:< Icon >
+> < Prefix >:< Icon >
 
 
-##Usage
+## Usage
 
 In your UILabel, UIButton or UITextField, set a text containing a placeholder anywhere you want the icon to be. Somethink like this
 
@@ -84,7 +85,7 @@ In your UILabel, UIButton or UITextField, set a text containing a placeholder an
 
 Then you can choose between 3 ways you can use SwiftIconFont.
 
-####1. No Custom Class
+#### 1. Without Custom Class
 
 Simply import SwiftIconFont and call processIcons on any UILabel, UIButton or UITextField that has a placeholder.
 
@@ -92,12 +93,12 @@ Simply import SwiftIconFont and call processIcons on any UILabel, UIButton or UI
 label.parseIcon()
 ```
 
-####2. Custom Class
+#### 2. Custom Class
 
 The lazy way, just set your UILabel, UITextField, UIButton, UITextView, UIBarButtonItem class as SwiftIconLabel, SwiftIconTextField, SwiftIconButton, SwiftIconTextView, SwiftBarButtonItem, and thats it, your icons will be processed at runtime.
 
 
-####3. Programmatically
+#### 3. Programmatically
 
 ````swift
 import SwiftIconFont
@@ -107,7 +108,7 @@ label.text = String.fontAwesomeIcon(code: "twitter")
 ````
 
 
-####UIBarButtonItem (No Custom Class)
+#### UIBarButtonItem (Without Custom Class)
 
 ````swift
 import SwiftIconFont
@@ -115,7 +116,7 @@ import SwiftIconFont
 twitterBarButton.icon(from: .FontAwesome, code: "twitter", ofSize: 20)
 ````
 
-####UITabBarItem (No Custom Class)
+#### UITabBarItem (Without Custom Class)
 
 ````swift
 import SwiftIconFont

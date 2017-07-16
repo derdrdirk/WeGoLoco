@@ -57,7 +57,7 @@ public extension UIFont{
 
 public extension UIImage
 {
-    public static func icon(from font: Fonts, code: String, imageSize: CGSize, ofSize size: CGFloat) -> UIImage
+    public static func icon(from font: Fonts, iconColor: UIColor, code: String, imageSize: CGSize, ofSize size: CGFloat) -> UIImage
     {
         let drawText = String.getIcon(from: font, code: code)
         
@@ -65,7 +65,7 @@ public extension UIImage
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.alignment = NSTextAlignment.center
         
-		drawText!.draw(in: CGRect(x:0, y:0, width:imageSize.width, height:imageSize.height), withAttributes: [NSFontAttributeName : UIFont.icon(from: font, ofSize: size), NSParagraphStyleAttributeName: paragraphStyle])
+		drawText!.draw(in: CGRect(x:0, y:0, width:imageSize.width, height:imageSize.height), withAttributes: [NSFontAttributeName : UIFont.icon(from: font, ofSize: size), NSParagraphStyleAttributeName: paragraphStyle, NSForegroundColorAttributeName: iconColor])
         
 		let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
@@ -155,16 +155,15 @@ func replace(withText string: NSString) -> NSString {
 
 
 
-func getAttributedString(_ text: NSString, ofSize size: CGFloat) -> NSAttributedString {
+func getAttributedString(_ text: NSString, ofSize size: CGFloat) -> NSMutableAttributedString {
     let attributedString = NSMutableAttributedString(string: text as String)
     
-    for substring in ((text as String).characters.split{$0 == " "}.map(String.init)) {
+    for substring in ((text as String).characters.split{$0 == " "}.map(String.init)) {  
         var splitArr = ["", ""]
         splitArr = substring.characters.split{$0 == ":"}.map(String.init)
-        if splitArr.count == 1 {
+        if splitArr.count < 2 {
             continue
         }
-        
         
         
         let substringRange = text.range(of: substring)
@@ -201,7 +200,6 @@ func getAttributedString(_ text: NSString, ofSize size: CGFloat) -> NSAttributed
             fontType = Fonts.MaterialIcon
             fontArr = materialIconArr
         }
-        
         
         if let _ = fontArr[fontCode] {
             attributedString.replaceCharacters(in: substringRange, with: String.getIcon(from: fontType, code: fontCode)!)
@@ -304,8 +302,12 @@ public extension UITextField {
 
 public extension UIButton {
     func parseIcon() {
-        let text = replace(withText: (self.currentTitle)! as NSString)
-        self.setAttributedTitle(getAttributedString(text, ofSize: (self.titleLabel?.font!.pointSize)!), for: UIControlState())
+        guard let currentTitle = self.titleLabel?.text as NSString? else { return }
+        let text = replace(withText: currentTitle)
+        let attrTitle = getAttributedString(text, ofSize: (self.titleLabel?.font!.pointSize)!)
+        let all = NSRange(location: 0, length: attrTitle.length)
+        attrTitle.addAttribute(NSForegroundColorAttributeName, value: self.currentTitleColor, range: all)
+        self.setAttributedTitle(attrTitle, for: UIControlState())
     }
 }
 
@@ -327,7 +329,7 @@ public extension UIBarButtonItem {
 }
 
 public extension UITabBarItem {
-    func icon(from font: Fonts, code: String, imageSize: CGSize, ofSize size: CGFloat) {
-        self.image = UIImage.icon(from: font, code: code, imageSize: imageSize, ofSize: size)
+    func icon(from font: Fonts, code: String, iconColor: UIColor, imageSize: CGSize, ofSize size: CGFloat) {
+        self.image = UIImage.icon(from: font, iconColor: iconColor, code: code, imageSize: imageSize, ofSize: size)
     }
 }

@@ -12,14 +12,13 @@ import AWSCore
 import AWSDynamoDB
 import AWSMobileHubHelper
 import CoreLocation
+import Whisper
 
 class ProfileViewController: FormViewController {
     
+    var overlay : UIView?
+     var indicator: UIActivityIndicatorView?
     var user : User?
-    
-    override func viewWillAppear(_ animated: Bool) {
-       
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +54,7 @@ class ProfileViewController: FormViewController {
                 $0.title = "Categories"
                 $0.tag = "tinponCategories"
                 $0.options = ["👕", "👖", "👞", "👜", "🕶"]
-                //$0.value = user?._tinponCategories
+                $0.value = ["👕"]
                 }
                 .onPresent { from, to in
                     to.sectionKeyForValue = { option in
@@ -65,9 +64,11 @@ class ProfileViewController: FormViewController {
                         default: return ""
                         }
                     }
+                    
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(ProfileViewController.multipleSelectorDone(_:)))
                 }.onChange{[weak self] in
                     self?.user?.tinponCategories = $0.value
-        }
+                }
         form +++ Section("Distributor") {
             $0.tag = "Distributor"
             $0.hidden = true
@@ -101,7 +102,12 @@ class ProfileViewController: FormViewController {
         getUserProfile()
     }
     
+    func multipleSelectorDone(_ item:UIBarButtonItem) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
     func updateUI() {
+        print("update User")
         let birthdateRow = form.rowBy(tag: "Birthdate") as? DateRow
         birthdateRow?.value = user?.birthdate?.dateFromISO8601
         birthdateRow?.reload()
@@ -129,51 +135,81 @@ class ProfileViewController: FormViewController {
     
     // MARK: get Cognito ID
     func getUserProfile() {
-        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:8088e7da-a496-4ae3-818c-2b9025180888")
-        let configuration = AWSServiceConfiguration(region: .EUWest1, credentialsProvider: credentialsProvider)
-        AWSServiceManager.default().defaultServiceConfiguration = configuration
+        // Set up overlay
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        overlay!.alpha = 0.7
+        view.addSubview(overlay!)
         
-        // Retrieve your Amazon Cognito ID
-        credentialsProvider.getIdentityId().continueWith(block: { [weak self] (task) -> AnyObject? in
-            if (task.error != nil) {
-                print("Error: " + task.error!.localizedDescription)
+        // Set up activity indicator
+        indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+        indicator!.color = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        indicator!.frame = CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
+        indicator!.center = view.center
+        view.addSubview(indicator!)
+        indicator!.bringSubview(toFront: view)
+        indicator!.startAnimating()
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+
+
+        let cognitoId = AWSMobileClient.cognitoId
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        dynamoDBObjectMapper.load(User.self, hashKey: cognitoId, rangeKey:nil).continueWith(block: {[weak self] (task:AWSTask<AnyObject>!) -> Any? in
+            guard let strongSelf = self else { return nil }
+            if let error = task.error {
+                print("The request failed. Error: \(error)")
+            } else if let resultUser = task.result as? User {
+                // Do something with task.result.
+               strongSelf.user = resultUser
+                DispatchQueue.main.async {
+                    strongSelf.indicator!.stopAnimating()
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    strongSelf.presentingViewController?.dismiss(animated: true)
+                    strongSelf.overlay?.removeFromSuperview()
+
+                    strongSelf.updateUI()
+                }
             }
-            else {
-                // the task result will contain the identity id
-                let cognitoId = task.result!
-                let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
-                dynamoDBObjectMapper.load(User.self, hashKey: cognitoId, rangeKey:nil).continueWith(block: {[weak self] (task:AWSTask<AnyObject>!) -> Any? in
-                    if let error = task.error {
-                        print("The request failed. Error: \(error)")
-                    } else if let resultUser = task.result as? User {
-                        // Do something with task.result.
-                        self?.user = resultUser
-                        DispatchQueue.main.async {
-                            self?.updateUI()
-                        }
-                    }
-                    return nil
-                })
-            }
-            return task
+            return nil
         })
     }
 
     
     // MARK: save & cancel
-    @IBAction func cancel(_ sender: UIBarButtonItem) {
-        presentingViewController?.dismiss(animated: true)
-    }
-    
-    @IBAction func Save(_ sender: UIBarButtonItem) {
+    @IBAction func tabSaveButton(_ sender: UIBarButtonItem) {
+        // Set up overlay
+        overlay = UIView(frame: view.frame)
+        overlay!.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        overlay!.alpha = 0.7
+        view.addSubview(overlay!)
+        
+        // Set up activity indicator
+        indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
+        indicator!.color = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
+        indicator!.frame = CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
+        indicator!.center = view.center
+        view.addSubview(indicator!)
+        indicator!.bringSubview(toFront: view)
+        indicator!.startAnimating()
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
         dynamoDBObjectMapper.save(user!).continueWith(block: { [weak self] (task:AWSTask<AnyObject>!) -> Void in
+            guard let strongSelf = self else { print("self fail"); return }
             if let error = task.error {
                 print("The request failed. Error: \(error)")
             } else {
-                // Do something with task.result or perform other operations.
                 DispatchQueue.main.async {
-                    self?.presentingViewController?.dismiss(animated: true)
+                    strongSelf.indicator!.stopAnimating()
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    strongSelf.presentingViewController?.dismiss(animated: true)
+                    strongSelf.overlay?.removeFromSuperview()
+                    
+                    let message = Message(title: "Profile saved.", backgroundColor: .green)
+                    // Show and hide a message after delay
+                    Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)
                 }
             }
         })

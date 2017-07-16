@@ -1,0 +1,9 @@
+{
+  "commitish" : "5.0.0",
+  "iOS" : [
+    {
+      "hash" : "d2b87a683a7065b00e2ed72a87caae48cc372379ab0c3eedf8bbed2fbe03d38f",
+      "name" : "Whisper"
+    }
+  ]
+}
