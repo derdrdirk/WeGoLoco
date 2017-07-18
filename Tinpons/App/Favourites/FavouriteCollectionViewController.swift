@@ -14,15 +14,13 @@ private let reuseIdentifier = "favouriteCollectionViewCell"
 class FavouriteCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
 
     var tinpons: [Tinpon] = []
+    var refresher:UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Register cell classes
 //        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "favouriteCollectionViewCell")
-
-        // load data
-        updateDataSource()
         
         var collectionViewFlowLayout = UICollectionViewFlowLayout()
         var myCollectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: collectionViewFlowLayout)
@@ -32,20 +30,25 @@ class FavouriteCollectionViewController: UICollectionViewController, UICollectio
         myCollectionView.dataSource = self
         
         // init refresher
-//        refreshControl = UIRefreshControl()
-//        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
-//        refreshControl?.addTarget(self, action: #selector(updateDataSource), for: UIControlEvents.valueChanged)
+        self.refresher = UIRefreshControl()
+        self.collectionView!.alwaysBounceVertical = true
+        self.refresher.addTarget(self, action: #selector(updateDataSource), for: .valueChanged)
+        self.collectionView!.refreshControl = refresher
+        
+        // load data
+        updateDataSource()
     }
     
     func updateDataSource() {
         tinpons = []
+        self.collectionView!.refreshControl?.beginRefreshing()
         SwipedTinpon.loadAllFavouriteTinpons{ [weak self] tinpons in
             guard let strongSelf = self else { return }
             strongSelf.tinpons.append(contentsOf: tinpons)
             
             DispatchQueue.main.async {
                 strongSelf.collectionView?.reloadData()
-//                strongSelf.refreshControl?.endRefreshing()
+                strongSelf.collectionView!.refreshControl?.endRefreshing()
             }
         }
     }
