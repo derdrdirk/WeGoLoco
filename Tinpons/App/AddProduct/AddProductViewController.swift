@@ -117,6 +117,7 @@ class AddProductViewController: FormViewController, CLLocationManagerDelegate {
     
     // MARK: Actions
     @IBAction func cancel(_ sender: UIBarButtonItem) {
+        print(presentingViewController)
         presentingViewController?.dismiss(animated: true)
     }
     
@@ -169,6 +170,13 @@ extension Formatter {
 extension Date {
     var iso8601: String {
         return Formatter.iso8601.string(from: self)
+    }
+    
+    var DDMMyyyy: String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd-MM-yyyy"
+        
+        return formatter.string(from: self)
     }
 }
 

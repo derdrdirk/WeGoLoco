@@ -18,6 +18,7 @@ import SwiftIconFont
 
 class MainViewController: SwiperViewController {
    
+    
     // MARK: - View lifecycle
     func onSignIn (_ success: Bool) {
         // handle successful sign in
@@ -32,7 +33,9 @@ class MainViewController: SwiperViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-            
+        
+        print("identity \(AWSIdentityManager.default().identityId)")                            
+        
         presentSignInViewController()
     }
 
@@ -93,11 +96,12 @@ class MainViewController: SwiperViewController {
     
     func syncCoreDataWithDynamoDB() {
         SwipedTinponsCore.resetAllRecords()
-
-        SwipedTinpon().loadAllSwipedTinponsFor(userId: userId!, onComplete: { swipedTinpons in
+        let cognitoId = AWSMobileClient.cognitoId
+        SwipedTinpon().loadAllSwipedTinponsFor(userId: cognitoId, onComplete: { swipedTinpons in
             for swipedTinpon in swipedTinpons {
                 SwipedTinponsCore.save(swipedTinpon: swipedTinpon)
             }
         })
+        
     }
 }

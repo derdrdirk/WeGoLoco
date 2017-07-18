@@ -8,19 +8,22 @@
 
 import UIKit
 
-class TinponTableViewController: FavouritesTableViewController {
+class TinponTableViewController: UITableViewController {
 
+    var tinpons: [Tinpon] = []
+    
     override func viewDidLoad() {
-        super.viewDidLoad()
-
-        print("database")
+        updateDataSource()
+        
+        refreshControl = UIRefreshControl()
+        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl?.addTarget(self, action: #selector(updateDataSource), for: UIControlEvents.valueChanged)
     }
     
-    override func updateDataSource() {
-        tinpons = []
+    func updateDataSource() {
         Tinpon.loadAllTinponsForUser{ [weak self] tinpons in
             guard let strongSelf = self else { return }
-            strongSelf.tinpons.append(contentsOf: tinpons)
+            strongSelf.tinpons = tinpons
             
             DispatchQueue.main.async {
                 strongSelf.tableView.reloadData()
@@ -30,6 +33,16 @@ class TinponTableViewController: FavouritesTableViewController {
     }
     
     // MARK: Table Data Source
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        // #warning Incomplete implementation, return the number of sections
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // #warning Incomplete implementation, return the number of rows
+        return tinpons.count
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "tinponManagerCell", for: indexPath) as! TinponManagerTableViewCell
         cell.tinpon = tinpons[indexPath.row]

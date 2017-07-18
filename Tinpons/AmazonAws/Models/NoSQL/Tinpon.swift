@@ -43,6 +43,7 @@ class Tinpon : CustomStringConvertible {
     init() {
         tinponId = UUID().uuidString
         userId = AWSMobileClient.cognitoId
+        createdAt = Date().iso8601
         active = NSNumber(value: true)
     }
     
@@ -214,30 +215,29 @@ class Tinpon : CustomStringConvertible {
     }
     
     static func loadAllTinponsForUser(onComplete: @escaping (([Tinpon]) -> ())) {
-        if let cognitoId = AWSMobileClient.cognitoId {
-            let queryExpression = AWSDynamoDBQueryExpression()
-            queryExpression.indexName = "userId-index"
-            
-            queryExpression.keyConditionExpression = "userId = :userId"
-            queryExpression.expressionAttributeValues = [":userId" : cognitoId]
-//            if lastEvaluatedKey != nil {
-//                queryExpression.exclusiveStartKey = lastEvaluatedKey
-//            }
-            
-            let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
-            dynamoDBObjectMapper.query(DynamoDBTinpon.self, expression: queryExpression).continueWith{ task in
-                if let error = task.error {
-                    print("loading user Tinpons failed. Error: \(error.localizedDescription)")
-                } else if let dynamoDBTinpons = task.result?.items as! [DynamoDBTinpon]? {                    
-                    var tinpons = Array<Tinpon>()
-                    dynamoDBTinpons.forEach{
-                        tinpons.append(castDynamoDBTinponToTinpon(dynamoDBTinpon: $0))
-                    }
-                    
-                    onComplete(tinpons)
+         let cognitoId = AWSMobileClient.cognitoId
+        let queryExpression = AWSDynamoDBQueryExpression()
+        queryExpression.indexName = "userId-index"
+        
+        queryExpression.keyConditionExpression = "userId = :userId"
+        queryExpression.expressionAttributeValues = [":userId" : cognitoId]
+        //            if lastEvaluatedKey != nil {
+        //                queryExpression.exclusiveStartKey = lastEvaluatedKey
+        //            }
+        
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        dynamoDBObjectMapper.query(DynamoDBTinpon.self, expression: queryExpression).continueWith{ task in
+            if let error = task.error {
+                print("loading user Tinpons failed. Error: \(error.localizedDescription)")
+            } else if let dynamoDBTinpons = task.result?.items as! [DynamoDBTinpon]? {
+                var tinpons = Array<Tinpon>()
+                dynamoDBTinpons.forEach{
+                    tinpons.append(castDynamoDBTinponToTinpon(dynamoDBTinpon: $0))
                 }
-                return nil
+                
+                onComplete(tinpons)
             }
+            return nil
         }
     }
     
@@ -250,17 +250,16 @@ class Tinpon : CustomStringConvertible {
         updateMapperConfig.saveBehavior = .updateSkipNullAttributes
         
         let dynamoDBSwipedTinpon = DynamoDBSwipedTinpon()
-        if let cognitoId = AWSMobileClient.cognitoId {
-            dynamoDBSwipedTinpon?.tinponId = tinponId
-            dynamoDBSwipedTinpon?.userId = cognitoId
-            dynamoDBSwipedTinpon?.favourite = NSNumber(value: 0)
-                
-                dynamoDBObjectMapper.save(dynamoDBSwipedTinpon!, configuration: updateMapperConfig).continueWith{ task in
-                    if let error = task.error {
-                        print("Could not update favourite: Error : \(error)")
-                    }
-                    return nil
+        let cognitoId = AWSMobileClient.cognitoId
+        dynamoDBSwipedTinpon?.tinponId = tinponId
+        dynamoDBSwipedTinpon?.userId = cognitoId
+        dynamoDBSwipedTinpon?.favourite = NSNumber(value: 0)
+        
+        dynamoDBObjectMapper.save(dynamoDBSwipedTinpon!, configuration: updateMapperConfig).continueWith{ task in
+            if let error = task.error {
+                print("Could not update favourite: Error : \(error)")
             }
+            return nil
         }
     }
     

@@ -83,42 +83,38 @@ class SwipedTinpon {
                                         _ onComplete: @escaping ([Tinpon]) -> ())
     {
         let favourite = NSNumber(value: 1)
-        if let cognitoId = AWSMobileClient.cognitoId {
-            let queryExpression = AWSDynamoDBQueryExpression()
-            queryExpression.indexName = "favourite-userId-index"
-            queryExpression.keyConditionExpression = "favourite = :favourite AND userId = :userId"
-            queryExpression.expressionAttributeValues = [":favourite" : favourite, ":userId" : cognitoId]
-            if lastEvaluatedKey != nil {
-                queryExpression.exclusiveStartKey = lastEvaluatedKey
-            }
-            let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
-            dynamoDBObjectMapper.query(DynamoDBSwipedTinpon.self, expression: queryExpression).continueOnSuccessWith(block: { (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> AWSTask<AnyObject>? in
+        let cognitoId = AWSMobileClient.cognitoId
+        let queryExpression = AWSDynamoDBQueryExpression()
+        queryExpression.indexName = "favourite-userId-index"
+        queryExpression.keyConditionExpression = "favourite = :favourite AND userId = :userId"
+        queryExpression.expressionAttributeValues = [":favourite" : favourite, ":userId" : cognitoId]
+        if lastEvaluatedKey != nil {
+            queryExpression.exclusiveStartKey = lastEvaluatedKey
+        }
+        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+        dynamoDBObjectMapper.query(DynamoDBSwipedTinpon.self, expression: queryExpression).continueOnSuccessWith(block: { (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> AWSTask<AnyObject>? in
+            
+            if let paginatedOutput = task.result {
+                let dynamoDBSwipedTinpons = (paginatedOutput.items as? [DynamoDBSwipedTinpon])!
                 
-                if let paginatedOutput = task.result {
-                    let dynamoDBSwipedTinpons = (paginatedOutput.items as? [DynamoDBSwipedTinpon])!
-                    
-                    var tasks = Array<AWSTask<AnyObject>>()
-                    dynamoDBSwipedTinpons.forEach({
-                        tasks.append(dynamoDBObjectMapper.load(DynamoDBTinpon.self, hashKey: $0.tinponId, rangeKey: nil))
-                    })
-                    return AWSTask(forCompletionOfAllTasksWithResults: tasks)
-                }
-                return nil
-            }).continueWith { task in
-                if let dynamoDBTinpons = task.result as? [DynamoDBTinpon] {
-                    var tinpons = Array<Tinpon>()
-                    dynamoDBTinpons.forEach{
-                        tinpons.append(Tinpon.castDynamoDBTinponToTinpon(dynamoDBTinpon: $0))
-                    }
-                    onComplete(tinpons)
-                } else if let error = task.error {
-                    print("Fetching Favourites error: \(error.localizedDescription)")
-                }
-                return nil
+                var tasks = Array<AWSTask<AnyObject>>()
+                dynamoDBSwipedTinpons.forEach({
+                    tasks.append(dynamoDBObjectMapper.load(DynamoDBTinpon.self, hashKey: $0.tinponId, rangeKey: nil))
+                })
+                return AWSTask(forCompletionOfAllTasksWithResults: tasks)
             }
-        
-        } else {
-            onComplete([])
+            return nil
+        }).continueWith { task in
+            if let dynamoDBTinpons = task.result as? [DynamoDBTinpon] {
+                var tinpons = Array<Tinpon>()
+                dynamoDBTinpons.forEach{
+                    tinpons.append(Tinpon.castDynamoDBTinponToTinpon(dynamoDBTinpon: $0))
+                }
+                onComplete(tinpons)
+            } else if let error = task.error {
+                print("Fetching Favourites error: \(error.localizedDescription)")
+            }
+            return nil
         }
     }
 }

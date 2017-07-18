@@ -18,6 +18,8 @@ class TinponManagerTableViewCell: UITableViewCell {
     
     @IBOutlet weak var tinponImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var createdAtLabel: UILabel!
     @IBOutlet weak var activationSwitch: UISwitch!
     
     func updateUI() {
@@ -26,6 +28,8 @@ class TinponManagerTableViewCell: UITableViewCell {
             let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+tinpon.imgUrl!
             tinponImage.imageFromServerURL(urlString: resizedImageUrl)
             activationSwitch.isOn = tinpon.active == true
+            createdAtLabel.text = tinpon.createdAt?.dateFromISO8601?.DDMMyyyy
+            descriptionLabel.text = tinpon.category!+" | "+(tinpon.price?.stringValue)!+" €"
         }
         
         setNeedsDisplay()
@@ -41,6 +45,7 @@ class TinponManagerTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

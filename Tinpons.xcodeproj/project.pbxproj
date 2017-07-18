@@ -27,6 +27,7 @@
 		D480D0551EEBEEF300B4193A /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0531EEBEEF300B4193A /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D480D0581EEBEF7200B4193A /* Koloda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0561EEBEF3500B4193A /* Koloda.framework */; };
 		D480D0591EEBEF7200B4193A /* Koloda.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0561EEBEF3500B4193A /* Koloda.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4B95B961F1E84180078289F /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B95B951F1E84180078289F /* Helper.swift */; };
 		D4D2712A1F12ACD2003A7287 /* TinponsModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D4D271281F12ACD2003A7287 /* TinponsModel.xcdatamodeld */; };
 		D4DA42471F0E13CD00A1C69E /* SwiftIconFont.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DA42451F0E123100A1C69E /* SwiftIconFont.framework */; };
 		D4DA42481F0E13CD00A1C69E /* SwiftIconFont.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4DA42451F0E123100A1C69E /* SwiftIconFont.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -34,6 +35,8 @@
 		D4DA424D1F0E2CFB00A1C69E /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DA424C1F0E2CFB00A1C69E /* CustomCells.swift */; };
 		D4DAE9721F1C9B20000C447E /* FavouriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DAE9711F1C9B20000C447E /* FavouriteCollectionViewCell.swift */; };
 		D4DAE9741F1C9B4A000C447E /* FavouriteCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DAE9731F1C9B4A000C447E /* FavouriteCollectionViewController.swift */; };
+		D4DC434E1F1E3A2000BC1283 /* UserWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC434D1F1E3A2000BC1283 /* UserWrapper.swift */; };
+		D4DC43501F1E448200BC1283 /* TinponWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC434F1F1E448200BC1283 /* TinponWrapper.swift */; };
 		D4E258211EEC1A6400B2B986 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E2581F1EEC1A6400B2B986 /* CustomOverlayView.swift */; };
 		D4E258221EEC1A6400B2B986 /* CustomOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */; };
 		D4E258241EEC625400B2B986 /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E258231EEC625400B2B986 /* CustomKolodaView.swift */; };
@@ -184,12 +187,15 @@
 		D47F96EF1EED938400B9FCE3 /* ImageRow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageRow.framework; path = Carthage/Build/iOS/ImageRow.framework; sourceTree = "<group>"; };
 		D480D0531EEBEEF300B4193A /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = Carthage/Build/iOS/pop.framework; sourceTree = "<group>"; };
 		D480D0561EEBEF3500B4193A /* Koloda.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Koloda.framework; path = Carthage/Build/iOS/Koloda.framework; sourceTree = "<group>"; };
+		D4B95B951F1E84180078289F /* Helper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Helper.swift; path = Tinpons/AmazonAws/Models/NoSQL/Helper.swift; sourceTree = SOURCE_ROOT; };
 		D4D271291F12ACD2003A7287 /* TinponsModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = TinponsModel.xcdatamodel; sourceTree = "<group>"; };
 		D4DA42451F0E123100A1C69E /* SwiftIconFont.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftIconFont.framework; path = Carthage/Build/iOS/SwiftIconFont.framework; sourceTree = "<group>"; };
 		D4DA424A1F0E2C4200A1C69E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D4DA424C1F0E2CFB00A1C69E /* CustomCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCells.swift; path = Tinpons/App/Profile/CustomCells.swift; sourceTree = SOURCE_ROOT; };
 		D4DAE9711F1C9B20000C447E /* FavouriteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouriteCollectionViewCell.swift; path = Tinpons/App/Favourites/FavouriteCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
 		D4DAE9731F1C9B4A000C447E /* FavouriteCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouriteCollectionViewController.swift; path = Tinpons/App/Favourites/FavouriteCollectionViewController.swift; sourceTree = SOURCE_ROOT; };
+		D4DC434D1F1E3A2000BC1283 /* UserWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserWrapper.swift; path = Tinpons/AmazonAws/Models/NoSQL/UserWrapper.swift; sourceTree = SOURCE_ROOT; };
+		D4DC434F1F1E448200BC1283 /* TinponWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponWrapper.swift; path = Tinpons/AmazonAws/Models/NoSQL/TinponWrapper.swift; sourceTree = SOURCE_ROOT; };
 		D4E2581F1EEC1A6400B2B986 /* CustomOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomOverlayView.swift; path = Tinpons/App/Swiper/CustomOverlayView.swift; sourceTree = SOURCE_ROOT; };
 		D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomOverlayView.xib; path = Tinpons/App/Swiper/CustomOverlayView.xib; sourceTree = SOURCE_ROOT; };
 		D4E258231EEC625400B2B986 /* CustomKolodaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomKolodaView.swift; path = Tinpons/App/Swiper/CustomKolodaView.swift; sourceTree = SOURCE_ROOT; };
@@ -242,6 +248,7 @@
 		B401C9792DF24DB900000000 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				D4B95B951F1E84180078289F /* Helper.swift */,
 				1DD70E29E394D56000000000 /* AppDelegate.swift */,
 				1DD70E292554733E00000000 /* Images.xcassets */,
 				1DD70E29A8F4FCAE00000000 /* Launch Screen.storyboard */,
@@ -389,14 +396,16 @@
 		B401C979882F603200000000 /* NoSQL */ = {
 			isa = PBXGroup;
 			children = (
-				1DD70E29C919AF3300000000 /* DynamoDBTinpon.swift */,
 				D4FA2EC81F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift */,
 				D4FA2ED11F0D10FD00B287FB /* User.swift */,
 				D4306C801F0E6BEC0073A11E /* Stores.swift */,
 				D4306C821F0E73780073A11E /* AWSHelper.swift */,
+				1DD70E29C919AF3300000000 /* DynamoDBTinpon.swift */,
 				D40308451F0FCBDE00BF1BD5 /* Tinpon.swift */,
+				D4DC434F1F1E448200BC1283 /* TinponWrapper.swift */,
 				D4FC90E21F163328002A6F9E /* SwipedTinpon.swift */,
 				D4FC90E41F1669F8002A6F9E /* SwipedTinponsCore.swift */,
+				D4DC434D1F1E3A2000BC1283 /* UserWrapper.swift */,
 			);
 			name = NoSQL;
 			path = Tinpons/amazonaws/models/nosql;
@@ -579,6 +588,7 @@
 				E7A30F043DD4F57200000000 /* FormTableCell.swift in Sources */,
 				D4FA2EC91F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift in Sources */,
 				E7A30F04FE04727700000000 /* TableInputCell.swift in Sources */,
+				D4DC43501F1E448200BC1283 /* TinponWrapper.swift in Sources */,
 				E7A30F04A0099EDA00000000 /* UserPoolForgotPasswordViewController.swift in Sources */,
 				D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */,
 				D443C0F81EEC6CA300FD148F /* BackgroundKolodaAnimator.swift in Sources */,
@@ -591,6 +601,8 @@
 				D4306C831F0E73780073A11E /* AWSHelper.swift in Sources */,
 				E7A30F049A8F6DAE00000000 /* SignInViewController.swift in Sources */,
 				E7A30F048DE0B1CD00000000 /* DynamoDBTinpon.swift in Sources */,
+				D4B95B961F1E84180078289F /* Helper.swift in Sources */,
+				D4DC434E1F1E3A2000BC1283 /* UserWrapper.swift in Sources */,
 				D443C0FA1EEC728100FD148F /* AddProductViewController.swift in Sources */,
 				E7A30F04023CE26000000000 /* FacebookIdentityProfile.swift in Sources */,
 				E7A30F04C2DDB4B200000000 /* SignInViewControllerExtensions.swift in Sources */,

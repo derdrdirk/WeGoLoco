@@ -25,6 +25,8 @@ class SwiperViewController: UIViewController {
     @IBOutlet weak var kolodaView: CustomKolodaView!
     @IBOutlet weak var outOfTinponsStack: UIStackView!
     
+    var tinponWrapper: TinponWrapper!
+    
     var userId: String?
     var tinponLoader = Tinpon()
     var tinpons : [Tinpon] = []
@@ -37,6 +39,8 @@ class SwiperViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tinponWrapper = TinponWrapper(swiperViewController: self)
         
         resetUI()
         
@@ -52,8 +56,10 @@ class SwiperViewController: UIViewController {
     func resetUI() {
         tinpons = []
         
-        tinponLoader = Tinpon()
-        tinponLoader.loadNotSwipedItems(limit: 5, onComplete: { [weak self] (tinpons) in
+//        tinponLoader = Tinpon()
+//        tinponLoader.loadNotSwipedItems(limit: 5, onComplete: { [weak self] (tinpons) in
+        tinponWrapper = TinponWrapper(swiperViewController: self)
+        tinponWrapper.loadNotSwipedTinponsFromUserCategories(performClousreOnComplete: { [weak self] (tinpons) in
             guard let strongSelf = self else { return }
             if tinpons.isEmpty {
                 DispatchQueue.main.async {
@@ -208,7 +214,8 @@ extension SwiperViewController: KolodaViewDataSource {
         
         // if less than 10 tinpons load next Tinpon
         if tinpons.count - koloda.currentCardIndex < 5 {
-            tinponLoader.loadNotSwipedItems(limit: 5, onComplete: {[weak self] (tinpons) in
+//            tinponLoader.loadNotSwipedItems(limit: 5, onComplete: {[weak self] (tinpons) in
+            tinponWrapper.loadNotSwipedTinponsFromUserCategories(performClousreOnComplete: {[weak self] (tinpons) in
                 guard let strongSelf = self else { return }
                 strongSelf.tinpons.append(contentsOf: tinpons)
                 DispatchQueue.main.async {
