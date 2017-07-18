@@ -32,11 +32,12 @@ class MainViewController: SwiperViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+            
         presentSignInViewController()
     }
 
     func presentSignInViewController() {
+        print(AWSSignInManager.sharedInstance().isLoggedIn)
         if !AWSSignInManager.sharedInstance().isLoggedIn {
             let loginStoryboard = UIStoryboard(name: "SignIn", bundle: nil)
             let loginController: SignInViewController = loginStoryboard.instantiateViewController(withIdentifier: "SignIn") as! SignInViewController
@@ -62,9 +63,10 @@ class MainViewController: SwiperViewController {
 
     
     func createUserAccountIfNotExisting() {
+        let cognitoId = AWSMobileClient.cognitoId
         //check if User Account exists
         let dynamoDBOBjectMapper = AWSDynamoDBObjectMapper.default()
-        dynamoDBOBjectMapper.load(User.self, hashKey: userId!, rangeKey: nil).continueWith(block: { [weak self] (task:AWSTask<AnyObject>!) -> Any? in
+        dynamoDBOBjectMapper.load(User.self, hashKey: cognitoId, rangeKey: nil).continueWith(block: { [weak self] (task:AWSTask<AnyObject>!) -> Any? in
             if let error = task.error {
                 print("The request failed. Error: \(error)")
             } else if let _ = task.result as? User {

@@ -4,3 +4,4 @@ github "xmartlabs/Eureka" ~> 3.0.0
 github "EurekaCommunity/ImageRow" ~> 1.0
 github "0x73/SwiftIconFont"
 github "hyperoslo/Whisper"
+github "Instagram/IGListKit" ~> 3.0

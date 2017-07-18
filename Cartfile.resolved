@@ -1,5 +1,6 @@
 github "0x73/SwiftIconFont" "2.6.1"
 github "EurekaCommunity/ImageRow" "1.0.1"
+github "Instagram/IGListKit" "3.0.0"
 github "Yalantis/Koloda" "4.1"
 github "facebook/pop" "1.0.10"
 github "hyperoslo/Whisper" "5.0.0"

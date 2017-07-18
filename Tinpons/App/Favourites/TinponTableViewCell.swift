@@ -28,6 +28,8 @@ class TinponTableViewCell: UITableViewCell {
             priceLabel.text = String(tinpon.price as! Int)+"€"
             let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+tinpon.imgUrl!
             tinponImageView.imageFromServerURL(urlString: resizedImageUrl)
+            
+            
         
             setNeedsDisplay()
         }

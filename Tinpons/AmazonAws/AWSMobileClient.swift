@@ -80,7 +80,7 @@ class AWSMobileClient: NSObject {
     * - parameter launchOptions: from application delegate.
     */
     func didFinishLaunching(_ application: UIApplication, withOptions launchOptions: [AnyHashable: Any]?) -> Bool {
-        //print("didFinishLaunching:")
+        print("didFinishLaunching:")
 
         // Register the sign in provider instances with their unique identifier
         AWSSignInManager.sharedInstance().register(signInProvider: AWSFacebookSignInProvider.sharedInstance())
@@ -93,7 +93,7 @@ class AWSMobileClient: NSObject {
 
         if (!isInitialized) {
             AWSSignInManager.sharedInstance().resumeSession(completionHandler: { (result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) in
-                //print("Result: \(result) AuthState: \(authState) \n Error:\(error)")
+                print("Result: \(result) AuthState: \(authState) \n Error:\(error)")
             }) // If you get an EXC_BAD_ACCESS here in iOS Simulator, then do Simulator -> "Reset Content and Settings..."
                // This will clear bad auth tokens stored by other apps with the same bundle ID.
             isInitialized = true
