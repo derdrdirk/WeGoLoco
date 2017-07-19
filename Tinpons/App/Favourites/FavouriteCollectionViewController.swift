@@ -39,6 +39,10 @@ class FavouriteCollectionViewController: UICollectionViewController, UICollectio
         updateDataSource()
     }
     
+    func resetUI() {
+        
+    }
+    
     func updateDataSource() {
         tinpons = []
         self.collectionView!.refreshControl?.beginRefreshing()

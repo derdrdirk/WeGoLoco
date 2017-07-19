@@ -8,16 +8,22 @@
 
 import UIKit
 
-class TinponManagerTableViewController: UITableViewController {
-
+class TinponManagerTableViewController: UITableViewController, ResetUIProtocol {
     var tinpons: [Tinpon] = []
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         updateDataSource()
         
         refreshControl = UIRefreshControl()
         refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
         refreshControl?.addTarget(self, action: #selector(updateDataSource), for: UIControlEvents.valueChanged)
+    }
+    
+    func resetUI() {
+        print("reset tinpons manager")
+        updateDataSource()
     }
     
     func updateDataSource() {

@@ -14,20 +14,28 @@ import AWSMobileHubHelper
 import CoreLocation
 import Whisper
 
-class ProfileViewController: FormViewController, AuthenticationProtocol {
-    
+class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUIProtocol, LoadingAnimationProtocol {
+    // MARK: Authentication Protocol
+    var authenticationProtocolTabBarController: UITabBarController!
     var extensionNavigationController: UINavigationController!
     
-    var overlay : UIView?
-    var indicator: UIActivityIndicatorView?
+    // MARK: AnimationLoader
+    var loadingAnimationView: UIView!
+    var loadingAnimationOverlay : UIView!
+    var loadingAnimationIndicator: UIActivityIndicatorView!
+    
     var user : User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // login Stuff
+        // Authentication Protocol
         extensionNavigationController = navigationController
+        authenticationProtocolTabBarController = tabBarController
         presentSignInViewController()
+    
+        // AnimationLoader
+        loadingAnimationView = self.view
         
         // Set up Eureka form
         form +++ Section("Profil")
@@ -118,22 +126,7 @@ class ProfileViewController: FormViewController, AuthenticationProtocol {
     }
     
     func updateUI() {
-        // Loader
-        overlay = UIView(frame: view.frame)
-        overlay!.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        overlay!.alpha = 0.7
-        view.addSubview(overlay!)
-        
-        // Set up activity indicator
-        indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
-        indicator!.color = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        indicator!.frame = CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
-        indicator!.center = view.center
-        view.addSubview(indicator!)
-        indicator!.bringSubview(toFront: view)
-        indicator!.startAnimating()
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        startLoadingAnimation()
         
         UserWrapper.getSignedInUser{ [weak self] user in
             guard let strongSelf = self else { return }
@@ -142,11 +135,9 @@ class ProfileViewController: FormViewController, AuthenticationProtocol {
             
             DispatchQueue.main.async {
                 strongSelf.updateForm()
-                strongSelf.indicator!.stopAnimating()
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 strongSelf.presentingViewController?.dismiss(animated: true)
-                strongSelf.overlay?.removeFromSuperview()
-
+        
+                strongSelf.stopLoadingAnimation()
             }
         }
         
@@ -180,20 +171,7 @@ class ProfileViewController: FormViewController, AuthenticationProtocol {
     
     // MARK: save & cancel
     @IBAction func tabSaveButton(_ sender: UIBarButtonItem) {
-        // Set up overlay
-        overlay = UIView(frame: view.frame)
-        overlay!.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-        overlay!.alpha = 0.7
-        view.addSubview(overlay!)
-        
-        // Set up activity indicator
-        indicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.whiteLarge)
-        indicator!.color = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
-        indicator!.frame = CGRect(x: 0.0, y: 0.0, width: 100.0, height: 100.0)
-        indicator!.center = view.center
-        view.addSubview(indicator!)
-        indicator!.bringSubview(toFront: view)
-        indicator!.startAnimating()
+        startLoadingAnimation()
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
@@ -204,10 +182,9 @@ class ProfileViewController: FormViewController, AuthenticationProtocol {
                 print("The request failed. Error: \(error)")
             } else {
                 DispatchQueue.main.async {
-                    strongSelf.indicator!.stopAnimating()
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                    strongSelf.stopLoadingAnimation()
+                    
                     strongSelf.presentingViewController?.dismiss(animated: true)
-                    strongSelf.overlay?.removeFromSuperview()
                     
                     let message = Message(title: "Profile saved.", backgroundColor: .green)
                     // Show and hide a message after delay

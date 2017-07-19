@@ -16,7 +16,12 @@ import AWSMobileHubHelper
 import AWSDynamoDB
 import SwiftIconFont
 
+protocol ResetUIProtocol {
+    func resetUI()
+}
+
 protocol AuthenticationProtocol: class {
+    var authenticationProtocolTabBarController: UITabBarController! { get set }
     var extensionNavigationController: UINavigationController! { get set }
     func resetUI()
 }
@@ -27,8 +32,13 @@ extension AuthenticationProtocol {
         if (success) {
             createUserAccountIfNotExisting()
             syncCoreDataWithDynamoDB()
-            resetUI()
-            print("reset everything")
+            
+            // reset every ViewController if User LogsIn
+            authenticationProtocolTabBarController.viewControllers?.forEach{ navigationController in
+                if let viewController = navigationController.childViewControllers[0] as? ResetUIProtocol {
+                    viewController.resetUI()
+                }
+            }
         } else {
             // handle cancel operation from user
         }
@@ -40,6 +50,7 @@ extension AuthenticationProtocol {
                 self.extensionNavigationController.popToRootViewController(animated: false)
                 self.presentSignInViewController()
             })
+            
             // print("Logout Successful: \(signInProvider.getDisplayName)");
         } else {
             assert(false)

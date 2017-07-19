@@ -20,9 +20,10 @@ private let frameAnimationSpringSpeed: CGFloat = 16
 private let kolodaCountOfVisibleCards = 2
 private let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
 
-class SwiperViewController: UIViewController, AuthenticationProtocol {
+class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIProtocol {
     
     var extensionNavigationController: UINavigationController!
+    var authenticationProtocolTabBarController: UITabBarController!
     
     @IBOutlet weak var kolodaView: CustomKolodaView!
     @IBOutlet weak var outOfTinponsStack: UIStackView!
@@ -43,6 +44,7 @@ class SwiperViewController: UIViewController, AuthenticationProtocol {
 
         // login stuff
         extensionNavigationController = navigationController
+        authenticationProtocolTabBarController = tabBarController
         presentSignInViewController()
 
         
