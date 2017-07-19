@@ -8,11 +8,22 @@
 
 import UIKit
 
-class TinponManagerTableViewController: UITableViewController, ResetUIProtocol {
+class TinponManagerTableViewController: UITableViewController, LoadingAnimationProtocol, ResetUIProtocol {
+    
+    // MARK: LoadingAnimationProtocol
+    var loadingAnimationIndicator: UIActivityIndicatorView!
+    var loadingAnimationOverlay: UIView!
+    var loadingAnimationView: UIView!
+    
+    
+    
     var tinpons: [Tinpon] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // AnimationLoaderProtocol
+        loadingAnimationView = self.tableView
         
         updateDataSource()
         
@@ -27,11 +38,16 @@ class TinponManagerTableViewController: UITableViewController, ResetUIProtocol {
     }
     
     func updateDataSource() {
-        Tinpon.loadAllTinponsForUser{ [weak self] tinpons in
+        startLoadingAnimation()
+        
+        TinponWrapper.loadAllTinponsForSignedInUser{ [weak self] tinpons in
             guard let strongSelf = self else { return }
             strongSelf.tinpons = tinpons
             
             DispatchQueue.main.async {
+                print("manger loaded")
+                strongSelf.stopLoadingAnimation()
+                
                 strongSelf.tableView.reloadData()
                 strongSelf.refreshControl?.endRefreshing()
             }

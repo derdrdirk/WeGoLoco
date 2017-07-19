@@ -99,17 +99,14 @@ class SwipedTinpon {
                 
                 var tasks = Array<AWSTask<AnyObject>>()
                 dynamoDBSwipedTinpons.forEach({
-                    tasks.append(dynamoDBObjectMapper.load(DynamoDBTinpon.self, hashKey: $0.tinponId, rangeKey: nil))
+                    tasks.append(dynamoDBObjectMapper.load(Tinpon.self, hashKey: $0.tinponId, rangeKey: nil))
                 })
                 return AWSTask(forCompletionOfAllTasksWithResults: tasks)
             }
             return nil
         }).continueWith { task in
-            if let dynamoDBTinpons = task.result as? [DynamoDBTinpon] {
-                var tinpons = Array<Tinpon>()
-                dynamoDBTinpons.forEach{
-                    tinpons.append(Tinpon.castDynamoDBTinponToTinpon(dynamoDBTinpon: $0))
-                }
+            if let tinpons = task.result as? [Tinpon] {
+             
                 onComplete(tinpons)
             } else if let error = task.error {
                 print("Fetching Favourites error: \(error.localizedDescription)")

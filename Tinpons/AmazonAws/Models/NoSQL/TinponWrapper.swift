@@ -51,17 +51,13 @@ class TinponWrapper {
                     queryExpression.exclusiveStartKey = lastEvaluatedKey
                 }
                 
-                dynamoDBObjectMapper.query(DynamoDBTinpon.self, expression: queryExpression).continueWith(block: { [weak self] (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Any? in
+                dynamoDBObjectMapper.query(Tinpon.self, expression: queryExpression).continueWith(block: { [weak self] (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Any? in
                     guard let strongSelf = self else {return nil}
                     
                     if let error = task.error as NSError? {
                         print("The request failed. Error: \(error)")
                     } else if let paginatedOutput = task.result {
-                        var tinpons = [Tinpon]()
-                        for dynamoDBTinpon in (paginatedOutput.items as? [DynamoDBTinpon])! {
-                            tinpons.append(Tinpon.castDynamoDBTinponToTinpon(dynamoDBTinpon: dynamoDBTinpon))
-                        }
-                        
+                        var tinpons = paginatedOutput.items as! [Tinpon]
                         
                         // filter already swiped Tinpons
                         tinpons = strongSelf.tinponWrapper.filterAlreadySwipedTinpons(tinpons: tinpons)
@@ -108,6 +104,29 @@ class TinponWrapper {
             
             return nil
         })
+    }
+    
+    static func loadAllTinponsForSignedInUser(onComplete: @escaping (([Tinpon]) -> ())) {
+        UserWrapper.getUserIdAWSTask().continueOnSuccessWith{ task in
+            let cognitoId = task.result! as String
+            
+            let queryExpression = AWSDynamoDBQueryExpression()
+            queryExpression.indexName = "userId-index"
+            
+            queryExpression.keyConditionExpression = "userId = :userId"
+            queryExpression.expressionAttributeValues = [":userId" : cognitoId]
+            
+            let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+            return dynamoDBObjectMapper.query(Tinpon.self, expression: queryExpression)
+        }.continueWith{ task in
+            if let error = task.error {
+                print("loading user Tinpons failed. Error: \(error.localizedDescription)")
+            } else if let paginatedOutput = task.result! as? AWSDynamoDBPaginatedOutput {
+                let tinpons = paginatedOutput.items as! [Tinpon]
+                onComplete(tinpons)
+            }
+            return nil
+        }
     }
     
     

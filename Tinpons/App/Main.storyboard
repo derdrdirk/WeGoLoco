@@ -167,10 +167,10 @@
             </objects>
             <point key="canvasLocation" x="3114" y="1979"/>
         </scene>
-        <!--Add Product View Controller-->
+        <!--Add Tinpon View Controller-->
         <scene sceneID="gwK-Kj-gQz">
             <objects>
-                <viewController storyboardIdentifier="AddProduct" id="p5A-2U-bQ0" customClass="AddProductViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddProduct" id="p5A-2U-bQ0" customClass="AddTinponViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="U9P-Vl-BVk"/>
                         <viewControllerLayoutGuide type="bottom" id="DJd-NR-8Uj"/>
