@@ -20,7 +20,7 @@ class ProfileViewController: FormViewController, AuthenticationProtocol {
     
     var overlay : UIView?
     var indicator: UIActivityIndicatorView?
-    var user : User?
+    var user : User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,43 +105,20 @@ class ProfileViewController: FormViewController, AuthenticationProtocol {
         }
         
         // load User
-        getUserProfile()
+        updateUI()
     }
     
     func multipleSelectorDone(_ item:UIBarButtonItem) {
         _ = navigationController?.popViewController(animated: true)
     }
     
-    func updateUI() {
-        print("update User")
-        let birthdateRow = form.rowBy(tag: "Birthdate") as? DateRow
-        birthdateRow?.value = user?.birthdate?.dateFromISO8601
-        birthdateRow?.reload()
-        
-        let genderRow = form.rowBy(tag: "Gender") as? SegmentedRow<String>
-        genderRow?.value = user?.gender
-        genderRow?.reload()
-        
-        
-        let heightRow = form.rowBy(tag: "Height") as? SliderRow
-        if let height = user?.height {
-            heightRow?.value = height as? Float
-        } else {
-            heightRow?.value = 1.0
-        }
-        heightRow?.reload()
-        
-        let tinponCategoriesRow = form.rowBy(tag: "tinponCategories") as? MultipleSelectorRow<String>
-        tinponCategoriesRow?.value = user?.tinponCategories
-        tinponCategoriesRow?.reload()
-
-        
-        
+    func resetUI() {
+        print("profil resetUI")
+        updateUI()
     }
     
-    // MARK: get Cognito ID
-    func getUserProfile() {
-        // Set up overlay
+    func updateUI() {
+        // Loader
         overlay = UIView(frame: view.frame)
         overlay!.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         overlay!.alpha = 0.7
@@ -157,30 +134,49 @@ class ProfileViewController: FormViewController, AuthenticationProtocol {
         indicator!.startAnimating()
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        UserWrapper.getSignedInUser{ [weak self] user in
+            guard let strongSelf = self else { return }
+            
+            strongSelf.user = user
+            
+            DispatchQueue.main.async {
+                strongSelf.updateForm()
+                strongSelf.indicator!.stopAnimating()
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                strongSelf.presentingViewController?.dismiss(animated: true)
+                strongSelf.overlay?.removeFromSuperview()
 
-
-        let cognitoId = AWSMobileClient.cognitoId
-        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
-        dynamoDBObjectMapper.load(User.self, hashKey: cognitoId, rangeKey:nil).continueWith(block: {[weak self] (task:AWSTask<AnyObject>!) -> Any? in
-            guard let strongSelf = self else { return nil }
-            if let error = task.error {
-                print("The request failed. Error: \(error)")
-            } else if let resultUser = task.result as? User {
-                // Do something with task.result.
-               strongSelf.user = resultUser
-                DispatchQueue.main.async {
-                    strongSelf.indicator!.stopAnimating()
-                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                    strongSelf.presentingViewController?.dismiss(animated: true)
-                    strongSelf.overlay?.removeFromSuperview()
-
-                    strongSelf.updateUI()
-                }
             }
-            return nil
-        })
+        }
+        
+        
     }
+    
+    func updateForm() {
+        let birthdateRow = form.rowBy(tag: "Birthdate") as? DateRow
+        birthdateRow?.value = user.birthdate?.dateFromISO8601
+        birthdateRow?.reload()
+        
+        let genderRow = form.rowBy(tag: "Gender") as? SegmentedRow<String>
+        genderRow?.value = user.gender
+        genderRow?.reload()
+        
+        
+        let heightRow = form.rowBy(tag: "Height") as? SliderRow
+        if let height = user.height {
+            heightRow?.value = height as? Float
+        } else {
+            heightRow?.value = 1.0
+        }
+        heightRow?.reload()
+        
+        let tinponCategoriesRow = form.rowBy(tag: "tinponCategories") as? MultipleSelectorRow<String>
+        tinponCategoriesRow?.value = user.tinponCategories
+        tinponCategoriesRow?.reload()
 
+    }
+    
     
     // MARK: save & cancel
     @IBAction func tabSaveButton(_ sender: UIBarButtonItem) {

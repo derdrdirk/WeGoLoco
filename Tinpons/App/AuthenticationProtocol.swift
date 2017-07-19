@@ -18,6 +18,7 @@ import SwiftIconFont
 
 protocol AuthenticationProtocol: class {
     var extensionNavigationController: UINavigationController! { get set }
+    func resetUI()
 }
 
 extension AuthenticationProtocol {
@@ -26,7 +27,8 @@ extension AuthenticationProtocol {
         if (success) {
             createUserAccountIfNotExisting()
             syncCoreDataWithDynamoDB()
-            //resetUI()
+            resetUI()
+            print("reset everything")
         } else {
             // handle cancel operation from user
         }
@@ -45,7 +47,6 @@ extension AuthenticationProtocol {
     }
     
     func presentSignInViewController() {
-        print(AWSSignInManager.sharedInstance().isLoggedIn)
         if !AWSSignInManager.sharedInstance().isLoggedIn {
             let loginStoryboard = UIStoryboard(name: "SignIn", bundle: nil)
             let loginController: SignInViewController = loginStoryboard.instantiateViewController(withIdentifier: "SignIn") as! SignInViewController

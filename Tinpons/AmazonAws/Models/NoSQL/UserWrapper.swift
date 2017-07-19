@@ -11,8 +11,22 @@ import AWSDynamoDB
 
 class UserWrapper {
     
-    static func getSignedInUser() {
-        
+    // MARK: load
+    
+    static func getSignedInUser(onCompletionClosure onComplete: @escaping (User)->Void) {
+        getUserIdAWSTask().continueOnSuccessWith{ task in
+            let cognitoId = task.result! as String
+            
+            return getUserAWSTask(cognitoId: cognitoId)
+        }.continueWith{ task in
+            if let error = task.error {
+                print("ERROR---UserWrapper-getSignedInUser: \(error)")
+            } else {
+                let user = task.result! as! User
+                onComplete(user)
+            }
+            return nil
+        }
     }
     
     
