@@ -148,7 +148,7 @@ class AddTinponViewController: FormViewController, CLLocationManagerDelegate, Lo
                     
                     strongSelf.stopLoadingAnimation()
                     
-                    strongSelf.presentingViewController?.dismiss(animated: true)
+                    strongSelf.performSegue(withIdentifier: "unwindToTinponManager", sender: strongSelf)
                 }
                 })
         } else {

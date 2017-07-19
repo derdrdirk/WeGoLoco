@@ -202,9 +202,11 @@
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="progressView" destination="PXM-bb-I6X" id="b6R-dk-Dcs"/>
+                        <segue destination="qIV-ZB-2NS" kind="unwind" identifier="unwindToTinponManager" unwindAction="whisperThatTinponIsSavedWithSegue:" id="9hN-dD-RKs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dPT-Zg-8Ue" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="qIV-ZB-2NS" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3838" y="1979"/>
         </scene>

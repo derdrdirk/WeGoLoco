@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Whisper
 
 class TinponManagerTableViewController: UITableViewController, LoadingAnimationProtocol, ResetUIProtocol {
     
@@ -14,8 +15,6 @@ class TinponManagerTableViewController: UITableViewController, LoadingAnimationP
     var loadingAnimationIndicator: UIActivityIndicatorView!
     var loadingAnimationOverlay: UIView!
     var loadingAnimationView: UIView!
-    
-    
     
     var tinpons: [Tinpon] = []
     
@@ -52,6 +51,12 @@ class TinponManagerTableViewController: UITableViewController, LoadingAnimationP
                 strongSelf.refreshControl?.endRefreshing()
             }
         }
+    }
+    
+    @IBAction func whisperThatTinponIsSaved(segue: UIStoryboardSegue) {
+        let message = Message(title: "Tinpon saved.", backgroundColor: .green)
+        // Show and hide a message after delay
+        Whisper.show(whisper: message, to: navigationController!, action: .show)
     }
     
     // MARK: Table Data Source
