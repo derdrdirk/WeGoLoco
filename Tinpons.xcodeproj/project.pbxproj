@@ -397,7 +397,6 @@
 			isa = PBXGroup;
 			children = (
 				D4FA2EC81F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift */,
-				D4FA2ED11F0D10FD00B287FB /* User.swift */,
 				D4306C801F0E6BEC0073A11E /* Stores.swift */,
 				D4306C821F0E73780073A11E /* AWSHelper.swift */,
 				1DD70E29C919AF3300000000 /* DynamoDBTinpon.swift */,
@@ -405,6 +404,7 @@
 				D4DC434F1F1E448200BC1283 /* TinponWrapper.swift */,
 				D4FC90E21F163328002A6F9E /* SwipedTinpon.swift */,
 				D4FC90E41F1669F8002A6F9E /* SwipedTinponsCore.swift */,
+				D4FA2ED11F0D10FD00B287FB /* User.swift */,
 				D4DC434D1F1E3A2000BC1283 /* UserWrapper.swift */,
 			);
 			name = NoSQL;

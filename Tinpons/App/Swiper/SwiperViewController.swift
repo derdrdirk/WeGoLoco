@@ -28,7 +28,6 @@ class SwiperViewController: UIViewController {
     var tinponWrapper: TinponWrapper!
     
     var userId: String?
-    var tinponLoader = Tinpon()
     var tinpons : [Tinpon] = []
     var lastEvaluatedKey : [String: AWSDynamoDBAttributeValue]?
     

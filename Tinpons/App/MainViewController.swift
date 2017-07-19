@@ -51,20 +51,6 @@ class MainViewController: SwiperViewController {
         }
     }
     
-    func handleLogout() {
-        if (AWSSignInManager.sharedInstance().isLoggedIn) {
-            AWSSignInManager.sharedInstance().logout(completionHandler: {(result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) in
-                self.navigationController!.popToRootViewController(animated: false)
-                    self.presentSignInViewController()
-            })
-            // print("Logout Successful: \(signInProvider.getDisplayName)");
-        } else {
-            assert(false)
-        }
-    }
-
-
-    
     func createUserAccountIfNotExisting() {
         let cognitoId = AWSMobileClient.cognitoId
         //check if User Account exists

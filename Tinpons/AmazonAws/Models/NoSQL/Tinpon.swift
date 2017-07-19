@@ -44,7 +44,7 @@ class Tinpon : CustomStringConvertible {
         tinponId = UUID().uuidString
         userId = AWSMobileClient.cognitoId
         createdAt = Date().iso8601
-        active = NSNumber(value: true)
+        active = NSNumber(value: 1)
     }
     
     var description: String {
@@ -270,7 +270,7 @@ class Tinpon : CustomStringConvertible {
         
         let dynamoDBTinpon = DynamoDBTinpon()
         dynamoDBTinpon?.tinponId = tinponId
-        dynamoDBTinpon?.active = NSNumber(value: false)
+        dynamoDBTinpon?.active = NSNumber(value: 0)
         
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
         dynamoDBObjectMapper.save(dynamoDBTinpon!, configuration: updateMapperConfig).continueWith{ task in
@@ -288,7 +288,7 @@ class Tinpon : CustomStringConvertible {
         
         let dynamoDBTinpon = DynamoDBTinpon()
         dynamoDBTinpon?.tinponId = tinponId
-        dynamoDBTinpon?.active = NSNumber(value: true)
+        dynamoDBTinpon?.active = NSNumber(value: 1)
         
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
         dynamoDBObjectMapper.save(dynamoDBTinpon!, configuration: updateMapperConfig).continueWith{ task in

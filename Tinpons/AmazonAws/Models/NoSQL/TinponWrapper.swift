@@ -42,11 +42,11 @@ class TinponWrapper {
                 let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
                 
                 let queryExpression = AWSDynamoDBQueryExpression()
-                queryExpression.indexName = "category-tinponId-index"
+                queryExpression.indexName = "category-active-index"
                 
                 queryExpression.limit = limit as NSNumber
-                queryExpression.keyConditionExpression = "category = :category"
-                queryExpression.expressionAttributeValues = [":category" : category]
+                queryExpression.keyConditionExpression = "category = :category AND active = :active"
+                queryExpression.expressionAttributeValues = [":category" : category, ":active": NSNumber(value: 1)]
                 if lastEvaluatedKey != nil {
                     queryExpression.exclusiveStartKey = lastEvaluatedKey
                 }
@@ -90,14 +90,20 @@ class TinponWrapper {
     }
     
     func loadNotSwipedTinponsFromUserCategories(performClousreOnComplete onComplete: @escaping ([Tinpon]) -> Void) {
-        let cognitoId = AWSMobileClient.cognitoId
-        UserWrapper.getUserAWSTask(cognitoId: cognitoId).continueOnSuccessWith(block: { task in
-            let user = task.result as! User
-            
-            // get Tinpons for every category
-            user.tinponCategories?.forEach {category in
-                self.tinponsLoader.append(TinponLoader(performClosureOnComplete: onComplete, tinponWrapper: self))
-                self.tinponsLoader.last?.loadNotSwipedItems(forCategory: category)
+        UserWrapper.getUserIdAWSTask().continueOnSuccessWith{ task in
+            let cognitoId = task.result! as String
+            return UserWrapper.getUserAWSTask(cognitoId: cognitoId)
+        }.continueWith(block: { task in
+            if let error = task.error {
+                print("ERROR---TinponWrapper-loadNotSwipedTinponsFromUserCategories: \(error)")
+            } else {
+                let user = task.result as! User
+                
+                // get Tinpons for every category
+                user.tinponCategories?.forEach {category in
+                    self.tinponsLoader.append(TinponLoader(performClosureOnComplete: onComplete, tinponWrapper: self))
+                    self.tinponsLoader.last?.loadNotSwipedItems(forCategory: category)
+                }
             }
             
             return nil
@@ -117,12 +123,10 @@ class TinponWrapper {
             for alreadyLoadedTinpon in alreadyLoadedTinpons {
                 //print("already tinponName: \(alreadyLoadedTinpon.name)")
                 if tinpon.tinponId == alreadyLoadedTinpon.tinponId {
-                    print("and equal name: \(tinpon.name)")
                     continue outerFor
                 }
             }
             
-            print("not EQUAL")
             // filter from CORE
             var fetchSwipedTinpons : [SwipedTinponsCore] = []
             do {

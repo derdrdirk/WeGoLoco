@@ -34,8 +34,8 @@ class AWSMobileClient: NSObject {
         super.init()
     }
     
-    static let cognitoId = "eu-west-1:7f84077c-2df1-4835-b80e-bd29534611ac" //AWSIdentityManager.default().identityId!
-    
+    static let cognitoId = AWSIdentityManager.default().identityId!
+    //"eu-west-1:7f84077c-2df1-4835-b80e-bd29534611ac"
     deinit {
         // Should never be called
         print("Mobile Client deinitialized. This should not happen.")
@@ -94,9 +94,6 @@ class AWSMobileClient: NSObject {
         if (!isInitialized) {
             AWSSignInManager.sharedInstance().resumeSession(completionHandler: { (result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) in
                 print("Result: \(result) AuthState: \(authState) \n Error:\(error)")
-                
-                
-                
             }) // If you get an EXC_BAD_ACCESS here in iOS Simulator, then do Simulator -> "Reset Content and Settings..."
                // This will clear bad auth tokens stored by other apps with the same bundle ID.
             isInitialized = true
