@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TinponTableViewController: UITableViewController {
+class TinponManagerTableViewController: UITableViewController {
 
     var tinpons: [Tinpon] = []
     
@@ -54,7 +54,7 @@ class TinponTableViewController: UITableViewController {
             // Delete the row from the data source
             tinpons[indexPath.row].deactivateTinpon()
             
-            let cell = self.tableView(self.tableView, cellForRowAt: indexPath) as! TinponTableViewCell
+            let cell = self.tableView(self.tableView, cellForRowAt: indexPath) as! TinponManagerTableViewCell
             cell.tinpon?.active = NSNumber(value: true)
             tableView.setEditing(false, animated: true)
         }

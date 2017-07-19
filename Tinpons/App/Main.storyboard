@@ -108,72 +108,6 @@
             </objects>
             <point key="canvasLocation" x="1689" y="1220"/>
         </scene>
-        <!--Favourites-->
-        <scene sceneID="IZb-JR-25j">
-            <objects>
-                <tableViewController id="gbY-HX-BFr" customClass="FavouritesTableViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="opF-xC-5xy">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="tinponCell" id="m2I-P2-E3L" customClass="TinponTableViewCell" customModule="Tinpons" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="m2I-P2-E3L" id="scf-AI-8Nz">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CBy-eS-Ryy">
-                                            <rect key="frame" x="5" y="0.0" width="91" height="44"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        </imageView>
-                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="l9F-6k-ejO">
-                                            <rect key="frame" x="104" y="5" width="153.5" height="33.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HN3-es-dho">
-                                                    <rect key="frame" x="0.0" y="0.0" width="72.5" height="33.5"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCb-AD-6TD">
-                                                    <rect key="frame" x="72.5" y="0.0" width="52" height="33.5"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gpj-GL-Xjk">
-                                                    <rect key="frame" x="124.5" y="0.0" width="29" height="33.5"/>
-                                                    <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </stackView>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="categoryLabel" destination="YCb-AD-6TD" id="uAc-Re-wNv"/>
-                                    <outlet property="nameLabel" destination="HN3-es-dho" id="1Lz-Pd-OQT"/>
-                                    <outlet property="priceLabel" destination="gpj-GL-Xjk" id="sO6-wE-1XI"/>
-                                    <outlet property="tinponImageView" destination="CBy-eS-Ryy" id="pQW-7z-ZSA"/>
-                                </connections>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="gbY-HX-BFr" id="ryd-2j-2pz"/>
-                            <outlet property="delegate" destination="gbY-HX-BFr" id="AuY-DD-raB"/>
-                        </connections>
-                    </tableView>
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="uCM-ZH-pf0"/>
-                    <navigationItem key="navigationItem" title="Favourites" id="6hF-9b-dTn"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="IfV-vN-fIt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="4065" y="1219"/>
-        </scene>
         <!--Item-->
         <scene sceneID="H3E-My-Zyq">
             <objects>
@@ -308,10 +242,10 @@
             </objects>
             <point key="canvasLocation" x="1689" y="1979"/>
         </scene>
-        <!--My Tinpons-->
+        <!--Tinpon Manager-->
         <scene sceneID="AFQ-pa-ylr">
             <objects>
-                <tableViewController id="EEM-2p-Tew" customClass="TinponTableViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="EEM-2p-Tew" customClass="TinponManagerTableViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" id="82w-W2-lYv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -386,7 +320,7 @@
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="My Tinpons" image="faDatabase" id="rl9-7H-Fjf"/>
-                    <navigationItem key="navigationItem" title="My Tinpons" id="bQC-jh-fc4">
+                    <navigationItem key="navigationItem" title="Tinpon Manager" id="bQC-jh-fc4">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Zfz-LR-ZeG">
                             <connections>
                                 <segue destination="p8H-ep-t55" kind="presentation" id="M3e-bh-qJq"/>
