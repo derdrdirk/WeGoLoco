@@ -33,9 +33,7 @@ class MainViewController: SwiperViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("identity \(AWSIdentityManager.default().identityId)")                            
-        
+                
         presentSignInViewController()
     }
 
