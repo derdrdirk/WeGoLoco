@@ -14,14 +14,20 @@ import AWSMobileHubHelper
 import CoreLocation
 import Whisper
 
-class ProfileViewController: FormViewController {
+class ProfileViewController: FormViewController, AuthenticationProtocol {
+    
+    var extensionNavigationController: UINavigationController!
     
     var overlay : UIView?
-     var indicator: UIActivityIndicatorView?
+    var indicator: UIActivityIndicatorView?
     var user : User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // login Stuff
+        extensionNavigationController = navigationController
+        presentSignInViewController()
         
         // Set up Eureka form
         form +++ Section("Profil")
@@ -219,80 +225,77 @@ class ProfileViewController: FormViewController {
     // MARK: SignOut
     // Unfortunately totaly redundant to MainViewController
     
-    func onSignIn (_ success: Bool) {
-        // handle successful sign in
-        if (success) {
-            createUserAccountIfNotExisting()
-            syncCoreDataWithDynamoDB()
-        } else {
-            // handle cancel operation from user
-        }
-    }
-    
-    func handleLogout() {
-        if (AWSSignInManager.sharedInstance().isLoggedIn) {
-            AWSSignInManager.sharedInstance().logout(completionHandler: {(result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) in
-                self.navigationController!.popToRootViewController(animated: false)
-                self.presentSignInViewController()
-            })
-            // print("Logout Successful: \(signInProvider.getDisplayName)");
-        } else {
-            assert(false)
-        }
-    }
-    
-    func presentSignInViewController() {
-        print(AWSSignInManager.sharedInstance().isLoggedIn)
-        if !AWSSignInManager.sharedInstance().isLoggedIn {
-            let loginStoryboard = UIStoryboard(name: "SignIn", bundle: nil)
-            let loginController: SignInViewController = loginStoryboard.instantiateViewController(withIdentifier: "SignIn") as! SignInViewController
-            loginController.canCancel = false
-            loginController.didCompleteSignIn = onSignIn
-            let navController = UINavigationController(rootViewController: loginController)
-            navigationController?.present(navController, animated: true, completion: nil)
-        }
-    }
-    
-    func createUserAccountIfNotExisting() {
-        let cognitoId = AWSMobileClient.cognitoId
-        //check if User Account exists
-        let dynamoDBOBjectMapper = AWSDynamoDBObjectMapper.default()
-        dynamoDBOBjectMapper.load(User.self, hashKey: cognitoId, rangeKey: nil).continueWith(block: { [weak self] (task:AWSTask<AnyObject>!) -> Any? in
-            if let error = task.error {
-                print("The request failed. Error: \(error)")
-            } else if let _ = task.result as? User {
-                //print("found something")
-            } else if task.result == nil {
-                // User does not exist => create
-                let user = User()
-                user?.userId = AWSMobileClient.cognitoId
-                user?.createdAt = Date().iso8601.dateFromISO8601?.iso8601 // "2017-03-22T13:22:13.933Z"
-                user?.tinponCategories = ["👕", "👖", "👞"]
-                user?.role = "User"
-                dynamoDBOBjectMapper.save(user!).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
-                    if let error = task.error {
-                        print("The request failed. Error: \(error)")
-                    } else {
-                        print("User created")
-                        // Do something with task.result or perform other operations.
-                    }
-                })
-            }
-            return nil
-        })
-    }
-    
-    func syncCoreDataWithDynamoDB() {
-        SwipedTinponsCore.resetAllRecords()
-        let cognitoId = AWSMobileClient.cognitoId
-        SwipedTinpon().loadAllSwipedTinponsFor(userId: cognitoId, onComplete: { swipedTinpons in
-            for swipedTinpon in swipedTinpons {
-                SwipedTinponsCore.save(swipedTinpon: swipedTinpon)
-            }
-        })
-        
-    }
-    
-    
-    
+//    func onSignIn (_ success: Bool) {
+//        // handle successful sign in
+//        if (success) {
+//            createUserAccountIfNotExisting()
+//            syncCoreDataWithDynamoDB()
+//        } else {
+//            // handle cancel operation from user
+//        }
+//    }
+//    
+//    func handleLogout() {
+//        if (AWSSignInManager.sharedInstance().isLoggedIn) {
+//            AWSSignInManager.sharedInstance().logout(completionHandler: {(result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) in
+//                self.navigationController!.popToRootViewController(animated: false)
+//                self.presentSignInViewController()
+//            })
+//            // print("Logout Successful: \(signInProvider.getDisplayName)");
+//        } else {
+//            assert(false)
+//        }
+//    }
+//    
+//    func presentSignInViewController() {
+//        print(AWSSignInManager.sharedInstance().isLoggedIn)
+//        if !AWSSignInManager.sharedInstance().isLoggedIn {
+//            let loginStoryboard = UIStoryboard(name: "SignIn", bundle: nil)
+//            let loginController: SignInViewController = loginStoryboard.instantiateViewController(withIdentifier: "SignIn") as! SignInViewController
+//            loginController.canCancel = false
+//            loginController.didCompleteSignIn = onSignIn
+//            let navController = UINavigationController(rootViewController: loginController)
+//            navigationController?.present(navController, animated: true, completion: nil)
+//        }
+//    }
+//    
+//    func createUserAccountIfNotExisting() {
+//        let cognitoId = AWSMobileClient.cognitoId
+//        //check if User Account exists
+//        let dynamoDBOBjectMapper = AWSDynamoDBObjectMapper.default()
+//        dynamoDBOBjectMapper.load(User.self, hashKey: cognitoId, rangeKey: nil).continueWith(block: { [weak self] (task:AWSTask<AnyObject>!) -> Any? in
+//            if let error = task.error {
+//                print("The request failed. Error: \(error)")
+//            } else if let _ = task.result as? User {
+//                //print("found something")
+//            } else if task.result == nil {
+//                // User does not exist => create
+//                let user = User()
+//                user?.userId = AWSMobileClient.cognitoId
+//                user?.createdAt = Date().iso8601.dateFromISO8601?.iso8601 // "2017-03-22T13:22:13.933Z"
+//                user?.tinponCategories = ["👕", "👖", "👞"]
+//                user?.role = "User"
+//                dynamoDBOBjectMapper.save(user!).continueWith(block: { (task:AWSTask<AnyObject>!) -> Void in
+//                    if let error = task.error {
+//                        print("The request failed. Error: \(error)")
+//                    } else {
+//                        print("User created")
+//                        // Do something with task.result or perform other operations.
+//                    }
+//                })
+//            }
+//            return nil
+//        })
+//    }
+//    
+//    func syncCoreDataWithDynamoDB() {
+//        SwipedTinponsCore.resetAllRecords()
+//        let cognitoId = AWSMobileClient.cognitoId
+//        SwipedTinpon().loadAllSwipedTinponsFor(userId: cognitoId, onComplete: { swipedTinpons in
+//            for swipedTinpon in swipedTinpons {
+//                SwipedTinponsCore.save(swipedTinpon: swipedTinpon)
+//            }
+//        })
+//        
+//    }
 }

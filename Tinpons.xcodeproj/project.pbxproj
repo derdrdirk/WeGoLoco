@@ -70,7 +70,7 @@
 		E7A30F046317E39C00000001 /* AWSS3.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29F77E3E0700000000 /* AWSS3.framework */; };
 		E7A30F046362ECD700000000 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E292BFC031A00000000 /* FBSDKLoginKit.framework */; };
 		E7A30F046FFFB5F100000000 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E29A8F4FCAE00000000 /* Launch Screen.storyboard */; };
-		E7A30F04741B216700000000 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E2927114D4C00000000 /* MainViewController.swift */; };
+		E7A30F04741B216700000000 /* AuthenticationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E2927114D4C00000000 /* AuthenticationProtocol.swift */; };
 		E7A30F0479F95AEB00000000 /* SignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E29E9CCE5D700000000 /* SignIn.storyboard */; };
 		E7A30F047BEED6DB00000000 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29113800C600000000 /* SystemConfiguration.framework */; };
 		E7A30F0489AA356400000000 /* UserPools.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E290F8AE36000000000 /* UserPools.storyboard */; };
@@ -132,7 +132,7 @@
 		1DD70E2925334DDE00000000 /* AWSFacebookSignInResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = AWSFacebookSignInResources.bundle; path = Tinpons/AmazonAws/AWSFacebookSignInResources.bundle; sourceTree = "<group>"; };
 		1DD70E292554733E00000000 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Tinpons/App/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		1DD70E2925A0F34000000000 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		1DD70E2927114D4C00000000 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = Tinpons/App/MainViewController.swift; sourceTree = SOURCE_ROOT; };
+		1DD70E2927114D4C00000000 /* AuthenticationProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthenticationProtocol.swift; path = Tinpons/App/AuthenticationProtocol.swift; sourceTree = SOURCE_ROOT; };
 		1DD70E292BFC031A00000000 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = Tinpons/Sdk/Facebook/FBSDKLoginKit.framework; sourceTree = "<group>"; };
 		1DD70E292C3FBFB900000000 /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognitoIdentityProvider.framework; path = Tinpons/Sdk/Aws/AWSCognitoIdentityProvider.framework; sourceTree = "<group>"; };
 		1DD70E292E74B0A400000000 /* SafariServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SafariServices.framework; path = System/Library/Frameworks/SafariServices.framework; sourceTree = SDKROOT; };
@@ -253,7 +253,7 @@
 				1DD70E292554733E00000000 /* Images.xcassets */,
 				1DD70E29A8F4FCAE00000000 /* Launch Screen.storyboard */,
 				1DD70E29001F5DDA00000000 /* Main.storyboard */,
-				1DD70E2927114D4C00000000 /* MainViewController.swift */,
+				1DD70E2927114D4C00000000 /* AuthenticationProtocol.swift */,
 				D480D05A1EEBF0ED00B4193A /* Swiper */,
 				D4512B421F189D42009B109C /* Favourites */,
 				B401C979550308D500000000 /* SignIn */,
@@ -593,7 +593,7 @@
 				D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */,
 				D443C0F81EEC6CA300FD148F /* BackgroundKolodaAnimator.swift in Sources */,
 				E7A30F0493F7667400000000 /* UtilityFunctions.swift in Sources */,
-				E7A30F04741B216700000000 /* MainViewController.swift in Sources */,
+				E7A30F04741B216700000000 /* AuthenticationProtocol.swift in Sources */,
 				E7A30F04B8261BDC00000000 /* UserPoolsIdentityProfile.swift in Sources */,
 				D4FC90E31F163328002A6F9E /* SwipedTinpon.swift in Sources */,
 				D4FA2ED21F0D10FD00B287FB /* User.swift in Sources */,

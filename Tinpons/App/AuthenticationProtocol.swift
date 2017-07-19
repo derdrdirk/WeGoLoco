@@ -16,27 +16,34 @@ import AWSMobileHubHelper
 import AWSDynamoDB
 import SwiftIconFont
 
-class MainViewController: SwiperViewController {
-   
-    
-    // MARK: - View lifecycle
+protocol AuthenticationProtocol: class {
+    var extensionNavigationController: UINavigationController! { get set }
+}
+
+extension AuthenticationProtocol {
     func onSignIn (_ success: Bool) {
         // handle successful sign in
         if (success) {
             createUserAccountIfNotExisting()
             syncCoreDataWithDynamoDB()
-            resetUI()
+            //resetUI()
         } else {
             // handle cancel operation from user
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-                
-        presentSignInViewController()
-    }
 
+    func handleLogout() {
+        if (AWSSignInManager.sharedInstance().isLoggedIn) {
+            AWSSignInManager.sharedInstance().logout(completionHandler: {(result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) in
+                self.extensionNavigationController.popToRootViewController(animated: false)
+                self.presentSignInViewController()
+            })
+            // print("Logout Successful: \(signInProvider.getDisplayName)");
+        } else {
+            assert(false)
+        }
+    }
+    
     func presentSignInViewController() {
         print(AWSSignInManager.sharedInstance().isLoggedIn)
         if !AWSSignInManager.sharedInstance().isLoggedIn {
@@ -45,7 +52,7 @@ class MainViewController: SwiperViewController {
             loginController.canCancel = false
             loginController.didCompleteSignIn = onSignIn
             let navController = UINavigationController(rootViewController: loginController)
-            navigationController?.present(navController, animated: true, completion: nil)
+            extensionNavigationController.present(navController, animated: true, completion: nil)
         }
     }
     
@@ -61,7 +68,7 @@ class MainViewController: SwiperViewController {
             } else if task.result == nil {
                 // User does not exist => create
                 let user = User()
-                user?.userId = self?.userId
+                user?.userId = cognitoId
                 user?.createdAt = Date().iso8601.dateFromISO8601?.iso8601 // "2017-03-22T13:22:13.933Z"
                 user?.tinponCategories = ["👕", "👖", "👞"]
                 user?.role = "User"
