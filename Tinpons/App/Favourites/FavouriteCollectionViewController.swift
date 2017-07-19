@@ -11,16 +11,24 @@ import UIKit
 private let reuseIdentifier = "favouriteCollectionViewCell"
 
 
-class FavouriteCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
-
+class FavouriteCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout, ResetUIProtocol {
+    
+    // MARK: ResetUIProtocol
+    var didAppear: Bool = false
+    func resetUI() {
+        if didAppear {
+            updateDataSource()
+        }
+    }
+    
     var tinpons: [Tinpon] = []
     var refresher:UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Register cell classes
-//        self.collectionView!.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "favouriteCollectionViewCell")
+        // ResetUIProtocol
+        didAppear = true
         
         var collectionViewFlowLayout = UICollectionViewFlowLayout()
         var myCollectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: collectionViewFlowLayout)
@@ -39,9 +47,6 @@ class FavouriteCollectionViewController: UICollectionViewController, UICollectio
         updateDataSource()
     }
     
-    func resetUI() {
-        
-    }
     
     func updateDataSource() {
         tinpons = []

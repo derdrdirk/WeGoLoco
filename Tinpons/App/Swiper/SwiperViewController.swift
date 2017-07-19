@@ -22,8 +22,38 @@ private let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
 
 class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIProtocol {
     
+    // MARK: AuthenticationProtocol
     var extensionNavigationController: UINavigationController!
     var authenticationProtocolTabBarController: UITabBarController!
+    
+    // MARK: ResetUIProtocol
+    var didAppear: Bool = false
+    func resetUI() {
+        if(didAppear) {
+            tinpons = []
+            
+            tinponWrapper = TinponWrapper(swiperViewController: self)
+            tinponWrapper.loadNotSwipedTinponsFromUserCategories(performClousreOnComplete: { [weak self] (tinpons) in
+                guard let strongSelf = self else { return }
+                if tinpons.isEmpty {
+                    DispatchQueue.main.async {
+                        strongSelf.outOfTinponsStack.isHidden = false
+                    }
+                } else {
+                    DispatchQueue.main.async {
+                        strongSelf.outOfTinponsStack.isHidden = true
+                    }
+                }
+                strongSelf.tinpons.append(contentsOf: tinpons)
+                DispatchQueue.main.async {
+                    (strongSelf.tinpons.count > 0) ? strongSelf.outOfTinponsStack.isHidden = true : ()
+                    strongSelf.kolodaView.resetCurrentCardIndex()
+                    strongSelf.kolodaView.reloadData()
+                }
+            })
+        }
+    }
+    
     
     @IBOutlet weak var kolodaView: CustomKolodaView!
     @IBOutlet weak var outOfTinponsStack: UIStackView!
@@ -42,7 +72,10 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // login stuff
+        // ResetUIProtocol
+        didAppear = true
+        
+        // AuthenticationProtocol
         extensionNavigationController = navigationController
         authenticationProtocolTabBarController = tabBarController
         presentSignInViewController()
@@ -59,33 +92,6 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
         kolodaView.animator = BackgroundKolodaAnimator(koloda: kolodaView)
         
         self.modalTransitionStyle = UIModalTransitionStyle.flipHorizontal
-    }
-    
-    func resetUI() {
-        tinpons = []
-        
-//        tinponLoader = Tinpon()
-//        tinponLoader.loadNotSwipedItems(limit: 5, onComplete: { [weak self] (tinpons) in
-        tinponWrapper = TinponWrapper(swiperViewController: self)
-        tinponWrapper.loadNotSwipedTinponsFromUserCategories(performClousreOnComplete: { [weak self] (tinpons) in
-            guard let strongSelf = self else { return }
-            if tinpons.isEmpty {
-                DispatchQueue.main.async {
-                    strongSelf.outOfTinponsStack.isHidden = false
-                }
-            } else {
-                DispatchQueue.main.async {
-                    strongSelf.outOfTinponsStack.isHidden = true
-                }
-            }
-            strongSelf.tinpons.append(contentsOf: tinpons)
-            DispatchQueue.main.async {
-                (strongSelf.tinpons.count > 0) ? strongSelf.outOfTinponsStack.isHidden = true : ()
-                strongSelf.kolodaView.resetCurrentCardIndex()
-                strongSelf.kolodaView.reloadData()
-            }
-        })
-
     }
     
     //MARK: IBActions

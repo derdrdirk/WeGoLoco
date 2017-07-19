@@ -16,13 +16,26 @@ class TinponManagerTableViewController: UITableViewController, LoadingAnimationP
     var loadingAnimationOverlay: UIView!
     var loadingAnimationView: UIView!
     
+    // MARK: ResetUIProtocol
+    var didAppear: Bool = false
+    func resetUI() {
+        if(didAppear) {
+            updateDataSource()
+        }
+    }
+    
+    
     var tinpons: [Tinpon] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // ResetUIProtocol
+        didAppear = true
+        
         // AnimationLoaderProtocol
         loadingAnimationView = self.tableView
+        print("Setup Manager \(loadingAnimationView)")
         
         updateDataSource()
         
@@ -31,12 +44,9 @@ class TinponManagerTableViewController: UITableViewController, LoadingAnimationP
         refreshControl?.addTarget(self, action: #selector(updateDataSource), for: UIControlEvents.valueChanged)
     }
     
-    func resetUI() {
-        print("reset tinpons manager")
-        updateDataSource()
-    }
-    
     func updateDataSource() {
+        print("check if we exit: \(self)")
+        print("manager loader \(loadingAnimationView)")
         startLoadingAnimation()
         
         TinponWrapper.loadAllTinponsForSignedInUser{ [weak self] tinpons in

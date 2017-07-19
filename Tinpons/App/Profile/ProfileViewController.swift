@@ -24,18 +24,29 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
     var loadingAnimationOverlay : UIView!
     var loadingAnimationIndicator: UIActivityIndicatorView!
     
+    // MARK: ResetUIProtocol
+    var didAppear: Bool = false
+    func resetUI() {
+        if(didAppear) {
+            updateUI()
+        }
+    }
+    
     var user : User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // ResetUIProtocol
+        didAppear = true
+        
+        // AnimationLoader
+        loadingAnimationView = self.view
+        
         // Authentication Protocol
         extensionNavigationController = navigationController
         authenticationProtocolTabBarController = tabBarController
         presentSignInViewController()
-    
-        // AnimationLoader
-        loadingAnimationView = self.view
         
         // Set up Eureka form
         form +++ Section("Profil")
@@ -120,12 +131,8 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
         _ = navigationController?.popViewController(animated: true)
     }
     
-    func resetUI() {
-        print("profil resetUI")
-        updateUI()
-    }
-    
     func updateUI() {
+        print("start loading")
         startLoadingAnimation()
         
         UserWrapper.getSignedInUser{ [weak self] user in

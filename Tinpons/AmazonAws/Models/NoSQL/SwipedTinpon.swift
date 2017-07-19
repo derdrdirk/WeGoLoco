@@ -82,29 +82,29 @@ class SwipedTinpon {
                                         //swipedTinpons: [DynamoDBSwipedTinpon]?,
                                         _ onComplete: @escaping ([Tinpon]) -> ())
     {
-        let favourite = NSNumber(value: 1)
-        let cognitoId = AWSMobileClient.cognitoId
-        let queryExpression = AWSDynamoDBQueryExpression()
-        queryExpression.indexName = "favourite-userId-index"
-        queryExpression.keyConditionExpression = "favourite = :favourite AND userId = :userId"
-        queryExpression.expressionAttributeValues = [":favourite" : favourite, ":userId" : cognitoId]
-        if lastEvaluatedKey != nil {
-            queryExpression.exclusiveStartKey = lastEvaluatedKey
-        }
-        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
-        dynamoDBObjectMapper.query(DynamoDBSwipedTinpon.self, expression: queryExpression).continueOnSuccessWith(block: { (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> AWSTask<AnyObject>? in
-            
-            if let paginatedOutput = task.result {
-                let dynamoDBSwipedTinpons = (paginatedOutput.items as? [DynamoDBSwipedTinpon])!
-                
-                var tasks = Array<AWSTask<AnyObject>>()
-                dynamoDBSwipedTinpons.forEach({
-                    tasks.append(dynamoDBObjectMapper.load(Tinpon.self, hashKey: $0.tinponId, rangeKey: nil))
-                })
-                return AWSTask(forCompletionOfAllTasksWithResults: tasks)
+        UserWrapper.getUserIdAWSTask().continueOnSuccessWith{ task in
+            let cognitoId = task.result! as String
+            let favourite = NSNumber(value: 1)
+            let queryExpression = AWSDynamoDBQueryExpression()
+            queryExpression.indexName = "favourite-userId-index"
+            queryExpression.keyConditionExpression = "favourite = :favourite AND userId = :userId"
+            queryExpression.expressionAttributeValues = [":favourite" : favourite, ":userId" : cognitoId]
+            if lastEvaluatedKey != nil {
+                queryExpression.exclusiveStartKey = lastEvaluatedKey
             }
-            return nil
-        }).continueWith { task in
+            let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+            return dynamoDBObjectMapper.query(DynamoDBSwipedTinpon.self, expression: queryExpression)
+        }.continueOnSuccessWith{ task -> AWSTask<AnyObject> in
+            let paginatedOutput = task.result! as! AWSDynamoDBPaginatedOutput
+            let dynamoDBSwipedTinpons = (paginatedOutput.items as? [DynamoDBSwipedTinpon])!
+            let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+            
+            var tasks = Array<AWSTask<AnyObject>>()
+            dynamoDBSwipedTinpons.forEach({
+                tasks.append(dynamoDBObjectMapper.load(Tinpon.self, hashKey: $0.tinponId, rangeKey: nil))
+            })
+            return AWSTask(forCompletionOfAllTasksWithResults: tasks)
+        }.continueWith { task in
             if let tinpons = task.result as? [Tinpon] {
              
                 onComplete(tinpons)

@@ -17,6 +17,7 @@ import AWSDynamoDB
 import SwiftIconFont
 
 protocol ResetUIProtocol {
+    var didAppear: Bool { get set }
     func resetUI()
 }
 
