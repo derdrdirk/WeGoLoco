@@ -32,14 +32,18 @@ extension AuthenticationProtocol {
         // handle successful sign in
         if (success) {
             createUserAccountIfNotExisting()
-            syncCoreDataWithDynamoDB()
             
-            // reset every ViewController if User LogsIn
-            authenticationProtocolTabBarController.viewControllers?.forEach{ navigationController in
-                if let viewController = navigationController.childViewControllers[0] as? ResetUIProtocol {
-                    viewController.resetUI()
+            syncCoreDataWithDynamoDB(onCompletionClosure: { [weak self] in
+                guard let strongSelf = self else { return }
+                // reset every ViewController if User LogsIn
+                DispatchQueue.main.async {
+                    strongSelf.authenticationProtocolTabBarController.viewControllers?.forEach{ navigationController in
+                        if let viewController = navigationController.childViewControllers[0] as? ResetUIProtocol {
+                            viewController.resetUI()
+                        }
+                    }
                 }
-            }
+            })
         } else {
             // handle cancel operation from user
         }
@@ -73,7 +77,7 @@ extension AuthenticationProtocol {
         let cognitoId = AWSMobileClient.cognitoId
         //check if User Account exists
         let dynamoDBOBjectMapper = AWSDynamoDBObjectMapper.default()
-        dynamoDBOBjectMapper.load(User.self, hashKey: cognitoId, rangeKey: nil).continueWith(block: { [weak self] (task:AWSTask<AnyObject>!) -> Any? in
+        dynamoDBOBjectMapper.load(User.self, hashKey: cognitoId, rangeKey: nil).continueWith(block: { (task:AWSTask<AnyObject>!) -> Any? in
             if let error = task.error {
                 print("The request failed. Error: \(error)")
             } else if let _ = task.result as? User {
@@ -98,14 +102,22 @@ extension AuthenticationProtocol {
         })
     }
     
-    func syncCoreDataWithDynamoDB() {
+    func syncCoreDataWithDynamoDB(onCompletionClosure onComplete: @escaping ()->() ) {
         SwipedTinponsCore.resetAllRecords()
         let cognitoId = AWSMobileClient.cognitoId
-        SwipedTinpon().loadAllSwipedTinponsFor(userId: cognitoId, onComplete: { swipedTinpons in
+        SwipedTinpon().loadAllSwipedTinponsFor(userId: cognitoId, onComplete: { [weak self] swipedTinpons in
+            guard let strongSelf = self else { return }
             for swipedTinpon in swipedTinpons {
                 SwipedTinponsCore.save(swipedTinpon: swipedTinpon)
             }
+            
+            
+            let swipedTinponsNew = SwipedTinponsCore.fetchData()
+            print(" swiped New tinpons \(swipedTinponsNew?.count)")
+            
+            onComplete()
         })
         
+    
     }
 }

@@ -35,7 +35,6 @@ class TinponManagerTableViewController: UITableViewController, LoadingAnimationP
         
         // AnimationLoaderProtocol
         loadingAnimationView = self.tableView
-        print("Setup Manager \(loadingAnimationView)")
         
         updateDataSource()
         
@@ -45,8 +44,6 @@ class TinponManagerTableViewController: UITableViewController, LoadingAnimationP
     }
     
     func updateDataSource() {
-        print("check if we exit: \(self)")
-        print("manager loader \(loadingAnimationView)")
         startLoadingAnimation()
         
         TinponWrapper.loadAllTinponsForSignedInUser{ [weak self] tinpons in

@@ -13,6 +13,7 @@ class TinponWrapper {
     
     var swiperViewController: SwiperViewController!
     var tinponsLoader = Array<TinponLoader>()
+    var cognitoId: String!
     
     init(swiperViewController: SwiperViewController) {
         self.swiperViewController = swiperViewController
@@ -86,8 +87,10 @@ class TinponWrapper {
     }
     
     func loadNotSwipedTinponsFromUserCategories(performClousreOnComplete onComplete: @escaping ([Tinpon]) -> Void) {
-        UserWrapper.getUserIdAWSTask().continueOnSuccessWith{ task in
+        UserWrapper.getUserIdAWSTask().continueOnSuccessWith{ [weak self] task in
+            guard let strongSelf = self else { return nil }
             let cognitoId = task.result! as String
+            strongSelf.cognitoId = cognitoId
             return UserWrapper.getUserAWSTask(cognitoId: cognitoId)
         }.continueWith(block: { task in
             if let error = task.error {
@@ -150,10 +153,12 @@ class TinponWrapper {
             var fetchSwipedTinpons : [SwipedTinponsCore] = []
             do {
                 let fetchRequest : NSFetchRequest<SwipedTinponsCore> = SwipedTinponsCore.fetchRequest()
-                fetchRequest.predicate = NSPredicate(format: "(tinponId == %@)", tinpon.tinponId!)
+                fetchRequest.predicate = NSPredicate(format: "(tinponId == %@ AND userId == %@) ", tinpon.tinponId!, self.cognitoId)
                 fetchSwipedTinpons = try context.fetch(fetchRequest)
                 if fetchSwipedTinpons.count < 1 {
                     filteredTinpons.append(tinpon)
+                } else {
+                   print("Tinpon filtered \(tinpon.name)")
                 }
             } catch {
                 print("filterTinpons: Fetching Failed")

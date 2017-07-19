@@ -30,6 +30,7 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
     var didAppear: Bool = false
     func resetUI() {
         if(didAppear) {
+            print("reset Swiper")
             tinpons = []
             
             tinponWrapper = TinponWrapper(swiperViewController: self)

@@ -50,32 +50,32 @@ class SwipedTinpon {
     }
     
     func loadAllSwipedTinponsFor(userId: String, onComplete: @escaping ([SwipedTinpon]) -> ()) {
-        self.userId = userId
-        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
-        
-        let queryExpression = AWSDynamoDBQueryExpression()
-        
-        queryExpression.keyConditionExpression = "userId = :userId"
-        queryExpression.expressionAttributeValues = [":userId" : userId]
-        //        if lastEvaluatedKey != nil {
-        //            queryExpression.exclusiveStartKey = lastEvaluatedKey
-        //        }
-        
-        dynamoDBObjectMapper.query(DynamoDBSwipedTinpon.self, expression: queryExpression).continueWith(block: { (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Any? in
-
-            if let error = task.error as NSError? {
-                print("The request failed. Error: \(error)")
-            } else if let paginatedOutput = task.result {
-                let dynamoDBSwipedTinpons = (paginatedOutput.items as? [DynamoDBSwipedTinpon])!
-                var swipedTinpons: [SwipedTinpon] = []
-                for dynamoDBSwipedTinpon in dynamoDBSwipedTinpons {
-                    swipedTinpons.append(SwipedTinpon.castDynamoDBSwipedTinponToSwipedTinpon(dynamoDBSwipedTinpon: dynamoDBSwipedTinpon))
+        UserWrapper.getUserIdAWSTask().continueOnSuccessWith{ task in
+            let cognitoId = task.result! as String
+            
+            let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
+            
+            let queryExpression = AWSDynamoDBQueryExpression()
+            
+            queryExpression.keyConditionExpression = "userId = :userId"
+            queryExpression.expressionAttributeValues = [":userId" : cognitoId]
+            
+            return dynamoDBObjectMapper.query(DynamoDBSwipedTinpon.self, expression: queryExpression)
+            }.continueWith{ task in
+                if let error = task.error as NSError? {
+                    print("The request failed. Error: \(error)")
+                } else if let paginatedOutput = task.result as? AWSDynamoDBPaginatedOutput {
+                    let dynamoDBSwipedTinpons = (paginatedOutput.items as? [DynamoDBSwipedTinpon])!
+                    var swipedTinpons: [SwipedTinpon] = []
+                    for dynamoDBSwipedTinpon in dynamoDBSwipedTinpons {
+                        swipedTinpons.append(SwipedTinpon.castDynamoDBSwipedTinponToSwipedTinpon(dynamoDBSwipedTinpon: dynamoDBSwipedTinpon))
+                    }
+                    
+                    print("swipedTinpon count \(swipedTinpons.count)")
+                    onComplete(swipedTinpons)
                 }
-                
-                onComplete(swipedTinpons)
-            }
-            return nil
-        })
+                return nil
+        }
     }
     
     static func loadAllFavouriteTinpons(lastEvaluatedKey: [String: AWSDynamoDBAttributeValue]? = nil,
