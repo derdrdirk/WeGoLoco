@@ -60,6 +60,7 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
     @IBOutlet weak var outOfTinponsStack: UIStackView!
     
     var tinponWrapper: TinponWrapper!
+    var userWrapper = UserWrapper()
     
     var userId: String?
     var tinpons : [Tinpon] = []
@@ -68,11 +69,14 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
     //MARK: Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         getCognitoID()
+        
+        userWrapper.doInvoke()
     }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // ResetUIProtocol
         didAppear = true
         

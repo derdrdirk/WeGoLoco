@@ -88,12 +88,16 @@ class AWSMobileClient: NSObject {
         AWSSignInManager.sharedInstance().register(signInProvider: AWSCognitoUserPoolsSignInProvider.sharedInstance())
         AWSIdentityProfileManager.sharedInstance().register(UserPoolsIdentityProfile.sharedInstance(), forProviderKey: AWSCognitoUserPoolsSignInProvider.sharedInstance().identityProviderName)
 
+        
+        // set up Cloud Logic API invocation clients
+        setupCloudLogicAPI()
+        
             
         let didFinishLaunching: Bool = AWSSignInManager.sharedInstance().interceptApplication(application, didFinishLaunchingWithOptions: launchOptions)
 
         if (!isInitialized) {
             AWSSignInManager.sharedInstance().resumeSession(completionHandler: { (result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) in
-                print("Result: \(result) AuthState: \(authState) \n Error:\(error)")
+                //print("Result: \(result) AuthState: \(authState) \n Error:\(error)")
             }) // If you get an EXC_BAD_ACCESS here in iOS Simulator, then do Simulator -> "Reset Content and Settings..."
                // This will clear bad auth tokens stored by other apps with the same bundle ID.
             isInitialized = true
@@ -101,4 +105,10 @@ class AWSMobileClient: NSObject {
 
         return didFinishLaunching
     }
+    
+    func setupCloudLogicAPI() {
+        let serviceConfiguration = AWSServiceConfiguration(region: AWSCloudLogicDefaultRegion, credentialsProvider: AWSIdentityManager.default().credentialsProvider)
+        AWSAPI_DOMG701VNC_TinponsMobileHubClient.register(with: serviceConfiguration!, forKey: AWSCloudLogicDefaultConfigurationKey)
+    }
+
 }

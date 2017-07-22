@@ -8,6 +8,7 @@
 
 import Foundation
 import AWSDynamoDB
+import AWSAPIGateway
 
 class UserWrapper {
     
@@ -29,6 +30,47 @@ class UserWrapper {
         }
     }
     
+    // MARK: API
+    
+    func doInvoke() {
+        let httpMethodName = "GET"
+        let URLString = "/users"
+        let queryStringParameters: [String:String] = [:]
+        let headerParameters = [
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        ]
+        let httpBody: String? = nil
+        
+        // Construct the request object
+        let apiRequest = AWSAPIGatewayRequest(httpMethod: httpMethodName,
+                                              urlString: URLString,
+                                              queryParameters: queryStringParameters,
+                                              headerParameters: headerParameters,
+                                              httpBody: httpBody)
+        
+        // Fetch the Cloud Logic client to be used for invocation
+        // Change the `AWSAPI_XE21FG_MyCloudLogicClient` class name to the client class for your generated SDK
+        print(AWSAPI_DOMG701VNC_TinponsMobileHubClient(forKey: AWSCloudLogicDefaultConfigurationKey))
+        AWSAPI_DOMG701VNC_TinponsMobileHubClient(forKey: AWSCloudLogicDefaultConfigurationKey).invoke(apiRequest).continueWith { [weak self] (task: AWSTask<AWSAPIGatewayResponse>) -> Any? in
+            guard let strongSelf = self else { return nil }
+            
+            if let error = task.error {
+                print("Error occurred: \(error)")
+                // Handle error here
+                return nil
+            }
+            
+            // Handle successful result here
+            let result = task.result!
+            let responseString = String(data: result.responseData!, encoding: .utf8)
+            
+            print(responseString?.toJSON)
+            print(result.statusCode)
+            
+            return nil
+        }
+    }
     
     // MARK: Tasks
     
