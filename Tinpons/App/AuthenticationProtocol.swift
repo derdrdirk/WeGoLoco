@@ -77,14 +77,14 @@ extension AuthenticationProtocol {
         let cognitoId = AWSMobileClient.cognitoId
         //check if User Account exists
         let dynamoDBOBjectMapper = AWSDynamoDBObjectMapper.default()
-        dynamoDBOBjectMapper.load(User.self, hashKey: cognitoId, rangeKey: nil).continueWith(block: { (task:AWSTask<AnyObject>!) -> Any? in
+        dynamoDBOBjectMapper.load(DynamoDBUser.self, hashKey: cognitoId, rangeKey: nil).continueWith(block: { (task:AWSTask<AnyObject>!) -> Any? in
             if let error = task.error {
                 print("The request failed. Error: \(error)")
             } else if let _ = task.result as? User {
                 //print("found something")
             } else if task.result == nil {
                 // User does not exist => create
-                let user = User()
+                let user = DynamoDBUser()
                 user?.userId = cognitoId
                 user?.createdAt = Date().iso8601.dateFromISO8601?.iso8601 // "2017-03-22T13:22:13.933Z"
                 user?.tinponCategories = ["👕", "👖", "👞"]

@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import AWSDynamoDB
 
-class User: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
+class DynamoDBUser: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     var userId: String?
     var createdAt: String?
     var birthdate: String?

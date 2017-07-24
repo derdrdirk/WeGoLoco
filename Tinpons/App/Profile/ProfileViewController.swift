@@ -32,7 +32,7 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
         }
     }
     
-    var user : User!
+    var user : DynamoDBUser!
     
     override func viewDidLoad() {
         super.viewDidLoad()

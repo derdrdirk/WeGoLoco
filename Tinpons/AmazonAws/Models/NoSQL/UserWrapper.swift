@@ -14,7 +14,7 @@ class UserWrapper {
     
     // MARK: load
     
-    static func getSignedInUser(onCompletionClosure onComplete: @escaping (User)->Void) {
+    static func getSignedInUser(onCompletionClosure onComplete: @escaping (DynamoDBUser)->Void) {
         getUserIdAWSTask().continueOnSuccessWith{ task in
             let cognitoId = task.result! as String
             
@@ -23,7 +23,7 @@ class UserWrapper {
             if let error = task.error {
                 print("ERROR---UserWrapper-getSignedInUser: \(error)")
             } else {
-                let user = task.result! as! User
+                let user = task.result! as! DynamoDBUser
                 onComplete(user)
             }
             return nil
@@ -68,6 +68,12 @@ class UserWrapper {
             print(responseString?.toJSON)
             print(result.statusCode)
             
+            if let responseString = responseString?.toJSON as? [String:Any] {
+                if let item = responseString["Item"] {
+                    print(item)
+                }
+            }
+            
             return nil
         }
     }
@@ -85,7 +91,7 @@ class UserWrapper {
     static func getUserAWSTask(cognitoId: String) -> AWSTask<AnyObject> {
         let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
         
-        return dynamoDBObjectMapper.load(User.self, hashKey: cognitoId, rangeKey:nil)
+        return dynamoDBObjectMapper.load(DynamoDBUser.self, hashKey: cognitoId, rangeKey:nil)
     }
 
 }

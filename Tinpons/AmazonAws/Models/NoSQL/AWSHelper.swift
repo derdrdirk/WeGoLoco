@@ -9,7 +9,7 @@
 import Foundation
 import AWSDynamoDB
 
-func getUser(onCompletion: @escaping (User) -> Void) {
+func getUser(onCompletion: @escaping (DynamoDBUser) -> Void) {
     let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:8088e7da-a496-4ae3-818c-2b9025180888")
     let configuration = AWSServiceConfiguration(region: .EUWest1, credentialsProvider: credentialsProvider)
     AWSServiceManager.default().defaultServiceConfiguration = configuration
@@ -24,13 +24,13 @@ func getUser(onCompletion: @escaping (User) -> Void) {
             let cognitoId = task.result!
             print(cognitoId)
             let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
-            return dynamoDBObjectMapper.load(User.self, hashKey: cognitoId, rangeKey:nil)
+            return dynamoDBObjectMapper.load(DynamoDBUser.self, hashKey: cognitoId, rangeKey:nil)
         }
         return nil
     }).continueWith(block: { (task:AWSTask<AnyObject>!) -> Any? in
         if let error = task.error {
             print("The request failed. Error: \(error)")
-        } else if let user = task.result as? User {
+        } else if let user = task.result as? DynamoDBUser {
             // Do something with task.result
             let dynamoDBOBjectMapper = AWSDynamoDBObjectMapper.default()
             let queryExpression = AWSDynamoDBQueryExpression()

@@ -70,7 +70,16 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
     override func viewWillAppear(_ animated: Bool) {
         getCognitoID()
         
-        userWrapper.doInvoke()
+//        UserAPI.getSignedInUser{ user in
+//            print(user.toJSON()!)
+//        }
+        
+        var user = User()
+        user.birthdate = Date()
+        print(user.toJSON()!)
+        UserAPI.save(preparedObject: user, onCompletionClosure: { print("saved") })
+        
+        
     }
     
     

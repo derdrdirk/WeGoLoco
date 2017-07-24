@@ -7,17 +7,9 @@
 
 'use strict';
 var AWS = require("aws-sdk");
-
 var docClient = new AWS.DynamoDB.DocumentClient();
 var table = "tinpons-mobilehub-1827971537-Users";
-var userId = "eu-west-1:ed3670fa-1f3d-40b8-a181-cb48b78fff1c";
 
-var params = {
-    TableName: table,
-    Key:{
-        "userId": userId,
-    }
-};
 
 console.log("Loading function");
 
@@ -79,16 +71,27 @@ exports.handler = function(event, context, callback) {
 
     // TODO: Put your application logic here...
 
+
+    var result;
     switch (httpMethod) {
       case "GET":
-        var result;
+        //var userId = "eu-west-1:ed3670fa-1f3d-40b8-a181-cb48b78fff1c";
+        var userId = cognitoIdentityId;
+        var params = {
+            TableName: table,
+            Key:{
+                "userId": userId,
+            }
+        };
+
         docClient.get(params, function(err, data) {
             if (err) {
                 console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
                 result = "Unable to read item. Error JSON:"+JSON.stringify(err, null, 2);
             } else {
                 console.log("GetItem succeeded:", JSON.stringify(data, null, 2));
-                result = data;
+                // Strip JOSN Item Root { "Item": ... }
+                result = data.Item
             }
 
             var response = {
@@ -102,7 +105,73 @@ exports.handler = function(event, context, callback) {
             context.succeed(response);
         });
         break;
+      case "POST":
+        let user = JSON.parse(requestBody);
+
+        var params = {
+            TableName:table,
+            Item:{
+                "userId" : user.userId,
+                "createdAt" : user.createdAt,
+                "birthdate" : user.birthdate,
+                "gender" : user.gender,
+                "height" : user.height,
+                "tinponCategories" : docClient.createSet(user.tinponCategories),
+                "updatedAt" : user.updatedAt
+            }
+        };
+
+        docClient.put(params, function(err, data) {
+            if (err) {
+                console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+                result = "Unable to add item. Error JSON:", JSON.stringify(err, null, 2);
+                response = {
+                  statusCode: responseCode,
+                  headers: {
+                      "x-custom-header" : "custom header value"
+                  },
+                  body: result
+                };
+                context.succeed(response);
+            } else {
+                console.log("Added item:", JSON.stringify(data, null, 2));
+                result = "Added item:", JSON.stringify(data, null, 2);
+                response = {
+                  statusCode: responseCode,
+                  headers: {
+                      "x-custom-header" : "custom header value"
+                  },
+                  body: result
+                };
+                context.succeed(response);
+            }
+        });
+        break;
       default:
+        // // For demonstration purposes, we'll just echo these values back to the client
+        // var responseBody = {
+        //     requestBody : requestBody,
+        //     pathParams : pathParams,
+        //     queryStringParams : queryStringParams,
+        //     headerParams : headerParams,
+        //     stage : stage,
+        //     stageVariables : stageVariables,
+        //     cognitoIdentityId : cognitoIdentityId,
+        //     httpMethod : httpMethod,
+        //     sourceIp : sourceIp,
+        //     userAgent : userAgent,
+        //     requestId : requestId,
+        //     resourcePath : resourcePath
+        // };
+        //
+        // response = {
+        //   statusCode: responseCode,
+        //   headers: {
+        //       "x-custom-header" : "custom header value"
+        //   },
+        //   body: JSON.stringify(responseBody)
+        // };
+        // context.succeed(response);
         var response = {
             statusCode: responseCode,
             headers: {

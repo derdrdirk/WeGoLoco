@@ -96,7 +96,7 @@ class TinponWrapper {
             if let error = task.error {
                 print("ERROR---TinponWrapper-loadNotSwipedTinponsFromUserCategories: \(error)")
             } else {
-                let user = task.result as! User
+                let user = task.result as! DynamoDBUser
                 
                 // get Tinpons for every category
                 user.tinponCategories?.forEach {category in
