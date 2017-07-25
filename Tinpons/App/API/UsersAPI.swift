@@ -43,6 +43,21 @@ class UserAPI: APIGatewayProtocol {
                 }
             }
         }
-
+    }
+    
+    static func update(preparedObject user: User, onCompletionClosure onComplete: @escaping ()->()) {
+        restAPITask(httpMethod: .PUT, endPoint: .users, httpBody: user.toJSON()).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
+            if let error = task.error {
+                print("Error occurred: \(error)")
+                // Handle error here
+                return
+            } else if let result = task.result {
+                if result.statusCode == 200 {
+                    onComplete()
+                } else {
+                    print("UserAPI.save Error: HTTP status code: \(result.statusCode) \n and body: \(String(data: result.responseData!, encoding: .utf8))")
+                }
+            }
+        }
     }
 }

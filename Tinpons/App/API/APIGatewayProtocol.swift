@@ -11,6 +11,7 @@ import Foundation
 enum HttpdMethod:String {
     case GET = "GET"
     case POST = "POST"
+    case PUT = "PUT"
 }
 
 enum APIEndPoint:String {

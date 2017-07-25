@@ -38,7 +38,7 @@ exports.handler = function(event, context, callback) {
     var responseCode = 200;
     var requestBody, pathParams, queryStringParams, headerParams, stage,
     stageVariables, cognitoIdentityId, httpMethod, sourceIp, userAgent,
-    requestId, resourcePath, body;
+    requestId, resourcePath, body, user;
     console.log("request: " + JSON.stringify(event));
 
     // Request Body
@@ -107,27 +107,16 @@ exports.handler = function(event, context, callback) {
 
         docClient.get(params, function(err, data) {
             if (err) {
-                console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
-                result = "Unable to read item. Error JSON:"+JSON.stringify(err, null, 2);
+                console.error("Unable to GET user. Error JSON:", JSON.stringify(err, null, 2));
             } else {
-                console.log("GetItem succeeded:", JSON.stringify(data, null, 2));
-                // Strip JOSN Item Root { "Item": ... }
-                result = data.Item
+                console.log("GET user succeeded:", JSON.stringify(data, null, 2));
+                // Strip JSON Root { "Item": ... }
+                respond(context, 200, JSON.stringify(data.Item));
             }
-
-            var response = {
-                statusCode: responseCode,
-                headers: {
-                    "x-custom-header" : "custom header value"
-                },
-                body: JSON.stringify(result)
-            };
-
-            context.succeed(response);
         });
         break;
       case "POST":
-        let user = JSON.parse(requestBody);
+        user = JSON.parse(requestBody);
 
         // create user only if not preexisting
         params = {
@@ -139,7 +128,6 @@ exports.handler = function(event, context, callback) {
 
         docClient.get(params, function(err, data) {
             if (err) {
-                // user does not exist
                 console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
             } else {
               if(Object.keys(data).length === 0 && data.constructor === Object) {
@@ -169,15 +157,65 @@ exports.handler = function(event, context, callback) {
                 });
               } else {
                 // User already exists
-                body = "User already exists! \n User: "+JSON.stringify(data);
+                body = "User already exists! Cannot create. \n User: "+JSON.stringify(data);
                 console.log(body);
                 // StausCode 409: conflict
                 respond(context, 409, body);
               }
             }
         });
-
         break;
+        case "PUT":
+          user = JSON.parse(requestBody);
+
+          // update user only if preexisting
+          params = {
+              TableName: table,
+              Key:{
+                  "userId": cognitoIdentityId,
+              }
+          };
+
+          docClient.get(params, function(err, data) {
+              if (err) {
+                  console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
+              } else {
+                if(Object.keys(data).length === 0 && data.constructor === Object) {
+                  // User already exists
+                  body = "User does not exist! Cannot update! \n User: "+JSON.stringify(data);
+                  console.log(body);
+                  // StausCode 409: conflict
+                  respond(context, 409, body);
+                } else {
+                  let user_ = data.Item;
+                  let date = new Date();
+                  let isoDate = date.toISOString();
+                  params = {
+                      TableName:table,
+                      Item:{
+                          "userId" : user_.userId,
+                          "createdAt" : user_.createdAt,
+                          "birthdate" : user.birthdate,
+                          "gender" : user.gender,
+                          "height" : user.height,
+                          "tinponCategories" : docClient.createSet(user.tinponCategories),
+                          "updatedAt" : isoDate
+                      }
+                  };
+
+                  docClient.put(params, function(err, data) {
+                      if (err) {
+                          console.error("Unable to update user. Error JSON:", JSON.stringify(err, null, 2));
+                      } else {
+                          console.log("Updated user:", JSON.stringify(data, null, 2));
+                          body = "Updated user:", JSON.stringify(data, null, 2);
+                          respond(context, 200, body)
+                      }
+                  });
+                }
+              }
+          });
+          break;
       default:
         // // For demonstration purposes, we'll just echo these values back to the client
         // var responseBody = {
@@ -203,38 +241,6 @@ exports.handler = function(event, context, callback) {
         //   body: JSON.stringify(responseBody)
         // };
         // context.succeed(response);
-        var response = {
-            statusCode: responseCode,
-            headers: {
-                "x-custom-header" : "custom header value"
-            },
-            body: httpMethod+" is not an allowed HTTP method."
-        };
-
-        context.succeed(response);
+        respond(context, 403, httpMethod+" is not an allowed HTTP method.")
     }
-
-
-
-
-
-    // For demonstration purposes, we'll just echo these values back to the client
-    // var responseBody = {
-    //     requestBody : requestBody,
-    //     pathParams : pathParams,
-    //     queryStringParams : queryStringParams,
-    //     headerParams : headerParams,
-    //     stage : stage,
-    //     stageVariables : stageVariables,
-    //     cognitoIdentityId : cognitoIdentityId,
-    //     httpMethod : httpMethod,
-    //     sourceIp : sourceIp,
-    //     userAgent : userAgent,
-    //     requestId : requestId,
-    //     resourcePath : resourcePath
-    // };
-    //
-
-
-    // testing
 };

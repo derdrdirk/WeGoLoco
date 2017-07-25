@@ -74,10 +74,11 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
 //            print("Download User \(user.toJSON()!)")
 //        }
         
-        var user = User()
-        user.birthdate = Date()
-        print(user.toJSON()!)
-        UserAPI.save(preparedObject: user, onCompletionClosure: { print("saved") })
+//        var user = User()
+//        user.birthdate = Date()
+//        print(user.toJSON()!)
+//        UserAPI.save(preparedObject: user, onCompletionClosure: { print("saved") })
+//        UserAPI.update(preparedObject: user, onCompletionClosure: { print("updated") })
         
         
     }
