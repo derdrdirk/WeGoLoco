@@ -7,9 +7,30 @@
 
 'use strict';
 var AWS = require("aws-sdk");
+//var uuid = require('node-uuid');
 var docClient = new AWS.DynamoDB.DocumentClient();
 var table = "tinpons-mobilehub-1827971537-Users";
 
+function isEmpty(obj) {
+    for(var prop in obj) {
+        if(obj.hasOwnProperty(prop))
+            return false;
+    }
+
+    return JSON.stringify(obj) === JSON.stringify({});
+}
+
+function respond(context, statusCode, body) {
+  let response = {
+      statusCode: statusCode,
+      headers: {
+          "x-custom-header" : "custom header value"
+      },
+      body: body
+  };
+
+  context.succeed(response);
+}
 
 console.log("Loading function");
 
@@ -17,7 +38,7 @@ exports.handler = function(event, context, callback) {
     var responseCode = 200;
     var requestBody, pathParams, queryStringParams, headerParams, stage,
     stageVariables, cognitoIdentityId, httpMethod, sourceIp, userAgent,
-    requestId, resourcePath;
+    requestId, resourcePath, body;
     console.log("request: " + JSON.stringify(event));
 
     // Request Body
@@ -72,12 +93,12 @@ exports.handler = function(event, context, callback) {
     // TODO: Put your application logic here...
 
 
-    var result;
+    var result, params;
     switch (httpMethod) {
       case "GET":
         //var userId = "eu-west-1:ed3670fa-1f3d-40b8-a181-cb48b78fff1c";
         var userId = cognitoIdentityId;
-        var params = {
+        params = {
             TableName: table,
             Key:{
                 "userId": userId,
@@ -108,44 +129,54 @@ exports.handler = function(event, context, callback) {
       case "POST":
         let user = JSON.parse(requestBody);
 
-        var params = {
-            TableName:table,
-            Item:{
-                "userId" : user.userId,
-                "createdAt" : user.createdAt,
-                "birthdate" : user.birthdate,
-                "gender" : user.gender,
-                "height" : user.height,
-                "tinponCategories" : docClient.createSet(user.tinponCategories),
-                "updatedAt" : user.updatedAt
+        // create user only if not preexisting
+        params = {
+            TableName: table,
+            Key:{
+                "userId": cognitoIdentityId,
             }
         };
 
-        docClient.put(params, function(err, data) {
+        docClient.get(params, function(err, data) {
             if (err) {
-                console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
-                result = "Unable to add item. Error JSON:", JSON.stringify(err, null, 2);
-                response = {
-                  statusCode: responseCode,
-                  headers: {
-                      "x-custom-header" : "custom header value"
-                  },
-                  body: result
-                };
-                context.succeed(response);
+                // user does not exist
+                console.error("Unable to read item. Error JSON:", JSON.stringify(err, null, 2));
             } else {
-                console.log("Added item:", JSON.stringify(data, null, 2));
-                result = "Added item:", JSON.stringify(data, null, 2);
-                response = {
-                  statusCode: responseCode,
-                  headers: {
-                      "x-custom-header" : "custom header value"
-                  },
-                  body: result
+              if(Object.keys(data).length === 0 && data.constructor === Object) {
+                let date = new Date();
+                let isoDate = date.toISOString();
+                params = {
+                    TableName:table,
+                    Item:{
+                        "userId" : cognitoIdentityId,
+                        "createdAt" : isoDate,
+                        "birthdate" : user.birthdate,
+                        "gender" : user.gender,
+                        "height" : user.height,
+                        "tinponCategories" : docClient.createSet(user.tinponCategories),
+                        "updatedAt" : isoDate
+                    }
                 };
-                context.succeed(response);
+
+                docClient.put(params, function(err, data) {
+                    if (err) {
+                        console.error("Unable to add item. Error JSON:", JSON.stringify(err, null, 2));
+                    } else {
+                        console.log("Added item:", JSON.stringify(data, null, 2));
+                        body = "Added item:", JSON.stringify(data, null, 2);
+                        respond(context, 200, body)
+                    }
+                });
+              } else {
+                // User already exists
+                body = "User already exists! \n User: "+JSON.stringify(data);
+                console.log(body);
+                // StausCode 409: conflict
+                respond(context, 409, body);
+              }
             }
         });
+
         break;
       default:
         // // For demonstration purposes, we'll just echo these values back to the client

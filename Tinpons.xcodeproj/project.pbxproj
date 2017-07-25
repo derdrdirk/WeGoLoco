@@ -25,6 +25,7 @@
 		D42DC6BC1F1BF9800087EB4F /* Whisper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D42DC6B91F1BF8D40087EB4F /* Whisper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4306C811F0E6BEC0073A11E /* Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4306C801F0E6BEC0073A11E /* Stores.swift */; };
 		D4306C831F0E73780073A11E /* AWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4306C821F0E73780073A11E /* AWSHelper.swift */; };
+		D43777981F262CDB0023448F /* APIGatewayProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43777971F262CDB0023448F /* APIGatewayProtocol.swift */; };
 		D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F51EEC699D00FD148F /* SwiperViewController.swift */; };
 		D443C0F81EEC6CA300FD148F /* BackgroundKolodaAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */; };
 		D443C0FA1EEC728100FD148F /* AddTinponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F91EEC728100FD148F /* AddTinponViewController.swift */; };
@@ -196,6 +197,7 @@
 		D42DC6B91F1BF8D40087EB4F /* Whisper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Whisper.framework; path = Carthage/Build/iOS/Whisper.framework; sourceTree = "<group>"; };
 		D4306C801F0E6BEC0073A11E /* Stores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stores.swift; path = Tinpons/AmazonAws/Models/NoSQL/Stores.swift; sourceTree = SOURCE_ROOT; };
 		D4306C821F0E73780073A11E /* AWSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AWSHelper.swift; path = Tinpons/AmazonAws/Models/NoSQL/AWSHelper.swift; sourceTree = SOURCE_ROOT; };
+		D43777971F262CDB0023448F /* APIGatewayProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIGatewayProtocol.swift; path = Tinpons/App/API/APIGatewayProtocol.swift; sourceTree = SOURCE_ROOT; };
 		D443C0F51EEC699D00FD148F /* SwiperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiperViewController.swift; path = Tinpons/App/Swiper/SwiperViewController.swift; sourceTree = SOURCE_ROOT; };
 		D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundKolodaAnimator.swift; path = Tinpons/App/Swiper/BackgroundKolodaAnimator.swift; sourceTree = SOURCE_ROOT; };
 		D443C0F91EEC728100FD148F /* AddTinponViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTinponViewController.swift; path = Tinpons/App/AddProduct/AddTinponViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -467,6 +469,7 @@
 			children = (
 				D410C5EE1F24D7E0008D6C92 /* User.swift */,
 				D410C5F11F24E443008D6C92 /* UsersAPI.swift */,
+				D43777971F262CDB0023448F /* APIGatewayProtocol.swift */,
 			);
 			name = Api;
 			sourceTree = "<group>";
@@ -616,6 +619,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4E258211EEC1A6400B2B986 /* CustomOverlayView.swift in Sources */,
+				D43777981F262CDB0023448F /* APIGatewayProtocol.swift in Sources */,
 				E7A30F049A3B079A00000000 /* UserPoolNewPasswordViewController.swift in Sources */,
 				D4DA424D1F0E2CFB00A1C69E /* CustomCells.swift in Sources */,
 				D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */,

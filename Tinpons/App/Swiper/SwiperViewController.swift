@@ -71,7 +71,7 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
         getCognitoID()
         
 //        UserAPI.getSignedInUser{ user in
-//            print(user.toJSON()!)
+//            print("Download User \(user.toJSON()!)")
 //        }
         
         var user = User()
