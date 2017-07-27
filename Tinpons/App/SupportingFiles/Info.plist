@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>RemachineScript.ttf</string>
+		<string>proxima-nova-soft-bold.ttf</string>
+		<string>proxima-nova-soft-regular.ttf</string>
+	</array>
 	<key>AWS</key>
 	<dict>
 		<key>Cognito</key>

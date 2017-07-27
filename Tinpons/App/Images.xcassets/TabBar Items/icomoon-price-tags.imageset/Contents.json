@@ -2,6 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
+      "filename" : "icomoon-price-tags@1x.png",
       "scale" : "1x"
     },
     {
@@ -10,7 +11,7 @@
     },
     {
       "idiom" : "universal",
-      "filename" : "faTags.png",
+      "filename" : "icomoon-price-tags.png",
       "scale" : "3x"
     }
   ],

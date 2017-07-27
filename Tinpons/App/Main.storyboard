@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="gBf-bx-14h">
             <objects>
-                <tabBarController id="zjm-Jq-gKa" sceneMemberID="viewController">
+                <tabBarController id="zjm-Jq-gKa" customClass="MainTabBarController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="E6M-I2-tYl"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5zU-G4-OHP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -80,7 +80,9 @@
                             <constraint firstItem="9LJ-Ha-R53" firstAttribute="trailing" secondItem="4kG-LK-x3N" secondAttribute="trailingMargin" id="gvf-p8-Rul"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Swiper" image="faTags" id="BfZ-Eq-zfK"/>
+                    <tabBarItem key="tabBarItem" title="" image="icomoon-price-tags" id="BfZ-Eq-zfK">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="Tinpons" id="keu-zp-Ez7"/>
                     <connections>
                         <outlet property="kolodaView" destination="9LJ-Ha-R53" id="CHB-fs-hlm"/>
@@ -91,11 +93,11 @@
             </objects>
             <point key="canvasLocation" x="2432.8000000000002" y="517.6911544227886"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="acH-Tt-eao">
             <objects>
                 <navigationController id="ddS-sC-jhU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="ebJ-m8-Ril"/>
+                    <tabBarItem key="tabBarItem" title="" id="ebJ-m8-Ril"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jd7-Ed-EQj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -108,11 +110,11 @@
             </objects>
             <point key="canvasLocation" x="1689" y="1220"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="H3E-My-Zyq">
             <objects>
                 <navigationController id="LfB-L5-P3L" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Cbp-Nx-JGf"/>
+                    <tabBarItem key="tabBarItem" title="" id="Cbp-Nx-JGf"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OXR-Cz-A2X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -138,7 +140,9 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Profile" image="faUser" id="L5E-5L-KlC"/>
+                    <tabBarItem key="tabBarItem" title="" image="faUser" id="L5E-5L-KlC">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="Profile" id="f1P-0o-4R1">
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="5Bd-Ss-Bmd">
                             <connections>
@@ -210,14 +214,17 @@
             </objects>
             <point key="canvasLocation" x="3838" y="1979"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="Acf-FM-p9z">
             <objects>
                 <navigationController id="Kpi-Xm-XQ0" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="aBK-0P-8I7"/>
+                    <tabBarItem key="tabBarItem" title="" id="aBK-0P-8I7"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iHk-9t-19I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="40"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="gfq-04-FT2" kind="relationship" relationship="rootViewController" id="AoW-g6-8l2"/>
@@ -227,11 +234,11 @@
             </objects>
             <point key="canvasLocation" x="1689" y="518"/>
         </scene>
-        <!--Item-->
+        <!--Navigation Controller-->
         <scene sceneID="hpP-5X-TVq">
             <objects>
                 <navigationController id="o7V-gW-8HN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="hcs-Nb-vM5"/>
+                    <tabBarItem key="tabBarItem" title="" id="hcs-Nb-vM5"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WUr-7k-hFm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -257,7 +264,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pIy-ak-5JN" id="40z-b7-c5r">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="c32-O0-zsf">
@@ -321,7 +328,9 @@
                             <outlet property="delegate" destination="EEM-2p-Tew" id="jA2-GX-VC6"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="My Tinpons" image="faDatabase" id="rl9-7H-Fjf"/>
+                    <tabBarItem key="tabBarItem" title="" image="faDatabase" id="rl9-7H-Fjf">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <navigationItem key="navigationItem" title="Tinpon Manager" id="bQC-jh-fc4">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Zfz-LR-ZeG">
                             <connections>
@@ -333,6 +342,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4jh-kz-E6X" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2432.8000000000002" y="1979.4602698650676"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="12S-he-1Z7">
+            <objects>
+                <tabBarController id="D1z-4G-yeg" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="bQt-OU-myl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="wzu-Na-rKZ" kind="relationship" relationship="viewControllers" id="CNc-Qj-2IV"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="k0x-ni-0AN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1626" y="3079"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="THw-Q6-Smr">
+            <objects>
+                <navigationController id="wzu-Na-rKZ" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" id="Mq1-Rf-Fpz"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iG6-3H-mA5">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="40"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Tg5-T6-FiW" kind="relationship" relationship="rootViewController" id="xLz-DH-zFA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EVp-Pp-u0L" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2471" y="3064"/>
+        </scene>
+        <!--Tinpons-->
+        <scene sceneID="Peo-iK-deL">
+            <objects>
+                <viewController id="Tg5-T6-FiW" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IgO-Cy-rvP"/>
+                        <viewControllerLayoutGuide type="bottom" id="dEO-Jj-bgJ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OOj-ye-fVh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Tinpons" id="eOV-bu-7Ae"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Z0E-ed-YYD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3231" y="3063"/>
         </scene>
         <!--Favourites-->
         <scene sceneID="Pes-tX-gnk">
@@ -424,7 +489,9 @@
                             <outlet property="delegate" destination="5EV-VG-RIe" id="hku-eG-TSg"/>
                         </connections>
                     </collectionView>
-                    <tabBarItem key="tabBarItem" systemItem="favorites" id="wCi-td-bUj"/>
+                    <tabBarItem key="tabBarItem" image="mi-favourite" id="wCi-td-bUj">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Favourites" id="qOE-nc-bhg"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -437,7 +504,8 @@
     <resources>
         <image name="faDatabase" width="75" height="75"/>
         <image name="faMapMarker" width="37" height="37"/>
-        <image name="faTags" width="75" height="75"/>
         <image name="faUser" width="16" height="16"/>
+        <image name="icomoon-price-tags" width="25" height="25"/>
+        <image name="mi-favourite" width="16" height="16"/>
     </resources>
 </document>

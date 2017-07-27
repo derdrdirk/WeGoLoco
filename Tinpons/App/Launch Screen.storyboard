@@ -1,52 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="pIB-KE-g0K">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
-        <scene sceneID="qVv-iR-bjv">
-            <objects>
-                <tabBarController id="pIB-KE-g0K" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" id="pgm-dT-6BE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="zYW-yf-N82" kind="relationship" relationship="viewControllers" id="kVF-5K-aq7"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fy0-Nk-eVC" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1537" y="359"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="XUd-F9-vHF">
-            <objects>
-                <navigationController id="zYW-yf-N82" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" id="dku-Wh-smY"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jLQ-zs-ehO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <textAttributes key="titleTextAttributes">
-                            <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="0.0"/>
-                        </textAttributes>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="01J-lp-oVM" kind="relationship" relationship="rootViewController" id="rbu-ls-7yi"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="bCH-sj-08B" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-764" y="359"/>
-        </scene>
-        <!--Tinpons-->
+        <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
@@ -57,13 +21,26 @@
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="ovi-Ak-WpH">
+                                <rect key="frame" x="0.0" y="19" width="375" height="648"/>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="ovi-Ak-WpH" secondAttribute="trailing" id="Cah-TE-MzX"/>
+                            <constraint firstItem="ovi-Ak-WpH" firstAttribute="bottom" secondItem="xb3-aO-Qok" secondAttribute="top" id="QUT-SD-BzM"/>
+                            <constraint firstItem="ovi-Ak-WpH" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="eGs-rq-Lcw"/>
+                            <constraint firstItem="ovi-Ak-WpH" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" constant="19" id="nPT-N3-v6D"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Tinpons" id="4CA-jR-UGB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="36" y="360"/>
+            <point key="canvasLocation" x="152.80000000000001" y="388.15592203898052"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="launchScreen" width="1242" height="2150"/>
+    </resources>
 </document>

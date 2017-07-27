@@ -81,6 +81,12 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
 //        UserAPI.update(preparedObject: user, onCompletionClosure: { print("updated") })
         
         
+        let firstSignInStoryboard = UIStoryboard(name: "FirstSignIn", bundle: nil)
+        let firstSignInController: FirstSignInViewController = firstSignInStoryboard.instantiateViewController(withIdentifier: "FirstSignIn") as! FirstSignInViewController
+        let navController = UINavigationController(rootViewController: firstSignInController)
+        extensionNavigationController.present(navController, animated: true, completion: nil)
+
+        
     }
     
     

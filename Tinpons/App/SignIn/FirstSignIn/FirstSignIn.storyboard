@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="3Sg-NS-VZH">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="RemachineScript.ttf">
+            <string>RemachineScriptPersonalUse</string>
+        </array>
+        <array key="proxima-nova-soft-regular.ttf">
+            <string>ProximaNovaSoft-Regular</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--FirstSignIn-->
+        <scene sceneID="wkm-01-Jw4">
+            <objects>
+                <navigationController title="FirstSignIn" id="3Sg-NS-VZH" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="Wiz-Tj-qnI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" type="system" pointSize="1"/>
+                        </textAttributes>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="dGY-at-1xa" kind="relationship" relationship="rootViewController" id="9Il-6I-dq5"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JwH-kj-xkw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-665" y="133"/>
+        </scene>
+        <!--Tinpons-->
+        <scene sceneID="fEl-EV-sGR">
+            <objects>
+                <viewController storyboardIdentifier="FirstSignIn" id="dGY-at-1xa" customClass="FirstSignInViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="UWj-dB-CAj"/>
+                        <viewControllerLayoutGuide type="bottom" id="mLh-0C-5Ge"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="E1U-fb-Wbp">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="njX-WA-uAr">
+                                <rect key="frame" x="16" y="158.5" width="343" height="350"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5I-p2-wok">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="200"/>
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <string key="content">Mi
+ e-mail  es</string>
+                                                <attributes>
+                                                    <font key="NSFont" size="100" name="RemachineScriptPersonalUse"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Dirección de correo electronico" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HHw-De-sHi">
+                                        <rect key="frame" x="0.0" y="224" width="343" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="40"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FPQ-xt-fac">
+                                        <rect key="frame" x="0.0" y="278" width="343" height="72"/>
+                                        <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="60"/>
+                                        <state key="normal" title="Registrarse">
+                                            <color key="titleColor" red="0.50196078431372548" green="0.69019607843137254" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="leadingMargin" secondItem="njX-WA-uAr" secondAttribute="leading" id="MCb-U1-nUZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="njX-WA-uAr" secondAttribute="trailing" id="m7G-hO-jAX"/>
+                            <constraint firstItem="njX-WA-uAr" firstAttribute="centerY" secondItem="E1U-fb-Wbp" secondAttribute="centerY" id="xKX-Pf-2Wn"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Tinpons" id="0wj-Zt-9jf"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6p1-wF-cQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="184.80000000000001" y="132.68365817091455"/>
+        </scene>
+    </scenes>
+</document>
