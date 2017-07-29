@@ -31,7 +31,7 @@
 		D4306C811F0E6BEC0073A11E /* Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4306C801F0E6BEC0073A11E /* Stores.swift */; };
 		D4306C831F0E73780073A11E /* AWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4306C821F0E73780073A11E /* AWSHelper.swift */; };
 		D430CC8B1F2B2AF200174E5C /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430CC8A1F2B2AF200174E5C /* EmailViewController.swift */; };
-		D430CC8D1F2B2B1A00174E5C /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430CC8C1F2B2B1A00174E5C /* PasswordViewController.swift */; };
+		D430CC8D1F2B2B1A00174E5C /* BirthdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430CC8C1F2B2B1A00174E5C /* BirthdateViewController.swift */; };
 		D430CC911F2B2E0300174E5C /* FirstSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430CC901F2B2E0300174E5C /* FirstSignInViewController.swift */; };
 		D430CC931F2B2FA100174E5C /* FirstSignInNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430CC921F2B2FA100174E5C /* FirstSignInNavigationController.swift */; };
 		D43777981F262CDB0023448F /* APIGatewayProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43777971F262CDB0023448F /* APIGatewayProtocol.swift */; };
@@ -42,6 +42,8 @@
 		D4512B4A1F1930BE009B109C /* TinponManagerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4512B491F1930BE009B109C /* TinponManagerTableViewCell.swift */; };
 		D452206A1F2C924C00D01C43 /* Validator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45220691F2C924C00D01C43 /* Validator.framework */; };
 		D452206B1F2C924C00D01C43 /* Validator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45220691F2C924C00D01C43 /* Validator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D452206F1F2CC85A00D01C43 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D452206E1F2CC85A00D01C43 /* GenderViewController.swift */; };
+		D45220711F2CCDDC00D01C43 /* InterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45220701F2CCDDC00D01C43 /* InterestsViewController.swift */; };
 		D47F96E81EED8D0000B9FCE3 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */; };
 		D47F96E91EED8D0000B9FCE3 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D47F96F01EED938400B9FCE3 /* ImageRow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47F96EF1EED938400B9FCE3 /* ImageRow.framework */; };
@@ -217,7 +219,7 @@
 		D4306C801F0E6BEC0073A11E /* Stores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stores.swift; path = Tinpons/AmazonAws/Models/NoSQL/Stores.swift; sourceTree = SOURCE_ROOT; };
 		D4306C821F0E73780073A11E /* AWSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AWSHelper.swift; path = Tinpons/AmazonAws/Models/NoSQL/AWSHelper.swift; sourceTree = SOURCE_ROOT; };
 		D430CC8A1F2B2AF200174E5C /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmailViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/EmailViewController.swift; sourceTree = SOURCE_ROOT; };
-		D430CC8C1F2B2B1A00174E5C /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasswordViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/PasswordViewController.swift; sourceTree = SOURCE_ROOT; };
+		D430CC8C1F2B2B1A00174E5C /* BirthdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BirthdateViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/BirthdateViewController.swift; sourceTree = SOURCE_ROOT; };
 		D430CC901F2B2E0300174E5C /* FirstSignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirstSignInViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/FirstSignInViewController.swift; sourceTree = SOURCE_ROOT; };
 		D430CC921F2B2FA100174E5C /* FirstSignInNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirstSignInNavigationController.swift; path = Tinpons/App/SignIn/FirstSignIn/FirstSignInNavigationController.swift; sourceTree = SOURCE_ROOT; };
 		D43777971F262CDB0023448F /* APIGatewayProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIGatewayProtocol.swift; path = Tinpons/App/API/APIGatewayProtocol.swift; sourceTree = SOURCE_ROOT; };
@@ -228,6 +230,8 @@
 		D4512B491F1930BE009B109C /* TinponManagerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponManagerTableViewCell.swift; path = Tinpons/App/Favourites/TinponManagerTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		D45220681F2C840400D01C43 /* Validator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Validator.framework; path = Carthage/Build/iOS/Validator.framework; sourceTree = "<group>"; };
 		D45220691F2C924C00D01C43 /* Validator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Validator.framework; path = Carthage/Build/iOS/Validator.framework; sourceTree = "<group>"; };
+		D452206E1F2CC85A00D01C43 /* GenderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenderViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/GenderViewController.swift; sourceTree = SOURCE_ROOT; };
+		D45220701F2CCDDC00D01C43 /* InterestsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterestsViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/InterestsViewController.swift; sourceTree = SOURCE_ROOT; };
 		D47F96E51EED8C2A00B9FCE3 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		D47F96EC1EED932600B9FCE3 /* ImageRow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageRow.framework; path = Carthage/Build/iOS/ImageRow.framework; sourceTree = "<group>"; };
@@ -492,9 +496,12 @@
 				D430CC921F2B2FA100174E5C /* FirstSignInNavigationController.swift */,
 				D430CC901F2B2E0300174E5C /* FirstSignInViewController.swift */,
 				D430CC8A1F2B2AF200174E5C /* EmailViewController.swift */,
-				D430CC8C1F2B2B1A00174E5C /* PasswordViewController.swift */,
+				D430CC8C1F2B2B1A00174E5C /* BirthdateViewController.swift */,
+				D452206E1F2CC85A00D01C43 /* GenderViewController.swift */,
+				D45220701F2CCDDC00D01C43 /* InterestsViewController.swift */,
 			);
 			name = FirstSignIn;
+			path = ../../App/SignIn/FirstSignIn;
 			sourceTree = "<group>";
 		};
 		D410C5C81F237FC6008D6C92 /* Api */ = {
@@ -683,6 +690,7 @@
 				D43777981F262CDB0023448F /* APIGatewayProtocol.swift in Sources */,
 				E7A30F049A3B079A00000000 /* UserPoolNewPasswordViewController.swift in Sources */,
 				D4DA424D1F0E2CFB00A1C69E /* CustomCells.swift in Sources */,
+				D45220711F2CCDDC00D01C43 /* InterestsViewController.swift in Sources */,
 				D430CC8B1F2B2AF200174E5C /* EmailViewController.swift in Sources */,
 				D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */,
 				D4DAE9721F1C9B20000C447E /* FavouriteCollectionViewCell.swift in Sources */,
@@ -723,7 +731,8 @@
 				D4D2712A1F12ACD2003A7287 /* TinponsModel.xcdatamodeld in Sources */,
 				D4E258241EEC625400B2B986 /* CustomKolodaView.swift in Sources */,
 				D4FA2ECC1F0CE85B00B287FB /* ProfileViewController.swift in Sources */,
-				D430CC8D1F2B2B1A00174E5C /* PasswordViewController.swift in Sources */,
+				D430CC8D1F2B2B1A00174E5C /* BirthdateViewController.swift in Sources */,
+				D452206F1F2CC85A00D01C43 /* GenderViewController.swift in Sources */,
 				D430CC911F2B2E0300174E5C /* FirstSignInViewController.swift in Sources */,
 				D4FC90E51F1669F8002A6F9E /* SwipedTinponsCore.swift in Sources */,
 				D4512B4A1F1930BE009B109C /* TinponManagerTableViewCell.swift in Sources */,

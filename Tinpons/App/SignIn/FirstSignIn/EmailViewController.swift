@@ -24,9 +24,18 @@ class EmailViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
+            myNavigationController.progressView.progress = 0.2
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        emailTextField.keyboardType = UIKeyboardType.emailAddress
         emailTextField.becomeFirstResponder()
         emailTextField.useUnderline(color: UIColor.lightGray)
         
@@ -49,7 +58,6 @@ class EmailViewController: UIViewController {
         switch validationResult {
         case .valid:
             emailTextField.useUnderline(color: #colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1))
-            guardEmail()
             registerButton.isEnabled = true
         case .invalid( _ ):
             emailTextField.useUnderline(color: #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
@@ -62,23 +70,31 @@ class EmailViewController: UIViewController {
         }
     }
     
+    @IBAction func emailTextFieldPrimaryActionTriggered(_ sender: UITextField) {
+        let validationResult = emailTextField.validate(rules: validationRules)
+        
+        switch validationResult {
+        case .valid:
+            performSegue(withIdentifier: "segueToBirthdate", sender: self)
+        case .invalid( _ ):
+            ()
+        }
+    }
+    
     func guardEmail() {
         if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
             myNavigationController.userData.email = emailTextField.text
         }
     }
-
     
     
 
-    /*
+
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        guardEmail()
     }
-    */
 
 }

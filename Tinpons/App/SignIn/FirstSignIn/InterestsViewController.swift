@@ -1,21 +1,28 @@
 //
-//  PasswordViewController.swift
+//  InterestsViewController.swift
 //  Tinpons
 //
-//  Created by Dirk Hornung on 28/7/17.
+//  Created by Dirk Hornung on 29/7/17.
 //
 //
 
 import UIKit
 
-class PasswordViewController: FirstSignInViewController {
+class InterestsViewController: UIViewController {
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
+            myNavigationController.progressView.progress = 0.8
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        print("password did load")
+
         if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
-           print(myNavigationController.userData.email)
+            print(myNavigationController.userData.gender)
         }
         // Do any additional setup after loading the view.
     }
@@ -23,6 +30,9 @@ class PasswordViewController: FirstSignInViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+        if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
+            myNavigationController.progressView.progress = 0.6
+        }
     }
     
 
