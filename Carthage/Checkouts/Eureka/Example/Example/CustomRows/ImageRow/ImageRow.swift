@@ -101,12 +101,15 @@ open class _ImageRow<Cell: CellType>: SelectorRow<Cell, ImagePickerController> w
         }
     }
     
+    /// Selecting the Image Row cell will open a popup to choose where to source the photo from,
+    /// based on the `sourceTypes` configured and the available sources.
     open override func customDidSelect() {
         guard !isDisabled else {
             super.customDidSelect()
             return
         }
         deselect()
+        
         var availableSources: ImageRowSourceTypes = []
             
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
@@ -126,7 +129,7 @@ open class _ImageRow<Cell: CellType>: SelectorRow<Cell, ImagePickerController> w
             return
         }
         
-        // now that we know the number of actions aren't empty
+        // Now that we know the number of sources aren't empty, let the user select the source
         let sourceActionSheet = UIAlertController(title: nil, message: selectorTitle, preferredStyle: .actionSheet)
         guard let tableView = cell.formViewController()?.tableView  else { fatalError() }
         if let popView = sourceActionSheet.popoverPresentationController {
@@ -142,7 +145,6 @@ open class _ImageRow<Cell: CellType>: SelectorRow<Cell, ImagePickerController> w
                 })
             sourceActionSheet.addAction(clearPhotoOption)
         }
-        // check if we have only one source type given
         if sourceActionSheet.actions.count == 1 {
             if let imagePickerSourceType = UIImagePickerControllerSourceType(rawValue: sourceTypes.imagePickerControllerSourceTypeRawValue) {
                 displayImagePickerController(imagePickerSourceType)
@@ -150,7 +152,6 @@ open class _ImageRow<Cell: CellType>: SelectorRow<Cell, ImagePickerController> w
         } else {
             let cancelOption = UIAlertAction(title: NSLocalizedString("Cancel", comment: ""), style: .cancel, handler:nil)
             sourceActionSheet.addAction(cancelOption)
-            
             if let presentingViewController = cell.formViewController() {
                 presentingViewController.present(sourceActionSheet, animated: true)
             }
@@ -167,16 +168,21 @@ open class _ImageRow<Cell: CellType>: SelectorRow<Cell, ImagePickerController> w
     
     open override func customUpdateCell() {
         super.customUpdateCell()
+        
         cell.accessoryType = .none
+        cell.editingAccessoryView = .none
+        
         if let image = self.value {
             let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 44, height: 44))
             imageView.contentMode = .scaleAspectFill
             imageView.image = image
             imageView.clipsToBounds = true
+            
             cell.accessoryView = imageView
-        }
-        else{
+            cell.editingAccessoryView = imageView
+        } else {
             cell.accessoryView = nil
+            cell.editingAccessoryView = nil
         }
     }
     

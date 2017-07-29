@@ -163,10 +163,19 @@ SWIFT_CLASS("_TtC6Eureka8BaseCell")
 @class UITextPosition;
 @protocol UITextInput;
 
+/// A custom formatter for numbers with two digits after the decimal mark
 SWIFT_CLASS("_TtC6Eureka16DecimalFormatter")
 @interface DecimalFormatter : NSNumberFormatter
+/// Creates the formatter with 2 Fraction Digits, Locale set to .current and .decimal NumberFormatter.Style
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+/// Creates an NSNumber from the given String
+/// \param obj Pointer to NSNumber object to assign
+///
+/// \param for String with number assumed to have the configured min. fraction digits.
+///
+/// \param range Unused range parameter
+///
 - (BOOL)getObjectValue:(id _Nullable * _Nullable)obj forString:(NSString * _Nonnull)string range:(NSRange * _Nullable)rangep error:(NSError * _Nullable * _Nullable)error;
 - (UITextPosition * _Nonnull)getNewPositionForPosition:(UITextPosition * _Nonnull)position inTextInput:(id <UITextInput> _Nonnull)textInput oldValue:(NSString * _Nullable)oldValue newValue:(NSString * _Nullable)newValue SWIFT_WARN_UNUSED_RESULT;
 @end
@@ -191,7 +200,7 @@ SWIFT_CLASS("_TtC6Eureka18FormViewController")
 - (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
 - (void)viewDidLoad;
 - (void)viewWillAppear:(BOOL)animated;
-- (void)viewDidDisappear:(BOOL)animated;
+- (void)viewWillDisappear:(BOOL)animated;
 - (void)prepareForSegue:(UIStoryboardSegue * _Nonnull)segue sender:(id _Nullable)sender;
 - (void)tableView:(UITableView * _Nonnull)tableView willBeginReorderingRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath;
 @property (nonatomic) BOOL animateTableView;
@@ -225,10 +234,6 @@ SWIFT_CLASS("_TtC6Eureka18FormViewController")
 - (UITableViewCell * _Nonnull)tableView:(UITableView * _Nonnull)tableView cellForRowAtIndexPath:(NSIndexPath * _Nonnull)indexPath SWIFT_WARN_UNUSED_RESULT;
 - (NSString * _Nullable)tableView:(UITableView * _Nonnull)tableView titleForHeaderInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
 - (NSString * _Nullable)tableView:(UITableView * _Nonnull)tableView titleForFooterInSection:(NSInteger)section SWIFT_WARN_UNUSED_RESULT;
-@end
-
-
-@interface FormViewController (SWIFT_EXTENSION(Eureka))
 @end
 
 @class UIView;

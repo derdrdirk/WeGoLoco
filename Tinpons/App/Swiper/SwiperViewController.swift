@@ -82,8 +82,8 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
         
         
         let firstSignInStoryboard = UIStoryboard(name: "FirstSignIn", bundle: nil)
-        let firstSignInController: FirstSignInViewController = firstSignInStoryboard.instantiateViewController(withIdentifier: "FirstSignIn") as! FirstSignInViewController
-        let navController = UINavigationController(rootViewController: firstSignInController)
+        let firstSignInController: EmailViewController = firstSignInStoryboard.instantiateViewController(withIdentifier: "EmailViewController") as! EmailViewController
+        let navController: FirstSignInNavigationController = firstSignInStoryboard.instantiateViewController(withIdentifier: "FirstSignInNavigationController") as! FirstSignInNavigationController
         extensionNavigationController.present(navController, animated: true, completion: nil)
 
         

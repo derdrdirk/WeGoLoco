@@ -2,19 +2,17 @@
 //  FirstSignInViewController.swift
 //  Tinpons
 //
-//  Created by Dirk Hornung on 27/7/17.
+//  Created by Dirk Hornung on 28/7/17.
 //
 //
 
 import UIKit
 
 class FirstSignInViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let titleFont : UIFont = UIFont(name: "Remachine Script Personal Use", size: 40.0)!
-        self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: titleFont]
+
         // Do any additional setup after loading the view.
     }
 

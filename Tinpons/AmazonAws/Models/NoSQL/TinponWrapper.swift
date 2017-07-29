@@ -158,7 +158,7 @@ class TinponWrapper {
                 if fetchSwipedTinpons.count < 1 {
                     filteredTinpons.append(tinpon)
                 } else {
-                   print("Tinpon filtered \(tinpon.name)")
+                   //print("Tinpon filtered \(tinpon.name)")
                 }
             } catch {
                 print("filterTinpons: Fetching Failed")

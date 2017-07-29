@@ -133,10 +133,23 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 #if defined(__has_feature) && __has_feature(modules)
 @import UIKit;
+@import CoreGraphics;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
 #pragma clang diagnostic ignored "-Wduplicate-method-arg"
+@class NSCoder;
+
+SWIFT_CLASS("_TtC13SwiftIconFont17SwiftIconFontView")
+@interface SwiftIconFontView : UIView
+@property (nonatomic, copy) NSString * _Nonnull iconCode;
+- (nonnull instancetype)initWithFrame:(CGRect)frame SWIFT_UNAVAILABLE;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)aDecoder OBJC_DESIGNATED_INITIALIZER;
+- (void)prepareForInterfaceBuilder;
+- (void)tintColorDidChange;
+- (void)layoutSubviews;
+@end
+
 
 @interface UIBarButtonItem (SWIFT_EXTENSION(SwiftIconFont))
 @end
@@ -166,6 +179,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 
 @interface UITextField (SWIFT_EXTENSION(SwiftIconFont))
 - (void)parseIcon;
+- (void)parseIconForRuntime;
 @end
 
 
