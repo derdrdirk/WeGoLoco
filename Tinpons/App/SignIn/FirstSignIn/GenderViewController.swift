@@ -17,7 +17,16 @@ class GenderViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        
         if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
+            if let gender = myNavigationController.userData.gender {
+                if gender == "woman" {
+                    womanButton.isSelected = true
+                } else if gender == "man" {
+                    manButton.isSelected = true
+                }
+                continueButton.isEnabled = true
+            }
             myNavigationController.progressView.progress = 0.6
         }
     }
@@ -28,10 +37,10 @@ class GenderViewController: UIViewController {
         continueButton.setTitleColor(#colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1), for: .disabled)
         continueButton.setTitleColor(#colorLiteral(red: 0.5695158243, green: 0.7503048182, blue: 0.9790232778, alpha: 1), for: .normal)
         womanButton.setTitleColor(#colorLiteral(red: 0.5695158243, green: 0.7503048182, blue: 0.9790232778, alpha: 1), for: .selected)
-        womanButton.setTitleColor(#colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1), for: .normal)
+        womanButton.setTitleColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), for: .normal)
         womanButton.adjustsImageWhenHighlighted = false
         manButton.setTitleColor(#colorLiteral(red: 0.5695158243, green: 0.7503048182, blue: 0.9790232778, alpha: 1), for: .selected)
-        manButton.setTitleColor(#colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1), for: .normal)
+        manButton.setTitleColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), for: .normal)
         manButton.adjustsImageWhenHighlighted = false
 
     }
@@ -63,9 +72,9 @@ class GenderViewController: UIViewController {
     
     func guardGender() {
         if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
-            var gender = "male"
+            var gender = "man"
             if womanButton.isSelected {
-                gender = "female"
+                gender = "woman"
             }
             myNavigationController.userData.gender = gender
         }

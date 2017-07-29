@@ -17,6 +17,7 @@ class FirstSignInNavigationController: UINavigationController {
         var email: String?
         var birthdate: Date?
         var gender: String?
+        var interests = [String]()
     }
     
     override func viewDidLoad() {
