@@ -87,26 +87,26 @@ class TinponWrapper {
     }
     
     func loadNotSwipedTinponsFromUserCategories(performClousreOnComplete onComplete: @escaping ([Tinpon]) -> Void) {
-        UserWrapper.getUserIdAWSTask().continueOnSuccessWith{ [weak self] task in
-            guard let strongSelf = self else { return nil }
-            let cognitoId = task.result! as String
-            strongSelf.cognitoId = cognitoId
-            return UserWrapper.getUserAWSTask(cognitoId: cognitoId)
-        }.continueWith(block: { task in
-            if let error = task.error {
-                print("ERROR---TinponWrapper-loadNotSwipedTinponsFromUserCategories: \(error)")
-            } else {
-                let user = task.result as! DynamoDBUser
-                
-                // get Tinpons for every category
-                user.tinponCategories?.forEach {category in
-                    self.tinponsLoader.append(TinponLoader(performClosureOnComplete: onComplete, tinponWrapper: self))
-                    self.tinponsLoader.last?.loadNotSwipedItems(forCategory: category)
-                }
-            }
-            
-            return nil
-        })
+//        UserWrapper.getUserIdAWSTask().continueOnSuccessWith{ [weak self] task in
+//            guard let strongSelf = self else { return nil }
+//            let cognitoId = task.result! as String
+//            strongSelf.cognitoId = cognitoId
+//            return UserWrapper.getUserAWSTask(cognitoId: cognitoId)
+//        }.continueWith(block: { task in
+//            if let error = task.error {
+//                print("ERROR---TinponWrapper-loadNotSwipedTinponsFromUserCategories: \(error)")
+//            } else {
+//                let user = task.result as! DynamoDBUser
+//                
+//                // get Tinpons for every category
+//                user.tinponCategories?.forEach {category in
+//                    self.tinponsLoader.append(TinponLoader(performClosureOnComplete: onComplete, tinponWrapper: self))
+//                    self.tinponsLoader.last?.loadNotSwipedItems(forCategory: category)
+//                }
+//            }
+//            
+//            return nil
+//        })
     }
     
     static func loadAllTinponsForSignedInUser(onComplete: @escaping (([Tinpon]) -> ())) {

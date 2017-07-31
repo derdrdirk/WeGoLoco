@@ -10,7 +10,7 @@ import Foundation
 import AWSAPIGateway
 
 class UserAPI: APIGatewayProtocol {
-    static func getSignedInUser(onCompletionClosure onComplete: @escaping (User)->()) {
+    static func getSignedInUser(onCompletionClosure onComplete: @escaping (User?)->()) {
         restAPITask(httpMethod: .GET, endPoint: .users).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
             if let error = task.error {
                 print("Error occurred: \(error)")
@@ -21,9 +21,10 @@ class UserAPI: APIGatewayProtocol {
                 
                 if let json = responseString?.toJSON {
                     let user = User(json: json as! [String : Any])
-                    onComplete(user!)
+                    onComplete(user)
                 } else {
-                    print("UserAPI.getSignedInUser Error: HTTP status code: \(result.statusCode)")
+                    // User MOST PROBABLY does not exist
+                    onComplete(nil)
                 }
             }
         }

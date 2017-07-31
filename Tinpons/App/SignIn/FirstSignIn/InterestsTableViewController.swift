@@ -8,24 +8,48 @@
 
 import UIKit
 
-class InterestsTableViewController: UITableViewController {
+class InterestsTableViewController: UITableViewController, LoadingAnimationProtocol {
+    
+    // MARK: LoadingAnimationProtocol
+    var loadingAnimationView: UIView!
+    var loadingAnimationOverlay: UIView!
+    var loadingAnimationIndicator: UIActivityIndicatorView!
+    
+    @IBOutlet weak var 👞Switch: UISwitch!
+    @IBOutlet weak var 👖Switch: UISwitch!
+    @IBOutlet weak var 👕Switch: UISwitch!
     
     @IBOutlet weak var continueButton: UIButton!
-    var categories = Array<String>()
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
-            myNavigationController.progressView.progress = 0.8
-        }
-    }
-
+    var categories = Set<String>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // loadingAnimationProtocol
+        loadingAnimationView = self.view
+        
         tableView.separatorStyle = .none
+        tableView.allowsSelection = false
+        
+        
+        // load init values + progressView
+        if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
+            if !myNavigationController.user.tinponCategories.isEmpty {
+                myNavigationController.user.tinponCategories.forEach{
+                    switch($0) {
+                    case "👞":
+                        👞Switch.isOn = true
+                        print("touch shoe")
+                    case "👖": 👖Switch.isOn = true
+                    case "👕": 👕Switch.isOn = true
+                    default: ()
+                    }
+                }
+                categories = myNavigationController.user.tinponCategories
+                validate()
+            }
+            myNavigationController.progressView.progress = 0.8
+        }
 
 
         continueButton.setTitleColor(#colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1), for: .disabled)
@@ -37,25 +61,26 @@ class InterestsTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func 👞Switch(_ sender: UISwitch) {
+    @IBAction func 👞SwitchTouched(_ sender: UISwitch) {
         handleSwitch(sender: sender, switchValue: "👞")
     }
     
-    @IBAction func 👖Switch(_ sender: UISwitch) {
+    @IBAction func 👖SwitchTouched(_ sender: UISwitch) {
         handleSwitch(sender: sender, switchValue: "👖")
     }
     
-    @IBAction func 👕Switch(_ sender: UISwitch) {
+    @IBAction func 👕SwitchTocuhed(_ sender: UISwitch) {
         handleSwitch(sender: sender, switchValue: "👕")
     }
     
     
     func handleSwitch(sender: UISwitch, switchValue: String) {
         if sender.isOn {
-            categories.append(switchValue)
+            categories.insert(switchValue)
         } else {
-            categories.remove(at: categories.index(of: switchValue)!)
+            categories.remove(switchValue)
         }
+        guardInterests()
         validate()
     }
     
@@ -69,7 +94,21 @@ class InterestsTableViewController: UITableViewController {
     
     func guardInterests() {
         if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
-            myNavigationController.userData.interests = categories
+            myNavigationController.user.tinponCategories = categories
+        }
+    }
+    
+    @IBAction func continueButtonTouched(_ sender: UIButton) {
+        print("dismiss")
+        if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
+            startLoadingAnimation()
+            UserAPI.save(preparedObject: myNavigationController.user, onCompletionClosure:  { [weak self] in
+                guard let strongSelf = self else { return }
+                DispatchQueue.main.async {
+                    strongSelf.stopLoadingAnimation()
+                    strongSelf.presentingViewController?.dismiss(animated: true, completion: nil)
+                }
+            })
         }
     }
     

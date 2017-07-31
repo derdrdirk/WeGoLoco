@@ -11,14 +11,7 @@ import UIKit
 class FirstSignInNavigationController: UINavigationController {
 
     var progressView = UIProgressView()
-    var userData = UserData()
-    
-    struct UserData {
-        var email: String?
-        var birthdate: Date?
-        var gender: String?
-        var interests = [String]()
-    }
+    var user = User()
     
     override func viewDidLoad() {
         super.viewDidLoad()

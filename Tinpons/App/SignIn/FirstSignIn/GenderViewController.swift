@@ -14,26 +14,23 @@ class GenderViewController: UIViewController {
     @IBOutlet weak var manButton: UIButton!
     @IBOutlet weak var continueButton: UIButton!
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // load init values + progressBar
         if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
-            if let gender = myNavigationController.userData.gender {
-                if gender == "woman" {
+            let gender = myNavigationController.user.gender
+            if gender != "" {
+                if gender == "👩‍💼" {
                     womanButton.isSelected = true
-                } else if gender == "man" {
+                } else if gender == "👨‍💼" {
                     manButton.isSelected = true
                 }
                 continueButton.isEnabled = true
             }
             myNavigationController.progressView.progress = 0.6
         }
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+        
         continueButton.setTitleColor(#colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1), for: .disabled)
         continueButton.setTitleColor(#colorLiteral(red: 0.5695158243, green: 0.7503048182, blue: 0.9790232778, alpha: 1), for: .normal)
         womanButton.setTitleColor(#colorLiteral(red: 0.5695158243, green: 0.7503048182, blue: 0.9790232778, alpha: 1), for: .selected)
@@ -67,16 +64,17 @@ class GenderViewController: UIViewController {
             manButton.isSelected = true
 
         }
+        guardGender()
         continueButton.isEnabled = true
     }
     
     func guardGender() {
         if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
-            var gender = "man"
+            var gender = "👨‍💼"
             if womanButton.isSelected {
-                gender = "woman"
+                gender = "👩‍💼"
             }
-            myNavigationController.userData.gender = gender
+            myNavigationController.user.gender = gender
         }
     }
     

@@ -13,18 +13,14 @@ class BirthdateViewController: UIViewController {
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var birthdatePicker: UIDatePicker!
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
-            myNavigationController.progressView.progress = 0.4
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         loadBirthdate()
+
+        if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
+            myNavigationController.progressView.progress = 0.4
+        }
         
         continueButton.setTitleColor(#colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1), for: .disabled)
         continueButton.setTitleColor(#colorLiteral(red: 0.5695158243, green: 0.7503048182, blue: 0.9790232778, alpha: 1), for: .normal)
@@ -37,20 +33,19 @@ class BirthdateViewController: UIViewController {
     
     func loadBirthdate() {
         if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
-            if let birthdate = myNavigationController.userData.birthdate {
-                birthdatePicker.date = birthdate
-                continueButton.isEnabled = true
-            }
+            birthdatePicker.date = myNavigationController.user.birthdate
+            continueButton.isEnabled = true
         }
     }
     
     func guardBirthdate() {
         if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
-            myNavigationController.userData.birthdate = birthdatePicker.date
+            myNavigationController.user.birthdate = birthdatePicker.date
         }
     }
 
     @IBAction func birthdatePickerValueChanged(_ sender: UIDatePicker) {
+        guardBirthdate()
         continueButton.isEnabled = true
     }
     

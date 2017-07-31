@@ -97,6 +97,7 @@ exports.handler = function(event, context, callback) {
     switch (httpMethod) {
       case "GET":
         //var userId = "eu-west-1:ed3670fa-1f3d-40b8-a181-cb48b78fff1c";
+        console.log("Check cognitoIdentityId "+cognitoIdentityId)
         var userId = cognitoIdentityId;
         params = {
             TableName: table,
@@ -139,8 +140,8 @@ exports.handler = function(event, context, callback) {
                         "userId" : cognitoIdentityId,
                         "createdAt" : isoDate,
                         "birthdate" : user.birthdate,
+                        "email" : user.email,
                         "gender" : user.gender,
-                        "height" : user.height,
                         "tinponCategories" : docClient.createSet(user.tinponCategories),
                         "updatedAt" : isoDate
                     }
@@ -196,8 +197,8 @@ exports.handler = function(event, context, callback) {
                           "userId" : user_.userId,
                           "createdAt" : user_.createdAt,
                           "birthdate" : user.birthdate,
+                          "email" : user.email,
                           "gender" : user.gender,
-                          "height" : user.height,
                           "tinponCategories" : docClient.createSet(user.tinponCategories),
                           "updatedAt" : isoDate
                       }

@@ -23,7 +23,7 @@ protocol ResetUIProtocol {
 
 protocol AuthenticationProtocol: class {
     var authenticationProtocolTabBarController: UITabBarController! { get set }
-    var extensionNavigationController: UINavigationController! { get set }
+    var authenticationNavigationController: UINavigationController! { get set }
     func resetUI()
 }
 
@@ -31,19 +31,25 @@ extension AuthenticationProtocol {
     func onSignIn (_ success: Bool) {
         // handle successful sign in
         if (success) {
-            createUserAccountIfNotExisting()
+//            let firstSignInStoryboard = UIStoryboard(name: "FirstSignIn", bundle: nil)
+//            if let registrationViewController = firstSignInStoryboard.instantiateInitialViewController() {
+//                print("jojojo")
+//                self.authenticationNavigationController?.pushViewController(registrationViewController, animated: true)
+//            }
             
-            syncCoreDataWithDynamoDB(onCompletionClosure: { [weak self] in
-                guard let strongSelf = self else { return }
-                // reset every ViewController if User LogsIn
-                DispatchQueue.main.async {
-                    strongSelf.authenticationProtocolTabBarController.viewControllers?.forEach{ navigationController in
-                        if let viewController = navigationController.childViewControllers[0] as? ResetUIProtocol {
-                            viewController.resetUI()
-                        }
-                    }
-                }
-            })
+//            createUserAccountIfNotExisting()
+
+//            syncCoreDataWithDynamoDB(onCompletionClosure: { [weak self] in
+//                guard let strongSelf = self else { return }
+//                // reset every ViewController if User LogsIn
+//                DispatchQueue.main.async {
+//                    strongSelf.authenticationProtocolTabBarController.viewControllers?.forEach{ navigationController in
+//                        if let viewController = navigationController.childViewControllers[0] as? ResetUIProtocol {
+//                            viewController.resetUI()
+//                        }
+//                    }
+//                }
+//            })
         } else {
             // handle cancel operation from user
         }
@@ -52,7 +58,7 @@ extension AuthenticationProtocol {
     func handleLogout() {
         if (AWSSignInManager.sharedInstance().isLoggedIn) {
             AWSSignInManager.sharedInstance().logout(completionHandler: {(result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) in
-                self.extensionNavigationController.popToRootViewController(animated: false)
+                self.authenticationNavigationController.popToRootViewController(animated: false)
                 self.presentSignInViewController()
             })
             
@@ -68,8 +74,8 @@ extension AuthenticationProtocol {
             let loginController: SignInViewController = loginStoryboard.instantiateViewController(withIdentifier: "SignIn") as! SignInViewController
             loginController.canCancel = false
             loginController.didCompleteSignIn = onSignIn
-            let navController = UINavigationController(rootViewController: loginController)
-            extensionNavigationController.present(navController, animated: true, completion: nil)
+            let navController = FirstSignInNavigationController(rootViewController: loginController)
+            authenticationNavigationController.present(navController, animated: true, completion: nil)
         }
     }
     

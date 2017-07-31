@@ -17,7 +17,7 @@ import Whisper
 class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUIProtocol, LoadingAnimationProtocol {
     // MARK: Authentication Protocol
     var authenticationProtocolTabBarController: UITabBarController!
-    var extensionNavigationController: UINavigationController!
+    var authenticationNavigationController: UINavigationController!
     
     // MARK: AnimationLoader
     var loadingAnimationView: UIView!
@@ -44,7 +44,7 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
         loadingAnimationView = self.view
         
         // Authentication Protocol
-        extensionNavigationController = navigationController
+        authenticationNavigationController = navigationController
         authenticationProtocolTabBarController = tabBarController
         presentSignInViewController()
         

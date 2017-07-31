@@ -58,6 +58,7 @@ class EmailViewController: UIViewController {
         switch validationResult {
         case .valid:
             emailTextField.useUnderline(color: #colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1))
+            guardEmail()
             registerButton.isEnabled = true
         case .invalid( _ ):
             emailTextField.useUnderline(color: #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
@@ -83,7 +84,7 @@ class EmailViewController: UIViewController {
     
     func guardEmail() {
         if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
-            myNavigationController.userData.email = emailTextField.text
+            myNavigationController.user.email = emailTextField.text!
         }
     }
     
@@ -91,7 +92,6 @@ class EmailViewController: UIViewController {
 
 
     // MARK: - Navigation
-
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guardEmail()

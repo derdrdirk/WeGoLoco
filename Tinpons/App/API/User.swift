@@ -17,8 +17,8 @@ struct User {
     let userId: String
     let createdAt: Date
     var birthdate: Date
+    var email: String
     var gender: String
-    var height: Double
     var tinponCategories: Set<String>
     var updatedAt: Date
     
@@ -31,10 +31,10 @@ extension User {
     init() {
         self.userId = UUID().uuidString
         self.createdAt = Date()
-        self.tinponCategories = ["👞","👖","👕"]
+        self.tinponCategories = Set<String>()
         self.birthdate = Date()
-        self.gender = "👨‍💼"
-        self.height = 0
+        self.email = ""
+        self.gender = ""
         self.updatedAt = self.createdAt
     }
     
@@ -42,8 +42,8 @@ extension User {
         guard let userId = json["userId"] as? String,
             let createdAt = (json["createdAt"] as? String)?.dateFromISO8601,
             let birthdate = (json["birthdate"] as? String)?.dateFromISO8601,
+            let email = json["email"] as? String,
             let gender = json["gender"] as? String,
-            let height = json["height"] as? Double,
             // JSON set: { "tinponCategories" : { "values" : [ ... ] } }
             let tinponCategories = (json["tinponCategories"] as? [String:Any])?["values"] as? [String],
             let updatedAt = (json["updatedAt"] as? String)?.dateFromISO8601
@@ -53,13 +53,13 @@ extension User {
         self.createdAt = createdAt
         self.tinponCategories = Set(tinponCategories)
         self.birthdate = birthdate
+        self.email = email
         self.gender = gender
-        self.height = height
         self.updatedAt = updatedAt
     }
 
     func toJSON() -> String? {
-        let jsonObject: [String: Any] = ["userId": self.userId, "createdAt" : self.createdAt.iso8601, "birthdate" : self.birthdate.iso8601, "gender" : self.gender, "height" : height, "tinponCategories": Array(tinponCategories), "updatedAt" : updatedAt.iso8601]
+        let jsonObject: [String: Any] = ["userId": self.userId, "createdAt" : self.createdAt.iso8601, "birthdate" : self.birthdate.iso8601, "email" : self.email, "gender" : self.gender, "tinponCategories": Array(tinponCategories), "updatedAt" : updatedAt.iso8601]
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: jsonObject,
                                                                       options: .prettyPrinted)

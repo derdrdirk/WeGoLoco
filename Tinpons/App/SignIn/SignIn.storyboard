@@ -260,7 +260,9 @@
                             <constraint firstItem="cjk-50-iWL" firstAttribute="bottom" secondItem="mfm-o4-Ahh" secondAttribute="bottom" id="vrL-CY-u6i"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rYi-WJ-Qdc"/>
+                    <navigationItem key="navigationItem" id="rYi-WJ-Qdc">
+                        <barButtonItem key="backBarButtonItem" title=" " id="kCE-1d-Jwr"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="facebookButton" destination="pai-Ew-Mvj" id="dMt-nW-vo2"/>
                         <outlet property="forgotPasswordButton" destination="90E-CA-19d" id="2TB-Gq-DrG"/>

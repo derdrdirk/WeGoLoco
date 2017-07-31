@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dGY-at-1xa">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -271,10 +271,10 @@ cumplenaños  es</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <sections>
-                            <tableViewSection headerTitle="Ropa" id="a8D-s7-Ka4">
+                            <tableViewSection headerTitle="" id="a8D-s7-Ka4">
                                 <cells>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="PSX-DR-7OM">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="PSX-DR-7OM" id="vC0-UU-xnx">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
@@ -298,7 +298,7 @@ cumplenaños  es</string>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="edz-wG-nli">
                                                     <rect key="frame" x="318" y="20" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="👞Switch:" destination="i2K-dN-qsi" eventType="valueChanged" id="4Eh-Xt-M9d"/>
+                                                        <action selector="👞SwitchTouched:" destination="i2K-dN-qsi" eventType="valueChanged" id="XbH-5q-6wP"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -314,7 +314,7 @@ cumplenaños  es</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="PMY-PV-Cmq">
-                                        <rect key="frame" x="0.0" y="98" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="70" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="PMY-PV-Cmq" id="4mH-6w-BVj">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
@@ -338,7 +338,7 @@ cumplenaños  es</string>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="DTo-BI-1I5">
                                                     <rect key="frame" x="318" y="20" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="👖Switch:" destination="i2K-dN-qsi" eventType="valueChanged" id="edd-lp-vw4"/>
+                                                        <action selector="👖SwitchTouched:" destination="i2K-dN-qsi" eventType="valueChanged" id="UHc-cz-o3L"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -354,7 +354,7 @@ cumplenaños  es</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="70" id="aAf-bI-sM4">
-                                        <rect key="frame" x="0.0" y="168" width="375" height="70"/>
+                                        <rect key="frame" x="0.0" y="140" width="375" height="70"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" tableViewCell="aAf-bI-sM4" id="rlh-b5-tIt">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
@@ -378,7 +378,7 @@ cumplenaños  es</string>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="xWJ-dA-KmH">
                                                     <rect key="frame" x="318" y="20" width="51" height="31"/>
                                                     <connections>
-                                                        <action selector="👕Switch:" destination="i2K-dN-qsi" eventType="valueChanged" id="cp6-gN-3MU"/>
+                                                        <action selector="👕SwitchTocuhed:" destination="i2K-dN-qsi" eventType="valueChanged" id="1HK-79-vhx"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -395,7 +395,7 @@ cumplenaños  es</string>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="100" id="z3D-Xw-kBD">
-                                        <rect key="frame" x="0.0" y="238" width="375" height="100"/>
+                                        <rect key="frame" x="0.0" y="210" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z3D-Xw-kBD" id="HHv-fw-tXu">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
@@ -407,6 +407,9 @@ cumplenaños  es</string>
                                                     <state key="normal" title="Continuar">
                                                         <color key="titleColor" red="0.96460580579999999" green="0.96460580579999999" blue="0.96460580579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="continueButtonTouched:" destination="i2K-dN-qsi" eventType="touchUpInside" id="B02-O9-fzf"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -429,6 +432,9 @@ cumplenaños  es</string>
                     </navigationItem>
                     <connections>
                         <outlet property="continueButton" destination="GQq-Hi-dbZ" id="DFX-Rg-hxv"/>
+                        <outlet property="👕Switch" destination="xWJ-dA-KmH" id="R2u-S5-33S"/>
+                        <outlet property="👖Switch" destination="DTo-BI-1I5" id="yjW-Kv-66L"/>
+                        <outlet property="👞Switch" destination="edz-wG-nli" id="gbq-md-wZ8"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bhn-2E-hXN" userLabel="First Responder" sceneMemberID="firstResponder"/>

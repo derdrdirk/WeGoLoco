@@ -23,7 +23,7 @@ private let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
 class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIProtocol {
     
     // MARK: AuthenticationProtocol
-    var extensionNavigationController: UINavigationController!
+    var authenticationNavigationController: UINavigationController!
     var authenticationProtocolTabBarController: UITabBarController!
     
     // MARK: ResetUIProtocol
@@ -81,10 +81,10 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
 //        UserAPI.update(preparedObject: user, onCompletionClosure: { print("updated") })
         
         
-        let firstSignInStoryboard = UIStoryboard(name: "FirstSignIn", bundle: nil)
-        let firstSignInController: EmailViewController = firstSignInStoryboard.instantiateViewController(withIdentifier: "EmailViewController") as! EmailViewController
-        let navController: FirstSignInNavigationController = firstSignInStoryboard.instantiateViewController(withIdentifier: "FirstSignInNavigationController") as! FirstSignInNavigationController
-        extensionNavigationController.present(navController, animated: true, completion: nil)
+//        let firstSignInStoryboard = UIStoryboard(name: "FirstSignIn", bundle: nil)
+//        let firstSignInController: EmailViewController = firstSignInStoryboard.instantiateViewController(withIdentifier: "EmailViewController") as! EmailViewController
+//        let navController: FirstSignInNavigationController = firstSignInStoryboard.instantiateViewController(withIdentifier: "FirstSignInNavigationController") as! FirstSignInNavigationController
+//        extensionNavigationController.present(navController, animated: true, completion: nil)
 
         
     }
@@ -97,7 +97,7 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
         didAppear = true
         
         // AuthenticationProtocol
-        extensionNavigationController = navigationController
+        authenticationNavigationController = navigationController
         authenticationProtocolTabBarController = tabBarController
         presentSignInViewController()
 

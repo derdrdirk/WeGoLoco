@@ -161,7 +161,20 @@ extension SignInViewController: AWSSignInDelegate {
         if error == nil {
             print("Signed in with: \(signInProvider)")
 
-            self.presentingViewController?.dismiss(animated: true, completion: nil)
+            // if first Login redirect to registration Process
+            UserAPI.getSignedInUser{ [weak self] user in
+                guard let strongSelf = self else { return }
+                DispatchQueue.main.async {
+                    if user == nil {
+                        let firstSignInStoryboard = UIStoryboard(name: "FirstSignIn", bundle: nil)
+                        if let registrationViewController = firstSignInStoryboard.instantiateInitialViewController() {
+                            strongSelf.navigationController?.pushViewController(registrationViewController, animated: true)
+                        }
+                    } else {
+                        strongSelf.presentingViewController?.dismiss(animated: true, completion: {})
+                    }
+                }
+            }
             if let didCompleteSignIn = self.didCompleteSignIn {
                 didCompleteSignIn(true)
             }
