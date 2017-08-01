@@ -38,6 +38,37 @@ class TinponsAPI: APIGatewayProtocol {
                 }
             }
         }
+    }
+    
+    static func getFavouriteTinpons(onComplete: @escaping ([Tinpon]?) -> ()) {
+        restAPITask(httpMethod: .GET, endPoint: .favouriteTinpons).continueWith{ (task: AWSTask<AWSAPIGatewayResponse>) -> () in
+            if let error = task.error {
+                print("Error occurred: \(error)")
+                // Handle error here
+                return
+            } else if let result = task.result {
+                let responseString = String(data: result.responseData!, encoding: .utf8)
+                print(responseString)
+                if let json = responseString?.toJSON {
+                    var tinpons = Array<Tinpon>()
+                    if let tinponDictionary = json as? [Any] {
+                        for tinponJson in tinponDictionary {
+                            do {
+                                let tinpon = try Tinpon(json: tinponJson as! [String : Any])
+                                tinpons.append(tinpon)
+                            } catch {
+                                print("TinponAPI error: \(error)")
+                            }
+                        }
+                    }
+                    
+                    onComplete(tinpons)
+                } else {
+                    // Tinpons MOST PROBABLY do not exist
+                    onComplete(nil)
+                }
+            }
+        }
 
     }
 

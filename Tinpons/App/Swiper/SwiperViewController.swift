@@ -65,6 +65,8 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
     override func viewWillAppear(_ animated: Bool) {
         getCognitoID()
         
+        TinponsAPI.getFavouriteTinpons(onComplete: {_ in })
+        
         //TinponsAPI.getNotSwipedTinpons(onComplete: { _ in ()})
         
 //        UserAPI.getSignedInUser{ user in
@@ -82,8 +84,6 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
 //        let firstSignInController: EmailViewController = firstSignInStoryboard.instantiateViewController(withIdentifier: "EmailViewController") as! EmailViewController
 //        let navController: FirstSignInNavigationController = firstSignInStoryboard.instantiateViewController(withIdentifier: "FirstSignInNavigationController") as! FirstSignInNavigationController
 //        extensionNavigationController.present(navController, animated: true, completion: nil)
-
-        
     }
     
     

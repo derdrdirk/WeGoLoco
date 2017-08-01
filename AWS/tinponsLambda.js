@@ -179,7 +179,7 @@ exports.handler = function(event, context, callback) {
           respond(context, 403, httpMethod+" is not an allowed HTTP method.");
         }
         //tinpons/notSwiped ///////////////////////////////////////////////////////////////////////
-        case "/tinpons/favourites":
+        case "/tinpons/favourite":
           switch (httpMethod) {
             case "GET":
               var userId = "eu-west-1:7f84077c-2df1-4835-b80e-bd29534611ac";
