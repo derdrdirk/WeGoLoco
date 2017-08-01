@@ -91,9 +91,9 @@ exports.handler = function(event, context, callback) {
 
     // TODO: Put your application logic here...
     console.log("pathParams: ",pathParams);
+    var result, params;
     switch(pathParams) {
       case "/tinpons/notSwiped" :
-        var result, params;
         switch (httpMethod) {
           case "GET":
             // GET method is for NOT SWIPED TINPONS of user account
@@ -157,8 +157,7 @@ exports.handler = function(event, context, callback) {
               respond(context, 200, JSON.stringify(data.Items));
             }).catch(function(error) {
               console.error("Unable to GET user. Error JSON:", error);
-            }
-          );
+            });
 
             // params = {
             //     TableName: tinponsTable,
@@ -177,8 +176,53 @@ exports.handler = function(event, context, callback) {
             // });
             break;
         default:
-          respond(context, 403, httpMethod+" is not an allowed HTTP method.")
+          respond(context, 403, httpMethod+" is not an allowed HTTP method.");
         }
+        //tinpons/notSwiped ///////////////////////////////////////////////////////////////////////
+        case "/tinpons/favourites":
+          switch (httpMethod) {
+            case "GET":
+              var userId = "eu-west-1:7f84077c-2df1-4835-b80e-bd29534611ac";
+              let swipedFavouriteTinponsParams = {
+                  TableName: swipedTinponsTable,
+                  IndexName: "userId-favourite-index",
+                  KeyConditionExpression: 'userId = :userId AND favourite = :favourite',
+                  ExpressionAttributeValues: { ":userId" : userId, ":favourite" : 1 }
+              }
+
+              var swipedFavouriteTinponsPromise = docClient.query(swipedFavouriteTinponsParams, function(err, data){}).promise();
+
+              swipedFavouriteTinponsPromise.then(function(data) {
+                console.log("favourite swipedTinpons loaded: ", JSON.stringify(data));
+                let swipedFavouriteTinpons = data.Items;
+
+                var favouriteTinponsParams = {
+                  RequestItems: {
+                    [tinponsTable] : {
+                      Keys: []
+                    }
+                  }
+                };
+
+                for (var i = 0; i < swipedFavouriteTinpons.length; i++) {
+                    favouriteTinponsParams.RequestItems[tinponsTable].Keys.push({ "tinponId" : swipedFavouriteTinpons[i].tinponId });
+                }
+                console.log("favourties test ", data.Items[0].tinponId);
+
+
+                return docClient.batchGet(favouriteTinponsParams, function(error, data) {}).promise();
+              }).then(function(data) {
+                console.log("favourite Tinpons loaded: ", JSON.stringify(data));
+
+                respond(context, 200, JSON.stringify(data.Responses[tinponsTable]));
+              }).catch(function(error) {
+                console.error("Unable to GET favourite Tinpons. Error JSON:", error);
+              });
+              break;
+            default:
+              respond(context, 403, httpMethod+" is not an allowed HTTP method.")
+            }
+
     }
 
 

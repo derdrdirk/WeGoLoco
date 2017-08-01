@@ -29,29 +29,24 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
     // MARK: ResetUIProtocol
     var didAppear: Bool = false
     func resetUI() {
-        if(didAppear) {
-            print("reset Swiper")
-            tinpons = []
-            
-            tinponWrapper = TinponWrapper(swiperViewController: self)
-            tinponWrapper.loadNotSwipedTinponsFromUserCategories(performClousreOnComplete: { [weak self] (tinpons) in
-                guard let strongSelf = self else { return }
-                if tinpons.isEmpty {
-                    DispatchQueue.main.async {
-                        strongSelf.outOfTinponsStack.isHidden = false
-                    }
-                } else {
-                    DispatchQueue.main.async {
-                        strongSelf.outOfTinponsStack.isHidden = true
-                    }
+        TinponsAPI.getNotSwipedTinpons{ [weak self] (tinpons) in
+            guard let strongSelf = self else { return }
+            if let tinpons = tinpons {
+                DispatchQueue.main.async {
+                    strongSelf.outOfTinponsStack.isHidden = false
                 }
+                
                 strongSelf.tinpons.append(contentsOf: tinpons)
                 DispatchQueue.main.async {
                     (strongSelf.tinpons.count > 0) ? strongSelf.outOfTinponsStack.isHidden = true : ()
                     strongSelf.kolodaView.resetCurrentCardIndex()
                     strongSelf.kolodaView.reloadData()
                 }
-            })
+            } else {
+                DispatchQueue.main.async {
+                    strongSelf.outOfTinponsStack.isHidden = true
+                }
+            }
         }
     }
     
@@ -63,14 +58,14 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
     var userWrapper = UserWrapper()
     
     var userId: String?
-    var tinpons : [DynamoDBTinpon] = []
+    var tinpons : [Tinpon] = []
     var lastEvaluatedKey : [String: AWSDynamoDBAttributeValue]?
     
     //MARK: Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         getCognitoID()
         
-        TinponsAPI.getNotSwipedTinpons(onComplete: { _ in ()})
+        //TinponsAPI.getNotSwipedTinpons(onComplete: { _ in ()})
         
 //        UserAPI.getSignedInUser{ user in
 //            print("Download User \(user.toJSON()!)")
@@ -251,14 +246,16 @@ extension SwiperViewController: KolodaViewDataSource {
         
         // if less than 10 tinpons load next Tinpon
         if tinpons.count - koloda.currentCardIndex < 5 {
-//            tinponLoader.loadNotSwipedItems(limit: 5, onComplete: {[weak self] (tinpons) in
-            tinponWrapper.loadNotSwipedTinponsFromUserCategories(performClousreOnComplete: {[weak self] (tinpons) in
+            TinponsAPI.getNotSwipedTinpons{ [weak self] (tinpons) in
                 guard let strongSelf = self else { return }
-                strongSelf.tinpons.append(contentsOf: tinpons)
-                DispatchQueue.main.async {
-                    strongSelf.kolodaView.reloadData()
+                
+                if let tinpons = tinpons {
+                    strongSelf.tinpons.append(contentsOf: tinpons)
+                    DispatchQueue.main.async {
+                        strongSelf.kolodaView.reloadData()
+                    }
                 }
-            })
+            }
         }
     }
 }
