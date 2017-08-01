@@ -90,92 +90,97 @@ exports.handler = function(event, context, callback) {
     httpMethod = event.httpMethod;
 
     // TODO: Put your application logic here...
-    var result, params;
-    switch (httpMethod) {
-      case "GET":
-        // GET method is for NOT SWIPED TINPONS of user account
+    console.log("pathParams: ",pathParams);
+    switch(pathParams) {
+      case "/tinpons/notSwiped" :
+        var result, params;
+        switch (httpMethod) {
+          case "GET":
+            // GET method is for NOT SWIPED TINPONS of user account
 
-        // var userId = cognitoIdentityId;
-        var userId = "eu-west-1:7f84077c-2df1-4835-b80e-bd29534611ac";
-        let userParams = {
-            TableName: usersTable,
-            Key:{
-                "userId": userId,
+            // var userId = cognitoIdentityId;
+            var userId = "eu-west-1:7f84077c-2df1-4835-b80e-bd29534611ac";
+            let userParams = {
+                TableName: usersTable,
+                Key:{
+                    "userId": userId,
+                }
+            };
+            let swipedTinponsParams = {
+                TableName: swipedTinponsTable,
+                KeyConditionExpression: 'userId = :userId',
+                ExpressionAttributeValues: { ":userId": userId }
             }
-        };
-        let swipedTinponsParams = {
-            TableName: swipedTinponsTable,
-            KeyConditionExpression: 'userId = :userId',
-            ExpressionAttributeValues: { ":userId": userId }
+
+            var userPromise = docClient.get(userParams, function(err, data){}).promise();
+            var swipedTinponsPromise = docClient.query(swipedTinponsParams, function(err, data){}).promise();
+
+            Promise.all([userPromise, swipedTinponsPromise]).then(function(data) {
+              let user = data[0].Item; // Strip JSON Root { "Item": ... }
+              let swipedTinpons = data[1].Items;
+              let tinponCategories = user.tinponCategories.values; // array of user categories
+
+              console.log("GET user succeeded:", JSON.stringify(user, null, 2));
+              console.log("QUERY swipedTinpons succeeded:", JSON.stringify(swipedTinpons, null, 2));
+
+
+              // include CATEGORY filterExpression parameter
+              var filterExpression = '(category = :category';
+              var expressionAttributeValues = { ':category' : tinponCategories[0] };
+              for (var i = 1; i < tinponCategories.length; i++) {
+                filterExpression = filterExpression.concat(' OR category = :category'+i);
+                expressionAttributeValues[":category"+i] = tinponCategories[i];
+              }
+              filterExpression = filterExpression.concat(")");
+
+              // exclude SWIPED TINPONS filterExpression
+              if (swipedTinpons.length > 0) {
+                filterExpression = filterExpression.concat(" AND tinponId <> :swipedTinpon");
+                expressionAttributeValues[":swipedTinpon"] = swipedTinpons[0].tinponId
+              }
+              for (var i = 1; i < swipedTinpons.length; i++) {
+                filterExpression = filterExpression.concat(' AND tinponId <> :swipedTinpon'+i);
+                expressionAttributeValues[":swipedTinpon"+i] = swipedTinpons[i].tinponId
+              }
+              console.log("filterExpression: " + filterExpression);
+              console.log("expressionAttributeValues: ", expressionAttributeValues);
+
+              params = {
+                  TableName: tinponsTable,
+                  FilterExpression : filterExpression,
+                  ExpressionAttributeValues : expressionAttributeValues,
+                  Limit : 50,
+              };
+
+              return docClient.scan(params, function(err, data){}).promise();
+            }).then(function(data){
+              respond(context, 200, JSON.stringify(data.Items));
+            }).catch(function(error) {
+              console.error("Unable to GET user. Error JSON:", error);
+            }
+          );
+
+            // params = {
+            //     TableName: tinponsTable,
+            //     FilterExpression : 'category = :userCategorie',
+            //     ExpressionAttributeValues : {':userCategorie' : '👖'},
+            //     Limit : 50,
+            // };
+            // docClient.scan(params, function(err, data) {
+            //     if (err) {
+            //         console.error("Unable to GET user. Error JSON:", JSON.stringify(err, null, 2));
+            //     } else {
+            //         console.log("GET Tinpons succeeded:", JSON.stringify(data, null, 2));
+            //         // Strip JSON Root { "Item": ... }
+            //         respond(context, 200, JSON.stringify(data));
+            //     }
+            // });
+            break;
+        default:
+          respond(context, 403, httpMethod+" is not an allowed HTTP method.")
         }
-
-        var userPromise = docClient.get(userParams, function(err, data){}).promise();
-        var swipedTinponsPromise = docClient.query(swipedTinponsParams, function(err, data){}).promise();
-
-        Promise.all([userPromise, swipedTinponsPromise]).then(function(data) {
-          let user = data[0].Item; // Strip JSON Root { "Item": ... }
-          let swipedTinpons = data[1].Items;
-          let tinponCategories = user.tinponCategories.values; // array of user categories
-
-          console.log("GET user succeeded:", JSON.stringify(user, null, 2));
-          console.log("QUERY swipedTinpons succeeded:", JSON.stringify(swipedTinpons, null, 2));
-
-
-          // include CATEGORY filterExpression parameter
-          var filterExpression = '(category = :category';
-          var expressionAttributeValues = { ':category' : tinponCategories[0] };
-          for (var i = 1; i < tinponCategories.length; i++) {
-            filterExpression = filterExpression.concat(' OR category = :category'+i);
-            expressionAttributeValues[":category"+i] = tinponCategories[i];
-          }
-          filterExpression = filterExpression.concat(")");
-
-          // exclude SWIPED TINPONS filterExpression
-          if (swipedTinpons.length > 0) {
-            filterExpression = filterExpression.concat(" AND tinponId <> :swipedTinpon");
-            expressionAttributeValues[":swipedTinpon"] = swipedTinpons[0].tinponId
-          }
-          for (var i = 1; i < swipedTinpons.length; i++) {
-            filterExpression = filterExpression.concat(' AND tinponId <> :swipedTinpon'+i);
-            expressionAttributeValues[":swipedTinpon"+i] = swipedTinpons[i].tinponId
-          }
-          console.log("filterExpression: " + filterExpression);
-          console.log("expressionAttributeValues: ", expressionAttributeValues);
-
-          params = {
-              TableName: tinponsTable,
-              FilterExpression : filterExpression,
-              ExpressionAttributeValues : expressionAttributeValues,
-              Limit : 50,
-          };
-
-          return docClient.scan(params, function(err, data){}).promise();
-        }).then(function(data){
-          respond(context, 200, JSON.stringify(data));
-        }).catch(function(error) {
-          console.error("Unable to GET user. Error JSON:", error);
-        }
-      );
-
-        // params = {
-        //     TableName: tinponsTable,
-        //     FilterExpression : 'category = :userCategorie',
-        //     ExpressionAttributeValues : {':userCategorie' : '👖'},
-        //     Limit : 50,
-        // };
-        // docClient.scan(params, function(err, data) {
-        //     if (err) {
-        //         console.error("Unable to GET user. Error JSON:", JSON.stringify(err, null, 2));
-        //     } else {
-        //         console.log("GET Tinpons succeeded:", JSON.stringify(data, null, 2));
-        //         // Strip JSON Root { "Item": ... }
-        //         respond(context, 200, JSON.stringify(data));
-        //     }
-        // });
-        break;
-    default:
-      respond(context, 403, httpMethod+" is not an allowed HTTP method.")
     }
+
 
 
     // For demonstration purposes, we'll just echo these values back to the client

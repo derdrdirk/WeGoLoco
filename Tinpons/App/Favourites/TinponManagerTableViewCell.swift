@@ -10,7 +10,7 @@ import UIKit
 
 class TinponManagerTableViewCell: UITableViewCell {
 
-    var tinpon: Tinpon? {
+    var tinpon: DynamoDBTinpon? {
         didSet {
             updateUI()
         }

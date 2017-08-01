@@ -11,7 +11,7 @@ import MapKit
 
 class FavouriteCollectionViewCell: UICollectionViewCell {
     
-    var tinpon: Tinpon? {
+    var tinpon: DynamoDBTinpon? {
         didSet {
             if let tinpon = tinpon {
                 nameLabel.text = tinpon.name

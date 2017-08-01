@@ -8,12 +8,7 @@
 
 import Foundation
 
-enum SerializationError: Error {
-    case missing(String)
-    case invalid(String, Any)
-}
-
-struct User {
+struct User: CustomStringConvertible {
     let userId: String
     let createdAt: Date
     var birthdate: Date

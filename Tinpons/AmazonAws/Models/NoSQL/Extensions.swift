@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum SerializationError: Error {
+    case missing(String)
+    case invalidType(String)
+    case invalid(String, Any)
+}
+
 extension String {
     
     var toJSON: Any? {

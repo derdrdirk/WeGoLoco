@@ -24,9 +24,9 @@ class TinponWrapper {
         var limit = 5
         var noMoreTinponsInDatabase = false
         var lastEvaluatedKey: [String: AWSDynamoDBAttributeValue]? = nil
-        var onComplete: ([Tinpon]) -> Void
+        var onComplete: ([DynamoDBTinpon]) -> Void
         
-        init(performClosureOnComplete onComplete: @escaping ([Tinpon]) -> Void, tinponWrapper: TinponWrapper) {
+        init(performClosureOnComplete onComplete: @escaping ([DynamoDBTinpon]) -> Void, tinponWrapper: TinponWrapper) {
             self.onComplete = onComplete
             self.tinponWrapper = tinponWrapper
         }
@@ -52,13 +52,13 @@ class TinponWrapper {
                     queryExpression.exclusiveStartKey = lastEvaluatedKey
                 }
                 
-                dynamoDBObjectMapper.query(Tinpon.self, expression: queryExpression).continueWith(block: { [weak self] (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Any? in
+                dynamoDBObjectMapper.query(DynamoDBTinpon.self, expression: queryExpression).continueWith(block: { [weak self] (task:AWSTask<AWSDynamoDBPaginatedOutput>!) -> Any? in
                     guard let strongSelf = self else {return nil}
                     
                     if let error = task.error as NSError? {
                         print("The request failed. Error: \(error)")
                     } else if let paginatedOutput = task.result {
-                        var tinpons = paginatedOutput.items as! [Tinpon]
+                        var tinpons = paginatedOutput.items as! [DynamoDBTinpon]
                         
                         // filter already swiped Tinpons
                         tinpons = strongSelf.tinponWrapper.filterAlreadySwipedTinpons(tinpons: tinpons)
@@ -86,7 +86,7 @@ class TinponWrapper {
         }
     }
     
-    func loadNotSwipedTinponsFromUserCategories(performClousreOnComplete onComplete: @escaping ([Tinpon]) -> Void) {
+    func loadNotSwipedTinponsFromUserCategories(performClousreOnComplete onComplete: @escaping ([DynamoDBTinpon]) -> Void) {
 //        UserWrapper.getUserIdAWSTask().continueOnSuccessWith{ [weak self] task in
 //            guard let strongSelf = self else { return nil }
 //            let cognitoId = task.result! as String
@@ -109,7 +109,7 @@ class TinponWrapper {
 //        })
     }
     
-    static func loadAllTinponsForSignedInUser(onComplete: @escaping (([Tinpon]) -> ())) {
+    static func loadAllTinponsForSignedInUser(onComplete: @escaping (([DynamoDBTinpon]) -> ())) {
         UserWrapper.getUserIdAWSTask().continueOnSuccessWith{ task in
             let cognitoId = task.result! as String
             
@@ -120,12 +120,12 @@ class TinponWrapper {
             queryExpression.expressionAttributeValues = [":userId" : cognitoId]
             
             let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
-            return dynamoDBObjectMapper.query(Tinpon.self, expression: queryExpression)
+            return dynamoDBObjectMapper.query(DynamoDBTinpon.self, expression: queryExpression)
         }.continueWith{ task in
             if let error = task.error {
                 print("loading user Tinpons failed. Error: \(error.localizedDescription)")
             } else if let paginatedOutput = task.result! as? AWSDynamoDBPaginatedOutput {
-                let tinpons = paginatedOutput.items as! [Tinpon]
+                let tinpons = paginatedOutput.items as! [DynamoDBTinpon]
                 onComplete(tinpons)
             }
             return nil
@@ -135,35 +135,35 @@ class TinponWrapper {
     
     // MARK : Helper
     
-    func filterAlreadySwipedTinpons(tinpons: [Tinpon]) -> [Tinpon] {
-        var filteredTinpons: [Tinpon] = []
+    func filterAlreadySwipedTinpons(tinpons: [DynamoDBTinpon]) -> [DynamoDBTinpon] {
+        var filteredTinpons: [DynamoDBTinpon] = []
         let context = AppDelegate.viewContext
         
-        outerFor: for tinpon in tinpons {
-            // filter from already swiped
-            let alreadyLoadedTinpons = swiperViewController.tinpons
-            for alreadyLoadedTinpon in alreadyLoadedTinpons {
-                //print("already tinponName: \(alreadyLoadedTinpon.name)")
-                if tinpon.tinponId == alreadyLoadedTinpon.tinponId {
-                    continue outerFor
-                }
-            }
-            
-            // filter from CORE
-            var fetchSwipedTinpons : [SwipedTinponsCore] = []
-            do {
-                let fetchRequest : NSFetchRequest<SwipedTinponsCore> = SwipedTinponsCore.fetchRequest()
-                fetchRequest.predicate = NSPredicate(format: "(tinponId == %@ AND userId == %@) ", tinpon.tinponId!, self.cognitoId)
-                fetchSwipedTinpons = try context.fetch(fetchRequest)
-                if fetchSwipedTinpons.count < 1 {
-                    filteredTinpons.append(tinpon)
-                } else {
-                   //print("Tinpon filtered \(tinpon.name)")
-                }
-            } catch {
-                print("filterTinpons: Fetching Failed")
-            }
-        }
+//        outerFor: for tinpon in tinpons {
+//            // filter from already swiped
+//            let alreadyLoadedTinpons = swiperViewController.tinpons
+//            for alreadyLoadedTinpon in alreadyLoadedTinpons {
+//                //print("already tinponName: \(alreadyLoadedTinpon.name)")
+//                if tinpon.tinponId == alreadyLoadedTinpon.tinponId {
+//                    continue outerFor
+//                }
+//            }
+//            
+//            // filter from CORE
+//            var fetchSwipedTinpons : [SwipedTinponsCore] = []
+//            do {
+//                let fetchRequest : NSFetchRequest<SwipedTinponsCore> = SwipedTinponsCore.fetchRequest()
+//                fetchRequest.predicate = NSPredicate(format: "(tinponId == %@ AND userId == %@) ", tinpon.tinponId!, self.cognitoId)
+//                fetchSwipedTinpons = try context.fetch(fetchRequest)
+//                if fetchSwipedTinpons.count < 1 {
+//                    filteredTinpons.append(tinpon)
+//                } else {
+//                   //print("Tinpon filtered \(tinpon.name)")
+//                }
+//            } catch {
+//                print("filterTinpons: Fetching Failed")
+//            }
+//        }
         return filteredTinpons
     }
     

@@ -25,7 +25,7 @@ class TinponManagerTableViewController: UITableViewController, LoadingAnimationP
     }
     
     
-    var tinpons: [Tinpon] = []
+    var tinpons: [DynamoDBTinpon] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()

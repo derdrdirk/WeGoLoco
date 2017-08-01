@@ -17,6 +17,7 @@ enum HttpdMethod:String {
 enum APIEndPoint:String {
     case users = "/users"
     case tinpons = "/tinpons"
+    case notSwipedTinpons = "/tinpons/notSwiped"
 }
 
 protocol APIGatewayProtocol: class {}

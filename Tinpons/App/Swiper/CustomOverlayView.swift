@@ -16,7 +16,7 @@ private let overlayFavouriteImageName = "kolodaFavouriteOverlay"
 
 class CustomOverlayView: OverlayView {
     
-    var tinpon: Tinpon? {
+    var tinpon: DynamoDBTinpon? {
         didSet {
             title.text = tinpon?.name
             priceLabel.text = (tinpon?.category)!+" | "+(tinpon?.price?.stringValue)!+" €"

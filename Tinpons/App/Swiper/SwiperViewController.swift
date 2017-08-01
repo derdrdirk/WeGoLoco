@@ -63,12 +63,14 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
     var userWrapper = UserWrapper()
     
     var userId: String?
-    var tinpons : [Tinpon] = []
+    var tinpons : [DynamoDBTinpon] = []
     var lastEvaluatedKey : [String: AWSDynamoDBAttributeValue]?
     
     //MARK: Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         getCognitoID()
+        
+        TinponsAPI.getNotSwipedTinpons(onComplete: { _ in ()})
         
 //        UserAPI.getSignedInUser{ user in
 //            print("Download User \(user.toJSON()!)")

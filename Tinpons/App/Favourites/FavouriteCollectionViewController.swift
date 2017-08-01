@@ -21,7 +21,7 @@ class FavouriteCollectionViewController: UICollectionViewController, UICollectio
         }
     }
     
-    var tinpons: [Tinpon] = []
+    var tinpons: [DynamoDBTinpon] = []
     var refresher:UIRefreshControl!
     
     override func viewDidLoad() {

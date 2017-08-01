@@ -16,7 +16,7 @@ import UIKit
 import AWSDynamoDB
 import AWSS3
 
-class Tinpon: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
+class DynamoDBTinpon: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     
     var category: String?
     var createdAt: String?
@@ -79,7 +79,7 @@ class Tinpon: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
         let updateMapperConfig = AWSDynamoDBObjectMapperConfiguration()
         updateMapperConfig.saveBehavior = .updateSkipNullAttributes
         
-        let dynamoDBTinpon = Tinpon()
+        let dynamoDBTinpon = DynamoDBTinpon()
         dynamoDBTinpon?.tinponId = tinponId
         dynamoDBTinpon?.active = NSNumber(value: 0)
         
@@ -97,7 +97,7 @@ class Tinpon: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
         let updateMapperConfig = AWSDynamoDBObjectMapperConfiguration()
         updateMapperConfig.saveBehavior = .updateSkipNullAttributes
         
-        let dynamoDBTinpon = Tinpon()
+        let dynamoDBTinpon = DynamoDBTinpon()
         dynamoDBTinpon?.tinponId = tinponId
         dynamoDBTinpon?.active = NSNumber(value: 1)
         

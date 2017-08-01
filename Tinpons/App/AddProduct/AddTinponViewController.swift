@@ -27,14 +27,14 @@ class AddTinponViewController: FormViewController, CLLocationManagerDelegate, Lo
     
     struct TinponToAdd {
         init() {
-            tinpon = Tinpon()
+            tinpon = DynamoDBTinpon()
             tinpon.tinponId = UUID().uuidString
             tinpon.createdAt = Date().iso8601
             tinpon.active = NSNumber(value: 1)
             tinpon.imgUrl = tinpon.tinponId
             image = UIImage()
         }
-        var tinpon: Tinpon!
+        var tinpon: DynamoDBTinpon!
         var image: UIImage
     }
     var tinponToAdd = TinponToAdd()

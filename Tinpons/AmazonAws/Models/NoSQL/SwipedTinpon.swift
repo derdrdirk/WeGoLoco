@@ -80,7 +80,7 @@ class SwipedTinpon {
     
     static func loadAllFavouriteTinpons(lastEvaluatedKey: [String: AWSDynamoDBAttributeValue]? = nil,
                                         //swipedTinpons: [DynamoDBSwipedTinpon]?,
-                                        _ onComplete: @escaping ([Tinpon]) -> ())
+                                        _ onComplete: @escaping ([DynamoDBTinpon]) -> ())
     {
         UserWrapper.getUserIdAWSTask().continueOnSuccessWith{ task in
             let cognitoId = task.result! as String
@@ -105,7 +105,7 @@ class SwipedTinpon {
             })
             return AWSTask(forCompletionOfAllTasksWithResults: tasks)
         }.continueWith { task in
-            if let tinpons = task.result as? [Tinpon] {
+            if let tinpons = task.result as? [DynamoDBTinpon] {
              
                 onComplete(tinpons)
             } else if let error = task.error {
