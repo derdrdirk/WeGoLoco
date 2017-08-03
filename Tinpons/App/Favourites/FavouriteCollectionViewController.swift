@@ -21,7 +21,7 @@ class FavouriteCollectionViewController: UICollectionViewController, UICollectio
         }
     }
     
-    var tinpons: [DynamoDBTinpon] = []
+    var tinpons: [Tinpon] = []
     var refresher:UIRefreshControl!
     
     override func viewDidLoad() {
@@ -51,15 +51,27 @@ class FavouriteCollectionViewController: UICollectionViewController, UICollectio
     func updateDataSource() {
         tinpons = []
         self.collectionView!.refreshControl?.beginRefreshing()
-        SwipedTinpon.loadAllFavouriteTinpons{ [weak self] tinpons in
+        TinponsAPI.getFavouriteTinpons{ [weak self] tinpons in
             guard let strongSelf = self else { return }
-            strongSelf.tinpons.append(contentsOf: tinpons)
+            if let tinpons = tinpons {
+                strongSelf.tinpons.append(contentsOf: tinpons)
+            }
             
             DispatchQueue.main.async {
                 strongSelf.collectionView?.reloadData()
                 strongSelf.collectionView!.refreshControl?.endRefreshing()
             }
         }
+
+//        SwipedTinpon.loadAllFavouriteTinpons{ [weak self] tinpons in
+//            guard let strongSelf = self else { return }
+//            strongSelf.tinpons.append(contentsOf: tinpons)
+//            
+//            DispatchQueue.main.async {
+//                strongSelf.collectionView?.reloadData()
+//                strongSelf.collectionView!.refreshControl?.endRefreshing()
+//            }
+//        }
     }
 
     /*

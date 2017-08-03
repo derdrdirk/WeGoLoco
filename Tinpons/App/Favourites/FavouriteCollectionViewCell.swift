@@ -11,11 +11,11 @@ import MapKit
 
 class FavouriteCollectionViewCell: UICollectionViewCell {
     
-    var tinpon: DynamoDBTinpon? {
+    var tinpon: Tinpon? {
         didSet {
             if let tinpon = tinpon {
                 nameLabel.text = tinpon.name
-                priceLabel.text = tinpon.category!+" | "+(tinpon.price?.stringValue)!+" €"
+                priceLabel.text = tinpon.category!+" | "+String(describing: (tinpon.price)!)+" €"
                 let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+tinpon.imgUrl!
                 tinponImageView.imageFromServerURL(urlString: resizedImageUrl)
             }
@@ -34,8 +34,8 @@ class FavouriteCollectionViewCell: UICollectionViewCell {
     
     func openMapForPlace() {
         
-        let latitude: CLLocationDegrees = (tinpon?.latitude?.doubleValue)!
-        let longitude: CLLocationDegrees = (tinpon?.longitude?.doubleValue)!
+        let latitude: CLLocationDegrees = (tinpon?.latitude)!
+        let longitude: CLLocationDegrees = (tinpon?.longitude)!
         
         let regionDistance:CLLocationDistance = 10000
         let coordinates = CLLocationCoordinate2DMake(latitude, longitude)

@@ -93,13 +93,24 @@ exports.handler = function(event, context, callback) {
     console.log("pathParams: ",pathParams);
     var result, params;
     switch(pathParams) {
+      case "/tinpons" :
+        switch (httpMethod) {
+          case: "POST":
+            console.log("tinpons POST");
+          break;
+
+          default:
+            respond(context, 403, httpMethod+" is not an allowed HTTP method.");
+        };
+        break;
       case "/tinpons/notSwiped" :
         switch (httpMethod) {
           case "GET":
             // GET method is for NOT SWIPED TINPONS of user account
 
             // var userId = cognitoIdentityId;
-            var userId = "eu-west-1:7f84077c-2df1-4835-b80e-bd29534611ac";
+            //var userId = "eu-west-1:7f84077c-2df1-4835-b80e-bd29534611ac";
+            let userId = cognitoIdentityId
             let userParams = {
                 TableName: usersTable,
                 Key:{
@@ -175,14 +186,16 @@ exports.handler = function(event, context, callback) {
             //     }
             // });
             break;
-        default:
-          respond(context, 403, httpMethod+" is not an allowed HTTP method.");
-        }
+          default:
+            respond(context, 403, httpMethod+" is not an allowed HTTP method.");
+          }
+        break;
         //tinpons/notSwiped ///////////////////////////////////////////////////////////////////////
         case "/tinpons/favourite":
           switch (httpMethod) {
             case "GET":
-              var userId = "eu-west-1:7f84077c-2df1-4835-b80e-bd29534611ac";
+              //var userId = "eu-west-1:7f84077c-2df1-4835-b80e-bd29534611ac";
+              let userId = cognitoIdentityId
               let swipedFavouriteTinponsParams = {
                   TableName: swipedTinponsTable,
                   IndexName: "userId-favourite-index",
