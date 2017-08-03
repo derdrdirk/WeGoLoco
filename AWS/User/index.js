@@ -1,16 +1,23 @@
 'use strict';
-var mysql = require('mysql');
+//var mysql = require('mysql');
+var mysql = require('promise-mysql');
 
-var connection = mysql.createConnection({
-  host: "wegoloco-cluster.cluster-cb5jwvcwolur.eu-west-1.rds.amazonaws.com",
-  user: "admin",
-  password: "1269Y5$ST50j",
-  database : 'wegoloco'
-});
+var connection;
+let host = "wegoloco-cluster.cluster-cb5jwvcwolur.eu-west-1.rds.amazonaws.com";
+let user = "admin";
+let password = "1269Y5$ST50j";
+let database = 'wegoloco';
 
-connection.connect(function(err) {
-  console.log("inside Connect");
-});
+// var connection = mysql.createConnection({
+//   host: "wegoloco-cluster.cluster-cb5jwvcwolur.eu-west-1.rds.amazonaws.com",
+//   user: "admin",
+//   password: "1269Y5$ST50j",
+//   database : 'wegoloco'
+// });
+//
+// connection.connect(function(err) {
+//   console.log("inside Connect");
+// });
 
 function respond(context, statusCode, body) {
   let response = {
@@ -109,6 +116,67 @@ exports.handler = (event, context, callback) => {
         // connection.end();
       });
       break;
+    case "POST":
+      mysql.createConnection({
+          host: host,
+          user: user,
+          password: password,
+          database: database
+      }).then(function(conn){
+          connection = conn;
+          var result = conn.query("SELECT * FROM person "
+                                  +"WHERE id = 'test123568';");
+          return result;
+      }).then(function(rows) {
+        var user = JSON.parse(requestBody);
+        user.id = "niceOne";
+        // user["email"] = (user.hasOwnProperty("email") ? "'"+user["email"]+"'" : "NULL");
+        // user["birthdate"] = (user.hasOwnProperty("birthdate") ? "'"+user["birthdate"]+"'" : "NULL");
+        // user["gender"] = (user.hasOwnProperty("gender") ? "'"+user["gender"]+"'" : "NULL");
+
+        if (rows.length > 0) {
+          // User exists
+          connection.end();
+          respond(context, 405, "Error: User already exists");
+        } else {
+          var result = connection.query("INSERT INTO person SET ?", user);
+          return result;
+        }
+      }).then(function(result) {
+        connection.end();
+        respond(context, 400, 'Success: Created User.');
+      });
+      break;
+      case "PUT":
+        mysql.createConnection({
+            host: host,
+            user: user,
+            password: password,
+            database: database
+        }).then(function(conn){
+            connection = conn;
+            var result = conn.query("SELECT * FROM person "
+                                    +"WHERE id = 'test1235678';");
+            return result;
+        }).then(function(rows) {
+          console.log(JSON.parse(requestBody).email);
+
+          var user = JSON.parse(requestBody);
+
+          if (rows.length == 0) {
+            // User does not exists
+            connection.end();
+            respond(context, 405, "Error: User does not exist");
+          } else {
+            var result = connection.query("UPDATE person "
+                                    +"SET ? WHERE `id` = 'test';", user);
+            return result;
+          }
+        }).then(function(result) {
+          connection.end();
+          respond(context, 400, 'Success: Updated User.');
+        });
+        break;
     default:
       respond(context, 403, httpMethod+" is not an allowed HTTP method.")
   }
