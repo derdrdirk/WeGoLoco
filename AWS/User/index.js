@@ -102,18 +102,20 @@ exports.handler = (event, context, callback) => {
       // get signedIn User
       console.log("CognitoId : ", cognitoIdentityId);
 
-      connection.query("SELECT * FROM person "
-                      +"WHERE id = 'test';"
-                      , function (error, results, fields) {
-        if (error) {
-          console.log("Error : ", error);
-          respond(context, 503, "Something went wrong with the QUERY");
-        } else {
-          console.log("GET person success : ", results);
-          respond(context, 200, JSON.stringify(results));
-        }
-
-        // connection.end();
+      mysql.createConnection({
+          host: host,
+          user: user,
+          password: password,
+          database: database
+      }).then(function(conn){
+          connection = conn;
+          var result = conn.query("SELECT * FROM person "
+                                  +"WHERE id = '"+cognitoIdentityId+"';");
+          return result;
+      }).then(function(rows) {
+          let result = JSON.stringify(rows[0]);
+          console.log("Success: User ", result);
+          respond(context, 200, result);
       });
       break;
     case "POST":
@@ -125,7 +127,7 @@ exports.handler = (event, context, callback) => {
       }).then(function(conn){
           connection = conn;
           var result = conn.query("SELECT * FROM person "
-                                  +"WHERE id = 'test123568';");
+                                  +"WHERE id = '"+cognitoIdentityId+"';");
           return result;
       }).then(function(rows) {
         var user = JSON.parse(requestBody);
@@ -156,7 +158,7 @@ exports.handler = (event, context, callback) => {
         }).then(function(conn){
             connection = conn;
             var result = conn.query("SELECT * FROM person "
-                                    +"WHERE id = 'test1235678';");
+                                    +"WHERE id = '"+cognitoIdentityId+"';");
             return result;
         }).then(function(rows) {
           console.log(JSON.parse(requestBody).email);
@@ -169,7 +171,7 @@ exports.handler = (event, context, callback) => {
             respond(context, 405, "Error: User does not exist");
           } else {
             var result = connection.query("UPDATE person "
-                                    +"SET ? WHERE `id` = 'test';", user);
+                                    +"SET ? WHERE `id` = '"+cognitoIdentityId+"';", user);
             return result;
           }
         }).then(function(result) {

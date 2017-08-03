@@ -17,6 +17,9 @@
 #import <Foundation/Foundation.h>
 #import <AWSAPIGateway/AWSAPIGateway.h>
 
+#import "AWSAPI_9HLT8N48WD_RequestSchema.h"
+#import "AWSAPI_9HLT8N48WD_ResponseSchema.h"
+#import "AWSAPI_9HLT8N48WD_Empty.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -24,7 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  The service client object.
  */
-@interface AWSAPI_DOMG701VNC_TinponsMobileHubClient: AWSAPIGatewayClient
+@interface AWSAPI_9HLT8N48WD_WeGoLocoClient: AWSAPIGatewayClient
 
 /**
  Returns the singleton service client. If the singleton object does not exist, the SDK instantiates the default service client with `defaultServiceConfiguration` from `[AWSServiceManager defaultServiceManager]`. The reference to this object is maintained by the SDK, and you do not need to retain it manually.
@@ -57,13 +60,13 @@ NS_ASSUME_NONNULL_BEGIN
 
  *Swift*
 
-     let serviceClient = AWSAPI_DOMG701VNC_TinponsMobileHubClient.defaultClient()
+     let serviceClient = AWSAPI_9HLT8N48WD_WeGoLocoClient.defaultClient()
 
  *Objective-C*
 
-     AWSAPI_DOMG701VNC_TinponsMobileHubClient *serviceClient = [AWSAPI_DOMG701VNC_TinponsMobileHubClient defaultClient];
+     AWSAPI_9HLT8N48WD_WeGoLocoClient *serviceClient = [AWSAPI_9HLT8N48WD_WeGoLocoClient defaultClient];
 
- Alternatively, this configuration could also be set in the `info.plist` file of your app under `AWS` dictionary with a configuration dictionary by name `AWSAPI_DOMG701VNC_TinponsMobileHubClient`.
+ Alternatively, this configuration could also be set in the `info.plist` file of your app under `AWS` dictionary with a configuration dictionary by name `AWSAPI_9HLT8N48WD_WeGoLocoClient`.
 
  @return The default service client.
  */
@@ -79,7 +82,7 @@ NS_ASSUME_NONNULL_BEGIN
      func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
          let credentialProvider = AWSCognitoCredentialsProvider(regionType: .USEast1, identityPoolId: "YourIdentityPoolId")
          let configuration = AWSServiceConfiguration(region: .USWest2, credentialsProvider: credentialProvider)
-         AWSAPI_DOMG701VNC_TinponsMobileHubClient.registerClientWithConfiguration(configuration, forKey: "USWest2AWSAPI_DOMG701VNC_TinponsMobileHubClient")
+         AWSAPI_9HLT8N48WD_WeGoLocoClient.registerClientWithConfiguration(configuration, forKey: "USWest2AWSAPI_9HLT8N48WD_WeGoLocoClient")
 
          return true
      }
@@ -92,7 +95,7 @@ NS_ASSUME_NONNULL_BEGIN
          AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSWest2
                                                                               credentialsProvider:credentialsProvider];
 
-         [AWSAPI_DOMG701VNC_TinponsMobileHubClient registerClientWithConfiguration:configuration forKey:@"USWest2AWSAPI_DOMG701VNC_TinponsMobileHubClient"];
+         [AWSAPI_9HLT8N48WD_WeGoLocoClient registerClientWithConfiguration:configuration forKey:@"USWest2AWSAPI_9HLT8N48WD_WeGoLocoClient"];
 
          return YES;
      }
@@ -101,11 +104,11 @@ NS_ASSUME_NONNULL_BEGIN
 
  *Swift*
 
-     let serviceClient = AWSAPI_DOMG701VNC_TinponsMobileHubClient(forKey: "USWest2AWSAPI_DOMG701VNC_TinponsMobileHubClient")
+     let serviceClient = AWSAPI_9HLT8N48WD_WeGoLocoClient(forKey: "USWest2AWSAPI_9HLT8N48WD_WeGoLocoClient")
 
  *Objective-C*
 
-     AWSAPI_DOMG701VNC_TinponsMobileHubClient *serviceClient = [AWSAPI_DOMG701VNC_TinponsMobileHubClient clientForKey:@"USWest2AWSAPI_DOMG701VNC_TinponsMobileHubClient"];
+     AWSAPI_9HLT8N48WD_WeGoLocoClient *serviceClient = [AWSAPI_9HLT8N48WD_WeGoLocoClient clientForKey:@"USWest2AWSAPI_9HLT8N48WD_WeGoLocoClient"];
 
  @warning After calling this method, do not modify the configuration object. It may cause unspecified behaviors.
 
@@ -124,7 +127,7 @@ NS_ASSUME_NONNULL_BEGIN
      func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
          let credentialProvider = AWSCognitoCredentialsProvider(regionType: .USEast1, identityPoolId: "YourIdentityPoolId")
          let configuration = AWSServiceConfiguration(region: .USWest2, credentialsProvider: credentialProvider)
-         AWSAPI_DOMG701VNC_TinponsMobileHubClient.registerClientWithConfiguration(configuration, forKey: "USWest2AWSAPI_DOMG701VNC_TinponsMobileHubClient")
+         AWSAPI_9HLT8N48WD_WeGoLocoClient.registerClientWithConfiguration(configuration, forKey: "USWest2AWSAPI_9HLT8N48WD_WeGoLocoClient")
 
          return true
      }
@@ -137,7 +140,7 @@ NS_ASSUME_NONNULL_BEGIN
          AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionUSWest2
                                                                               credentialsProvider:credentialsProvider];
 
-         [AWSAPI_DOMG701VNC_TinponsMobileHubClient registerClientWithConfiguration:configuration forKey:@"USWest2AWSAPI_DOMG701VNC_TinponsMobileHubClient"];
+         [AWSAPI_9HLT8N48WD_WeGoLocoClient registerClientWithConfiguration:configuration forKey:@"USWest2AWSAPI_9HLT8N48WD_WeGoLocoClient"];
 
          return YES;
      }
@@ -146,11 +149,11 @@ NS_ASSUME_NONNULL_BEGIN
 
  *Swift*
 
-     let serviceClient = AWSAPI_DOMG701VNC_TinponsMobileHubClient(forKey: "USWest2AWSAPI_DOMG701VNC_TinponsMobileHubClient")
+     let serviceClient = AWSAPI_9HLT8N48WD_WeGoLocoClient(forKey: "USWest2AWSAPI_9HLT8N48WD_WeGoLocoClient")
 
  *Objective-C*
 
-     AWSAPI_DOMG701VNC_TinponsMobileHubClient *serviceClient = [AWSAPI_DOMG701VNC_TinponsMobileHubClient clientForKey:@"USWest2AWSAPI_DOMG701VNC_TinponsMobileHubClient"];
+     AWSAPI_9HLT8N48WD_WeGoLocoClient *serviceClient = [AWSAPI_9HLT8N48WD_WeGoLocoClient clientForKey:@"USWest2AWSAPI_9HLT8N48WD_WeGoLocoClient"];
 
  @param key A string to identify the service client.
 
@@ -166,6 +169,31 @@ NS_ASSUME_NONNULL_BEGIN
  @param key A string to identify the service client.
  */
 + (void)removeClientForKey:(NSString *)key;
+
+/**
+ 
+ 
+ @param body 
+ 
+ return type: AWSAPI_9HLT8N48WD_ResponseSchema *
+ */
+- (AWSTask *)usersGet:( AWSAPI_9HLT8N48WD_RequestSchema *)body;
+
+/**
+ 
+ 
+ 
+ return type: AWSAPI_9HLT8N48WD_Empty *
+ */
+- (AWSTask *)usersPut;
+
+/**
+ 
+ 
+ 
+ return type: AWSAPI_9HLT8N48WD_Empty *
+ */
+- (AWSTask *)usersPost;
 
 @end
 

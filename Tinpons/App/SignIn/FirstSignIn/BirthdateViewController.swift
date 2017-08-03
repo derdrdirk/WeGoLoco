@@ -33,7 +33,7 @@ class BirthdateViewController: UIViewController {
     
     func loadBirthdate() {
         if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
-            birthdatePicker.date = myNavigationController.user.birthdate
+            birthdatePicker.date = myNavigationController.user.birthdate!
             continueButton.isEnabled = true
         }
     }

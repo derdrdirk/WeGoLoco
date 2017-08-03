@@ -108,7 +108,7 @@ class AWSMobileClient: NSObject {
     
     func setupCloudLogicAPI() {
         let serviceConfiguration = AWSServiceConfiguration(region: AWSCloudLogicDefaultRegion, credentialsProvider: AWSIdentityManager.default().credentialsProvider)
-        AWSAPI_DOMG701VNC_TinponsMobileHubClient.register(with: serviceConfiguration!, forKey: AWSCloudLogicDefaultConfigurationKey)
+        AWSAPI_9HLT8N48WD_WeGoLocoClient.register(with: serviceConfiguration!, forKey: AWSCloudLogicDefaultConfigurationKey)
     }
 
 }

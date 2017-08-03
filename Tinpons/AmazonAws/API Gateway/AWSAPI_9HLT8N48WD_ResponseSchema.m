@@ -14,13 +14,14 @@
  */
  
 
-#import <Foundation/Foundation.h>
-#import <AWSCore/AWSCore.h>
+#import "AWSAPI_9HLT8N48WD_ResponseSchema.h"
 
- 
-@interface AWSAPI_DOMG701VNC_RequestSchema : AWSModel
+@implementation AWSAPI_9HLT8N48WD_ResponseSchema
 
-@property (nonatomic, strong, nonnull) NSString *request;
-
++ (NSDictionary *)JSONKeyPathsByPropertyKey {
+    return @{
+             @"response": @"response"
+             };
+}
 
 @end

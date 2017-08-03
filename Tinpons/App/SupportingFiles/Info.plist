@@ -27,11 +27,11 @@
 			<key>Default</key>
 			<dict>
 				<key>CognitoUserPoolAppClientId</key>
-				<string>7fdsm4h9k6vfnnehqqle29jm79</string>
+				<string>3mip9nrd4spa1n2elmftc5gcqg</string>
 				<key>CognitoUserPoolAppClientSecret</key>
-				<string>r7sb18ge48rh8gqh2ekhunn75heogkef03uh249ld3cbi54l76</string>
+				<string>44u9jj9o2ipo1av50ise7ofh7rjfpf5ooqk39tsp7bplrcler9v</string>
 				<key>CognitoUserPoolId</key>
-				<string>eu-west-1_PoCtxNClR</string>
+				<string>eu-west-1_EIdjGtWLK</string>
 				<key>Region</key>
 				<string>eu-west-1</string>
 			</dict>
@@ -43,7 +43,7 @@
 				<key>Default</key>
 				<dict>
 					<key>PoolId</key>
-					<string>eu-west-1:8088e7da-a496-4ae3-818c-2b9025180888</string>
+					<string>eu-west-1:64a9de95-136c-4ba3-b366-6aa4079fef8b</string>
 					<key>Region</key>
 					<string>eu-west-1</string>
 				</dict>
@@ -65,7 +65,7 @@
 		<key>MobileHub</key>
 		<dict>
 			<key>ProjectClientId</key>
-			<string>MobileHub 213dd06d-bf01-45bb-bb0c-459d1a57a3f4 aws-my-sample-app-ios-swift-v0.16</string>
+			<string>MobileHub eb927c03-2bbc-4c9f-9513-7187554a44a9 aws-my-sample-app-ios-swift-v0.18</string>
 		</dict>
 		<key>UserFileManager</key>
 		<dict>
@@ -114,7 +114,7 @@
 	<key>FacebookAppID</key>
 	<string>305281413244121</string>
 	<key>FacebookDisplayName</key>
-	<string>Tinpons</string>
+	<string>WeGoLoco</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -197,7 +197,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
 	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
+	<string>FirstSignIn</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

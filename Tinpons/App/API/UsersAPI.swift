@@ -20,7 +20,9 @@ class UserAPI: APIGatewayProtocol {
                 let responseString = String(data: result.responseData!, encoding: .utf8)
                 
                 if let json = responseString?.toJSON {
-                    let user = User(json: json as! [String : Any])
+                    print("get damn json")
+                    print(json)
+                    let user = try? User(json: json as! [String : Any])
                     onComplete(user)
                 } else {
                     // User MOST PROBABLY does not exist

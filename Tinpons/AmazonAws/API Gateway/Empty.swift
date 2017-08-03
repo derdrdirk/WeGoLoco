@@ -14,14 +14,16 @@
  */
  
 
-#import "AWSAPI_DOMG701VNC_ResponseSchema.h"
+import Foundation
+import AWSCore
 
-@implementation AWSAPI_DOMG701VNC_ResponseSchema
-
-+ (NSDictionary *)JSONKeyPathsByPropertyKey {
-    return @{
-             @"response": @"response"
-             };
+ 
+public class Empty : AWSModel {
+    
+    
+   	public override static func jsonKeyPathsByPropertyKey() -> [AnyHashable : Any]!{
+		var params:[AnyHashable : Any] = [:]
+		
+        return params
+	}
 }
-
-@end

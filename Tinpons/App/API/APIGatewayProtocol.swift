@@ -24,7 +24,9 @@ enum APIEndPoint:String {
 protocol APIGatewayProtocol: class {}
 
 extension APIGatewayProtocol {
+    
     static func restAPITask(httpMethod: HttpdMethod, endPoint: APIEndPoint, httpBody: String? = nil) -> AWSTask<AWSAPIGatewayResponse>  {
+        
         let httpMethodName = httpMethod.rawValue
         let URLString = endPoint.rawValue
         let queryStringParameters: [String:String] = [:]
@@ -43,7 +45,7 @@ extension APIGatewayProtocol {
         
         // Fetch the Cloud Logic client to be used for invocation
         // Change the `AWSAPI_XE21FG_MyCloudLogicClient` class name to the client class for your generated SDK
-        return AWSAPI_DOMG701VNC_TinponsMobileHubClient(forKey: AWSCloudLogicDefaultConfigurationKey).invoke(apiRequest)
+        return  AWSAPI_9HLT8N48WD_WeGoLocoClient(forKey: AWSCloudLogicDefaultConfigurationKey).invoke(apiRequest)
     }
 }
 

@@ -34,8 +34,8 @@ class InterestsTableViewController: UITableViewController, LoadingAnimationProto
         
         // load init values + progressView
         if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
-            if !myNavigationController.user.tinponCategories.isEmpty {
-                myNavigationController.user.tinponCategories.forEach{
+            if !(myNavigationController.user.tinponCategories?.isEmpty)! {
+                myNavigationController.user.tinponCategories?.forEach{
                     switch($0) {
                     case "👞":
                         👞Switch.isOn = true
@@ -45,7 +45,7 @@ class InterestsTableViewController: UITableViewController, LoadingAnimationProto
                     default: ()
                     }
                 }
-                categories = myNavigationController.user.tinponCategories
+                categories = myNavigationController.user.tinponCategories!
                 validate()
             }
             myNavigationController.progressView.progress = 0.8

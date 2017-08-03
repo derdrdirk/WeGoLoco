@@ -20,12 +20,13 @@
 		D410C5D81F23828A008D6C92 /* AWSCognitoIdentityProvider.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D410C5D71F23828A008D6C92 /* AWSCognitoIdentityProvider.framework */; };
 		D410C5D91F23828A008D6C92 /* AWSCognitoIdentityProvider.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D410C5D71F23828A008D6C92 /* AWSCognitoIdentityProvider.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D410C5E41F23A14D008D6C92 /* AWSConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410C5E21F23A14D008D6C92 /* AWSConfiguration.swift */; };
-		D410C5EB1F23A159008D6C92 /* AWSAPI_DOMG701VNC_RequestSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = D410C5E61F23A159008D6C92 /* AWSAPI_DOMG701VNC_RequestSchema.m */; };
-		D410C5EC1F23A159008D6C92 /* AWSAPI_DOMG701VNC_ResponseSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = D410C5E81F23A159008D6C92 /* AWSAPI_DOMG701VNC_ResponseSchema.m */; };
-		D410C5ED1F23A159008D6C92 /* AWSAPI_DOMG701VNC_TinponsMobileHubClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D410C5EA1F23A159008D6C92 /* AWSAPI_DOMG701VNC_TinponsMobileHubClient.m */; };
 		D410C5EF1F24D7E0008D6C92 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410C5EE1F24D7E0008D6C92 /* User.swift */; };
 		D410C5F21F24E443008D6C92 /* UsersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410C5F11F24E443008D6C92 /* UsersAPI.swift */; };
 		D417F0911F1F81E700D803E0 /* LoadingAnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D417F0901F1F81E700D803E0 /* LoadingAnimationProtocol.swift */; };
+		D41EB2681F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2611F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m */; };
+		D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2631F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m */; };
+		D41EB26A1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2651F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m */; };
+		D41EB26B1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2671F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.m */; };
 		D42DC6BB1F1BF9800087EB4F /* Whisper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D42DC6B91F1BF8D40087EB4F /* Whisper.framework */; };
 		D42DC6BC1F1BF9800087EB4F /* Whisper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D42DC6B91F1BF8D40087EB4F /* Whisper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4306C811F0E6BEC0073A11E /* Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4306C801F0E6BEC0073A11E /* Stores.swift */; };
@@ -207,16 +208,18 @@
 		D410C5D41F238242008D6C92 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = Tinpons/Sdk/Aws/AWSCore.framework; sourceTree = "<group>"; };
 		D410C5D71F23828A008D6C92 /* AWSCognitoIdentityProvider.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognitoIdentityProvider.framework; path = Tinpons/Sdk/Aws/AWSCognitoIdentityProvider.framework; sourceTree = "<group>"; };
 		D410C5E21F23A14D008D6C92 /* AWSConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AWSConfiguration.swift; path = Tinpons/AmazonAws/AWSConfiguration.swift; sourceTree = SOURCE_ROOT; };
-		D410C5E31F23A14D008D6C92 /* Bridging_Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bridging_Header.h; path = Tinpons/AmazonAws/Bridging_Header.h; sourceTree = SOURCE_ROOT; };
-		D410C5E51F23A159008D6C92 /* AWSAPI_DOMG701VNC_RequestSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_DOMG701VNC_RequestSchema.h; sourceTree = "<group>"; };
-		D410C5E61F23A159008D6C92 /* AWSAPI_DOMG701VNC_RequestSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_DOMG701VNC_RequestSchema.m; sourceTree = "<group>"; };
-		D410C5E71F23A159008D6C92 /* AWSAPI_DOMG701VNC_ResponseSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_DOMG701VNC_ResponseSchema.h; sourceTree = "<group>"; };
-		D410C5E81F23A159008D6C92 /* AWSAPI_DOMG701VNC_ResponseSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_DOMG701VNC_ResponseSchema.m; sourceTree = "<group>"; };
-		D410C5E91F23A159008D6C92 /* AWSAPI_DOMG701VNC_TinponsMobileHubClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_DOMG701VNC_TinponsMobileHubClient.h; sourceTree = "<group>"; };
-		D410C5EA1F23A159008D6C92 /* AWSAPI_DOMG701VNC_TinponsMobileHubClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_DOMG701VNC_TinponsMobileHubClient.m; sourceTree = "<group>"; };
 		D410C5EE1F24D7E0008D6C92 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Tinpons/App/API/User.swift; sourceTree = SOURCE_ROOT; };
 		D410C5F11F24E443008D6C92 /* UsersAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UsersAPI.swift; path = Tinpons/App/API/UsersAPI.swift; sourceTree = SOURCE_ROOT; };
 		D417F0901F1F81E700D803E0 /* LoadingAnimationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingAnimationProtocol.swift; path = Tinpons/App/LoadingAnimationProtocol.swift; sourceTree = SOURCE_ROOT; };
+		D41EB2601F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_9HLT8N48WD_Empty.h; sourceTree = "<group>"; };
+		D41EB2611F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_9HLT8N48WD_Empty.m; sourceTree = "<group>"; };
+		D41EB2621F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_9HLT8N48WD_RequestSchema.h; sourceTree = "<group>"; };
+		D41EB2631F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_9HLT8N48WD_RequestSchema.m; sourceTree = "<group>"; };
+		D41EB2641F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_9HLT8N48WD_ResponseSchema.h; sourceTree = "<group>"; };
+		D41EB2651F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_9HLT8N48WD_ResponseSchema.m; sourceTree = "<group>"; };
+		D41EB2661F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_9HLT8N48WD_WeGoLocoClient.h; sourceTree = "<group>"; };
+		D41EB2671F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_9HLT8N48WD_WeGoLocoClient.m; sourceTree = "<group>"; };
+		D41EB26C1F333D01003842E4 /* Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bridging_Header.h; path = Tinpons/AmazonAws/Bridging_Header.h; sourceTree = SOURCE_ROOT; };
 		D42DC6B91F1BF8D40087EB4F /* Whisper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Whisper.framework; path = Carthage/Build/iOS/Whisper.framework; sourceTree = "<group>"; };
 		D4306C801F0E6BEC0073A11E /* Stores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stores.swift; path = Tinpons/AmazonAws/Models/NoSQL/Stores.swift; sourceTree = SOURCE_ROOT; };
 		D4306C821F0E73780073A11E /* AWSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AWSHelper.swift; path = Tinpons/AmazonAws/Models/NoSQL/AWSHelper.swift; sourceTree = SOURCE_ROOT; };
@@ -414,9 +417,9 @@
 		B401C97953B32C8900000000 /* AmazonAws */ = {
 			isa = PBXGroup;
 			children = (
+				D41EB26C1F333D01003842E4 /* Bridging_Header.h */,
 				D410C5E21F23A14D008D6C92 /* AWSConfiguration.swift */,
-				D410C5E31F23A14D008D6C92 /* Bridging_Header.h */,
-				D410C5C81F237FC6008D6C92 /* Api */,
+				D410C5C81F237FC6008D6C92 /* API Gateway */,
 				1DD70E2946C3AB3000000000 /* AWSMobileClient.swift */,
 				B401C979FD4026CD00000000 /* Models */,
 			);
@@ -508,18 +511,20 @@
 			path = ../../App/SignIn/FirstSignIn;
 			sourceTree = "<group>";
 		};
-		D410C5C81F237FC6008D6C92 /* Api */ = {
+		D410C5C81F237FC6008D6C92 /* API Gateway */ = {
 			isa = PBXGroup;
 			children = (
-				D410C5E51F23A159008D6C92 /* AWSAPI_DOMG701VNC_RequestSchema.h */,
-				D410C5E61F23A159008D6C92 /* AWSAPI_DOMG701VNC_RequestSchema.m */,
-				D410C5E71F23A159008D6C92 /* AWSAPI_DOMG701VNC_ResponseSchema.h */,
-				D410C5E81F23A159008D6C92 /* AWSAPI_DOMG701VNC_ResponseSchema.m */,
-				D410C5E91F23A159008D6C92 /* AWSAPI_DOMG701VNC_TinponsMobileHubClient.h */,
-				D410C5EA1F23A159008D6C92 /* AWSAPI_DOMG701VNC_TinponsMobileHubClient.m */,
+				D41EB2601F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.h */,
+				D41EB2611F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m */,
+				D41EB2621F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.h */,
+				D41EB2631F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m */,
+				D41EB2641F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.h */,
+				D41EB2651F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m */,
+				D41EB2661F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.h */,
+				D41EB2671F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.m */,
 			);
-			name = Api;
-			path = Tinpons/AmazonAws/Api;
+			name = "API Gateway";
+			path = "Tinpons/AmazonAws/API Gateway";
 			sourceTree = SOURCE_ROOT;
 		};
 		D410C5F01F24DA6A008D6C92 /* Api */ = {
@@ -700,10 +705,10 @@
 				D430CC8B1F2B2AF200174E5C /* EmailViewController.swift in Sources */,
 				D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */,
 				D4AAB5A71F305A0900050E02 /* TinponsAPI.swift in Sources */,
+				D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */,
 				D4DAE9721F1C9B20000C447E /* FavouriteCollectionViewCell.swift in Sources */,
 				D4EEF65A1F2F9F8700297A5E /* Tinpon.swift in Sources */,
 				E7A30F042B278B4700000000 /* UserPoolSignUpConfirmationViewController.swift in Sources */,
-				D410C5EC1F23A159008D6C92 /* AWSAPI_DOMG701VNC_ResponseSchema.m in Sources */,
 				E7A30F04C071CC9E00000000 /* UserPoolMFAViewController.swift in Sources */,
 				D417F0911F1F81E700D803E0 /* LoadingAnimationProtocol.swift in Sources */,
 				E7A30F040AAE5A4B00000000 /* AppDelegate.swift in Sources */,
@@ -712,15 +717,16 @@
 				D4B7D2001F28C71A008F3AE1 /* MainTabBarController.swift in Sources */,
 				D4306C811F0E6BEC0073A11E /* Stores.swift in Sources */,
 				D4DAE9741F1C9B4A000C447E /* FavouriteCollectionViewController.swift in Sources */,
+				D41EB26A1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m in Sources */,
 				E7A30F043DD4F57200000000 /* FormTableCell.swift in Sources */,
 				D4FA2EC91F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift in Sources */,
 				E7A30F04FE04727700000000 /* TableInputCell.swift in Sources */,
+				D41EB2681F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m in Sources */,
 				D4DC43501F1E448200BC1283 /* TinponWrapper.swift in Sources */,
 				E7A30F04A0099EDA00000000 /* UserPoolForgotPasswordViewController.swift in Sources */,
 				D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */,
 				D443C0F81EEC6CA300FD148F /* BackgroundKolodaAnimator.swift in Sources */,
 				E7A30F0493F7667400000000 /* UtilityFunctions.swift in Sources */,
-				D410C5EB1F23A159008D6C92 /* AWSAPI_DOMG701VNC_RequestSchema.m in Sources */,
 				E7A30F04741B216700000000 /* AuthenticationProtocol.swift in Sources */,
 				E7A30F04B8261BDC00000000 /* UserPoolsIdentityProfile.swift in Sources */,
 				D4FC90E31F163328002A6F9E /* SwipedTinpon.swift in Sources */,
@@ -735,7 +741,6 @@
 				E7A30F04023CE26000000000 /* FacebookIdentityProfile.swift in Sources */,
 				E7A30F04C2DDB4B200000000 /* SignInViewControllerExtensions.swift in Sources */,
 				E7A30F0460A2A9A000000000 /* UserPoolsUIHelper.swift in Sources */,
-				D410C5ED1F23A159008D6C92 /* AWSAPI_DOMG701VNC_TinponsMobileHubClient.m in Sources */,
 				D4D2712A1F12ACD2003A7287 /* TinponsModel.xcdatamodeld in Sources */,
 				D4E258241EEC625400B2B986 /* CustomKolodaView.swift in Sources */,
 				D4FA2ECC1F0CE85B00B287FB /* ProfileViewController.swift in Sources */,
@@ -745,6 +750,7 @@
 				D4FC90E51F1669F8002A6F9E /* SwipedTinponsCore.swift in Sources */,
 				D45220731F2CD96200D01C43 /* InterestsTableViewController.swift in Sources */,
 				D4512B4A1F1930BE009B109C /* TinponManagerTableViewCell.swift in Sources */,
+				D41EB26B1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.m in Sources */,
 				D410C5F21F24E443008D6C92 /* UsersAPI.swift in Sources */,
 				D430CC931F2B2FA100174E5C /* FirstSignInNavigationController.swift in Sources */,
 				D410C5EF1F24D7E0008D6C92 /* User.swift in Sources */,

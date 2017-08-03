@@ -15,11 +15,14 @@
  
 
 
-#import "AWSAPI_DOMG701VNC_TinponsMobileHubClient.h"
+#import "AWSAPI_9HLT8N48WD_WeGoLocoClient.h"
 #import <AWSCore/AWSCore.h>
 #import <AWSCore/AWSSignature.h>
 #import <AWSCore/AWSSynchronizedMutableDictionary.h>
 
+#import "AWSAPI_9HLT8N48WD_RequestSchema.h"
+#import "AWSAPI_9HLT8N48WD_ResponseSchema.h"
+#import "AWSAPI_9HLT8N48WD_Empty.h"
 
 @interface AWSAPIGatewayClient()
 
@@ -43,7 +46,7 @@
 
 @end
 
-@interface AWSAPI_DOMG701VNC_TinponsMobileHubClient()
+@interface AWSAPI_9HLT8N48WD_WeGoLocoClient()
 
 @property (nonatomic, strong) AWSServiceConfiguration *configuration;
 
@@ -55,9 +58,9 @@
 
 @end
 
-@implementation AWSAPI_DOMG701VNC_TinponsMobileHubClient
+@implementation AWSAPI_9HLT8N48WD_WeGoLocoClient
 
-static NSString *const AWSInfoClientKey = @"AWSAPI_DOMG701VNC_TinponsMobileHubClient";
+static NSString *const AWSInfoClientKey = @"AWSAPI_9HLT8N48WD_WeGoLocoClient";
 
 @synthesize configuration = _configuration;
 
@@ -76,10 +79,10 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                                                            credentialsProvider:nil];
     }
 
-    static AWSAPI_DOMG701VNC_TinponsMobileHubClient *_defaultClient = nil;
+    static AWSAPI_9HLT8N48WD_WeGoLocoClient *_defaultClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _defaultClient = [[AWSAPI_DOMG701VNC_TinponsMobileHubClient alloc] initWithConfiguration:serviceConfiguration];
+        _defaultClient = [[AWSAPI_9HLT8N48WD_WeGoLocoClient alloc] initWithConfiguration:serviceConfiguration];
     });
 
     return _defaultClient;
@@ -90,13 +93,13 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     dispatch_once(&onceToken, ^{
         _serviceClients = [AWSSynchronizedMutableDictionary new];
     });
-    [_serviceClients setObject:[[AWSAPI_DOMG701VNC_TinponsMobileHubClient alloc] initWithConfiguration:configuration]
+    [_serviceClients setObject:[[AWSAPI_9HLT8N48WD_WeGoLocoClient alloc] initWithConfiguration:configuration]
                         forKey:key];
 }
 
 + (instancetype)clientForKey:(NSString *)key {
     @synchronized(self) {
-        AWSAPI_DOMG701VNC_TinponsMobileHubClient *serviceClient = [_serviceClients objectForKey:key];
+        AWSAPI_9HLT8N48WD_WeGoLocoClient *serviceClient = [_serviceClients objectForKey:key];
         if (serviceClient) {
             return serviceClient;
         }
@@ -106,7 +109,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
         if (serviceInfo) {
             AWSServiceConfiguration *serviceConfiguration = [[AWSServiceConfiguration alloc] initWithRegion:serviceInfo.region
                                                                                         credentialsProvider:serviceInfo.cognitoCredentialsProvider];
-            [AWSAPI_DOMG701VNC_TinponsMobileHubClient registerClientWithConfiguration:serviceConfiguration
+            [AWSAPI_9HLT8N48WD_WeGoLocoClient registerClientWithConfiguration:serviceConfiguration
                                                     forKey:key];
         }
 
@@ -129,7 +132,7 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     if (self = [super init]) {
         _configuration = [configuration copy];
 
-        NSString *URLString = @"https://domg701vnc.execute-api.eu-west-1.amazonaws.com/Development";
+        NSString *URLString = @"https://9hlt8n48wd.execute-api.eu-west-1.amazonaws.com/production";
         if ([URLString hasSuffix:@"/"]) {
             URLString = [URLString substringToIndex:[URLString length] - 1];
         }
@@ -146,5 +149,73 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     
     return self;
 }
+
+- (AWSTask *)usersGet:(AWSAPI_9HLT8N48WD_RequestSchema *)body {
+    NSDictionary *headerParameters = @{
+                                       @"Content-Type": @"application/json",
+                                       @"Accept": @"application/json",
+                                       
+                                       };
+    NSDictionary *queryParameters = @{
+                                      
+                                      };
+    NSDictionary *pathParameters = @{
+                                     
+                                     };
+    
+    return [self invokeHTTPRequest:@"GET"
+                         URLString:@"/users"
+                    pathParameters:pathParameters
+                   queryParameters:queryParameters
+                  headerParameters:headerParameters
+                              body:body
+                     responseClass:[AWSAPI_9HLT8N48WD_ResponseSchema class]];
+}
+
+- (AWSTask *)usersPut {
+    NSDictionary *headerParameters = @{
+                                       @"Content-Type": @"application/json",
+                                       @"Accept": @"application/json",
+                                       
+                                       };
+    NSDictionary *queryParameters = @{
+                                      
+                                      };
+    NSDictionary *pathParameters = @{
+                                     
+                                     };
+    
+    return [self invokeHTTPRequest:@"PUT"
+                         URLString:@"/users"
+                    pathParameters:pathParameters
+                   queryParameters:queryParameters
+                  headerParameters:headerParameters
+                              body:nil
+                     responseClass:[AWSAPI_9HLT8N48WD_Empty class]];
+}
+
+- (AWSTask *)usersPost {
+    NSDictionary *headerParameters = @{
+                                       @"Content-Type": @"application/json",
+                                       @"Accept": @"application/json",
+                                       
+                                       };
+    NSDictionary *queryParameters = @{
+                                      
+                                      };
+    NSDictionary *pathParameters = @{
+                                     
+                                     };
+    
+    return [self invokeHTTPRequest:@"POST"
+                         URLString:@"/users"
+                    pathParameters:pathParameters
+                   queryParameters:queryParameters
+                  headerParameters:headerParameters
+                              body:nil
+                     responseClass:[AWSAPI_9HLT8N48WD_Empty class]];
+}
+
+
 
 @end

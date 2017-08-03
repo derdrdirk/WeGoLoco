@@ -27,6 +27,9 @@ class EmailViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        print("jojo")
+        UserAPI.getSignedInUser{ user in print(user) }
+        
         if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
             myNavigationController.progressView.progress = 0.2
         }

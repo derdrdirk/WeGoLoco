@@ -17,3 +17,4 @@ import AWSCore
 // Identifier for Cloud Logic API invocation clients
 let AWSCloudLogicDefaultConfigurationKey: String = "CloudLogicAPIKey"
 let AWSCloudLogicDefaultRegion: AWSRegionType = .EUWest1
+

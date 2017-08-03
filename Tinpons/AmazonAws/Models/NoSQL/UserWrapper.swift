@@ -51,8 +51,8 @@ class UserWrapper {
         
         // Fetch the Cloud Logic client to be used for invocation
         // Change the `AWSAPI_XE21FG_MyCloudLogicClient` class name to the client class for your generated SDK
-        print(AWSAPI_DOMG701VNC_TinponsMobileHubClient(forKey: AWSCloudLogicDefaultConfigurationKey))
-        AWSAPI_DOMG701VNC_TinponsMobileHubClient(forKey: AWSCloudLogicDefaultConfigurationKey).invoke(apiRequest).continueWith { [weak self] (task: AWSTask<AWSAPIGatewayResponse>) -> Any? in
+        //print(AWSAPI_DOMG701VNC_TinponsMobileHubClient(forKey: AWSCloudLogicDefaultConfigurationKey))
+        AWSAPI_9HLT8N48WD_WeGoLocoClient(forKey: AWSCloudLogicDefaultConfigurationKey).invoke(apiRequest).continueWith { [weak self] (task: AWSTask<AWSAPIGatewayResponse>) -> Any? in
             guard let strongSelf = self else { return nil }
             
             if let error = task.error {

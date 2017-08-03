@@ -13,6 +13,10 @@ import AWSMobileHubHelper
 import AWSDynamoDB
 import AWSS3
 
+import AWSAPIGateway
+import AWSCognitoUserPoolsSignIn
+import AWSCognitoIdentityProvider
+
 
 private let numberOfCards: Int = 5
 private let frameAnimationSpringBounciness: CGFloat = 9
@@ -65,12 +69,17 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
     override func viewWillAppear(_ animated: Bool) {
         getCognitoID()
         
-        TinponsAPI.getFavouriteTinpons(onComplete: {_ in })
+        //TinponsAPI.getFavouriteTinpons(onComplete: {_ in })
         
         //TinponsAPI.getNotSwipedTinpons(onComplete: { _ in ()})
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:69141b86-f04c-48f0-9634-ed58c8f69d4e")
         
-//        UserAPI.getSignedInUser{ user in
-//            print("Download User \(user.toJSON()!)")
+        let configuration = AWSServiceConfiguration(region: .EUWest1, credentialsProvider: credentialsProvider)
+        
+        AWSServiceManager.default().defaultServiceConfiguration = configuration
+        print("initialize swiper")
+                //        UserAPI.getSignedInUser{ user in
+//            print("Download User \(user?.toJSON())")
 //        }
         
 //        var user = User()
