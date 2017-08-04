@@ -216,6 +216,28 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
                      responseClass:[AWSAPI_9HLT8N48WD_Empty class]];
 }
 
+- (AWSTask *)usersIsEmailAvailablePost:(AWSAPI_9HLT8N48WD_RequestSchema *)body {
+    NSDictionary *headerParameters = @{
+                                       @"Content-Type": @"application/json",
+                                       @"Accept": @"application/json",
+                                       
+                                       };
+    NSDictionary *queryParameters = @{
+                                      
+                                      };
+    NSDictionary *pathParameters = @{
+                                     
+                                     };
+    
+    return [self invokeHTTPRequest:@"POST"
+                         URLString:@"/users/is-email-available"
+                    pathParameters:pathParameters
+                   queryParameters:queryParameters
+                  headerParameters:headerParameters
+                              body:body
+                     responseClass:[AWSAPI_9HLT8N48WD_ResponseSchema class]];
+}
+
 
 
 @end

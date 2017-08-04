@@ -24,11 +24,10 @@ class SignInViewController : UIViewController {
     @IBOutlet weak var logoView: UIImageView!
     @IBOutlet weak var tableFormView: UIView!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var signInButton: UIButton!
-    @IBOutlet weak var signUpButton: UIButton!
     @IBOutlet weak var forgotPasswordButton: UIButton!
     @IBOutlet weak var facebookButton: UIButton!
     @IBOutlet weak var googleButton: UIButton!
+    @IBOutlet weak var signInButton: UIButton!
     
     @IBOutlet weak var logoViewHeight: NSLayoutConstraint!
     @IBOutlet weak var orSignInWithLabel: UILabel!
@@ -123,10 +122,12 @@ class SignInViewController : UIViewController {
     }
     
     func handleLoginWithSignInProvider(_ signInProvider: AWSSignInProvider) {
+        print("handle sign in")
         AWSSignInManager.sharedInstance().login(signInProviderKey: signInProvider.identityProviderName, completionHandler: {(result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) in
             print("result = \(result), error = \(error)")
             // If no error reported by SignInProvider, discard the sign-in view controller.
             if error == nil {
+                print("jojo")
                 DispatchQueue.main.async(execute: {
                     self.dismiss(animated: true, completion: nil)
                     if let didCompleteSignIn = self.didCompleteSignIn {
@@ -148,9 +149,14 @@ class SignInViewController : UIViewController {
     }
     
     func setUpResponders() {
-        signUpButton.addTarget(self, action: #selector(handleUserPoolSignUp), for: .touchUpInside)
         signInButton.addTarget(self, action: #selector(handleUserPoolSignIn), for: .touchUpInside)
         forgotPasswordButton.addTarget(self, action: #selector(handleUserPoolForgotPassword), for: .touchUpInside)
+    }
+    
+    @IBAction func touchedSignUpButton(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "EmailViewController")
+        self.navigationController?.pushViewController(viewController, animated:true);
     }
 }
 

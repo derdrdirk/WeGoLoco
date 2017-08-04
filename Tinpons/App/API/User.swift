@@ -9,8 +9,8 @@
 import Foundation
 
 class User: CustomStringConvertible {
-    let userId: String
-    let createdAt: Date?
+    var id: String
+    var createdAt: Date?
     var birthdate: Date?
     var email: String?
     var gender: String?
@@ -18,25 +18,21 @@ class User: CustomStringConvertible {
     var updatedAt: Date?
     
     var description: String {
-        updatedAt?.iso8601
-        return "userId: \(userId) \n email: \(email ?? "nil") \n birthdate: \(birthdate?.iso8601 ?? "nil") \n gender: \(gender ?? "nil") \n updatedAt: \(updatedAt?.iso8601 ?? "nil") \n createdAt: \(createdAt?.iso8601 ?? "nil")"
+        return "id: \(id) \n email: \(email ?? "nil") \n birthdate: \(birthdate?.iso8601 ?? "nil") \n gender: \(gender ?? "nil") \n updatedAt: \(updatedAt?.iso8601 ?? "nil") \n createdAt: \(createdAt?.iso8601 ?? "nil")"
     }
 
     init() {
-        self.userId = UUID().uuidString
-        self.createdAt = Date()
+        self.id = ""
         self.tinponCategories = Set<String>()
-        self.birthdate = Date()
         self.email = ""
         self.gender = ""
-        self.updatedAt = self.createdAt
     }
     
     init(json: [String: Any]) throws {
-        guard let userId = json["id"] as? String else {
+        guard let id = json["id"] as? String else {
             throw SerializationError.missing("UserId")
         }
-        self.userId = userId
+        self.id = id
         
         self.createdAt = (json["createdAt"] as? String)?.dateFromISO8601
         self.tinponCategories = nil
@@ -47,7 +43,7 @@ class User: CustomStringConvertible {
     }
 
     func toJSON() -> String? {
-        let jsonObject: [String: Any] = ["userId": self.userId, "createdAt" : self.createdAt!.iso8601, "birthdate" : self.birthdate!.iso8601, "email" : self.email, "gender" : self.gender, "tinponCategories": Array(tinponCategories!), "updatedAt" : updatedAt!.iso8601]
+        let jsonObject: [String: Any] = ["id": self.id, "email" : self.email]
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: jsonObject,
                                                                       options: .prettyPrinted)

@@ -14,11 +14,19 @@ class GenderViewController: UIViewController {
     @IBOutlet weak var manButton: UIButton!
     @IBOutlet weak var continueButton: UIButton!
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let myNavigationController = self.navigationController as? SignInNavigationController {
+            myNavigationController.progressView.progress = 0.70
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // load init values + progressBar
-        if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
+        if let myNavigationController = self.navigationController as? SignInNavigationController {
             let gender = myNavigationController.user.gender
             if gender != "" {
                 if gender == "👩‍💼" {
@@ -28,7 +36,6 @@ class GenderViewController: UIViewController {
                 }
                 continueButton.isEnabled = true
             }
-            myNavigationController.progressView.progress = 0.6
         }
         
         continueButton.setTitleColor(#colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1), for: .disabled)
@@ -69,7 +76,7 @@ class GenderViewController: UIViewController {
     }
     
     func guardGender() {
-        if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
+        if let myNavigationController = self.navigationController as? SignInNavigationController {
             var gender = "👨‍💼"
             if womanButton.isSelected {
                 gender = "👩‍💼"

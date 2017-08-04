@@ -26,12 +26,6 @@ extension SignInViewController {
         self.handleLoginWithSignInProvider(AWSCognitoUserPoolsSignInProvider.sharedInstance())
     }
     
-    func handleUserPoolSignUp () {
-        let storyboard = UIStoryboard(name: "UserPools", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "SignUp")
-        self.navigationController?.pushViewController(viewController, animated:true);
-    }
-    
     func handleUserPoolForgotPassword () {
         let storyboard = UIStoryboard(name: "UserPools", bundle: nil)
         let viewController = storyboard.instantiateViewController(withIdentifier: "ForgotPassword")

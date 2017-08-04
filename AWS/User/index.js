@@ -97,89 +97,122 @@ exports.handler = (event, context, callback) => {
   /////////////////////////////////////////////////////////////////////////////
 
   console.log("HTTP method : ",httpMethod);
-  switch (httpMethod) {
-    case "GET":
-      // get signedIn User
-      console.log("CognitoId : ", cognitoIdentityId);
+  console.log("Path params : ", pathParams);
+  switch(pathParams) {
+    case "/users" :
+      switch (httpMethod) {
+        case "GET":
+          // get signedIn User
+          console.log("CognitoId : ", cognitoIdentityId);
 
-      mysql.createConnection({
-          host: host,
-          user: user,
-          password: password,
-          database: database
-      }).then(function(conn){
-          connection = conn;
-          var result = conn.query("SELECT * FROM person "
-                                  +"WHERE id = '"+cognitoIdentityId+"';");
-          return result;
-      }).then(function(rows) {
-          let result = JSON.stringify(rows[0]);
-          console.log("Success: User ", result);
-          respond(context, 200, result);
-      });
-      break;
-    case "POST":
-      mysql.createConnection({
-          host: host,
-          user: user,
-          password: password,
-          database: database
-      }).then(function(conn){
-          connection = conn;
-          var result = conn.query("SELECT * FROM person "
-                                  +"WHERE id = '"+cognitoIdentityId+"';");
-          return result;
-      }).then(function(rows) {
-        var user = JSON.parse(requestBody);
-        user.id = "niceOne";
-        // user["email"] = (user.hasOwnProperty("email") ? "'"+user["email"]+"'" : "NULL");
-        // user["birthdate"] = (user.hasOwnProperty("birthdate") ? "'"+user["birthdate"]+"'" : "NULL");
-        // user["gender"] = (user.hasOwnProperty("gender") ? "'"+user["gender"]+"'" : "NULL");
+          mysql.createConnection({
+              host: host,
+              user: user,
+              password: password,
+              database: database
+          }).then(function(conn){
+              connection = conn;
+              var result = conn.query("SELECT * FROM person "
+                                      +"WHERE id = '"+cognitoIdentityId+"';");
+              return result;
+          }).then(function(rows) {
+              let result = JSON.stringify(rows[0]);
+              console.log("Success: User ", result);
+              respond(context, 200, result);
+          });
+          break;
+        case "POST":
+        console.log("POST case");
+          mysql.createConnection({
+              host: host,
+              user: user,
+              password: password,
+              database: database
+          }).then(function(conn){
+              connection = conn;
+              var query = conn.query("SELECT * FROM person "
+                                      +"WHERE id = '"+cognitoIdentityId+"';");
+              console.log("SQL QUERY : ", query.sql);
+              return query;
+          }).then(function(rows) {
+            var user = JSON.parse(requestBody);
+            // user["email"] = (user.hasOwnProperty("email") ? "'"+user["email"]+"'" : "NULL");
+            // user["birthdate"] = (user.hasOwnProperty("birthdate") ? "'"+user["birthdate"]+"'" : "NULL");
+            // user["gender"] = (user.hasOwnProperty("gender") ? "'"+user["gender"]+"'" : "NULL");
 
-        if (rows.length > 0) {
-          // User exists
-          connection.end();
-          respond(context, 405, "Error: User already exists");
-        } else {
-          var result = connection.query("INSERT INTO person SET ?", user);
-          return result;
-        }
-      }).then(function(result) {
-        connection.end();
-        respond(context, 400, 'Success: Created User.');
-      });
-      break;
-      case "PUT":
-        mysql.createConnection({
-            host: host,
-            user: user,
-            password: password,
-            database: database
-        }).then(function(conn){
-            connection = conn;
-            var result = conn.query("SELECT * FROM person "
-                                    +"WHERE id = '"+cognitoIdentityId+"';");
-            return result;
-        }).then(function(rows) {
-          console.log(JSON.parse(requestBody).email);
-
-          var user = JSON.parse(requestBody);
-
-          if (rows.length == 0) {
-            // User does not exists
+            if (rows.length > 0) {
+              // User exists
+              connection.end();
+              respond(context, 405, "Error: User already exists");
+            } else {
+              var result = connection.query("INSERT INTO person SET ?", user);
+              return result;
+            }
+          }).then(function(result) {
             connection.end();
-            respond(context, 405, "Error: User does not exist");
-          } else {
-            var result = connection.query("UPDATE person "
-                                    +"SET ? WHERE `id` = '"+cognitoIdentityId+"';", user);
-            return result;
-          }
-        }).then(function(result) {
-          connection.end();
-          respond(context, 400, 'Success: Updated User.');
-        });
-        break;
-    default:
-      respond(context, 403, httpMethod+" is not an allowed HTTP method.")
-  }
-};
+            respond(context, 200, 'Success: Created User.');
+          }).catch(function(error) {
+            console.log("ERROR : ", error);
+          });
+          break;
+          case "PUT":
+            mysql.createConnection({
+                host: host,
+                user: user,
+                password: password,
+                database: database
+            }).then(function(conn){
+                connection = conn;
+                var result = conn.query("SELECT * FROM person "
+                                        +"WHERE id = '"+cognitoIdentityId+"';");
+                return result;
+            }).then(function(rows) {
+              console.log(JSON.parse(requestBody).email);
+
+              var user = JSON.parse(requestBody);
+
+              if (rows.length == 0) {
+                // User does not exists
+                connection.end();
+                respond(context, 405, "Error: User does not exist");
+              } else {
+                var result = connection.query("UPDATE person "
+                                        +"SET ? WHERE `id` = '"+cognitoIdentityId+"';", user);
+                return result;
+              }
+            }).then(function(result) {
+              connection.end();
+              respond(context, 200, 'Success: Updated User.');
+            });
+            break;
+        default:
+          respond(context, 403, httpMethod+" is not an allowed HTTP method.")
+      }
+      break;
+    case "/users/is-email-available" :
+      let email = JSON.parse(requestBody).email;
+
+      mysql.createConnection({
+          host: host,
+          user: user,
+          password: password,
+          database: database
+      }).then(function(conn){
+          connection = conn;
+
+
+          var query = conn.query("SELECT * FROM person "
+                                  +"WHERE email = '"+email+"';");
+          return query;
+      }).then(function(rows) {
+        if(rows.length > 0) {
+          respond(context, 200, "false");
+        } else {
+          respond(context, 200, "true");
+        }
+      })
+      break;
+    default :
+      respond(context, 500, "Not a valid resoucrce called");
+    }
+}

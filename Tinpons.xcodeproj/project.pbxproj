@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40308451F0FCBDE00BF1BD5 /* TinponOld.swift */; };
-		D40EA7101F2A315700A44735 /* FirstSignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40EA70F1F2A315700A44735 /* FirstSignIn.storyboard */; };
+		D40EA7101F2A315700A44735 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40EA70F1F2A315700A44735 /* SignUp.storyboard */; };
 		D40EA7151F2A40CB00A44735 /* proxima-nova-soft-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D40EA7131F2A40CA00A44735 /* proxima-nova-soft-bold.ttf */; };
 		D40EA7161F2A40CB00A44735 /* proxima-nova-soft-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D40EA7141F2A40CB00A44735 /* proxima-nova-soft-regular.ttf */; };
 		D40EA7181F2A461300A44735 /* IQKeyboardManagerSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40EA7171F2A461300A44735 /* IQKeyboardManagerSwift.framework */; };
@@ -27,14 +27,16 @@
 		D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2631F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m */; };
 		D41EB26A1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2651F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m */; };
 		D41EB26B1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2671F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.m */; };
+		D41EB26E1F338758003842E4 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41EB26D1F338758003842E4 /* PasswordViewController.swift */; };
+		D41EB2701F3395A0003842E4 /* EmailConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41EB26F1F3395A0003842E4 /* EmailConfirmationViewController.swift */; };
 		D42DC6BB1F1BF9800087EB4F /* Whisper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D42DC6B91F1BF8D40087EB4F /* Whisper.framework */; };
 		D42DC6BC1F1BF9800087EB4F /* Whisper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D42DC6B91F1BF8D40087EB4F /* Whisper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4306C811F0E6BEC0073A11E /* Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4306C801F0E6BEC0073A11E /* Stores.swift */; };
 		D4306C831F0E73780073A11E /* AWSHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4306C821F0E73780073A11E /* AWSHelper.swift */; };
 		D430CC8B1F2B2AF200174E5C /* EmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430CC8A1F2B2AF200174E5C /* EmailViewController.swift */; };
 		D430CC8D1F2B2B1A00174E5C /* BirthdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430CC8C1F2B2B1A00174E5C /* BirthdateViewController.swift */; };
-		D430CC911F2B2E0300174E5C /* FirstSignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430CC901F2B2E0300174E5C /* FirstSignInViewController.swift */; };
-		D430CC931F2B2FA100174E5C /* FirstSignInNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430CC921F2B2FA100174E5C /* FirstSignInNavigationController.swift */; };
+		D430CC911F2B2E0300174E5C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430CC901F2B2E0300174E5C /* SignUpViewController.swift */; };
+		D430CC931F2B2FA100174E5C /* SignInNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D430CC921F2B2FA100174E5C /* SignInNavigationController.swift */; };
 		D43777981F262CDB0023448F /* APIGatewayProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43777971F262CDB0023448F /* APIGatewayProtocol.swift */; };
 		D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F51EEC699D00FD148F /* SwiperViewController.swift */; };
 		D443C0F81EEC6CA300FD148F /* BackgroundKolodaAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */; };
@@ -200,7 +202,7 @@
 		1DD70E29F77E3E0700000000 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = Tinpons/Sdk/Aws/AWSS3.framework; sourceTree = "<group>"; };
 		1DD70E29FF24C27A00000000 /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSMobileHubHelper.framework; path = Tinpons/AmazonAws/AWSMobileHubHelper.framework; sourceTree = "<group>"; };
 		D40308451F0FCBDE00BF1BD5 /* TinponOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponOld.swift; path = Tinpons/AmazonAws/Models/NoSQL/TinponOld.swift; sourceTree = SOURCE_ROOT; };
-		D40EA70F1F2A315700A44735 /* FirstSignIn.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = FirstSignIn.storyboard; path = Tinpons/App/SignIn/FirstSignIn/FirstSignIn.storyboard; sourceTree = SOURCE_ROOT; };
+		D40EA70F1F2A315700A44735 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignUp.storyboard; path = Tinpons/App/SignIn/FirstSignIn/SignUp.storyboard; sourceTree = SOURCE_ROOT; };
 		D40EA7131F2A40CA00A44735 /* proxima-nova-soft-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "proxima-nova-soft-bold.ttf"; path = "Assets/Fonts/proxima-nova-soft-bold.ttf"; sourceTree = "<group>"; };
 		D40EA7141F2A40CB00A44735 /* proxima-nova-soft-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "proxima-nova-soft-regular.ttf"; path = "Assets/Fonts/proxima-nova-soft-regular.ttf"; sourceTree = "<group>"; };
 		D40EA7171F2A461300A44735 /* IQKeyboardManagerSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IQKeyboardManagerSwift.framework; path = Carthage/Build/iOS/IQKeyboardManagerSwift.framework; sourceTree = "<group>"; };
@@ -220,13 +222,15 @@
 		D41EB2661F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_9HLT8N48WD_WeGoLocoClient.h; sourceTree = "<group>"; };
 		D41EB2671F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_9HLT8N48WD_WeGoLocoClient.m; sourceTree = "<group>"; };
 		D41EB26C1F333D01003842E4 /* Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bridging_Header.h; path = Tinpons/AmazonAws/Bridging_Header.h; sourceTree = SOURCE_ROOT; };
+		D41EB26D1F338758003842E4 /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasswordViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/PasswordViewController.swift; sourceTree = SOURCE_ROOT; };
+		D41EB26F1F3395A0003842E4 /* EmailConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmailConfirmationViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/EmailConfirmationViewController.swift; sourceTree = SOURCE_ROOT; };
 		D42DC6B91F1BF8D40087EB4F /* Whisper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Whisper.framework; path = Carthage/Build/iOS/Whisper.framework; sourceTree = "<group>"; };
 		D4306C801F0E6BEC0073A11E /* Stores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stores.swift; path = Tinpons/AmazonAws/Models/NoSQL/Stores.swift; sourceTree = SOURCE_ROOT; };
 		D4306C821F0E73780073A11E /* AWSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AWSHelper.swift; path = Tinpons/AmazonAws/Models/NoSQL/AWSHelper.swift; sourceTree = SOURCE_ROOT; };
 		D430CC8A1F2B2AF200174E5C /* EmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmailViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/EmailViewController.swift; sourceTree = SOURCE_ROOT; };
 		D430CC8C1F2B2B1A00174E5C /* BirthdateViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BirthdateViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/BirthdateViewController.swift; sourceTree = SOURCE_ROOT; };
-		D430CC901F2B2E0300174E5C /* FirstSignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirstSignInViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/FirstSignInViewController.swift; sourceTree = SOURCE_ROOT; };
-		D430CC921F2B2FA100174E5C /* FirstSignInNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FirstSignInNavigationController.swift; path = Tinpons/App/SignIn/FirstSignIn/FirstSignInNavigationController.swift; sourceTree = SOURCE_ROOT; };
+		D430CC901F2B2E0300174E5C /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignUpViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/SignUpViewController.swift; sourceTree = SOURCE_ROOT; };
+		D430CC921F2B2FA100174E5C /* SignInNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SignInNavigationController.swift; path = Tinpons/App/SignIn/FirstSignIn/SignInNavigationController.swift; sourceTree = SOURCE_ROOT; };
 		D43777971F262CDB0023448F /* APIGatewayProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIGatewayProtocol.swift; path = Tinpons/App/API/APIGatewayProtocol.swift; sourceTree = SOURCE_ROOT; };
 		D443C0F51EEC699D00FD148F /* SwiperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiperViewController.swift; path = Tinpons/App/Swiper/SwiperViewController.swift; sourceTree = SOURCE_ROOT; };
 		D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundKolodaAnimator.swift; path = Tinpons/App/Swiper/BackgroundKolodaAnimator.swift; sourceTree = SOURCE_ROOT; };
@@ -417,10 +421,10 @@
 		B401C97953B32C8900000000 /* AmazonAws */ = {
 			isa = PBXGroup;
 			children = (
-				D41EB26C1F333D01003842E4 /* Bridging_Header.h */,
 				D410C5E21F23A14D008D6C92 /* AWSConfiguration.swift */,
-				D410C5C81F237FC6008D6C92 /* API Gateway */,
 				1DD70E2946C3AB3000000000 /* AWSMobileClient.swift */,
+				D41EB26C1F333D01003842E4 /* Bridging_Header.h */,
+				D410C5C81F237FC6008D6C92 /* API Gateway */,
 				B401C979FD4026CD00000000 /* Models */,
 			);
 			name = AmazonAws;
@@ -430,8 +434,9 @@
 		B401C979550308D500000000 /* SignIn */ = {
 			isa = PBXGroup;
 			children = (
-				D40EA70E1F2A313C00A44735 /* FirstSignIn */,
+				D40EA70E1F2A313C00A44735 /* SignUp */,
 				1DD70E29329951CD00000000 /* FacebookIdentityProfile.swift */,
+				D430CC921F2B2FA100174E5C /* SignInNavigationController.swift */,
 				1DD70E29E9CCE5D700000000 /* SignIn.storyboard */,
 				1DD70E29F74071EF00000000 /* SignInViewController.swift */,
 				B401C9797133028C00000000 /* UserPools */,
@@ -496,18 +501,19 @@
 			path = Tinpons/amazonaws/models;
 			sourceTree = "<group>";
 		};
-		D40EA70E1F2A313C00A44735 /* FirstSignIn */ = {
+		D40EA70E1F2A313C00A44735 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
-				D40EA70F1F2A315700A44735 /* FirstSignIn.storyboard */,
-				D430CC921F2B2FA100174E5C /* FirstSignInNavigationController.swift */,
-				D430CC901F2B2E0300174E5C /* FirstSignInViewController.swift */,
+				D40EA70F1F2A315700A44735 /* SignUp.storyboard */,
+				D430CC901F2B2E0300174E5C /* SignUpViewController.swift */,
 				D430CC8A1F2B2AF200174E5C /* EmailViewController.swift */,
+				D41EB26D1F338758003842E4 /* PasswordViewController.swift */,
+				D41EB26F1F3395A0003842E4 /* EmailConfirmationViewController.swift */,
 				D430CC8C1F2B2B1A00174E5C /* BirthdateViewController.swift */,
 				D452206E1F2CC85A00D01C43 /* GenderViewController.swift */,
 				D45220721F2CD96200D01C43 /* InterestsTableViewController.swift */,
 			);
-			name = FirstSignIn;
+			name = SignUp;
 			path = ../../App/SignIn/FirstSignIn;
 			sourceTree = "<group>";
 		};
@@ -650,7 +656,7 @@
 			files = (
 				D4B7D1FE1F28C442008F3AE1 /* RemachineScript.ttf in Resources */,
 				E7A30F0479F95AEB00000000 /* SignIn.storyboard in Resources */,
-				D40EA7101F2A315700A44735 /* FirstSignIn.storyboard in Resources */,
+				D40EA7101F2A315700A44735 /* SignUp.storyboard in Resources */,
 				E7A30F046FFFB5F100000000 /* Launch Screen.storyboard in Resources */,
 				D40EA7151F2A40CB00A44735 /* proxima-nova-soft-bold.ttf in Resources */,
 				D4E258221EEC1A6400B2B986 /* CustomOverlayView.xib in Resources */,
@@ -701,6 +707,7 @@
 				D4E258211EEC1A6400B2B986 /* CustomOverlayView.swift in Sources */,
 				D43777981F262CDB0023448F /* APIGatewayProtocol.swift in Sources */,
 				E7A30F049A3B079A00000000 /* UserPoolNewPasswordViewController.swift in Sources */,
+				D41EB26E1F338758003842E4 /* PasswordViewController.swift in Sources */,
 				D4DA424D1F0E2CFB00A1C69E /* CustomCells.swift in Sources */,
 				D430CC8B1F2B2AF200174E5C /* EmailViewController.swift in Sources */,
 				D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */,
@@ -725,6 +732,7 @@
 				D4DC43501F1E448200BC1283 /* TinponWrapper.swift in Sources */,
 				E7A30F04A0099EDA00000000 /* UserPoolForgotPasswordViewController.swift in Sources */,
 				D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */,
+				D41EB2701F3395A0003842E4 /* EmailConfirmationViewController.swift in Sources */,
 				D443C0F81EEC6CA300FD148F /* BackgroundKolodaAnimator.swift in Sources */,
 				E7A30F0493F7667400000000 /* UtilityFunctions.swift in Sources */,
 				E7A30F04741B216700000000 /* AuthenticationProtocol.swift in Sources */,
@@ -746,13 +754,13 @@
 				D4FA2ECC1F0CE85B00B287FB /* ProfileViewController.swift in Sources */,
 				D430CC8D1F2B2B1A00174E5C /* BirthdateViewController.swift in Sources */,
 				D452206F1F2CC85A00D01C43 /* GenderViewController.swift in Sources */,
-				D430CC911F2B2E0300174E5C /* FirstSignInViewController.swift in Sources */,
+				D430CC911F2B2E0300174E5C /* SignUpViewController.swift in Sources */,
 				D4FC90E51F1669F8002A6F9E /* SwipedTinponsCore.swift in Sources */,
 				D45220731F2CD96200D01C43 /* InterestsTableViewController.swift in Sources */,
 				D4512B4A1F1930BE009B109C /* TinponManagerTableViewCell.swift in Sources */,
 				D41EB26B1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.m in Sources */,
 				D410C5F21F24E443008D6C92 /* UsersAPI.swift in Sources */,
-				D430CC931F2B2FA100174E5C /* FirstSignInNavigationController.swift in Sources */,
+				D430CC931F2B2FA100174E5C /* SignInNavigationController.swift in Sources */,
 				D410C5EF1F24D7E0008D6C92 /* User.swift in Sources */,
 				E7A30F0400925D1700000000 /* AWSMobileClient.swift in Sources */,
 				E7A30F0497C0BECE00000000 /* FormTableDelegate.swift in Sources */,

@@ -42,7 +42,7 @@ class TinponOld : CustomStringConvertible {
 
     init() {
         tinponId = UUID().uuidString
-        userId = AWSMobileClient.cognitoId
+        userId = AWSIdentityManager.default().identityId
         createdAt = Date().iso8601
         active = NSNumber(value: 1)
     }

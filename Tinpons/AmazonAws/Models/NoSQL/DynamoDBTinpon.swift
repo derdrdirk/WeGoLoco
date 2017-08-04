@@ -15,6 +15,7 @@ import Foundation
 import UIKit
 import AWSDynamoDB
 import AWSS3
+import AWSMobileHubHelper
 
 class DynamoDBTinpon: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     
@@ -61,7 +62,7 @@ class DynamoDBTinpon: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
         updateMapperConfig.saveBehavior = .updateSkipNullAttributes
         
         let dynamoDBSwipedTinpon = DynamoDBSwipedTinpon()
-        let cognitoId = AWSMobileClient.cognitoId
+        let cognitoId = AWSIdentityManager.default().identityId
         dynamoDBSwipedTinpon?.tinponId = tinponId
         dynamoDBSwipedTinpon?.userId = cognitoId
         dynamoDBSwipedTinpon?.favourite = NSNumber(value: 0)

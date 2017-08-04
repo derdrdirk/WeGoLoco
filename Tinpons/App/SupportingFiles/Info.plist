@@ -6,82 +6,14 @@
 	<true/>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>UIAppFonts</key>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To select a file to upload.</string>
+	<key>UIBackgroundModes</key>
 	<array>
-		<string>RemachineScript.ttf</string>
-		<string>proxima-nova-soft-bold.ttf</string>
-		<string>proxima-nova-soft-regular.ttf</string>
+		<string>remote-notification</string>
 	</array>
-	<key>AWS</key>
-	<dict>
-		<key>Cognito</key>
-		<dict>
-			<key>Default</key>
-			<dict>
-				<key>Region</key>
-				<string>eu-west-1</string>
-			</dict>
-		</dict>
-		<key>CognitoUserPool</key>
-		<dict>
-			<key>Default</key>
-			<dict>
-				<key>CognitoUserPoolAppClientId</key>
-				<string>3mip9nrd4spa1n2elmftc5gcqg</string>
-				<key>CognitoUserPoolAppClientSecret</key>
-				<string>44u9jj9o2ipo1av50ise7ofh7rjfpf5ooqk39tsp7bplrcler9v</string>
-				<key>CognitoUserPoolId</key>
-				<string>eu-west-1_EIdjGtWLK</string>
-				<key>Region</key>
-				<string>eu-west-1</string>
-			</dict>
-		</dict>
-		<key>CredentialsProvider</key>
-		<dict>
-			<key>CognitoIdentity</key>
-			<dict>
-				<key>Default</key>
-				<dict>
-					<key>PoolId</key>
-					<string>eu-west-1:64a9de95-136c-4ba3-b366-6aa4079fef8b</string>
-					<key>Region</key>
-					<string>eu-west-1</string>
-				</dict>
-			</dict>
-		</dict>
-		<key>DynamoDBObjectMapper</key>
-		<dict>
-			<key>Default</key>
-			<dict>
-				<key>Region</key>
-				<string>eu-west-1</string>
-			</dict>
-		</dict>
-		<key>IdentityManager</key>
-		<dict>
-			<key>Default</key>
-			<dict/>
-		</dict>
-		<key>MobileHub</key>
-		<dict>
-			<key>ProjectClientId</key>
-			<string>MobileHub eb927c03-2bbc-4c9f-9513-7187554a44a9 aws-my-sample-app-ios-swift-v0.18</string>
-		</dict>
-		<key>UserFileManager</key>
-		<dict>
-			<key>Default</key>
-			<dict>
-				<key>Region</key>
-				<string>eu-west-1</string>
-				<key>S3Bucket</key>
-				<string>tinpons-userfiles-mobilehub-1827971537</string>
-			</dict>
-		</dict>
-	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
-	<key>CFBundleDisplayName</key>
-	<string>Tinpons</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -93,9 +25,32 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1</string>
+	<string>1.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UILaunchStoryboardName</key>
+	<string>Launch Screen</string>
+	<key>UIMainStoryboardFile</key>
+	<string>SignIn</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -109,12 +64,10 @@
 			</array>
 		</dict>
 	</array>
-	<key>CFBundleVersion</key>
-	<string>2</string>
 	<key>FacebookAppID</key>
 	<string>305281413244121</string>
 	<key>FacebookDisplayName</key>
-	<string>WeGoLoco</string>
+	<string>MySampleApp</string>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
@@ -122,19 +75,10 @@
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
 	</array>
-	<key>LSRequiresIPhoneOS</key>
-	<true/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
 		<dict>
-			<key>akamaihd.net</key>
-			<dict>
-				<key>NSExceptionRequiresForwardSecrecy</key>
-				<false/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-			</dict>
 			<key>amazonaws.com</key>
 			<dict>
 				<key>NSIncludesSubdomains</key>
@@ -153,6 +97,13 @@
 				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
 				<false/>
 			</dict>
+			<key>akamaihd.net</key>
+			<dict>
+				<key>NSExceptionRequiresForwardSecrecy</key>
+				<false/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
 			<key>facebook.com</key>
 			<dict>
 				<key>NSExceptionRequiresForwardSecrecy</key>
@@ -167,51 +118,83 @@
 				<key>NSIncludesSubdomains</key>
 				<true/>
 			</dict>
-			<key>tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com</key>
+		</dict>
+	</dict>
+	<key>AWS</key>
+	<dict>
+		<key>PinpointAnalytics</key>
+		<dict>
+			<key>Default</key>
 			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-				<key>NSExceptionMinimumTLSVersion</key>
-				<string>TLSv1.2</string>
-				<key>NSExceptionRequiresForwardSecrecy</key>
-				<true/>
-				<key>NSIncludesSubdomains</key>
-				<true/>
-				<key>NSRequiresCertificateTransparency</key>
-				<false/>
-				<key>NSThirdPartyExceptionAllowsInsecureHTTPLoads</key>
-				<false/>
-				<key>NSThirdPartyExceptionMinimumTLSVersion</key>
-				<string>TLSv1.2</string>
-				<key>NSThirdPartyExceptionRequiresForwardSecrecy</key>
-				<true/>
+				<key>AppId</key>
+				<string>04c3164e32834bd6ae64fde8bbf0a5ac</string>
+				<key>Region</key>
+				<string>us-east-1</string>
+			</dict>
+		</dict>
+		<key>PinpointTargeting</key>
+		<dict>
+			<key>Default</key>
+			<dict>
+				<key>Region</key>
+				<string>us-east-1</string>
+			</dict>
+		</dict>
+		<key>IdentityManager</key>
+		<dict>
+			<key>Default</key>
+			<dict/>
+		</dict>
+		<key>CognitoUserPool</key>
+		<dict>
+			<key>Default</key>
+			<dict>
+				<key>CognitoUserPoolId</key>
+				<string>eu-west-1_EIdjGtWLK</string>
+				<key>CognitoUserPoolAppClientId</key>
+				<string>3mip9nrd4spa1n2elmftc5gcqg</string>
+				<key>Region</key>
+				<string>eu-west-1</string>
+				<key>CognitoUserPoolAppClientSecret</key>
+				<string>44u9jj9o2ipo1av50ise7ofh7rjfpf5ooqk39tsp7bplrcler9v</string>
+			</dict>
+		</dict>
+		<key>CredentialsProvider</key>
+		<dict>
+			<key>CognitoIdentity</key>
+			<dict>
+				<key>Default</key>
+				<dict>
+					<key>PoolId</key>
+					<string>eu-west-1:64a9de95-136c-4ba3-b366-6aa4079fef8b</string>
+					<key>Region</key>
+					<string>eu-west-1</string>
+				</dict>
+			</dict>
+		</dict>
+		<key>Cognito</key>
+		<dict>
+			<key>Default</key>
+			<dict>
+				<key>Region</key>
+				<string>eu-west-1</string>
+			</dict>
+		</dict>
+		<key>MobileHub</key>
+		<dict>
+			<key>ProjectClientId</key>
+			<string>MobileHub eb927c03-2bbc-4c9f-9513-7187554a44a9 aws-my-sample-app-ios-swift-v0.18</string>
+		</dict>
+		<key>UserFileManager</key>
+		<dict>
+			<key>Default</key>
+			<dict>
+				<key>S3Bucket</key>
+				<string>wegoloco-userfiles-mobilehub-945193520</string>
+				<key>Region</key>
+				<string>eu-west-1</string>
 			</dict>
 		</dict>
 	</dict>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Always Usage Description</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>To select a file to upload.</string>
-	<key>UILaunchStoryboardName</key>
-	<string>Launch Screen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>FirstSignIn</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
 </dict>
 </plist>

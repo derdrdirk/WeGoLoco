@@ -8,9 +8,17 @@
 
 import UIKit
 import Validator
+import AWSCognitoIdentityProvider
+import AWSCognitoUserPoolsSignIn
+import Whisper
 
-class EmailViewController: UIViewController {
-
+class EmailViewController: UIViewController, LoadingAnimationProtocol{
+    
+    // MARK: LoadingAnimationProtocol
+    var loadingAnimationIndicator: UIActivityIndicatorView!
+    var loadingAnimationOverlay: UIView!
+    var loadingAnimationView: UIView!
+    
     enum ValidationErrors: String, Error {
         case minLength = "Dirección de e-mail es obligtorio"
         case emailInvalid = "Dirección de e-mail no válida."
@@ -27,18 +35,17 @@ class EmailViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print("jojo")
-        UserAPI.getSignedInUser{ user in print(user) }
-        
-        if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
-            myNavigationController.progressView.progress = 0.2
+        if let myNavigationController = self.navigationController as? SignInNavigationController {
+            myNavigationController.progressView.progress = 0.14
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        emailTextField.keyboardType = UIKeyboardType.emailAddress
+        // AnimationLoaderProtocol
+        loadingAnimationView = self.view
+        
         emailTextField.becomeFirstResponder()
         emailTextField.useUnderline(color: UIColor.lightGray)
         
@@ -79,23 +86,37 @@ class EmailViewController: UIViewController {
         
         switch validationResult {
         case .valid:
-            performSegue(withIdentifier: "segueToBirthdate", sender: self)
+            performSegue(withIdentifier: "segueToPassword", sender: self)
         case .invalid( _ ):
             ()
         }
     }
-    
+   
+    @IBAction func continueButtonTouch(_ sender: UIButton) {
+        startLoadingAnimation()
+        UserAPI.isEmailAvailable(emailTextField.text!) { [weak self] isEmailAvailable in
+            guard let strongSelf = self else { return }
+            DispatchQueue.main.async {
+                strongSelf.stopLoadingAnimation()
+                if isEmailAvailable {
+                    strongSelf.performSegue(withIdentifier: "segueToPassword", sender: self)
+                } else {
+                    let message = Message(title: "Email existe ya.", backgroundColor: .red)
+                    strongSelf.emailTextField.useUnderline(color: #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
+                    strongSelf.registerButton.isEnabled = false
+                    Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)
+                }
+            }
+        }
+    }
+
     func guardEmail() {
-        if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
+        if let myNavigationController = self.navigationController as? SignInNavigationController {
             myNavigationController.user.email = emailTextField.text!
         }
     }
-    
-    
-
 
     // MARK: - Navigation
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guardEmail()
     }

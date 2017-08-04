@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FirstSignInNavigationController: UINavigationController {
+class SignInNavigationController: UINavigationController {
 
     var progressView = UIProgressView()
     var user = User()

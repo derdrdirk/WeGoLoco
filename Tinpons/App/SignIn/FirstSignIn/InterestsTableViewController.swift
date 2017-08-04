@@ -22,6 +22,14 @@ class InterestsTableViewController: UITableViewController, LoadingAnimationProto
     @IBOutlet weak var continueButton: UIButton!
     var categories = Set<String>()
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let myNavigationController = self.navigationController as? SignInNavigationController {
+            myNavigationController.progressView.progress = 0.84
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,7 +41,7 @@ class InterestsTableViewController: UITableViewController, LoadingAnimationProto
         
         
         // load init values + progressView
-        if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
+        if let myNavigationController = self.navigationController as? SignInNavigationController {
             if !(myNavigationController.user.tinponCategories?.isEmpty)! {
                 myNavigationController.user.tinponCategories?.forEach{
                     switch($0) {
@@ -48,7 +56,6 @@ class InterestsTableViewController: UITableViewController, LoadingAnimationProto
                 categories = myNavigationController.user.tinponCategories!
                 validate()
             }
-            myNavigationController.progressView.progress = 0.8
         }
 
 
@@ -93,14 +100,14 @@ class InterestsTableViewController: UITableViewController, LoadingAnimationProto
     }
     
     func guardInterests() {
-        if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
+        if let myNavigationController = self.navigationController as? SignInNavigationController {
             myNavigationController.user.tinponCategories = categories
         }
     }
     
     @IBAction func continueButtonTouched(_ sender: UIButton) {
         print("dismiss")
-        if let myNavigationController = self.navigationController as? FirstSignInNavigationController {
+        if let myNavigationController = self.navigationController as? SignInNavigationController {
             startLoadingAnimation()
             UserAPI.save(preparedObject: myNavigationController.user, onCompletionClosure:  { [weak self] in
                 guard let strongSelf = self else { return }

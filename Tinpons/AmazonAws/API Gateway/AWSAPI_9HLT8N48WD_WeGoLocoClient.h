@@ -195,6 +195,15 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (AWSTask *)usersPost;
 
+/**
+ 
+ 
+ @param body 
+ 
+ return type: AWSAPI_9HLT8N48WD_ResponseSchema *
+ */
+- (AWSTask *)usersIsEmailAvailablePost:( AWSAPI_9HLT8N48WD_RequestSchema *)body;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -15,6 +15,7 @@ import UIKit
 import AWSMobileHubHelper
 import AWSDynamoDB
 import SwiftIconFont
+import AWSMobileHubHelper
 
 protocol ResetUIProtocol {
     var didAppear: Bool { get set }
@@ -74,13 +75,13 @@ extension AuthenticationProtocol {
             let loginController: SignInViewController = loginStoryboard.instantiateViewController(withIdentifier: "SignIn") as! SignInViewController
             loginController.canCancel = false
             loginController.didCompleteSignIn = onSignIn
-            let navController = FirstSignInNavigationController(rootViewController: loginController)
+            let navController = SignInNavigationController(rootViewController: loginController)
             authenticationNavigationController.present(navController, animated: true, completion: nil)
         }
     }
     
     func createUserAccountIfNotExisting() {
-        let cognitoId = AWSMobileClient.cognitoId
+        let cognitoId = AWSIdentityManager.default().identityId
         //check if User Account exists
         let dynamoDBOBjectMapper = AWSDynamoDBObjectMapper.default()
         dynamoDBOBjectMapper.load(DynamoDBUser.self, hashKey: cognitoId, rangeKey: nil).continueWith(block: { (task:AWSTask<AnyObject>!) -> Any? in
@@ -110,8 +111,8 @@ extension AuthenticationProtocol {
     
     func syncCoreDataWithDynamoDB(onCompletionClosure onComplete: @escaping ()->() ) {
         SwipedTinponsCore.resetAllRecords()
-        let cognitoId = AWSMobileClient.cognitoId
-        SwipedTinpon().loadAllSwipedTinponsFor(userId: cognitoId, onComplete: { [weak self] swipedTinpons in
+        let cognitoId = AWSIdentityManager.default().identityId
+        SwipedTinpon().loadAllSwipedTinponsFor(userId: cognitoId!, onComplete: { [weak self] swipedTinpons in
             guard let strongSelf = self else { return }
             for swipedTinpon in swipedTinpons {
                 SwipedTinponsCore.save(swipedTinpon: swipedTinpon)
