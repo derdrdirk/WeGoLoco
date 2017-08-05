@@ -14,7 +14,7 @@ class User: CustomStringConvertible {
     var birthdate: Date?
     var email: String?
     var gender: String?
-    var tinponCategories: Set<String>?
+    var categories: Set<String>
     var updatedAt: Date?
     
     var description: String {
@@ -23,9 +23,7 @@ class User: CustomStringConvertible {
 
     init() {
         self.id = ""
-        self.tinponCategories = Set<String>()
-        self.email = ""
-        self.gender = ""
+        self.categories = Set<String>()
     }
     
     init(json: [String: Any]) throws {
@@ -33,9 +31,8 @@ class User: CustomStringConvertible {
             throw SerializationError.missing("UserId")
         }
         self.id = id
-        
+        self.categories = Set<String>()
         self.createdAt = (json["createdAt"] as? String)?.dateFromISO8601
-        self.tinponCategories = nil
         self.birthdate = (json["birthdate"] as? String)?.dateFromISO8601
         self.email = json["email"] as? String
         self.gender = json["gender"] as? String
@@ -43,7 +40,7 @@ class User: CustomStringConvertible {
     }
 
     func toJSON() -> String? {
-        let jsonObject: [String: Any] = ["id": self.id, "email" : self.email]
+        let jsonObject: [String: Any] = ["id": self.id, "email" : self.email, "birthdate" : birthdate?.iso8601, "gender" : gender, "categories" : Array(categories) ]
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: jsonObject,
                                                                       options: .prettyPrinted)

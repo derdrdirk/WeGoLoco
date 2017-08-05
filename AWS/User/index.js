@@ -2,11 +2,12 @@
 //var mysql = require('mysql');
 var mysql = require('promise-mysql');
 
-var connection;
+var connection, person, categories;
 let host = "wegoloco-cluster.cluster-cb5jwvcwolur.eu-west-1.rds.amazonaws.com";
 let user = "admin";
 let password = "1269Y5$ST50j";
 let database = 'wegoloco';
+let charset = 'utf8mb4';
 
 // var connection = mysql.createConnection({
 //   host: "wegoloco-cluster.cluster-cb5jwvcwolur.eu-west-1.rds.amazonaws.com",
@@ -52,6 +53,10 @@ exports.handler = (event, context, callback) => {
 
   // Request Body
   requestBody = event.body;
+  person = JSON.parse(requestBody);
+  console.log("Person : ", person);
+  categories = person.categories;
+  delete person.categories;
 
   // Path Parameters
   pathParams = event.path;
@@ -104,6 +109,9 @@ exports.handler = (event, context, callback) => {
         case "GET":
           // get signedIn User
           console.log("CognitoId : ", cognitoIdentityId);
+          console.log("queryStringParams : ", queryStringParams);
+
+          let id = queryStringParams.id;
 
           mysql.createConnection({
               host: host,
@@ -113,7 +121,7 @@ exports.handler = (event, context, callback) => {
           }).then(function(conn){
               connection = conn;
               var result = conn.query("SELECT * FROM person "
-                                      +"WHERE id = '"+cognitoIdentityId+"';");
+                                      +"WHERE id = '"+id+"';");
               return result;
           }).then(function(rows) {
               let result = JSON.stringify(rows[0]);
@@ -127,26 +135,41 @@ exports.handler = (event, context, callback) => {
               host: host,
               user: user,
               password: password,
-              database: database
+              database: database,
+              charset: charset
           }).then(function(conn){
+              // insert User
               connection = conn;
-              var query = conn.query("SELECT * FROM person "
-                                      +"WHERE id = '"+cognitoIdentityId+"';");
+
+              var query = connection.query("SELECT * FROM person "
+                                      +"WHERE id = '"+person.id+"';");
               console.log("SQL QUERY : ", query.sql);
               return query;
           }).then(function(rows) {
-            var user = JSON.parse(requestBody);
-            // user["email"] = (user.hasOwnProperty("email") ? "'"+user["email"]+"'" : "NULL");
-            // user["birthdate"] = (user.hasOwnProperty("birthdate") ? "'"+user["birthdate"]+"'" : "NULL");
-            // user["gender"] = (user.hasOwnProperty("gender") ? "'"+user["gender"]+"'" : "NULL");
-
             if (rows.length > 0) {
               // User exists
               connection.end();
               respond(context, 405, "Error: User already exists");
             } else {
-              var result = connection.query("INSERT INTO person SET ?", user);
+              var result = connection.query("INSERT INTO person SET ?", person);
               return result;
+            }
+          }).then(function(result) {
+            // insert categories
+
+            var values = "";
+            for (var category of categories) {
+              values = values.concat("('"+category+"', '"+person.id+"'),");
+            }
+            if (values != "") {
+              values = values.slice(0, -1);
+
+              var query = connection.query("INSERT INTO person_category(category_id, person_id)"
+                          +"VALUES "+values+";");
+              return query;
+            } else {
+                connection.end();
+                respond(context, 200, 'Success: Created User.');
             }
           }).then(function(result) {
             connection.end();
@@ -160,29 +183,55 @@ exports.handler = (event, context, callback) => {
                 host: host,
                 user: user,
                 password: password,
-                database: database
+                database: database,
+                charset: charset
             }).then(function(conn){
                 connection = conn;
-                var result = conn.query("SELECT * FROM person "
-                                        +"WHERE id = '"+cognitoIdentityId+"';");
-                return result;
+
+                var query = connection.query("SELECT * FROM person "
+                                        +"WHERE id = '"+person.id+"';");
+                return query;
             }).then(function(rows) {
-              console.log(JSON.parse(requestBody).email);
+              console.log(JSON.parse(requestBody).gender)
 
-              var user = JSON.parse(requestBody);
-
-              if (rows.length == 0) {
+              if (rows.length === 0) {
                 // User does not exists
                 connection.end();
                 respond(context, 405, "Error: User does not exist");
               } else {
                 var result = connection.query("UPDATE person "
-                                        +"SET ? WHERE `id` = '"+cognitoIdentityId+"';", user);
+                                        +"SET ? WHERE `id` = '"+person.id+"';", person);
                 return result;
+              }
+            }).then(function(result) {
+              // delete previous categories
+              var query = connection.query("DELETE FROM person_category WHERE person_id = '"+person.id+"';");
+              return query;
+            }).then(function(result) {
+              // update categories
+              console.log("Categories : ", person.categories);
+              var values = "";
+              for (var category of categories) {
+                values = values.concat("('"+category+"', '"+person.id+"'),");
+              }
+              console.log("VALUES :", values);
+              if (values != "") {
+                values = values.slice(0, -1);
+                console.log("VALUES2 :", values);
+                var query = connection.query("INSERT INTO person_category (category_id, person_id) VALUES "+values+";");
+
+                console.log("SQL QUERY : ", query.sql);
+                return query;
+              } else {
+                  connection.end();
+                  respond(context, 200, 'Success: Updated User.');
               }
             }).then(function(result) {
               connection.end();
               respond(context, 200, 'Success: Updated User.');
+            }).catch(function(error) {
+              if (connection && connection.end) connection.end();
+              console.log("PUT User Error : ", error);
             });
             break;
         default:
@@ -196,7 +245,8 @@ exports.handler = (event, context, callback) => {
           host: host,
           user: user,
           password: password,
-          database: database
+          database: database,
+          charset: charset
       }).then(function(conn){
           connection = conn;
 

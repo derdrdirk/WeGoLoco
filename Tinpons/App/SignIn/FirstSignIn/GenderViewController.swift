@@ -8,8 +8,13 @@
 
 import UIKit
 
-class GenderViewController: UIViewController {
+class GenderViewController: UIViewController, LoadingAnimationProtocol {
 
+    // MARK: LoadingAnimationProtocol
+    var loadingAnimationIndicator: UIActivityIndicatorView!
+    var loadingAnimationOverlay: UIView!
+    var loadingAnimationView: UIView!
+    
     @IBOutlet weak var womanButton: UIButton!
     @IBOutlet weak var manButton: UIButton!
     @IBOutlet weak var continueButton: UIButton!
@@ -24,6 +29,9 @@ class GenderViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // LoadingAnimationProtocol
+        self.loadingAnimationView = self.navigationController?.view
 
         // load init values + progressBar
         if let myNavigationController = self.navigationController as? SignInNavigationController {
@@ -60,6 +68,19 @@ class GenderViewController: UIViewController {
 
     @IBAction func manButtonTouched(_ sender: UIButton) {
         genderTouched(isWoman: false)
+    }
+    
+    @IBAction func continueButtonTouch(_ sender: UIButton) {
+        startLoadingAnimation()
+        if let myNavigationController = self.navigationController as? SignInNavigationController {
+            UserAPI.update(preparedObject: myNavigationController.user, onCompletionClosure: { [weak self] in
+                guard let strongSelf = self else { return }
+                DispatchQueue.main.async {
+                    strongSelf.stopLoadingAnimation()
+                    strongSelf.performSegue(withIdentifier: "segueToCategories", sender: self)
+                }
+            })
+        }
     }
     
     func genderTouched(isWoman: Bool) {

@@ -48,7 +48,7 @@ class PasswordViewController: UIViewController, LoadingAnimationProtocol {
         self.pool = AWSCognitoIdentityUserPool.default()
         
         // AnimationLoaderProtocol
-        loadingAnimationView = self.view
+        loadingAnimationView = self.navigationController?.view
         
         passwordTextField.becomeFirstResponder()
         passwordTextField.useUnderline(color: UIColor.lightGray)

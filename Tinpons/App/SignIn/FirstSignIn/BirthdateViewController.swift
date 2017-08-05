@@ -8,8 +8,13 @@
 
 import UIKit
 
-class BirthdateViewController: UIViewController {
-
+class BirthdateViewController: UIViewController, LoadingAnimationProtocol {
+    
+    // MARK: LoadingAnimationProtocol
+    var loadingAnimationIndicator: UIActivityIndicatorView!
+    var loadingAnimationOverlay: UIView!
+    var loadingAnimationView: UIView!
+    
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var birthdatePicker: UIDatePicker!
     
@@ -23,6 +28,9 @@ class BirthdateViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // AnimationLoaderProtocol
+        loadingAnimationView = self.navigationController?.view
         
         loadBirthdate()
         
@@ -57,6 +65,16 @@ class BirthdateViewController: UIViewController {
         continueButton.isEnabled = true
     }
     
+    @IBAction func continueButtonTouch(_ sender: UIButton) {
+        if let myNavigationController = self.navigationController as? SignInNavigationController {
+            UserAPI.update(preparedObject: myNavigationController.user, onCompletionClosure: { [weak self] in
+                guard let strongSelf = self else { return }
+                DispatchQueue.main.async {
+                    strongSelf.performSegue(withIdentifier: "segueToGender", sender: self)
+                }
+            })
+        }
+    }
     
 
     // MARK: - Navigation

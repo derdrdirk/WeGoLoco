@@ -188,7 +188,7 @@ contraseña es</string>
                                         </attributedString>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mira tus emails, te hemos enviado tu codigo!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvY-HX-dzW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mira tus emails, te hemos enviado tu codigo!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvY-HX-dzW">
                                         <rect key="frame" x="0.0" y="70" width="343" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -293,7 +293,7 @@ cumplenaños  es</string>
                                             <color key="titleColor" red="0.96460580579999999" green="0.96460580579999999" blue="0.96460580579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="5fm-Ci-TAw" kind="show" identifier="SegueToGender" id="0NN-RO-cgI"/>
+                                            <action selector="continueButtonTouch:" destination="JVS-32-3OH" eventType="touchUpInside" id="T5h-q2-gjf"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -312,6 +312,7 @@ cumplenaños  es</string>
                     <connections>
                         <outlet property="birthdatePicker" destination="aWW-52-v8j" id="a8H-9j-iig"/>
                         <outlet property="continueButton" destination="C3T-js-xnz" id="Brs-O6-feX"/>
+                        <segue destination="5fm-Ci-TAw" kind="show" identifier="segueToGender" id="SbX-if-l1F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDY-nJ-wjO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -372,7 +373,7 @@ cumplenaños  es</string>
                                             <color key="titleColor" red="0.96460580579999999" green="0.96460580579999999" blue="0.96460580579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="i2K-dN-qsi" kind="show" identifier="SegueToCategory" id="gsY-bo-kcN"/>
+                                            <action selector="continueButtonTouch:" destination="5fm-Ci-TAw" eventType="touchUpInside" id="pha-PD-g1w"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -392,6 +393,7 @@ cumplenaños  es</string>
                         <outlet property="continueButton" destination="c6N-Xw-cgT" id="9MY-U0-nRL"/>
                         <outlet property="manButton" destination="68s-Mt-jUh" id="Spm-92-5Ok"/>
                         <outlet property="womanButton" destination="eob-XT-MZZ" id="G6C-Sn-s9h"/>
+                        <segue destination="i2K-dN-qsi" kind="show" identifier="segueToCategories" id="Qsp-gl-0Xd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lXS-ki-e1i" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -42,8 +42,8 @@ class InterestsTableViewController: UITableViewController, LoadingAnimationProto
         
         // load init values + progressView
         if let myNavigationController = self.navigationController as? SignInNavigationController {
-            if !(myNavigationController.user.tinponCategories?.isEmpty)! {
-                myNavigationController.user.tinponCategories?.forEach{
+            if myNavigationController.user.categories.isEmpty {
+                myNavigationController.user.categories.forEach{
                     switch($0) {
                     case "👞":
                         👞Switch.isOn = true
@@ -53,7 +53,7 @@ class InterestsTableViewController: UITableViewController, LoadingAnimationProto
                     default: ()
                     }
                 }
-                categories = myNavigationController.user.tinponCategories!
+                categories = myNavigationController.user.categories
                 validate()
             }
         }
@@ -101,19 +101,19 @@ class InterestsTableViewController: UITableViewController, LoadingAnimationProto
     
     func guardInterests() {
         if let myNavigationController = self.navigationController as? SignInNavigationController {
-            myNavigationController.user.tinponCategories = categories
+            myNavigationController.user.categories = categories
         }
     }
     
     @IBAction func continueButtonTouched(_ sender: UIButton) {
-        print("dismiss")
         if let myNavigationController = self.navigationController as? SignInNavigationController {
             startLoadingAnimation()
-            UserAPI.save(preparedObject: myNavigationController.user, onCompletionClosure:  { [weak self] in
+            UserAPI.update(preparedObject: myNavigationController.user, onCompletionClosure:  { [weak self] in
                 guard let strongSelf = self else { return }
                 DispatchQueue.main.async {
                     strongSelf.stopLoadingAnimation()
-                    strongSelf.presentingViewController?.dismiss(animated: true, completion: nil)
+                    
+                    strongSelf.navigationController?.popToRootViewController(animated: true)
                 }
             })
         }

@@ -11,8 +11,13 @@ import Validator
 import AWSCognitoUserPoolsSignIn
 import Whisper
 
-class EmailConfirmationViewController: UIViewController {
+class EmailConfirmationViewController: UIViewController, LoadingAnimationProtocol {
 
+    // MARK: LoadingAnimationProtocol
+    var loadingAnimationIndicator: UIActivityIndicatorView!
+    var loadingAnimationOverlay: UIView!
+    var loadingAnimationView: UIView!
+    
     var user: AWSCognitoIdentityUser?
     
     enum ValidationErrors: String, Error {
@@ -39,6 +44,9 @@ class EmailConfirmationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // LoadingAnimationProtocol
+        self.loadingAnimationView = self.navigationController?.view
+        
         confirmationCodeTextField.becomeFirstResponder()
         confirmationCodeTextField.useUnderline(color: UIColor.lightGray)
         
@@ -56,9 +64,11 @@ class EmailConfirmationViewController: UIViewController {
     }
     
     @IBAction func resendConfirmationCode(_ sender: UIButton) {
+        startLoadingAnimation()
         self.user?.resendConfirmationCode().continueWith(block: {[weak self] (task: AWSTask<AWSCognitoIdentityUserResendConfirmationCodeResponse>) -> AnyObject? in
             guard let strongSelf = self else { return nil }
             DispatchQueue.main.async(execute: {
+                strongSelf.stopLoadingAnimation()
                 if let error = task.error as? NSError {
                     let message = Message(title: "No podia enviar el codigo. Pruebalo otra vez.", backgroundColor: .red)
                     Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)

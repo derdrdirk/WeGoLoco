@@ -44,7 +44,7 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
         super.viewDidLoad()
         
         // AnimationLoaderProtocol
-        loadingAnimationView = self.view
+        loadingAnimationView = self.navigationController?.view
         
         emailTextField.becomeFirstResponder()
         emailTextField.useUnderline(color: UIColor.lightGray)

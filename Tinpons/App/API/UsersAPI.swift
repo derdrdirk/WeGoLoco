@@ -52,21 +52,20 @@ class UserAPI: APIGatewayProtocol {
     static func update(preparedObject user: User, onCompletionClosure onComplete: @escaping ()->()) {
         restAPITask(httpMethod: .PUT, endPoint: .users, httpBody: user.toJSON()).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
             if let error = task.error {
-                print("Error occurred: \(error)")
+                print("UserApi.update Error occurred: \(error)")
                 // Handle error here
                 return
             } else if let result = task.result {
                 if result.statusCode == 200 {
                     onComplete()
                 } else {
-                    print("UserAPI.save Error: HTTP status code: \(result.statusCode) \n and body: \(String(data: result.responseData!, encoding: .utf8))")
+                    print("UserAPI.update Error: HTTP status code: \(result.statusCode) \n and body: \(String(data: result.responseData!, encoding: .utf8))")
                 }
             }
         }
     }
     
     static func isEmailAvailable(_ email: String, onComlete: @escaping (Bool)->()) {
-        print("is email start")
         let jsonObject: [String: Any] = ["email": email]
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: jsonObject,
