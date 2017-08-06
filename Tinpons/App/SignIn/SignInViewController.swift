@@ -41,8 +41,13 @@ class SignInViewController : UIViewController {
     let smallLogoName = "logo-aws-small"
     let bigLogoName = "logo-aws-big"
     
+    var signInNavigationController: SignInNavigationController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        signInNavigationController = navigationController as! SignInNavigationController
+        
         // set up the navigation controller
         self.setUpNavigationController()
         // set up the logo in image view

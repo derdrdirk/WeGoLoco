@@ -22,7 +22,7 @@ class SignInNavigationController: UINavigationController, LoadingAnimationProtoc
     
     var progressView = UIProgressView()
     var user = User()
-    var necessaryViewController = Array<String>()
+    var necessaryViewController = ["BirthdateViewController", "GenderViewController", "CategoriesViewController"]
     var nextViewController: String? {
         if let storyboardId = self.visibleViewController?.restorationIdentifier,
             let index = necessaryViewController.index(of: storyboardId) {
@@ -74,6 +74,7 @@ class SignInNavigationController: UINavigationController, LoadingAnimationProtoc
         }.then { user -> Void in
             // if user exists - check if registration complete
             self.user = user
+            print(user)
             if self.isUserRegistered(user: user) {
                 print("login")
             } else {
@@ -128,9 +129,6 @@ class SignInNavigationController: UINavigationController, LoadingAnimationProtoc
             }.then { isEmailAvailable -> Void in
                 if isEmailAvailable {
                     self.necessaryViewController.remove(at:  self.necessaryViewController.index(of: "EmailViewController")!)
-                } else {
-                    // if email (from fb) already taken DONT use it
-                    self.user.email = nil
                 }
                 completion()
             }

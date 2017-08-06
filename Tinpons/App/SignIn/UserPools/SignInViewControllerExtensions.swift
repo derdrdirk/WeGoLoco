@@ -21,9 +21,12 @@ import AWSCognitoUserPoolsSignIn
 extension SignInViewController {
     
     func handleUserPoolSignIn() {
+        
+        signInNavigationController.checkRegistration()
+        
         // set the interactive auth delegate to self, since this view controller handles the login process for user pools
-        AWSCognitoUserPoolsSignInProvider.sharedInstance().setInteractiveAuthDelegate(self)
-        self.handleLoginWithSignInProvider(AWSCognitoUserPoolsSignInProvider.sharedInstance())
+//        AWSCognitoUserPoolsSignInProvider.sharedInstance().setInteractiveAuthDelegate(self)
+//        self.handleLoginWithSignInProvider(AWSCognitoUserPoolsSignInProvider.sharedInstance())
     }
     
     func handleUserPoolForgotPassword () {

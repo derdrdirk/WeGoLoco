@@ -20,6 +20,8 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
     var loadingAnimationOverlay: UIView!
     var loadingAnimationView: UIView!
     
+    var saveEmail = false
+    
     var signInNavigationController: SignInNavigationController!
     
     enum ValidationErrors: String, Error {
@@ -104,19 +106,21 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
         firstly {
             UserAPI.isEmailAvailable(email: signInNavigationController.user.email!)
         }.then { isEmailAvailable -> Void in
-            print("email \(isEmailAvailable)")
             if isEmailAvailable {
-                print("something")
                 firstly {
+                    // try save email - could be from userPool => user does not exist and cannot be updated
                     UserAPI.update(user: self.signInNavigationController.user)
                 }.then { Void -> Void in
-                    print("somehting")
                     DispatchQueue.main.async {
                         self.stopLoadingAnimation()
                         self.signInNavigationController.pushNextViewController()
                     }
                 }.catch { error in
-                    print(error)
+                    // if we pushed register button and came from userPool just go to password
+                    DispatchQueue.main.async {
+                        self.stopLoadingAnimation()
+                        self.performSegue(withIdentifier: "segueToPassword", sender: self)
+                    }
                 }
             } else {
                 DispatchQueue.main.async {

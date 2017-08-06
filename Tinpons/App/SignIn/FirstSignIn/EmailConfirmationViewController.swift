@@ -10,6 +10,7 @@ import UIKit
 import Validator
 import AWSCognitoUserPoolsSignIn
 import Whisper
+import PromiseKit
 
 class EmailConfirmationViewController: UIViewController, LoadingAnimationProtocol {
 
@@ -28,6 +29,7 @@ class EmailConfirmationViewController: UIViewController, LoadingAnimationProtoco
     
     let rangeLengthRule = ValidationRuleLength(min: 6, max: 6, error: ValidationErrors.minLength)
     var validationRules = ValidationRuleSet<String>()
+    var signInNavigationController: SignInNavigationController!
 
     
     @IBOutlet weak var confirmationCodeTextField: UITextField!
@@ -44,6 +46,8 @@ class EmailConfirmationViewController: UIViewController, LoadingAnimationProtoco
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        signInNavigationController = navigationController as! SignInNavigationController
+        
         // LoadingAnimationProtocol
         self.loadingAnimationView = self.navigationController?.view
         
@@ -107,7 +111,6 @@ class EmailConfirmationViewController: UIViewController, LoadingAnimationProtoco
     }
 
     func confirmCode() {
-        print(self.user)
         self.user?.confirmSignUp(confirmationCodeTextField.text!, forceAliasCreation: true).continueWith(block: {[weak self] (task: AWSTask) -> AnyObject? in
             guard let strongSelf = self else { return nil }
             DispatchQueue.main.async(execute: {
@@ -115,16 +118,26 @@ class EmailConfirmationViewController: UIViewController, LoadingAnimationProtoco
                     let message = Message(title: "Código incorrecto.", backgroundColor: .red)
                     Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)
                 } else {
+                    firstly {
+                        UserAPI.save(user: strongSelf.signInNavigationController.user)
+                    }.then {
+                        DispatchQueue.main.async {
+                            let message = Message(title: "Registración completado!. Bienvenido 😊", backgroundColor: .green)
+                            Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)
+                            
+                            // User Pool SingUp completed
+                            // delete email + password views + start with additional account signUp
+                            let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
+                            let newVc = storyboard.instantiateViewController(withIdentifier: "BirthdateViewController") as! BirthdateViewController
+                            var vcArray = strongSelf.navigationController?.viewControllers
+                            vcArray!.removeLast(3)
+                            vcArray!.append(newVc)
+                            strongSelf.navigationController?.setViewControllers(vcArray!, animated: false)
+                        }
+
+                    }
                     
-                    if let myNavigationController = strongSelf.navigationController as? SignInNavigationController {
-                        UserAPI.getCognitoIdTask().continueWith{ [weak self] task -> () in
-                            guard let strongSelf = self else { return }
-                            if let error = task.error {
-                                print("cognito Id ERROR : \(error)")
-                            } else {
-                                let cognitoId = task.result as! String
-                                myNavigationController.user.id = cognitoId
-                                // save To RDS
+                                                        // save To RDS
 //                                UserAPI.save(preparedObject: myNavigationController.user, onCompletionClosure: {
 //                                    print("user created")
 //                                    DispatchQueue.main.async {
@@ -141,9 +154,9 @@ class EmailConfirmationViewController: UIViewController, LoadingAnimationProtoco
 //                                        strongSelf.navigationController?.setViewControllers(vcArray!, animated: false)
 //                                    }
 //                                })
-                            }
-                        }
-                    }
+                    
+
+                
                 }
             })
             return nil
