@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 class GenderViewController: UIViewController, LoadingAnimationProtocol {
 
@@ -76,13 +77,14 @@ class GenderViewController: UIViewController, LoadingAnimationProtocol {
     
     @IBAction func continueButtonTouch(_ sender: UIButton) {
         startLoadingAnimation()
-        UserAPI.update(preparedObject: signInNavigationController.user, onCompletionClosure: { [weak self] in
-            guard let strongSelf = self else { return }
-            DispatchQueue.main.async {
-                strongSelf.stopLoadingAnimation()
-//                strongSelf.signInNavigationController.pushNextViewController()
-            }
-        })
+        firstly {
+            UserAPI.update(user: signInNavigationController.user)
+            }.then {
+                DispatchQueue.main.async {
+                    self.stopLoadingAnimation()
+                    self.signInNavigationController?.pushNextViewController()
+                }
+        }
     }
     
     func genderTouched(isWoman: Bool) {

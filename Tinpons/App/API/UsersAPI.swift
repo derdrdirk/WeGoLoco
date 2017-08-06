@@ -46,14 +46,13 @@ class UserAPI: APIGatewayProtocol {
     static func save(user: User, completion: @escaping (Error?)->()) {
         restAPITask(httpMethod: .POST, endPoint: .users, httpBody: user.toJSON()).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
             if let error = task.error {
-                print("Error occurred: \(error)")
-                // Handle error here
+                completion(APIError.serverError)
                 return
             } else if let result = task.result {
                 if result.statusCode == 200 {
                     completion(nil)
                 } else {
-                   completion(APIError.serverError)
+                   completion(APIError.alreadyExisting)
                 }
             }
         }
@@ -62,22 +61,28 @@ class UserAPI: APIGatewayProtocol {
         return PromiseKit.wrap{ save(user: user, completion: $0) }
     }
     
-    
-    static func update(preparedObject user: User, onCompletionClosure onComplete: @escaping ()->()) {
+    /**
+     update user in RDS
+     */
+    static func update(user: User, completion: @escaping (Error?)->()) {
         restAPITask(httpMethod: .PUT, endPoint: .users, httpBody: user.toJSON()).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
             if let error = task.error {
-                print("UserApi.update Error occurred: \(error)")
-                // Handle error here
+                completion(APIError.serverError)
                 return
             } else if let result = task.result {
                 if result.statusCode == 200 {
-                    onComplete()
+                    completion(nil)
                 } else {
-                    print("UserAPI.update Error: HTTP status code: \(result.statusCode) \n and body: \(String(data: result.responseData!, encoding: .utf8))")
+                    completion(APIError.nonExisting)
+                    //print("UserAPI.update Error: HTTP status code: \(result.statusCode) \n and body: \(String(data: result.responseData!, encoding: .utf8))")
                 }
             }
         }
     }
+    static func update(user: User) -> Promise<Void> {
+        return PromiseKit.wrap{ update(user: user, completion: $0 ) }
+    }
+    
     
     /**
      returns Bool if email is already taken in RDS
@@ -101,11 +106,13 @@ class UserAPI: APIGatewayProtocol {
                     }
                     
                     if result.statusCode == 200 {
-                        completion(isEmailAvailable, PMKError.invalidCallingConvention)
+                        completion(isEmailAvailable, nil)
                     } else {
                         completion(nil, APIError.serverError)
                        //print("UserAPI.isEmailAvailable Error: HTTP status code: \(result.statusCode) \n and body: \(String(data: result.responseData!, encoding: .utf8))")
                     }
+                } else {
+                    completion(nil, APIError.serverError)
                 }
             }
         } catch let error {
@@ -114,7 +121,7 @@ class UserAPI: APIGatewayProtocol {
 
     }
     static func isEmailAvailable(email: String) -> Promise<Bool> {
-        return PromiseKit.wrap{ isEmailAvailable(email: email, completion: $0) }
+        return PromiseKit.wrap { isEmailAvailable(email: email, completion: $0) }
     }
     
     static func isEmailAvailable(_ email: String, onComlete: @escaping (Bool)->()) {

@@ -34,8 +34,8 @@ class SignInNavigationController: UINavigationController, LoadingAnimationProtoc
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loadingAnimationView = self.view
-        
+        loadingAnimationView = self.view    
+    
         // prepare User for registration
         startLoadingAnimation()
         UserAPI.getCognitoIdTask().continueWith{ [weak self] task -> () in
@@ -71,6 +71,21 @@ class SignInNavigationController: UINavigationController, LoadingAnimationProtoc
     func checkRegistration() {
         firstly {
             UserAPI.getSignedInUser()
+        }.then { user -> Void in
+            // if user exists - check if registration complete
+            self.user = user
+            if self.isUserRegistered(user: user) {
+                print("login")
+            } else {
+                // not complete registration
+                firstly {
+                    self.setNecessaryViewController()
+                }.then {
+                    DispatchQueue.main.async {
+                        self.pushNextViewController()
+                    }
+                }
+            }
         }.catch { error in
             // user does not exist
             let identityManager = AWSIdentityManager.default()
@@ -86,10 +101,11 @@ class SignInNavigationController: UINavigationController, LoadingAnimationProtoc
             }
             
             firstly {
+                self.setNecessaryViewController()
+            }.then {
                 UserAPI.save(user: self.user)
             }.then {
                 DispatchQueue.main.async {
-                    self.setNecessaryViewController()
                     self.pushNextViewController()
                 }
             }
@@ -99,14 +115,31 @@ class SignInNavigationController: UINavigationController, LoadingAnimationProtoc
     /**
      Sets missing VC depending on already provided user data
     */
-    func setNecessaryViewController() {
+    func setNecessaryViewController(completion: @escaping ()->() ) {
         necessaryViewController.append(contentsOf: ["EmailViewController", "BirthdateViewController", "GenderViewController", "CategoriesViewController"])
-
-        if user.email != nil {  necessaryViewController.remove(at:  necessaryViewController.index(of: "EmailViewController")!) }
+        
         if user.birthdate != nil { necessaryViewController.remove(at: necessaryViewController.index(of: "BirthdateViewController")!) }
         if user.gender != nil { necessaryViewController.remove(at: necessaryViewController.index(of: "GenderViewController")!) }
         // categories cannot be retrieved before user input
         
+        if let email = user.email {
+            firstly {
+                UserAPI.isEmailAvailable(email: email)
+            }.then { isEmailAvailable -> Void in
+                if isEmailAvailable {
+                    self.necessaryViewController.remove(at:  self.necessaryViewController.index(of: "EmailViewController")!)
+                } else {
+                    // if email (from fb) already taken DONT use it
+                    self.user.email = nil
+                }
+                completion()
+            }
+        } else {
+            completion()
+        }
+    }
+    func setNecessaryViewController() -> Promise<Void> {
+        return PromiseKit.wrap(setNecessaryViewController)
     }
     
     func pushNextViewController() {
@@ -117,6 +150,16 @@ class SignInNavigationController: UINavigationController, LoadingAnimationProtoc
         }
     }
     
+    /**
+     checks if user is "completly" registered
+    */
+    func isUserRegistered(user: User) -> Bool {
+        if user.email != nil && user.birthdate != nil && user.gender != nil && user.categories != nil {
+            return true
+        } else {
+            return false
+        }
+    }
     
     
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 class InterestsTableViewController: UITableViewController, LoadingAnimationProtocol {
     
@@ -21,6 +22,7 @@ class InterestsTableViewController: UITableViewController, LoadingAnimationProto
     
     @IBOutlet weak var continueButton: UIButton!
     var categories = Set<String>()
+    var signInNavigationController: SignInNavigationController!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -32,6 +34,8 @@ class InterestsTableViewController: UITableViewController, LoadingAnimationProto
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        signInNavigationController = navigationController as! SignInNavigationController
         
         // loadingAnimationProtocol
         loadingAnimationView = self.view
@@ -108,19 +112,18 @@ class InterestsTableViewController: UITableViewController, LoadingAnimationProto
     @IBAction func continueButtonTouched(_ sender: UIButton) {
         if let myNavigationController = self.navigationController as? SignInNavigationController {
             startLoadingAnimation()
-            UserAPI.update(preparedObject: myNavigationController.user, onCompletionClosure:  { [weak self] in
-                guard let strongSelf = self else { return }
+            firstly {
+                UserAPI.update(user: self.signInNavigationController.user)
+            }.then {
                 DispatchQueue.main.async {
-                    strongSelf.stopLoadingAnimation()
-                    
+                    self.stopLoadingAnimation()
                     
                     // clean registration
-                    if let myNavigationController = strongSelf.navigationController as? SignInNavigationController {
-                        myNavigationController.user = User()
-                    }
-                    strongSelf.navigationController?.popToRootViewController(animated: true)
+                    self.signInNavigationController.user = User()
+                    self.navigationController?.popToRootViewController(animated: true)
+
                 }
-            })
+            }
         }
     }
     

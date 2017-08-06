@@ -11,6 +11,7 @@ import Validator
 import AWSCognitoIdentityProvider
 import AWSCognitoUserPoolsSignIn
 import Whisper
+import PromiseKit
 
 class EmailViewController: UIViewController, LoadingAnimationProtocol{
     
@@ -99,17 +100,31 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
    
     @IBAction func continueButtonTouch(_ sender: UIButton) {
         startLoadingAnimation()
-        UserAPI.isEmailAvailable(emailTextField.text!) { [weak self] isEmailAvailable in
-            guard let strongSelf = self else { return }
-            DispatchQueue.main.async {
-                strongSelf.stopLoadingAnimation()
-                if isEmailAvailable {
-//                    strongSelf.signInNavigationController.pushNextViewController()
-                } else {
+        guardEmail()
+        firstly {
+            UserAPI.isEmailAvailable(email: signInNavigationController.user.email!)
+        }.then { isEmailAvailable -> Void in
+            print("email \(isEmailAvailable)")
+            if isEmailAvailable {
+                print("something")
+                firstly {
+                    UserAPI.update(user: self.signInNavigationController.user)
+                }.then { Void -> Void in
+                    print("somehting")
+                    DispatchQueue.main.async {
+                        self.stopLoadingAnimation()
+                        self.signInNavigationController.pushNextViewController()
+                    }
+                }.catch { error in
+                    print(error)
+                }
+            } else {
+                DispatchQueue.main.async {
+                    self.stopLoadingAnimation()
                     let message = Message(title: "Email existe ya.", backgroundColor: .red)
-                    strongSelf.emailTextField.useUnderline(color: #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
-                    strongSelf.registerButton.isEnabled = false
-                    Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)
+                    self.emailTextField.useUnderline(color: #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
+                    self.registerButton.isEnabled = false
+                    Whisper.show(whisper: message, to: self.navigationController!, action: .show)
                 }
             }
         }

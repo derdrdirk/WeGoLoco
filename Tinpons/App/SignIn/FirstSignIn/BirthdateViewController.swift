@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 class BirthdateViewController: UIViewController, LoadingAnimationProtocol {
     
@@ -72,13 +73,14 @@ class BirthdateViewController: UIViewController, LoadingAnimationProtocol {
     
     @IBAction func continueButtonTouch(_ sender: UIButton) {
         startLoadingAnimation()
-        UserAPI.update(preparedObject: signInNavigationController.user, onCompletionClosure: { [weak self] in
-            guard let strongSelf = self else { return }
+        firstly {
+            UserAPI.update(user: signInNavigationController.user)
+        }.then {
             DispatchQueue.main.async {
-                strongSelf.stopLoadingAnimation()
-//                strongSelf.signInNavigationController?.pushNextViewController()
+                self.stopLoadingAnimation()
+                self.signInNavigationController?.pushNextViewController()
             }
-        })
+        }
     }
     
 
