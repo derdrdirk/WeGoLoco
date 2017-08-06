@@ -19,6 +19,8 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
     var loadingAnimationOverlay: UIView!
     var loadingAnimationView: UIView!
     
+    var signInNavigationController: SignInNavigationController!
+    
     enum ValidationErrors: String, Error {
         case minLength = "Dirección de e-mail es obligtorio"
         case emailInvalid = "Dirección de e-mail no válida."
@@ -42,6 +44,9 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // navigation controller
+        signInNavigationController = navigationController as! SignInNavigationController
         
         // AnimationLoaderProtocol
         loadingAnimationView = self.navigationController?.view
@@ -99,7 +104,7 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
             DispatchQueue.main.async {
                 strongSelf.stopLoadingAnimation()
                 if isEmailAvailable {
-                    strongSelf.performSegue(withIdentifier: "segueToPassword", sender: self)
+//                    strongSelf.signInNavigationController.pushNextViewController()
                 } else {
                     let message = Message(title: "Email existe ya.", backgroundColor: .red)
                     strongSelf.emailTextField.useUnderline(color: #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))

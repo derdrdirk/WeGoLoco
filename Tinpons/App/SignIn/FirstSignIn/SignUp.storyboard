@@ -21,7 +21,7 @@
         <!--e-mail-->
         <scene sceneID="fEl-EV-sGR">
             <objects>
-                <viewController storyboardIdentifier="EmailViewController" id="dGY-at-1xa" customClass="EmailViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="EmailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dGY-at-1xa" customClass="EmailViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UWj-dB-CAj"/>
                         <viewControllerLayoutGuide type="bottom" id="mLh-0C-5Ge"/>
@@ -159,7 +159,7 @@ contraseña es</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G4l-Tt-W1k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="113" y="-926"/>
+            <point key="canvasLocation" x="138" y="-926"/>
         </scene>
         <!--Email Confirmation View Controller-->
         <scene sceneID="cde-8M-pQP">
@@ -248,7 +248,7 @@ contraseña es</string>
         <!-- cumpleaños-->
         <scene sceneID="Lba-K9-roj">
             <objects>
-                <viewController storyboardIdentifier="BirthdateViewController" id="JVS-32-3OH" customClass="BirthdateViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BirthdateViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JVS-32-3OH" customClass="BirthdateViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zxN-oI-UIF"/>
                         <viewControllerLayoutGuide type="bottom" id="2VS-Fn-fE1"/>
@@ -322,7 +322,7 @@ cumplenaños  es</string>
         <!--sexo-->
         <scene sceneID="r9w-uF-zHD">
             <objects>
-                <viewController id="5fm-Ci-TAw" customClass="GenderViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GenderViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5fm-Ci-TAw" customClass="GenderViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eoE-3y-aHG"/>
                         <viewControllerLayoutGuide type="bottom" id="j4T-Yw-eTV"/>
@@ -403,7 +403,7 @@ cumplenaños  es</string>
         <!--intereses-->
         <scene sceneID="MYe-Bj-Uef">
             <objects>
-                <tableViewController id="i2K-dN-qsi" customClass="InterestsTableViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CategoriesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="i2K-dN-qsi" customClass="InterestsTableViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gIO-OD-lE0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

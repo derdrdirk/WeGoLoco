@@ -15,6 +15,8 @@ class BirthdateViewController: UIViewController, LoadingAnimationProtocol {
     var loadingAnimationOverlay: UIView!
     var loadingAnimationView: UIView!
     
+    var signInNavigationController: SignInNavigationController!
+    
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var birthdatePicker: UIDatePicker!
     
@@ -28,6 +30,9 @@ class BirthdateViewController: UIViewController, LoadingAnimationProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // set Navigation Controller
+        signInNavigationController = navigationController as! SignInNavigationController
         
         // AnimationLoaderProtocol
         loadingAnimationView = self.navigationController?.view
@@ -66,14 +71,14 @@ class BirthdateViewController: UIViewController, LoadingAnimationProtocol {
     }
     
     @IBAction func continueButtonTouch(_ sender: UIButton) {
-        if let myNavigationController = self.navigationController as? SignInNavigationController {
-            UserAPI.update(preparedObject: myNavigationController.user, onCompletionClosure: { [weak self] in
-                guard let strongSelf = self else { return }
-                DispatchQueue.main.async {
-                    strongSelf.performSegue(withIdentifier: "segueToGender", sender: self)
-                }
-            })
-        }
+        startLoadingAnimation()
+        UserAPI.update(preparedObject: signInNavigationController.user, onCompletionClosure: { [weak self] in
+            guard let strongSelf = self else { return }
+            DispatchQueue.main.async {
+                strongSelf.stopLoadingAnimation()
+//                strongSelf.signInNavigationController?.pushNextViewController()
+            }
+        })
     }
     
 

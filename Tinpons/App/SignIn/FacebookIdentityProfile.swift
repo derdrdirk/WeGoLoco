@@ -26,6 +26,15 @@ class FacebookIdentityProfile : AWSIdentityProfile {
      The User Name of a user.
      */
     public var userName: String?
+    /**
+     The Email of a user.
+     */
+    public var email: String?
+    /**
+     The Email of a user.
+     */
+    public var gender: String?
+
     fileprivate var facebookProfileAttributes : [String : Any]
     
     init() {
@@ -86,15 +95,25 @@ class FacebookIdentityProfile : AWSIdentityProfile {
         })
         imageConnection.start()
         
-        let userGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email"])
+        let userGraphRequest = FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, email, gender"])
         let userConnection = FBSDKGraphRequestConnection()
         userConnection.add(userGraphRequest, completionHandler: { (connection, result, error) in
             guard let userResult = result as? NSDictionary else { return }
-                if let userName = userResult.value(forKey: "name")  as? String {
-                    self.userName = userName
-                }
+            
+            if let userName = userResult.value(forKey: "name")  as? String {
+                self.userName = userName
+            }
+            if let email = userResult.value(forKey: "email") as? String {
+                self.email = email
+            }
+            if let gender = userResult.value(forKey: "gender") as? String {
+                self.gender = gender
+            }
         })
         userConnection.start()
     }
+
+    
+    
     // Set any additional proflie attributes here. This method is called after a user signs in with a provider.
 }

@@ -47,6 +47,9 @@
 		D452206B1F2C924C00D01C43 /* Validator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45220691F2C924C00D01C43 /* Validator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D452206F1F2CC85A00D01C43 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D452206E1F2CC85A00D01C43 /* GenderViewController.swift */; };
 		D45220731F2CD96200D01C43 /* InterestsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45220721F2CD96200D01C43 /* InterestsTableViewController.swift */; };
+		D47D705E1F36F8C5003E0708 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47D705D1F36F8C5003E0708 /* PromiseKit.framework */; };
+		D47D705F1F36F8C5003E0708 /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D47D705D1F36F8C5003E0708 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D47D70611F37045B003E0708 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47D70601F37045B003E0708 /* APIError.swift */; };
 		D47F96E81EED8D0000B9FCE3 /* Eureka.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */; };
 		D47F96E91EED8D0000B9FCE3 /* Eureka.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D47F96F01EED938400B9FCE3 /* ImageRow.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47F96EF1EED938400B9FCE3 /* ImageRow.framework */; };
@@ -144,6 +147,7 @@
 				D480D0551EEBEEF300B4193A /* pop.framework in Embed Frameworks */,
 				D4DA42481F0E13CD00A1C69E /* SwiftIconFont.framework in Embed Frameworks */,
 				D42DC6BC1F1BF9800087EB4F /* Whisper.framework in Embed Frameworks */,
+				D47D705F1F36F8C5003E0708 /* PromiseKit.framework in Embed Frameworks */,
 				E7A30F046317E39C00000000 /* AWSS3.framework in Embed Frameworks */,
 				D40EA7191F2A461300A44735 /* IQKeyboardManagerSwift.framework in Embed Frameworks */,
 			);
@@ -241,6 +245,9 @@
 		D45220691F2C924C00D01C43 /* Validator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Validator.framework; path = Carthage/Build/iOS/Validator.framework; sourceTree = "<group>"; };
 		D452206E1F2CC85A00D01C43 /* GenderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenderViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/GenderViewController.swift; sourceTree = SOURCE_ROOT; };
 		D45220721F2CD96200D01C43 /* InterestsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterestsTableViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/InterestsTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		D47D705A1F36F326003E0708 /* BoltsSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoltsSwift.framework; path = Carthage/Build/iOS/BoltsSwift.framework; sourceTree = "<group>"; };
+		D47D705D1F36F8C5003E0708 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
+		D47D70601F37045B003E0708 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIError.swift; path = Tinpons/App/API/APIError.swift; sourceTree = SOURCE_ROOT; };
 		D47F96E51EED8C2A00B9FCE3 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Eureka.framework; path = Carthage/Build/iOS/Eureka.framework; sourceTree = "<group>"; };
 		D47F96EC1EED932600B9FCE3 /* ImageRow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageRow.framework; path = Carthage/Build/iOS/ImageRow.framework; sourceTree = "<group>"; };
@@ -298,6 +305,7 @@
 				D410C5D81F23828A008D6C92 /* AWSCognitoIdentityProvider.framework in Frameworks */,
 				E7A30F048D6E5D3400000000 /* CFNetwork.framework in Frameworks */,
 				E7A30F041123764F00000000 /* libz.tbd in Frameworks */,
+				D47D705E1F36F8C5003E0708 /* PromiseKit.framework in Frameworks */,
 				E7A30F044C3EA71500000000 /* libsqlite3.tbd in Frameworks */,
 				E7A30F04D8A4937D00000000 /* Foundation.framework in Frameworks */,
 				E7A30F0441B6CF8A00000000 /* MediaPlayer.framework in Frameworks */,
@@ -382,6 +390,8 @@
 		B401C9793DAC23B500000000 /* mainGroup */ = {
 			isa = PBXGroup;
 			children = (
+				D47D705D1F36F8C5003E0708 /* PromiseKit.framework */,
+				D47D705A1F36F326003E0708 /* BoltsSwift.framework */,
 				D45220691F2C924C00D01C43 /* Validator.framework */,
 				D45220681F2C840400D01C43 /* Validator.framework */,
 				D40EA7171F2A461300A44735 /* IQKeyboardManagerSwift.framework */,
@@ -541,6 +551,7 @@
 				D410C5F11F24E443008D6C92 /* UsersAPI.swift */,
 				D4EEF6591F2F9F8700297A5E /* Tinpon.swift */,
 				D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */,
+				D47D70601F37045B003E0708 /* APIError.swift */,
 			);
 			name = Api;
 			path = Tinpons/App/API;
@@ -728,6 +739,7 @@
 				E7A30F043DD4F57200000000 /* FormTableCell.swift in Sources */,
 				D4FA2EC91F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift in Sources */,
 				E7A30F04FE04727700000000 /* TableInputCell.swift in Sources */,
+				D47D70611F37045B003E0708 /* APIError.swift in Sources */,
 				D41EB2681F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m in Sources */,
 				D4DC43501F1E448200BC1283 /* TinponWrapper.swift in Sources */,
 				E7A30F04A0099EDA00000000 /* UserPoolForgotPasswordViewController.swift in Sources */,
@@ -834,7 +846,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Tinpons/App/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Tinpons.Tinpons;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WeGoLoco.WeGoLoco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Tinpons/AmazonAWS/Bridging_Header.h;
@@ -913,7 +925,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Tinpons/App/SupportingFiles/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Tinpons.Tinpons;
+				PRODUCT_BUNDLE_IDENTIFIER = com.WeGoLoco.WeGoLoco;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = Tinpons/AmazonAWS/Bridging_Header.h;

@@ -7,3 +7,5 @@ github "hyperoslo/Whisper"
 github "Instagram/IGListKit" ~> 3.0
 github "hackiftekhar/IQKeyboardManager"
 github "adamwaite/Validator"
+github "mxcl/PromiseKit"
+github "Alamofire/Alamofire" ~> 4.4

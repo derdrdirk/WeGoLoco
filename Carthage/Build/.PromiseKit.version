@@ -1,0 +1,9 @@
+{
+  "commitish" : "4.3.1",
+  "iOS" : [
+    {
+      "hash" : "40bff02a731b2f7111faa561ce3a9c9be7fd25f214b52d70440e1dee6852ace1",
+      "name" : "PromiseKit"
+    }
+  ]
+}

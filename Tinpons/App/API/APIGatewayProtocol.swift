@@ -26,16 +26,15 @@ protocol APIGatewayProtocol: class {}
 
 extension APIGatewayProtocol {
     
-    static func restAPITask(httpMethod: HttpdMethod, endPoint: APIEndPoint, httpBody: String? = nil) -> AWSTask<AWSAPIGatewayResponse>  {
+    static func restAPITask(httpMethod: HttpdMethod, endPoint: APIEndPoint, queryStringParameters: [String:String] = [:], httpBody: String? = nil) -> AWSTask<AWSAPIGatewayResponse>  {
         
         let httpMethodName = httpMethod.rawValue
         let URLString = endPoint.rawValue
-        let queryStringParameters: [String:String] = [:]
+        let queryStringParameters: [String:String] = queryStringParameters
         let headerParameters = [
             "Content-Type": "application/json",
             "Accept": "application/json"
         ]
-        //let httpBody = user.toJSON()
         
         // Construct the request object
         let apiRequest = AWSAPIGatewayRequest(httpMethod: httpMethodName,

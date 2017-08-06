@@ -19,6 +19,8 @@ class GenderViewController: UIViewController, LoadingAnimationProtocol {
     @IBOutlet weak var manButton: UIButton!
     @IBOutlet weak var continueButton: UIButton!
     
+    var signInNavigationController: SignInNavigationController!
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -29,6 +31,8 @@ class GenderViewController: UIViewController, LoadingAnimationProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        signInNavigationController = navigationController as! SignInNavigationController
         
         // LoadingAnimationProtocol
         self.loadingAnimationView = self.navigationController?.view
@@ -72,15 +76,13 @@ class GenderViewController: UIViewController, LoadingAnimationProtocol {
     
     @IBAction func continueButtonTouch(_ sender: UIButton) {
         startLoadingAnimation()
-        if let myNavigationController = self.navigationController as? SignInNavigationController {
-            UserAPI.update(preparedObject: myNavigationController.user, onCompletionClosure: { [weak self] in
-                guard let strongSelf = self else { return }
-                DispatchQueue.main.async {
-                    strongSelf.stopLoadingAnimation()
-                    strongSelf.performSegue(withIdentifier: "segueToCategories", sender: self)
-                }
-            })
-        }
+        UserAPI.update(preparedObject: signInNavigationController.user, onCompletionClosure: { [weak self] in
+            guard let strongSelf = self else { return }
+            DispatchQueue.main.async {
+                strongSelf.stopLoadingAnimation()
+//                strongSelf.signInNavigationController.pushNextViewController()
+            }
+        })
     }
     
     func genderTouched(isWoman: Bool) {

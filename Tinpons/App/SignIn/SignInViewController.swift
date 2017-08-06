@@ -55,6 +55,37 @@ class SignInViewController : UIViewController {
         self.setUpFacebookButton()
         // set up google button if enabled
         self.setUpGoogleButton()
+        
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:64a9de95-136c-4ba3-b366-6aa4079fef8b")
+        credentialsProvider.getIdentityId().continueWith(block: { (task) -> AnyObject? in
+            if (task.error != nil) {
+                print("Error: " + task.error!.localizedDescription)
+            }
+            else {
+                // the task result will contain the identity id
+                let cognitoId = task.result!
+                print("Cognito id: \(cognitoId)")
+                
+                // new identity
+                credentialsProvider.clearCredentials()
+                credentialsProvider.getIdentityId().continueWith(block: { (task) -> AnyObject? in
+                    if (task.error != nil) {
+                        print("Error: " + task.error!.localizedDescription)
+                    }
+                    else {
+                        // the task result will contain the identity id
+                        let cognitoId = task.result!
+                        print("Cognito id: \(cognitoId)")
+                        
+                        
+                    }
+                    return task;
+                })
+
+            }
+            return task;
+        })
+        
     }
     
     func setUpUserPoolsUI() {
@@ -84,7 +115,7 @@ class SignInViewController : UIViewController {
     }
     
     func setUpFacebookButton() {
-        AWSFacebookSignInProvider.sharedInstance().setPermissions(["public_profile"])
+        AWSFacebookSignInProvider.sharedInstance().setPermissions(["public_profile", "email", "user_birthday"])
         // Facebook UI Setup
         let facebookComponent = AWSFacebookSignInButton(frame: CGRect(x: 0, y: 0, width: facebookButton.frame.size.width, height: facebookButton.frame.size.height))
         facebookComponent.buttonStyle = .large // use the large button style
@@ -115,10 +146,20 @@ class SignInViewController : UIViewController {
     }
     
     func barButtonClosePressed() {
-        self.dismiss(animated: true, completion: nil)
-        if let didCompleteSignIn = self.didCompleteSignIn {
-            didCompleteSignIn(false)
+        // log out
+        if (AWSSignInManager.sharedInstance().isLoggedIn) {
+            AWSSignInManager.sharedInstance().logout(completionHandler: {(result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) in
+                print("logged out")
+            })
+            // print("Logout Successful: \(signInProvider.getDisplayName)");
+        } else {
+            assert(false)
         }
+
+//        self.dismiss(animated: true, completion: nil)
+//        if let didCompleteSignIn = self.didCompleteSignIn {
+//            didCompleteSignIn(false)
+//        }
     }
     
     func handleLoginWithSignInProvider(_ signInProvider: AWSSignInProvider) {
@@ -166,21 +207,11 @@ extension SignInViewController: AWSSignInDelegate {
         // dismiss view controller if no error
         if error == nil {
             print("Signed in with: \(signInProvider)")
-
-            // if first Login redirect to registration Process
-            UserAPI.getSignedInUser{ [weak self] user in
-                guard let strongSelf = self else { return }
-                DispatchQueue.main.async {
-                    if user == nil {
-                        let firstSignInStoryboard = UIStoryboard(name: "FirstSignIn", bundle: nil)
-                        if let registrationViewController = firstSignInStoryboard.instantiateInitialViewController() {
-                            strongSelf.navigationController?.pushViewController(registrationViewController, animated: true)
-                        }
-                    } else {
-                        strongSelf.presentingViewController?.dismiss(animated: true, completion: {})
-                    }
-                }
-            }
+            
+            
+            let signInNavigationVC = navigationController as! SignInNavigationController
+            signInNavigationVC.checkRegistration()
+            
             if let didCompleteSignIn = self.didCompleteSignIn {
                 didCompleteSignIn(true)
             }

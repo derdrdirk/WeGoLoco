@@ -113,6 +113,11 @@ class InterestsTableViewController: UITableViewController, LoadingAnimationProto
                 DispatchQueue.main.async {
                     strongSelf.stopLoadingAnimation()
                     
+                    
+                    // clean registration
+                    if let myNavigationController = strongSelf.navigationController as? SignInNavigationController {
+                        myNavigationController.user = User()
+                    }
                     strongSelf.navigationController?.popToRootViewController(animated: true)
                 }
             })

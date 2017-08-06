@@ -53,10 +53,6 @@ exports.handler = (event, context, callback) => {
 
   // Request Body
   requestBody = event.body;
-  person = JSON.parse(requestBody);
-  console.log("Person : ", person);
-  categories = person.categories;
-  delete person.categories;
 
   // Path Parameters
   pathParams = event.path;
@@ -111,7 +107,8 @@ exports.handler = (event, context, callback) => {
           console.log("CognitoId : ", cognitoIdentityId);
           console.log("queryStringParams : ", queryStringParams);
 
-          let id = queryStringParams.id;
+          //let id = queryStringParams.id;
+          let id = cognitoIdentityId
 
           mysql.createConnection({
               host: host,
@@ -130,7 +127,14 @@ exports.handler = (event, context, callback) => {
           });
           break;
         case "POST":
-        console.log("POST case");
+          console.log("POST case");
+          person = JSON.parse(requestBody);
+          person.id = cognitoIdentityId
+          console.log("Person : ", person);
+          categories = person.categories;
+          delete person.categories;
+
+
           mysql.createConnection({
               host: host,
               user: user,
@@ -142,7 +146,7 @@ exports.handler = (event, context, callback) => {
               connection = conn;
 
               var query = connection.query("SELECT * FROM person "
-                                      +"WHERE id = '"+person.id+"';");
+                                      +"WHERE id = '"+cognitoIdentityId+"';");
               console.log("SQL QUERY : ", query.sql);
               return query;
           }).then(function(rows) {
@@ -159,7 +163,7 @@ exports.handler = (event, context, callback) => {
 
             var values = "";
             for (var category of categories) {
-              values = values.concat("('"+category+"', '"+person.id+"'),");
+              values = values.concat("('"+category+"', '"+cognitoIdentityId+"'),");
             }
             if (values != "") {
               values = values.slice(0, -1);
@@ -179,6 +183,13 @@ exports.handler = (event, context, callback) => {
           });
           break;
           case "PUT":
+            person = JSON.parse(requestBody);
+            person.id = cognitoIdentityId
+            console.log("Person : ", person);
+            categories = person.categories;
+            delete person.categories;
+
+
             mysql.createConnection({
                 host: host,
                 user: user,
@@ -189,7 +200,7 @@ exports.handler = (event, context, callback) => {
                 connection = conn;
 
                 var query = connection.query("SELECT * FROM person "
-                                        +"WHERE id = '"+person.id+"';");
+                                        +"WHERE id = '"+cognitoIdentityId+"';");
                 return query;
             }).then(function(rows) {
               console.log(JSON.parse(requestBody).gender)
@@ -200,19 +211,19 @@ exports.handler = (event, context, callback) => {
                 respond(context, 405, "Error: User does not exist");
               } else {
                 var result = connection.query("UPDATE person "
-                                        +"SET ? WHERE `id` = '"+person.id+"';", person);
+                                        +"SET ? WHERE `id` = '"+cognitoIdentityId+"';", person);
                 return result;
               }
             }).then(function(result) {
               // delete previous categories
-              var query = connection.query("DELETE FROM person_category WHERE person_id = '"+person.id+"';");
+              var query = connection.query("DELETE FROM person_category WHERE person_id = '"+cognitoIdentityId+"';");
               return query;
             }).then(function(result) {
               // update categories
               console.log("Categories : ", person.categories);
               var values = "";
               for (var category of categories) {
-                values = values.concat("('"+category+"', '"+person.id+"'),");
+                values = values.concat("('"+category+"', '"+cognitoIdentityId+"'),");
               }
               console.log("VALUES :", values);
               if (values != "") {
