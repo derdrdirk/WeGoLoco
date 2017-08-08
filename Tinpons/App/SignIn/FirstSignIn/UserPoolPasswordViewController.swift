@@ -22,8 +22,7 @@ class UserPoolPasswordViewController: PasswordViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func onContinue() {
-        print("continue")
+    override func continueWithValidPassword() {
         let email = signInNavigationController.user.email
         
         var attributes = [AWSCognitoIdentityUserAttributeType]()
@@ -49,7 +48,8 @@ class UserPoolPasswordViewController: PasswordViewController {
                         let signInViewController = self?.navigationController?.viewControllers[0] as! SignInViewController
                         signInViewController.userNameRow?.staticText = self?.userId
                         signInViewController.passwordRow?.staticText = self?.passwordTextField.text
-                        
+                    
+                        strongSelf.performSegue(withIdentifier: "segueToUserPoolEmailConfirmationViewController", sender: self)
                     }
                 }
             }

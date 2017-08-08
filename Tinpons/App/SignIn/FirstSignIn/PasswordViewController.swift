@@ -73,7 +73,7 @@ class PasswordViewController: UIViewController, LoadingAnimationProtocol {
         
         switch validationResult {
         case .valid:
-            onContinue()
+            continueWithValidPassword()
         case .invalid( _ ):
             ()
         }
@@ -101,13 +101,13 @@ class PasswordViewController: UIViewController, LoadingAnimationProtocol {
         
         switch validationResult {
         case .valid:
-             onContinue()
+             continueWithValidPassword()
         case .invalid( _ ):
             ()
         }
     }
     
-    func onContinue() {}
+    func continueWithValidPassword() {}
     
     func guardUserId() {
         if let myNavigationController = self.navigationController as? SignInNavigationController {

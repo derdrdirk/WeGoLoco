@@ -43,6 +43,7 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
         signInNavigationController.progressView.progress = 0.14
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -92,34 +93,24 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
         
         switch validationResult {
         case .valid:
-            performSegue(withIdentifier: "segueToPassword", sender: self)
+            checkIfEmailExist()
         case .invalid( _ ):
             ()
         }
     }
    
     @IBAction func continueButtonTouch(_ sender: UIButton) {
+       checkIfEmailExist()
+    }
+    
+    func checkIfEmailExist() {
         startLoadingAnimation()
-        guardEmail()
         firstly {
             UserAPI.isEmailAvailable(email: signInNavigationController.user.email!)
         }.then { isEmailAvailable -> Void in
             if isEmailAvailable {
-                firstly {
-                    // try save email - could be from userPool => user does not exist and cannot be updated
-                    UserAPI.update(user: self.signInNavigationController.user)
-                }.then { Void -> Void in
-                    DispatchQueue.main.async {
-                        self.stopLoadingAnimation()
-                        self.signInNavigationController.pushNextViewController()
-                    }
-                }.catch { error in
-                    // if we pushed register button and came from userPool just go to password
-                    DispatchQueue.main.async {
-                        self.stopLoadingAnimation()
-                        self.performSegue(withIdentifier: "segueToPassword", sender: self)
-                    }
-                }
+                self.stopLoadingAnimation()
+                self.onValidEmailEntered()
             } else {
                 DispatchQueue.main.async {
                     self.stopLoadingAnimation()
@@ -129,6 +120,20 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
                     Whisper.show(whisper: message, to: self.navigationController!, action: .show)
                 }
             }
+        }
+    }
+    
+    func onValidEmailEntered() {
+        startLoadingAnimation()
+        firstly {
+            UserAPI.update(user: self.signInNavigationController.user)
+        }.then { Void -> Void in
+            DispatchQueue.main.async {
+                self.stopLoadingAnimation()
+                self.signInNavigationController.pushNextViewController()
+            }
+        }.catch { error in
+            // if we pushed register button and came from userPool just go to password
         }
     }
 

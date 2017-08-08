@@ -108,22 +108,38 @@ exports.handler = (event, context, callback) => {
           console.log("queryStringParams : ", queryStringParams);
 
           //let id = queryStringParams.id;
+          //let id = 'eu-west-1:328d76e7-e18e-4e8a-a5f4-a711e19c058d';
           let id = cognitoIdentityId
 
           mysql.createConnection({
               host: host,
               user: user,
               password: password,
-              database: database
+              database: database,
+              charset: charset
           }).then(function(conn){
               connection = conn;
               var result = conn.query("SELECT * FROM person "
                                       +"WHERE id = '"+id+"';");
               return result;
           }).then(function(rows) {
-              let result = JSON.stringify(rows[0]);
-              console.log("Success: User ", result);
-              respond(context, 200, result);
+            person = rows[0];
+            var query = connection.query("SELECT category_id FROM person_category WHERE person_id = '"+id+"';");
+            return query
+          }).then(function(rows) {
+            console.log("rows : ", rows);
+              categories = rows;
+              person["categories"] = [];
+
+              person["categories"] = [];
+              for (var category of categories) {
+                person["categories"].push(category["category_id"])
+              }
+
+
+
+              console.log("Success: User ", JSON.stringify(person));
+              respond(context, 200, JSON.stringify(person));
           });
           break;
         case "POST":

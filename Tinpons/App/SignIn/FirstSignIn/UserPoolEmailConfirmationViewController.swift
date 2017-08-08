@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import PromiseKit
 
 class UserPoolEmailConfirmationViewController: EmailConfirmationViewController {
 
@@ -24,12 +25,15 @@ class UserPoolEmailConfirmationViewController: EmailConfirmationViewController {
     }
     
     override func onUserConfirmed() {
-        print("onUserConfirmed")
-        
-        signInViewController.tableDelegate?.getCell(signInViewController.tableView, for: signInViewController.userNameRow!)?.inputBox.text = signInNavigationController.user.email
-        signInViewController.tableDelegate?.getCell(signInViewController.tableView, for: signInViewController.passwordRow!)?.inputBox.text = signInNavigationController.user.password
-
-        signInViewController.handleUserPoolSignIn()
+        firstly {
+            UserAPI.save(user: signInNavigationController.user)
+        }.then { Void -> Void in
+            // Login new User
+            self.signInViewController.tableDelegate?.getCell(self.signInViewController.tableView, for: self.signInViewController.userNameRow!)?.inputBox.text = self.signInNavigationController.user.email
+            self.signInViewController.tableDelegate?.getCell(self.signInViewController.tableView, for: self.signInViewController.passwordRow!)?.inputBox.text = self.signInNavigationController.user.password
+            
+            self.signInViewController.handleUserPoolSignIn()
+        }
     }
 
     /*

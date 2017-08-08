@@ -9,7 +9,7 @@
 import UIKit
 import PromiseKit
 
-class InterestsTableViewController: UITableViewController, LoadingAnimationProtocol {
+class CategoriesTableViewController: UITableViewController, LoadingAnimationProtocol {
     
     // MARK: LoadingAnimationProtocol
     var loadingAnimationView: UIView!
@@ -120,8 +120,9 @@ class InterestsTableViewController: UITableViewController, LoadingAnimationProto
                     
                     // clean registration
                     self.signInNavigationController.user = User()
-                    self.navigationController?.popToRootViewController(animated: true)
-
+                    
+                    self.presentedViewController?.dismiss(animated: true)
+                    //self.navigationController?.popToRootViewController(animated: true)
                 }
             }
         }

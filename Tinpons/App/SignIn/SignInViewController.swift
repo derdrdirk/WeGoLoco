@@ -16,6 +16,7 @@ import UIKit
 import AWSMobileHubHelper
 import FBSDKLoginKit
 import AWSFacebookSignIn
+import PromiseKit
 
 let backgroundImageColor =  UIColor.darkGray
 
@@ -48,7 +49,6 @@ class SignInViewController : UIViewController {
         
         signInNavigationController = navigationController as! SignInNavigationController
         
-        
         // set up the navigation controller
         self.setUpNavigationController()
         // set up the logo in image view
@@ -61,39 +61,6 @@ class SignInViewController : UIViewController {
         self.setUpFacebookButton()
         // set up google button if enabled
         self.setUpGoogleButton()
-        
-        self.tableDelegate?.getCell(self.tableView, for: self.userNameRow!)?.inputBox.text = "test"
-        
-        
-//        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:64a9de95-136c-4ba3-b366-6aa4079fef8b")
-//        credentialsProvider.getIdentityId().continueWith(block: { (task) -> AnyObject? in
-//            if (task.error != nil) {
-//                print("Error: " + task.error!.localizedDescription)
-//            }
-//            else {
-//                // the task result will contain the identity id
-//                let cognitoId = task.result!
-//                print("Cognito id: \(cognitoId)")
-//                
-//                // new identity
-//                credentialsProvider.clearCredentials()
-//                credentialsProvider.getIdentityId().continueWith(block: { (task) -> AnyObject? in
-//                    if (task.error != nil) {
-//                        print("Error: " + task.error!.localizedDescription)
-//                    }
-//                    else {
-//                        // the task result will contain the identity id
-//                        let cognitoId = task.result!
-//                        print("Cognito id: \(cognitoId)")
-//                        
-//                        
-//                    }
-//                    return task;
-//                })
-//
-//            }
-//            return task;
-//        })
         
     }
     
@@ -172,18 +139,14 @@ class SignInViewController : UIViewController {
     }
     
     func handleLoginWithSignInProvider(_ signInProvider: AWSSignInProvider) {
-        print("handle sign in")
         AWSSignInManager.sharedInstance().login(signInProviderKey: signInProvider.identityProviderName, completionHandler: {(result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) in
             print("result = \(result), error = \(error)")
             // If no error reported by SignInProvider, discard the sign-in view controller.
             if error == nil {
-                print("jojo login")
-//                DispatchQueue.main.async(execute: {
-//                    self.dismiss(animated: true, completion: nil)
-//                    if let didCompleteSignIn = self.didCompleteSignIn {
-//                        didCompleteSignIn(true)
-//                    }
-//                })   
+//                print("Signed in with: \(signInProvider)")
+                
+                self.login()
+                
                 return
             }
             self.showErrorDialog(signInProvider.identityProviderName, withError: error as! NSError)
@@ -208,6 +171,79 @@ class SignInViewController : UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "UserPoolEmailViewController")
         self.navigationController?.pushViewController(viewController, animated:true);
     }
+    
+    /**
+     checks user registration status and logs in if OK
+     */
+    func login() {
+        firstly {
+            UserAPI.getSignedInUser()
+        }.then { user -> Void in
+            // check registration status
+            if self.isUserCompletelyRegistered(user: user) {
+                print("login")
+            } else {
+                self.signInNavigationController.user = user
+                
+                self.signInNavigationController.setNecessaryViewController()
+                self.signInNavigationController.pushNextViewController()
+            }
+        }.catch { error in
+            // User logged in but does not exist in RDS (e.g. FacebookSignIn)
+            // => Create User with all possible information
+            
+            let profilIdentity = AWSIdentityManager.default().identityProfile as! FacebookIdentityProfile
+            let user = User()
+            
+            
+            if let gender = profilIdentity.gender {
+                if gender == "male" {
+                    user.gender = "👨‍⚕️"
+                } else {
+                    user.gender = "👩‍⚕️"
+                }
+            }
+            
+            if let email = profilIdentity.email {
+                user.email = email
+                
+                firstly {
+                    // if email is already taken => get new Email, else registrationVCSerie
+                    UserAPI.isEmailAvailable(email: user.email!)
+                    }.then { isEmailAvailable in
+                        if !isEmailAvailable {
+                            user.email = nil
+                        }
+                        return UserAPI.save(user: user)
+                    }.then { () -> () in
+                        self.signInNavigationController.user = user
+                        self.signInNavigationController.setNecessaryViewController()
+                        self.signInNavigationController.pushNextViewController()
+                }
+
+            } else {
+                firstly {
+                    UserAPI.save(user: user)
+                }.then { () -> () in
+                    self.signInNavigationController.user = user
+                    self.signInNavigationController.setNecessaryViewController()
+                    self.signInNavigationController.pushNextViewController()
+                }
+            }
+            
+        }
+    }
+    
+    /**
+     checks if user is "completly" registered
+     */
+    func isUserCompletelyRegistered(user: User) -> Bool {
+        if user.email != nil && user.birthdate != nil && user.gender != nil && user.categories.count > 0 {
+            return true
+        } else {
+            return false
+        }
+    }
 }
 
 extension SignInViewController: AWSSignInDelegate {
@@ -215,15 +251,14 @@ extension SignInViewController: AWSSignInDelegate {
     func onLogin(signInProvider: AWSSignInProvider, result: Any?, authState: AWSIdentityManagerAuthState, error: Error?) {
         // dismiss view controller if no error
         if error == nil {
-            print("Signed in with: \(signInProvider)")
+//            print("Signed in with: \(signInProvider)")
             
+            self.login()
             
-            let signInNavigationVC = navigationController as! SignInNavigationController
-            signInNavigationVC.checkRegistration()
-            
-            if let didCompleteSignIn = self.didCompleteSignIn {
-                didCompleteSignIn(true)
-            }
+//            if let didCompleteSignIn = self.didCompleteSignIn {
+//                didCompleteSignIn(true)
+//
+//            }
             return
         }
         self.showErrorDialog(signInProvider.identityProviderName, withError: error as! NSError)

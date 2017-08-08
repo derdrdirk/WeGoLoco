@@ -65,7 +65,6 @@
                                         </state>
                                         <connections>
                                             <action selector="continueButtonTouch:" destination="dGY-at-1xa" eventType="touchUpInside" id="OMC-cp-cwK"/>
-                                            <segue destination="UV9-ao-R3e" kind="show" id="bZV-Vy-znN"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -84,6 +83,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="HHw-De-sHi" id="s8t-LY-jKo"/>
                         <outlet property="registerButton" destination="FPQ-xt-fac" id="dXq-oS-ST5"/>
+                        <segue destination="UV9-ao-R3e" kind="show" identifier="segueToUserPoolPasswordViewController" id="VtS-Qb-fg9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6p1-wF-cQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -139,7 +139,6 @@ contraseña es</string>
                                         </state>
                                         <connections>
                                             <action selector="continueButtonTouch:" destination="UV9-ao-R3e" eventType="touchUpInside" id="3wp-my-GxB"/>
-                                            <segue destination="utJ-st-y1u" kind="show" id="LkR-4H-xdF"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -155,11 +154,12 @@ contraseña es</string>
                     <connections>
                         <outlet property="continueButton" destination="Tp7-DU-Lmj" id="Yrq-1I-17q"/>
                         <outlet property="passwordTextField" destination="cRb-dD-wnB" id="RPu-3x-B2W"/>
+                        <segue destination="utJ-st-y1u" kind="show" identifier="segueToUserPoolConfirmationViewController" id="53K-5v-pni"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G4l-Tt-W1k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-780" y="-926"/>
+            <point key="canvasLocation" x="-737" y="-922"/>
         </scene>
         <!--User Pool Email Confirmation View Controller-->
         <scene sceneID="cde-8M-pQP">
@@ -242,7 +242,7 @@ contraseña es</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G5R-tU-xew" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-92" y="-926"/>
+            <point key="canvasLocation" x="-12" y="-922"/>
         </scene>
         <!-- cumpleaños-->
         <scene sceneID="Lba-K9-roj">
@@ -316,7 +316,7 @@ cumplenaños  es</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xDY-nJ-wjO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1478" y="-931"/>
+            <point key="canvasLocation" x="-738" y="-188"/>
         </scene>
         <!--sexo-->
         <scene sceneID="r9w-uF-zHD">
@@ -397,12 +397,12 @@ cumplenaños  es</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lXS-ki-e1i" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2188" y="-931"/>
+            <point key="canvasLocation" x="-12" y="-188"/>
         </scene>
         <!--intereses-->
         <scene sceneID="MYe-Bj-Uef">
             <objects>
-                <tableViewController storyboardIdentifier="CategoriesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="i2K-dN-qsi" customClass="InterestsTableViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CategoriesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="i2K-dN-qsi" customClass="CategoriesTableViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gIO-OD-lE0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -576,7 +576,79 @@ cumplenaños  es</string>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bhn-2E-hXN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2874" y="-926"/>
+            <point key="canvasLocation" x="719" y="-188"/>
+        </scene>
+        <!--e-mail-->
+        <scene sceneID="pV0-JI-ptv">
+            <objects>
+                <viewController storyboardIdentifier="EmailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="YhX-HZ-n9I" customClass="EmailViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="LLg-s2-Xag"/>
+                        <viewControllerLayoutGuide type="bottom" id="Yxh-kR-Xui"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="N7Y-mo-o6d">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="5Fw-Pz-WcY">
+                                <rect key="frame" x="16" y="40" width="343" height="257.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0RU-Zj-ae4">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="116.5"/>
+                                        <attributedString key="attributedText">
+                                            <fragment>
+                                                <string key="content">Mi
+ e-mail  es</string>
+                                                <attributes>
+                                                    <font key="NSFont" metaFont="system" size="50"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Dirección de correo electronico" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1RX-Cr-fmZ">
+                                        <rect key="frame" x="0.0" y="136.5" width="343" height="29"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="24"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                                        <connections>
+                                            <action selector="emailTextFieldEditingChanged:" destination="YhX-HZ-n9I" eventType="editingChanged" id="lJV-uH-yxK"/>
+                                            <action selector="emailTextFieldPrimaryActionTriggered:" destination="YhX-HZ-n9I" eventType="primaryActionTriggered" id="R8f-ET-o58"/>
+                                        </connections>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="seg-a9-re4">
+                                        <rect key="frame" x="0.0" y="185.5" width="343" height="72"/>
+                                        <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="60"/>
+                                        <state key="normal" title="Registrarse">
+                                            <color key="titleColor" red="0.96460580579999999" green="0.96460580579999999" blue="0.96460580579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="continueButtonTouch:" destination="YhX-HZ-n9I" eventType="touchUpInside" id="F5Z-ON-4KE"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="5Fw-Pz-WcY" firstAttribute="trailing" secondItem="N7Y-mo-o6d" secondAttribute="trailingMargin" id="ON9-gK-Kpm"/>
+                            <constraint firstItem="5Fw-Pz-WcY" firstAttribute="top" secondItem="LLg-s2-Xag" secondAttribute="bottom" constant="20" id="rDv-dG-LsW"/>
+                            <constraint firstItem="5Fw-Pz-WcY" firstAttribute="leading" secondItem="N7Y-mo-o6d" secondAttribute="leadingMargin" id="zjA-VY-3cx"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="e-mail" id="js9-Do-zF8">
+                        <barButtonItem key="backBarButtonItem" title=" " id="91z-qR-2Sq"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="emailTextField" destination="1RX-Cr-fmZ" id="Lfp-Fl-JrY"/>
+                        <outlet property="registerButton" destination="seg-a9-re4" id="91U-3p-24X"/>
+                        <segue destination="JVS-32-3OH" kind="show" identifier="segueToBirthdateViewController" id="jiP-P7-eMM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EDb-Lh-r5k" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1466" y="-187"/>
         </scene>
     </scenes>
 </document>

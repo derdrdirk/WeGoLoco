@@ -49,7 +49,7 @@
 		D452206A1F2C924C00D01C43 /* Validator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45220691F2C924C00D01C43 /* Validator.framework */; };
 		D452206B1F2C924C00D01C43 /* Validator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45220691F2C924C00D01C43 /* Validator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D452206F1F2CC85A00D01C43 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D452206E1F2CC85A00D01C43 /* GenderViewController.swift */; };
-		D45220731F2CD96200D01C43 /* InterestsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45220721F2CD96200D01C43 /* InterestsTableViewController.swift */; };
+		D45220731F2CD96200D01C43 /* CategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D45220721F2CD96200D01C43 /* CategoriesTableViewController.swift */; };
 		D47D705E1F36F8C5003E0708 /* PromiseKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D47D705D1F36F8C5003E0708 /* PromiseKit.framework */; };
 		D47D705F1F36F8C5003E0708 /* PromiseKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D47D705D1F36F8C5003E0708 /* PromiseKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D47D70611F37045B003E0708 /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47D70601F37045B003E0708 /* APIError.swift */; };
@@ -250,7 +250,7 @@
 		D45220681F2C840400D01C43 /* Validator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Validator.framework; path = Carthage/Build/iOS/Validator.framework; sourceTree = "<group>"; };
 		D45220691F2C924C00D01C43 /* Validator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Validator.framework; path = Carthage/Build/iOS/Validator.framework; sourceTree = "<group>"; };
 		D452206E1F2CC85A00D01C43 /* GenderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenderViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/GenderViewController.swift; sourceTree = SOURCE_ROOT; };
-		D45220721F2CD96200D01C43 /* InterestsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InterestsTableViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/InterestsTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		D45220721F2CD96200D01C43 /* CategoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoriesTableViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/CategoriesTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		D47D705A1F36F326003E0708 /* BoltsSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoltsSwift.framework; path = Carthage/Build/iOS/BoltsSwift.framework; sourceTree = "<group>"; };
 		D47D705D1F36F8C5003E0708 /* PromiseKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = PromiseKit.framework; path = Carthage/Build/iOS/PromiseKit.framework; sourceTree = "<group>"; };
 		D47D70601F37045B003E0708 /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIError.swift; path = Tinpons/App/API/APIError.swift; sourceTree = SOURCE_ROOT; };
@@ -528,7 +528,7 @@
 				D41EB26F1F3395A0003842E4 /* EmailConfirmationViewController.swift */,
 				D430CC8C1F2B2B1A00174E5C /* BirthdateViewController.swift */,
 				D452206E1F2CC85A00D01C43 /* GenderViewController.swift */,
-				D45220721F2CD96200D01C43 /* InterestsTableViewController.swift */,
+				D45220721F2CD96200D01C43 /* CategoriesTableViewController.swift */,
 				D41A5D5C1F39917800D1191C /* UserPoolSignUp */,
 			);
 			name = SignUp;
@@ -789,7 +789,7 @@
 				D452206F1F2CC85A00D01C43 /* GenderViewController.swift in Sources */,
 				D430CC911F2B2E0300174E5C /* SignUpViewController.swift in Sources */,
 				D4FC90E51F1669F8002A6F9E /* SwipedTinponsCore.swift in Sources */,
-				D45220731F2CD96200D01C43 /* InterestsTableViewController.swift in Sources */,
+				D45220731F2CD96200D01C43 /* CategoriesTableViewController.swift in Sources */,
 				D4512B4A1F1930BE009B109C /* TinponManagerTableViewCell.swift in Sources */,
 				D41EB26B1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.m in Sources */,
 				D410C5F21F24E443008D6C92 /* UsersAPI.swift in Sources */,

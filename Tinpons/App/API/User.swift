@@ -32,7 +32,7 @@ class User: CustomStringConvertible {
             throw SerializationError.missing("UserId")
         }
         self.id = id
-        self.categories = Set<String>()
+        self.categories = Set(json["categories"] as! [String])
         self.createdAt = (json["createdAt"] as? String)?.dateFromISO8601
         self.birthdate = (json["birthdate"] as? String)?.dateFromISO8601
         self.email = json["email"] as? String

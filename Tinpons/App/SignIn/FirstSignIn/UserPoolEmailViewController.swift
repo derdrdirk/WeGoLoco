@@ -21,8 +21,8 @@ class UserPoolEmailViewController: EmailViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func continueButtonTouch(_ sender: UIButton) {
-        print("test")
+    override func onValidEmailEntered() {
+        self.performSegue(withIdentifier: "segueToUserPoolPasswordViewController", sender: self)
     }
     
 
