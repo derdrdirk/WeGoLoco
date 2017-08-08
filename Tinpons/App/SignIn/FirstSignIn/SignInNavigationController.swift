@@ -19,7 +19,6 @@ class SignInNavigationController: UINavigationController, LoadingAnimationProtoc
     var loadingAnimationOverlay: UIView!
     var loadingAnimationView: UIView!
     
-    
     var progressView = UIProgressView()
     var progressVCCount: Float = 3.0
     var visibleViewControllerIndex: Float {
@@ -52,7 +51,7 @@ class SignInNavigationController: UINavigationController, LoadingAnimationProtoc
         super.viewDidLoad()
         
         loadingAnimationView = self.view
-        
+                
         // prepare User for registration
         startLoadingAnimation()
         UserAPI.getCognitoIdTask().continueWith{ [weak self] task -> () in
@@ -77,7 +76,7 @@ class SignInNavigationController: UINavigationController, LoadingAnimationProtoc
         progressView.frame = CGRect(x: pSetX, y: pSetY, width: self.view.bounds.width, height: 3)
         self.view.addSubview(progressView)
         
-        progressView.trackTintColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+        progressView.trackTintColor = #colorLiteral(red: 0, green: 0.03529411765, blue: 0.0862745098, alpha: 1)
         progressView.progressTintColor = #colorLiteral(red: 0.5019607843, green: 0.6901960784, blue: 0.9725490196, alpha: 1)
         progressView.transform = progressView.transform.scaledBy(x: 1, y: 3)
         
@@ -109,7 +108,7 @@ class SignInNavigationController: UINavigationController, LoadingAnimationProtoc
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         super.pushViewController(viewController, animated: animated)
         print("pushimuschi")
-         print("visibelVCIndex \(visibleViewControllerIndex) progressVCCount \(progressVCCount) ")
+        print("visibelVCIndex \(visibleViewControllerIndex) progressVCCount \(progressVCCount) ")
         progressView.progress = visibleViewControllerIndex / (progressVCCount )
     }
     

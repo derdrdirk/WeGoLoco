@@ -33,7 +33,7 @@ class BirthdateViewController: UIViewController, LoadingAnimationProtocol {
         loadBirthdate()
         
         continueButton.setTitleColor(#colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1), for: .disabled)
-        continueButton.setTitleColor(#colorLiteral(red: 0.5695158243, green: 0.7503048182, blue: 0.9790232778, alpha: 1), for: .normal)
+        continueButton.setTitleColor(#colorLiteral(red: 0, green: 0.8166723847, blue: 0.9823040366, alpha: 1), for: .normal)
     }
 
     override func didReceiveMemoryWarning() {

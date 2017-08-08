@@ -18,7 +18,7 @@ import FBSDKLoginKit
 import AWSFacebookSignIn
 import PromiseKit
 
-let backgroundImageColor =  UIColor.darkGray
+let backgroundImageColor =  #colorLiteral(red: 0, green: 0.03529411765, blue: 0.0862745098, alpha: 1)
 
 class SignInViewController : UIViewController {
     
@@ -63,8 +63,8 @@ class SignInViewController : UIViewController {
     }
     
     func setUpUserPoolsUI() {
-        passwordRow = FormTableCell(placeHolder: "Password", type: InputType.password)
-        userNameRow = FormTableCell(placeHolder: "User Name", type: InputType.text)
+        passwordRow = FormTableCell(placeHolder: "Contraseña", type: InputType.password)
+        userNameRow = FormTableCell(placeHolder: "Email", type: InputType.text)
         tableDelegate = FormTableDelegate()
         tableDelegate?.add(cell: userNameRow!)
         tableDelegate?.add(cell: passwordRow!)
@@ -92,6 +92,7 @@ class SignInViewController : UIViewController {
         AWSFacebookSignInProvider.sharedInstance().setPermissions(["public_profile", "email", "user_birthday"])
         // Facebook UI Setup
         let facebookComponent = AWSFacebookSignInButton(frame: CGRect(x: 0, y: 0, width: facebookButton.frame.size.width, height: facebookButton.frame.size.height))
+        facebookComponent.textLabel.text = "Continua con Facebook"
         facebookComponent.buttonStyle = .large // use the large button style
         facebookComponent.delegate = self // set delegate to respond to user actions
         facebookButton.addSubview(facebookComponent)

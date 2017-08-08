@@ -18,7 +18,7 @@
         </array>
     </customFonts>
     <scenes>
-        <!--e-mail-->
+        <!--E-mail-->
         <scene sceneID="fEl-EV-sGR">
             <objects>
                 <viewController storyboardIdentifier="UserPoolEmailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dGY-at-1xa" customClass="UserPoolEmailViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
@@ -31,16 +31,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="njX-WA-uAr">
-                                <rect key="frame" x="16" y="40" width="343" height="257.5"/>
+                                <rect key="frame" x="16" y="40" width="343" height="241"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5I-p2-wok">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="116.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
                                         <attributedString key="attributedText">
                                             <fragment>
                                                 <string key="content">Mi
  e-mail  es</string>
                                                 <attributes>
-                                                    <font key="NSFont" metaFont="system" size="50"/>
+                                                    <font key="NSFont" size="50" name="RemachineScriptPersonalUse"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -48,7 +48,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Dirección de correo electronico" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HHw-De-sHi">
-                                        <rect key="frame" x="0.0" y="136.5" width="343" height="29"/>
+                                        <rect key="frame" x="0.0" y="120" width="343" height="29"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="24"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
@@ -58,7 +58,7 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FPQ-xt-fac">
-                                        <rect key="frame" x="0.0" y="185.5" width="343" height="72"/>
+                                        <rect key="frame" x="0.0" y="169" width="343" height="72"/>
                                         <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="60"/>
                                         <state key="normal" title="Registrarse">
                                             <color key="titleColor" red="0.96460580579999999" green="0.96460580579999999" blue="0.96460580579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -77,7 +77,7 @@
                             <constraint firstItem="njX-WA-uAr" firstAttribute="trailing" secondItem="E1U-fb-Wbp" secondAttribute="trailingMargin" id="rlj-F8-j8K"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="e-mail" id="0wj-Zt-9jf">
+                    <navigationItem key="navigationItem" title="E-mail" id="0wj-Zt-9jf">
                         <barButtonItem key="backBarButtonItem" title=" " id="D4b-Ku-8Vc"/>
                     </navigationItem>
                     <connections>
@@ -103,16 +103,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="zUF-UF-YfJ">
-                                <rect key="frame" x="16" y="40" width="343" height="257.5"/>
+                                <rect key="frame" x="16" y="40" width="343" height="241"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfp-oD-r8d">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="116.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
                                         <attributedString key="attributedText">
                                             <fragment>
                                                 <string key="content">Mi
 contraseña es</string>
                                                 <attributes>
-                                                    <font key="NSFont" metaFont="system" size="50"/>
+                                                    <font key="NSFont" size="50" name="RemachineScriptPersonalUse"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -120,7 +120,7 @@ contraseña es</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Contraseña" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cRb-dD-wnB">
-                                        <rect key="frame" x="0.0" y="136.5" width="343" height="29"/>
+                                        <rect key="frame" x="0.0" y="120" width="343" height="29"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="24"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
@@ -132,7 +132,7 @@ contraseña es</string>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tp7-DU-Lmj">
-                                        <rect key="frame" x="0.0" y="185.5" width="343" height="72"/>
+                                        <rect key="frame" x="0.0" y="169" width="343" height="72"/>
                                         <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="60"/>
                                         <state key="normal" title="Continuar">
                                             <color key="titleColor" red="0.96460580579999999" green="0.96460580579999999" blue="0.96460580579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -174,14 +174,14 @@ contraseña es</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="EBD-eI-NDx">
-                                <rect key="frame" x="16" y="40" width="343" height="348"/>
+                                <rect key="frame" x="16" y="40" width="343" height="281.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdl-e3-N5s">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="116.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Confirmo mi email">
                                                 <attributes>
-                                                    <font key="NSFont" metaFont="system" size="50"/>
+                                                    <font key="NSFont" size="50" name="RemachineScriptPersonalUse"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -189,13 +189,13 @@ contraseña es</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mira tus emails, te hemos enviado tu codigo!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvY-HX-dzW">
-                                        <rect key="frame" x="0.0" y="136.5" width="343" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="70" width="343" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Codigo de confirmación" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lRS-uH-wSs">
-                                        <rect key="frame" x="0.0" y="177" width="343" height="29"/>
+                                        <rect key="frame" x="0.0" y="110.5" width="343" height="29"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="24"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -209,14 +209,14 @@ contraseña es</string>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKc-X1-JFg">
-                                        <rect key="frame" x="0.0" y="226" width="343" height="30"/>
+                                        <rect key="frame" x="0.0" y="159.5" width="343" height="30"/>
                                         <state key="normal" title="Enviar nuevo Codigo"/>
                                         <connections>
                                             <action selector="resendConfirmationCode:" destination="utJ-st-y1u" eventType="touchUpInside" id="rMx-TE-oOn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48X-c5-R2d">
-                                        <rect key="frame" x="0.0" y="276" width="343" height="72"/>
+                                        <rect key="frame" x="0.0" y="209.5" width="343" height="72"/>
                                         <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="60"/>
                                         <state key="normal" title="Continuar">
                                             <color key="titleColor" red="0.96460580579999999" green="0.96460580579999999" blue="0.96460580579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
