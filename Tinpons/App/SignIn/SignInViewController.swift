@@ -49,8 +49,6 @@ class SignInViewController : UIViewController {
         
         signInNavigationController = navigationController as! SignInNavigationController
         
-        // set up the navigation controller
-        self.setUpNavigationController()
         // set up the logo in image view
         self.setUpLogo()
         // set up username and password UI if user pools enabled
@@ -102,23 +100,6 @@ class SignInViewController : UIViewController {
     func setUpGoogleButton() {
         // Hide google button
         googleButton.removeFromSuperview()
-    }
-    
-    func setUpNavigationController() {
-        // set up title bar
-        self.navigationController?.navigationBar.topItem?.title = "Sign In"
-        // allow user to cancel sign in flow if sign in not mandatory
-        if (self.canCancel) {
-            let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(barButtonClosePressed))
-            cancelButton.tintColor = UIColor.white
-            self.navigationController?.navigationBar.topItem?.leftBarButtonItem = cancelButton;
-        }
-        self.navigationController?.navigationBar.titleTextAttributes = [
-            NSForegroundColorAttributeName: UIColor.white,
-        ]
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.navigationBar.barTintColor = UIColor.darkGray
-        self.navigationController?.navigationBar.tintColor = UIColor.white
     }
     
     func barButtonClosePressed() {

@@ -21,14 +21,6 @@ class BirthdateViewController: UIViewController, LoadingAnimationProtocol {
     @IBOutlet weak var continueButton: UIButton!
     @IBOutlet weak var birthdatePicker: UIDatePicker!
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if let myNavigationController = self.navigationController as? SignInNavigationController {
-            myNavigationController.progressView.progress = 0.56
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

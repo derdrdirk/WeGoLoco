@@ -13,10 +13,14 @@
         <!--Sign In Navigation Controller-->
         <scene sceneID="sIm-aQ-Zgv">
             <objects>
-                <navigationController id="9BR-Uk-D7s" customClass="SignInNavigationController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="9BR-Uk-D7s" customClass="SignInNavigationController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="atw-pm-SEv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="40"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="chu-9a-tXY" kind="relationship" relationship="rootViewController" id="8ag-9J-9vf"/>
@@ -29,7 +33,7 @@
         <!--Sign-In View Controller-->
         <scene sceneID="rnG-yl-b0T">
             <objects>
-                <viewController storyboardIdentifier="SignIn" title="Sign-In View Controller" id="chu-9a-tXY" customClass="SignInViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignIn" title="Sign-In View Controller" id="chu-9a-tXY" customClass="SignInViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mfm-o4-Ahh"/>
                         <viewControllerLayoutGuide type="bottom" id="ihx-ih-R7J"/>
@@ -111,7 +115,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FormTableCell" rowHeight="75" id="T0n-Wv-ZQs" customClass="TableInputCell" customModule="Tinpons" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="FormTableCell" rowHeight="75" id="T0n-Wv-ZQs" customClass="TableInputCell" customModule="WeGoLoco" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="271" height="75"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="T0n-Wv-ZQs" id="Jqy-bZ-ddg">
@@ -279,7 +283,7 @@
                             <constraint firstItem="cjk-50-iWL" firstAttribute="bottom" secondItem="mfm-o4-Ahh" secondAttribute="bottom" id="vrL-CY-u6i"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="rYi-WJ-Qdc">
+                    <navigationItem key="navigationItem" title="Log In" id="rYi-WJ-Qdc">
                         <barButtonItem key="backBarButtonItem" title=" " id="kCE-1d-Jwr"/>
                     </navigationItem>
                     <connections>

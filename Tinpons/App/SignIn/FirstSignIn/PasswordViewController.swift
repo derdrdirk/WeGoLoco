@@ -35,14 +35,6 @@ class PasswordViewController: UIViewController, LoadingAnimationProtocol {
     var validationRules = ValidationRuleSet<String>()
     var signInNavigationController: SignInNavigationController!
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if let myNavigationController = self.navigationController as? SignInNavigationController {
-            myNavigationController.progressView.progress = 0.28
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

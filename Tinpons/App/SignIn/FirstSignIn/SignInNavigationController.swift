@@ -21,6 +21,19 @@ class SignInNavigationController: UINavigationController, LoadingAnimationProtoc
     
     
     var progressView = UIProgressView()
+    var progressVCCount: Float = 3.0
+    var visibleViewControllerIndex: Float {
+        var i: Float  = 0.0
+        for vc in self.viewControllers {
+            if vc == self.visibleViewController {
+                print(vc)
+                return i
+            } else {
+                i = i + 1.0
+            }
+        }
+        return 0.0
+    }
     var user = User()
     var necessaryViewController = Array<String>()
     var nextViewController: String? {
@@ -31,10 +44,12 @@ class SignInNavigationController: UINavigationController, LoadingAnimationProtoc
         return necessaryViewController[0]
     }
     
+    
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         
         loadingAnimationView = self.view
         
@@ -91,7 +106,20 @@ class SignInNavigationController: UINavigationController, LoadingAnimationProtoc
     }
     
     
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        super.pushViewController(viewController, animated: animated)
+        print("pushimuschi")
+         print("visibelVCIndex \(visibleViewControllerIndex) progressVCCount \(progressVCCount) ")
+        progressView.progress = visibleViewControllerIndex / (progressVCCount )
+    }
     
+    override func popViewController(animated: Bool) -> UIViewController? {
+        print("visibelVCIndex \(visibleViewControllerIndex) progressVCCount \(progressVCCount) ")
+        progressView.progress = (visibleViewControllerIndex - 1.0) / (progressVCCount )
+        
+        
+        return super.popViewController(animated: animated)
+    }
     /*
      // MARK: - Navigation
      

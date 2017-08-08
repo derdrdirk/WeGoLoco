@@ -35,14 +35,6 @@ class EmailConfirmationViewController: UIViewController, LoadingAnimationProtoco
     @IBOutlet weak var confirmationCodeTextField: UITextField!
     @IBOutlet weak var continueButton: UIButton!
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if let myNavigationController = self.navigationController as? SignInNavigationController {
-            myNavigationController.progressView.progress = 0.42
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
 

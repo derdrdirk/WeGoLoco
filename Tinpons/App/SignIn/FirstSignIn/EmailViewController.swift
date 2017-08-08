@@ -35,14 +35,7 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
     var validationRules = ValidationRuleSet<String>()
     
     @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var registerButton: UIButton!
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        signInNavigationController.progressView.progress = 0.14
-    }
-    
+    @IBOutlet weak var registerButton: UIButton!    
     
     override func viewDidLoad() {
         super.viewDidLoad()

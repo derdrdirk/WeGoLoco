@@ -24,14 +24,6 @@ class CategoriesTableViewController: UITableViewController, LoadingAnimationProt
     var categories = Set<String>()
     var signInNavigationController: SignInNavigationController!
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
-        if let myNavigationController = self.navigationController as? SignInNavigationController {
-            myNavigationController.progressView.progress = 0.84
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
