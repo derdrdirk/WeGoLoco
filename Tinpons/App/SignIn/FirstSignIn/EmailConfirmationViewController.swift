@@ -113,29 +113,38 @@ class EmailConfirmationViewController: UIViewController, LoadingAnimationProtoco
     func confirmCode() {
         self.user?.confirmSignUp(confirmationCodeTextField.text!, forceAliasCreation: true).continueWith(block: {[weak self] (task: AWSTask) -> AnyObject? in
             guard let strongSelf = self else { return nil }
-            DispatchQueue.main.async(execute: {
                 if let error = task.error as? NSError {
-                    let message = Message(title: "Código incorrecto.", backgroundColor: .red)
-                    Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)
+                    DispatchQueue.main.async(execute: {
+                        let message = Message(title: "Código incorrecto.", backgroundColor: .red)
+                        Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)
+                    })
                 } else {
-                    firstly {
-                        UserAPI.save(user: strongSelf.signInNavigationController.user)
-                    }.then {
-                        DispatchQueue.main.async {
-                            let message = Message(title: "Registración completado!. Bienvenido 😊", backgroundColor: .green)
-                            Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)
-                            
-                            // User Pool SingUp completed
-                            // delete email + password views + start with additional account signUp
-                            let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
-                            let newVc = storyboard.instantiateViewController(withIdentifier: "BirthdateViewController") as! BirthdateViewController
-                            var vcArray = strongSelf.navigationController?.viewControllers
-                            vcArray!.removeLast(3)
-                            vcArray!.append(newVc)
-                            strongSelf.navigationController?.setViewControllers(vcArray!, animated: false)
-                        }
-
-                    }
+                    strongSelf.onUserConfirmed()
+//                    firstly {
+//                        UserAPI.save(user: strongSelf.signInNavigationController.user)
+//                    }.then {
+//                        DispatchQueue.main.async {
+//                            let message = Message(title: "Registración completado!. Bienvenido 😊", backgroundColor: .green)
+//                            Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)
+//                            
+//                            
+//                            // login
+//                            let signInViewController = self?.navigationController!.viewControllers[0] as! SignInViewController
+//                            signInViewController.handleUserPoolSignIn()
+//                            
+//
+//                            
+//                            // User Pool SingUp completed
+//                            // delete email + password views + start with additional account signUp
+////                            let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
+////                            let newVc = storyboard.instantiateViewController(withIdentifier: "BirthdateViewController") as! BirthdateViewController
+////                            var vcArray = strongSelf.navigationController?.viewControllers
+////                            vcArray!.removeLast(3)
+////                            vcArray!.append(newVc)
+////                            strongSelf.navigationController?.setViewControllers(vcArray!, animated: false)
+//                        }
+//
+//                    }
                     
                                                         // save To RDS
 //                                UserAPI.save(preparedObject: myNavigationController.user, onCompletionClosure: {
@@ -154,19 +163,29 @@ class EmailConfirmationViewController: UIViewController, LoadingAnimationProtoco
 //                                        strongSelf.navigationController?.setViewControllers(vcArray!, animated: false)
 //                                    }
 //                                })
-                    
-
-                
-                }
-            })
+//
+            }
             return nil
         })
     }
+    
+    func onUserConfirmed() {}
 
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-
+        self.user?.confirmSignUp(confirmationCodeTextField.text!, forceAliasCreation: true).continueWith(block: {[weak self] (task: AWSTask) -> AnyObject? in
+            guard let strongSelf = self else { return nil }
+            if let error = task.error as? NSError {
+                DispatchQueue.main.async(execute: {
+                    let message = Message(title: "Código incorrecto.", backgroundColor: .red)
+                    Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)
+                })
+            } else {
+                strongSelf.onUserConfirmed()
+            }
+            return nil
+        })
     }
 
 

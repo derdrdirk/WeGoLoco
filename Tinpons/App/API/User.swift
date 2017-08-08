@@ -13,6 +13,7 @@ class User: CustomStringConvertible {
     var createdAt: Date?
     var birthdate: Date?
     var email: String?
+    var password: String?
     var gender: String?
     var categories: Set<String>
     var updatedAt: Date?

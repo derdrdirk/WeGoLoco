@@ -23,6 +23,9 @@
 		D410C5EF1F24D7E0008D6C92 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410C5EE1F24D7E0008D6C92 /* User.swift */; };
 		D410C5F21F24E443008D6C92 /* UsersAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D410C5F11F24E443008D6C92 /* UsersAPI.swift */; };
 		D417F0911F1F81E700D803E0 /* LoadingAnimationProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D417F0901F1F81E700D803E0 /* LoadingAnimationProtocol.swift */; };
+		D41A5D5B1F39916F00D1191C /* UserPoolEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A5D5A1F39916F00D1191C /* UserPoolEmailViewController.swift */; };
+		D41A5D5E1F39959D00D1191C /* UserPoolPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A5D5D1F39959D00D1191C /* UserPoolPasswordViewController.swift */; };
+		D41A5D601F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A5D5F1F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift */; };
 		D41EB2681F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2611F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m */; };
 		D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2631F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m */; };
 		D41EB26A1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2651F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m */; };
@@ -180,7 +183,7 @@
 		1DD70E2946C3AB3000000000 /* AWSMobileClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AWSMobileClient.swift; path = Tinpons/AmazonAws/AWSMobileClient.swift; sourceTree = SOURCE_ROOT; };
 		1DD70E2956CE98CA00000000 /* AWSCognitoUserPoolsSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCognitoUserPoolsSignIn.framework; path = Tinpons/AmazonAws/AWSCognitoUserPoolsSignIn.framework; sourceTree = "<group>"; };
 		1DD70E29687DA31D00000000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Tinpons/App/SupportingFiles/Info.plist; sourceTree = SOURCE_ROOT; };
-		1DD70E2969DD7ECE00000000 /* Tinpons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = Tinpons.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DD70E2969DD7ECE00000000 /* WeGoLoco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; path = WeGoLoco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DD70E2969DFF7BE00000000 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		1DD70E296E5253F900000000 /* AWSCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSCore.framework; path = Tinpons/Sdk/Aws/AWSCore.framework; sourceTree = "<group>"; };
 		1DD70E297A4F404000000000 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -217,6 +220,9 @@
 		D410C5EE1F24D7E0008D6C92 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = User.swift; path = Tinpons/App/API/User.swift; sourceTree = SOURCE_ROOT; };
 		D410C5F11F24E443008D6C92 /* UsersAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UsersAPI.swift; path = Tinpons/App/API/UsersAPI.swift; sourceTree = SOURCE_ROOT; };
 		D417F0901F1F81E700D803E0 /* LoadingAnimationProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LoadingAnimationProtocol.swift; path = Tinpons/App/LoadingAnimationProtocol.swift; sourceTree = SOURCE_ROOT; };
+		D41A5D5A1F39916F00D1191C /* UserPoolEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPoolEmailViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/UserPoolEmailViewController.swift; sourceTree = SOURCE_ROOT; };
+		D41A5D5D1F39959D00D1191C /* UserPoolPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPoolPasswordViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/UserPoolPasswordViewController.swift; sourceTree = SOURCE_ROOT; };
+		D41A5D5F1F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPoolEmailConfirmationViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/UserPoolEmailConfirmationViewController.swift; sourceTree = SOURCE_ROOT; };
 		D41EB2601F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_9HLT8N48WD_Empty.h; sourceTree = "<group>"; };
 		D41EB2611F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_9HLT8N48WD_Empty.m; sourceTree = "<group>"; };
 		D41EB2621F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_9HLT8N48WD_RequestSchema.h; sourceTree = "<group>"; };
@@ -382,7 +388,7 @@
 		B401C9792EF2543B00000000 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1DD70E2969DD7ECE00000000 /* Tinpons.app */,
+				1DD70E2969DD7ECE00000000 /* WeGoLoco.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -402,13 +408,13 @@
 				D47F96EF1EED938400B9FCE3 /* ImageRow.framework */,
 				D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */,
 				B401C9792ED981A800000000 /* Frameworks */,
-				B401C9793F3D745900000000 /* Tinpons */,
+				B401C9793F3D745900000000 /* WeGoLoco */,
 				B401C9792EF2543B00000000 /* Products */,
 			);
 			name = mainGroup;
 			sourceTree = "<group>";
 		};
-		B401C9793F3D745900000000 /* Tinpons */ = {
+		B401C9793F3D745900000000 /* WeGoLoco */ = {
 			isa = PBXGroup;
 			children = (
 				B401C97953B32C8900000000 /* AmazonAws */,
@@ -416,6 +422,7 @@
 				1DD70E299FE8008200000000 /* Tinpons.entitlements */,
 				D4D271281F12ACD2003A7287 /* TinponsModel.xcdatamodeld */,
 			);
+			name = WeGoLoco;
 			path = Tinpons;
 			sourceTree = "<group>";
 		};
@@ -522,6 +529,7 @@
 				D430CC8C1F2B2B1A00174E5C /* BirthdateViewController.swift */,
 				D452206E1F2CC85A00D01C43 /* GenderViewController.swift */,
 				D45220721F2CD96200D01C43 /* InterestsTableViewController.swift */,
+				D41A5D5C1F39917800D1191C /* UserPoolSignUp */,
 			);
 			name = SignUp;
 			path = ../../App/SignIn/FirstSignIn;
@@ -555,6 +563,16 @@
 			);
 			name = Api;
 			path = Tinpons/App/API;
+			sourceTree = "<group>";
+		};
+		D41A5D5C1F39917800D1191C /* UserPoolSignUp */ = {
+			isa = PBXGroup;
+			children = (
+				D41A5D5A1F39916F00D1191C /* UserPoolEmailViewController.swift */,
+				D41A5D5D1F39959D00D1191C /* UserPoolPasswordViewController.swift */,
+				D41A5D5F1F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift */,
+			);
+			name = UserPoolSignUp;
 			sourceTree = "<group>";
 		};
 		D4512B421F189D42009B109C /* Favourites */ = {
@@ -606,9 +624,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E66DC04E0000000000000000 /* Tinpons */ = {
+		E66DC04E0000000000000000 /* WeGoLoco */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 218C37090000000000000001 /* Build configuration list for PBXNativeTarget "Tinpons" */;
+			buildConfigurationList = 218C37090000000000000001 /* Build configuration list for PBXNativeTarget "WeGoLoco" */;
 			buildPhases = (
 				E1F174220000000000000001 /* ShellScript */,
 				1870857F0000000000000000 /* Sources */,
@@ -621,9 +639,9 @@
 			);
 			dependencies = (
 			);
-			name = Tinpons;
+			name = WeGoLoco;
 			productName = Tinpons;
-			productReference = 1DD70E2969DD7ECE00000000 /* Tinpons.app */;
+			productReference = 1DD70E2969DD7ECE00000000 /* WeGoLoco.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -642,7 +660,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 218C37090000000000000000 /* Build configuration list for PBXProject "Tinpons" */;
+			buildConfigurationList = 218C37090000000000000000 /* Build configuration list for PBXProject "WeGoLoco" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -655,7 +673,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E66DC04E0000000000000000 /* Tinpons */,
+				E66DC04E0000000000000000 /* WeGoLoco */,
 			);
 		};
 /* End PBXProject section */
@@ -721,6 +739,7 @@
 				D41EB26E1F338758003842E4 /* PasswordViewController.swift in Sources */,
 				D4DA424D1F0E2CFB00A1C69E /* CustomCells.swift in Sources */,
 				D430CC8B1F2B2AF200174E5C /* EmailViewController.swift in Sources */,
+				D41A5D5B1F39916F00D1191C /* UserPoolEmailViewController.swift in Sources */,
 				D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */,
 				D4AAB5A71F305A0900050E02 /* TinponsAPI.swift in Sources */,
 				D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */,
@@ -731,6 +750,7 @@
 				D417F0911F1F81E700D803E0 /* LoadingAnimationProtocol.swift in Sources */,
 				E7A30F040AAE5A4B00000000 /* AppDelegate.swift in Sources */,
 				D4512B481F18E448009B109C /* TinponManagerTableViewController.swift in Sources */,
+				D41A5D601F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift in Sources */,
 				D410C5E41F23A14D008D6C92 /* AWSConfiguration.swift in Sources */,
 				D4B7D2001F28C71A008F3AE1 /* MainTabBarController.swift in Sources */,
 				D4306C811F0E6BEC0073A11E /* Stores.swift in Sources */,
@@ -759,6 +779,7 @@
 				D4DC434E1F1E3A2000BC1283 /* UserWrapper.swift in Sources */,
 				D443C0FA1EEC728100FD148F /* AddTinponViewController.swift in Sources */,
 				E7A30F04023CE26000000000 /* FacebookIdentityProfile.swift in Sources */,
+				D41A5D5E1F39959D00D1191C /* UserPoolPasswordViewController.swift in Sources */,
 				E7A30F04C2DDB4B200000000 /* SignInViewControllerExtensions.swift in Sources */,
 				E7A30F0460A2A9A000000000 /* UserPoolsUIHelper.swift in Sources */,
 				D4D2712A1F12ACD2003A7287 /* TinponsModel.xcdatamodeld in Sources */,
@@ -938,7 +959,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		218C37090000000000000000 /* Build configuration list for PBXProject "Tinpons" */ = {
+		218C37090000000000000000 /* Build configuration list for PBXProject "WeGoLoco" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4952437346F3E10800000000 /* Debug */,
@@ -947,7 +968,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		218C37090000000000000001 /* Build configuration list for PBXNativeTarget "Tinpons" */ = {
+		218C37090000000000000001 /* Build configuration list for PBXNativeTarget "WeGoLoco" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4952437346F3E10800000001 /* Debug */,

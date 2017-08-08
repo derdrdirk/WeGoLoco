@@ -48,6 +48,7 @@ class SignInViewController : UIViewController {
         
         signInNavigationController = navigationController as! SignInNavigationController
         
+        
         // set up the navigation controller
         self.setUpNavigationController()
         // set up the logo in image view
@@ -61,35 +62,38 @@ class SignInViewController : UIViewController {
         // set up google button if enabled
         self.setUpGoogleButton()
         
-        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:64a9de95-136c-4ba3-b366-6aa4079fef8b")
-        credentialsProvider.getIdentityId().continueWith(block: { (task) -> AnyObject? in
-            if (task.error != nil) {
-                print("Error: " + task.error!.localizedDescription)
-            }
-            else {
-                // the task result will contain the identity id
-                let cognitoId = task.result!
-                print("Cognito id: \(cognitoId)")
-                
-                // new identity
-                credentialsProvider.clearCredentials()
-                credentialsProvider.getIdentityId().continueWith(block: { (task) -> AnyObject? in
-                    if (task.error != nil) {
-                        print("Error: " + task.error!.localizedDescription)
-                    }
-                    else {
-                        // the task result will contain the identity id
-                        let cognitoId = task.result!
-                        print("Cognito id: \(cognitoId)")
-                        
-                        
-                    }
-                    return task;
-                })
-
-            }
-            return task;
-        })
+        self.tableDelegate?.getCell(self.tableView, for: self.userNameRow!)?.inputBox.text = "test"
+        
+        
+//        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:64a9de95-136c-4ba3-b366-6aa4079fef8b")
+//        credentialsProvider.getIdentityId().continueWith(block: { (task) -> AnyObject? in
+//            if (task.error != nil) {
+//                print("Error: " + task.error!.localizedDescription)
+//            }
+//            else {
+//                // the task result will contain the identity id
+//                let cognitoId = task.result!
+//                print("Cognito id: \(cognitoId)")
+//                
+//                // new identity
+//                credentialsProvider.clearCredentials()
+//                credentialsProvider.getIdentityId().continueWith(block: { (task) -> AnyObject? in
+//                    if (task.error != nil) {
+//                        print("Error: " + task.error!.localizedDescription)
+//                    }
+//                    else {
+//                        // the task result will contain the identity id
+//                        let cognitoId = task.result!
+//                        print("Cognito id: \(cognitoId)")
+//                        
+//                        
+//                    }
+//                    return task;
+//                })
+//
+//            }
+//            return task;
+//        })
         
     }
     
@@ -173,13 +177,13 @@ class SignInViewController : UIViewController {
             print("result = \(result), error = \(error)")
             // If no error reported by SignInProvider, discard the sign-in view controller.
             if error == nil {
-                print("jojo")
-                DispatchQueue.main.async(execute: {
-                    self.dismiss(animated: true, completion: nil)
-                    if let didCompleteSignIn = self.didCompleteSignIn {
-                        didCompleteSignIn(true)
-                    }
-                })   
+                print("jojo login")
+//                DispatchQueue.main.async(execute: {
+//                    self.dismiss(animated: true, completion: nil)
+//                    if let didCompleteSignIn = self.didCompleteSignIn {
+//                        didCompleteSignIn(true)
+//                    }
+//                })   
                 return
             }
             self.showErrorDialog(signInProvider.identityProviderName, withError: error as! NSError)
@@ -201,7 +205,7 @@ class SignInViewController : UIViewController {
     
     @IBAction func touchedSignUpButton(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "SignUp", bundle: nil)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "EmailViewController")
+        let viewController = storyboard.instantiateViewController(withIdentifier: "UserPoolEmailViewController")
         self.navigationController?.pushViewController(viewController, animated:true);
     }
 }

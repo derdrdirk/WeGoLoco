@@ -33,6 +33,7 @@ class PasswordViewController: UIViewController, LoadingAnimationProtocol {
     
     let minLengthRule = ValidationRuleLength(min: 8, error: ValidationErrors.minLength)
     var validationRules = ValidationRuleSet<String>()
+    var signInNavigationController: SignInNavigationController!
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -45,6 +46,8 @@ class PasswordViewController: UIViewController, LoadingAnimationProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        signInNavigationController = navigationController as! SignInNavigationController
+        
         self.pool = AWSCognitoIdentityUserPool.default()
         
         // AnimationLoaderProtocol
@@ -70,7 +73,7 @@ class PasswordViewController: UIViewController, LoadingAnimationProtocol {
         
         switch validationResult {
         case .valid:
-            userPoolSignUp()
+            onContinue()
         case .invalid( _ ):
             ()
         }
@@ -98,48 +101,22 @@ class PasswordViewController: UIViewController, LoadingAnimationProtocol {
         
         switch validationResult {
         case .valid:
-             userPoolSignUp()
+             onContinue()
         case .invalid( _ ):
             ()
         }
     }
     
-    func userPoolSignUp() {
-        if let myNavigationController = self.navigationController as? SignInNavigationController {
-            let email = myNavigationController.user.email!
-            
-            var attributes = [AWSCognitoIdentityUserAttributeType]()
-            
-            // email
-            let emailAttribute = AWSCognitoIdentityUserAttributeType()
-            emailAttribute?.name = "email"
-            emailAttribute?.value = email
-            attributes.append(emailAttribute!)
-            
-            self.startLoadingAnimation()
-            
-            //sign up the user
-            self.pool?.signUp(userId, password: passwordTextField.text!, userAttributes: attributes, validationData: nil).continueWith {[weak self] (task: AWSTask<AWSCognitoIdentityUserPoolSignUpResponse>) -> AnyObject? in
-                guard let strongSelf = self else { return nil }
-                if let error = task.error as? NSError {
-                    print("Email UserPool Error: \(error)")
-                } else {
-                    if let result = task.result as AWSCognitoIdentityUserPoolSignUpResponse! {
-                        DispatchQueue.main.async {
-                            strongSelf.stopLoadingAnimation()
-                            strongSelf.performSegue(withIdentifier: "segueToEmailConfirmation", sender: strongSelf)
-                        }
-                    }
-                }
-                return nil
-            }
-        }
-    }
+    func onContinue() {}
     
     func guardUserId() {
         if let myNavigationController = self.navigationController as? SignInNavigationController {
             myNavigationController.user.id = userId
         }
+    }
+    
+    func guardPassword() {
+        signInNavigationController.user.password = passwordTextField.text
     }
 
 
@@ -147,6 +124,8 @@ class PasswordViewController: UIViewController, LoadingAnimationProtocol {
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guardUserId()
+        guardPassword()
+        
         if let signUpConfirmationViewController = segue.destination as? EmailConfirmationViewController {
             signUpConfirmationViewController.user = self.pool?.getUser(userId)
         }

@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zjm-Jq-gKa">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -31,7 +27,7 @@
             </objects>
             <point key="canvasLocation" x="796" y="518"/>
         </scene>
-        <!--Tinpons-->
+        <!--WeGoLoco-->
         <scene sceneID="csY-G8-4MX">
             <objects>
                 <viewController storyboardIdentifier="Swiper" id="gfq-04-FT2" customClass="SwiperViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
@@ -47,16 +43,16 @@
                                 <rect key="frame" x="16" y="56" width="343" height="554"/>
                                 <subviews>
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dJB-iD-02l" userLabel="outOfTinpons Stack">
-                                        <rect key="frame" x="45" y="246" width="253" height="63.5"/>
+                                        <rect key="frame" x="26" y="246" width="290" height="63.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No More Tinpons 😭 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsb-lN-R7k">
-                                                <rect key="frame" x="0.0" y="0.0" width="253" height="33.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No More WeGoLoco 😭 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsb-lN-R7k">
+                                                <rect key="frame" x="0.0" y="0.0" width="290" height="33.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2v-x2-sVS">
-                                                <rect key="frame" x="95" y="33.5" width="63" height="30"/>
+                                                <rect key="frame" x="113" y="33" width="63" height="30"/>
                                                 <state key="normal" title="Try again"/>
                                                 <connections>
                                                     <action selector="tryAgain:" destination="gfq-04-FT2" eventType="touchUpInside" id="Hfy-YV-wf7"/>
@@ -83,7 +79,7 @@
                     <tabBarItem key="tabBarItem" title="" image="icomoon-price-tags" id="BfZ-Eq-zfK">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Tinpons" id="keu-zp-Ez7"/>
+                    <navigationItem key="navigationItem" title="WeGoLoco" id="keu-zp-Ez7"/>
                     <connections>
                         <outlet property="kolodaView" destination="9LJ-Ha-R53" id="CHB-fs-hlm"/>
                         <outlet property="outOfTinponsStack" destination="dJB-iD-02l" id="cNk-Ob-IjF"/>
@@ -264,7 +260,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pIy-ak-5JN" id="40z-b7-c5r">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="c32-O0-zsf">
@@ -380,7 +376,7 @@
             </objects>
             <point key="canvasLocation" x="2471" y="3064"/>
         </scene>
-        <!--Tinpons-->
+        <!--WeGoLoco-->
         <scene sceneID="Peo-iK-deL">
             <objects>
                 <viewController id="Tg5-T6-FiW" sceneMemberID="viewController">
@@ -393,7 +389,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Tinpons" id="eOV-bu-7Ae"/>
+                    <navigationItem key="navigationItem" title="WeGoLoco" id="eOV-bu-7Ae"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0E-ed-YYD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -404,7 +400,7 @@
             <objects>
                 <collectionViewController id="5EV-VG-RIe" customClass="FavouriteCollectionViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="lOV-TQ-cSZ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Mx6-v2-XgV">

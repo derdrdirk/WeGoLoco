@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "E66DC04E0000000000000000"
-               BuildableName = "Tinpons.app"
-               BlueprintName = "Tinpons"
-               ReferencedContainer = "container:Tinpons.xcodeproj">
+               BuildableName = "WeGoLoco.app"
+               BlueprintName = "WeGoLoco"
+               ReferencedContainer = "container:WeGoLoco.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E66DC04E0000000000000000"
-            BuildableName = "Tinpons.app"
-            BlueprintName = "Tinpons"
-            ReferencedContainer = "container:Tinpons.xcodeproj">
+            BuildableName = "WeGoLoco.app"
+            BlueprintName = "WeGoLoco"
+            ReferencedContainer = "container:WeGoLoco.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -56,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E66DC04E0000000000000000"
-            BuildableName = "Tinpons.app"
-            BlueprintName = "Tinpons"
-            ReferencedContainer = "container:Tinpons.xcodeproj">
+            BuildableName = "WeGoLoco.app"
+            BlueprintName = "WeGoLoco"
+            ReferencedContainer = "container:WeGoLoco.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -75,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "E66DC04E0000000000000000"
-            BuildableName = "Tinpons.app"
-            BlueprintName = "Tinpons"
-            ReferencedContainer = "container:Tinpons.xcodeproj">
+            BuildableName = "WeGoLoco.app"
+            BlueprintName = "WeGoLoco"
+            ReferencedContainer = "container:WeGoLoco.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

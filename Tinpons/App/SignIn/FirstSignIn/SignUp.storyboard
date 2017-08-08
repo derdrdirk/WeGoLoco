@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="dGY-at-1xa">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -21,7 +21,7 @@
         <!--e-mail-->
         <scene sceneID="fEl-EV-sGR">
             <objects>
-                <viewController storyboardIdentifier="EmailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dGY-at-1xa" customClass="EmailViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UserPoolEmailViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="dGY-at-1xa" customClass="UserPoolEmailViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="UWj-dB-CAj"/>
                         <viewControllerLayoutGuide type="bottom" id="mLh-0C-5Ge"/>
@@ -31,16 +31,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="njX-WA-uAr">
-                                <rect key="frame" x="16" y="40" width="343" height="241"/>
+                                <rect key="frame" x="16" y="40" width="343" height="257.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C5I-p2-wok">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="116.5"/>
                                         <attributedString key="attributedText">
                                             <fragment>
                                                 <string key="content">Mi
  e-mail  es</string>
                                                 <attributes>
-                                                    <font key="NSFont" size="50" name="RemachineScriptPersonalUse"/>
+                                                    <font key="NSFont" metaFont="system" size="50"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -48,7 +48,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Dirección de correo electronico" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HHw-De-sHi">
-                                        <rect key="frame" x="0.0" y="120" width="343" height="29"/>
+                                        <rect key="frame" x="0.0" y="136.5" width="343" height="29"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="24"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
@@ -58,13 +58,14 @@
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FPQ-xt-fac">
-                                        <rect key="frame" x="0.0" y="169" width="343" height="72"/>
+                                        <rect key="frame" x="0.0" y="185.5" width="343" height="72"/>
                                         <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="60"/>
                                         <state key="normal" title="Registrarse">
                                             <color key="titleColor" red="0.96460580579999999" green="0.96460580579999999" blue="0.96460580579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="continueButtonTouch:" destination="dGY-at-1xa" eventType="touchUpInside" id="OMC-cp-cwK"/>
+                                            <segue destination="UV9-ao-R3e" kind="show" id="bZV-Vy-znN"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -83,17 +84,16 @@
                     <connections>
                         <outlet property="emailTextField" destination="HHw-De-sHi" id="s8t-LY-jKo"/>
                         <outlet property="registerButton" destination="FPQ-xt-fac" id="dXq-oS-ST5"/>
-                        <segue destination="UV9-ao-R3e" kind="show" identifier="segueToPassword" id="hRn-Ps-tfH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6p1-wF-cQ9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-583" y="-926"/>
+            <point key="canvasLocation" x="-1465" y="-922"/>
         </scene>
-        <!--Password View Controller-->
+        <!--User Pool Password View Controller-->
         <scene sceneID="2cs-ch-mie">
             <objects>
-                <viewController id="UV9-ao-R3e" customClass="PasswordViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="UV9-ao-R3e" customClass="UserPoolPasswordViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lnm-iT-Jv6"/>
                         <viewControllerLayoutGuide type="bottom" id="Gms-V5-a7j"/>
@@ -103,16 +103,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="zUF-UF-YfJ">
-                                <rect key="frame" x="16" y="40" width="343" height="241"/>
+                                <rect key="frame" x="16" y="40" width="343" height="257.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mfp-oD-r8d">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="116.5"/>
                                         <attributedString key="attributedText">
                                             <fragment>
                                                 <string key="content">Mi
 contraseña es</string>
                                                 <attributes>
-                                                    <font key="NSFont" size="50" name="RemachineScriptPersonalUse"/>
+                                                    <font key="NSFont" metaFont="system" size="50"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -120,7 +120,7 @@ contraseña es</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Contraseña" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="cRb-dD-wnB">
-                                        <rect key="frame" x="0.0" y="120" width="343" height="29"/>
+                                        <rect key="frame" x="0.0" y="136.5" width="343" height="29"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="24"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
@@ -132,13 +132,14 @@ contraseña es</string>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tp7-DU-Lmj">
-                                        <rect key="frame" x="0.0" y="169" width="343" height="72"/>
+                                        <rect key="frame" x="0.0" y="185.5" width="343" height="72"/>
                                         <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="60"/>
                                         <state key="normal" title="Continuar">
                                             <color key="titleColor" red="0.96460580579999999" green="0.96460580579999999" blue="0.96460580579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="continueButtonTouch:" destination="UV9-ao-R3e" eventType="touchUpInside" id="3wp-my-GxB"/>
+                                            <segue destination="utJ-st-y1u" kind="show" id="LkR-4H-xdF"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -154,17 +155,16 @@ contraseña es</string>
                     <connections>
                         <outlet property="continueButton" destination="Tp7-DU-Lmj" id="Yrq-1I-17q"/>
                         <outlet property="passwordTextField" destination="cRb-dD-wnB" id="RPu-3x-B2W"/>
-                        <segue destination="utJ-st-y1u" kind="show" identifier="segueToEmailConfirmation" id="MCe-nI-eyH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G4l-Tt-W1k" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="138" y="-926"/>
+            <point key="canvasLocation" x="-780" y="-926"/>
         </scene>
-        <!--Email Confirmation View Controller-->
+        <!--User Pool Email Confirmation View Controller-->
         <scene sceneID="cde-8M-pQP">
             <objects>
-                <viewController id="utJ-st-y1u" customClass="EmailConfirmationViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="utJ-st-y1u" customClass="UserPoolEmailConfirmationViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KaT-6s-Rfw"/>
                         <viewControllerLayoutGuide type="bottom" id="8sy-aY-GLv"/>
@@ -174,14 +174,14 @@ contraseña es</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="EBD-eI-NDx">
-                                <rect key="frame" x="16" y="40" width="343" height="281.5"/>
+                                <rect key="frame" x="16" y="40" width="343" height="348"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jdl-e3-N5s">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="116.5"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Confirmo mi email">
                                                 <attributes>
-                                                    <font key="NSFont" size="50" name="RemachineScriptPersonalUse"/>
+                                                    <font key="NSFont" metaFont="system" size="50"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -189,13 +189,13 @@ contraseña es</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mira tus emails, te hemos enviado tu codigo!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QvY-HX-dzW">
-                                        <rect key="frame" x="0.0" y="70" width="343" height="20.5"/>
+                                        <rect key="frame" x="0.0" y="136.5" width="343" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Codigo de confirmación" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="lRS-uH-wSs">
-                                        <rect key="frame" x="0.0" y="110.5" width="343" height="29"/>
+                                        <rect key="frame" x="0.0" y="177" width="343" height="29"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="ProximaNovaSoft-Regular" family="Proxima Nova Soft" pointSize="24"/>
                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad"/>
@@ -209,14 +209,14 @@ contraseña es</string>
                                         </connections>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IKc-X1-JFg">
-                                        <rect key="frame" x="0.0" y="159.5" width="343" height="30"/>
+                                        <rect key="frame" x="0.0" y="226" width="343" height="30"/>
                                         <state key="normal" title="Enviar nuevo Codigo"/>
                                         <connections>
                                             <action selector="resendConfirmationCode:" destination="utJ-st-y1u" eventType="touchUpInside" id="rMx-TE-oOn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="48X-c5-R2d">
-                                        <rect key="frame" x="0.0" y="209.5" width="343" height="72"/>
+                                        <rect key="frame" x="0.0" y="276" width="343" height="72"/>
                                         <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="60"/>
                                         <state key="normal" title="Continuar">
                                             <color key="titleColor" red="0.96460580579999999" green="0.96460580579999999" blue="0.96460580579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -238,17 +238,16 @@ contraseña es</string>
                     <connections>
                         <outlet property="confirmationCodeTextField" destination="lRS-uH-wSs" id="Iya-Qw-gtf"/>
                         <outlet property="continueButton" destination="48X-c5-R2d" id="5qV-8c-Lbk"/>
-                        <segue destination="JVS-32-3OH" kind="show" identifier="segueToBirthdate" id="olB-7i-1qL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G5R-tU-xew" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="791" y="-930"/>
+            <point key="canvasLocation" x="-92" y="-926"/>
         </scene>
         <!-- cumpleaños-->
         <scene sceneID="Lba-K9-roj">
             <objects>
-                <viewController storyboardIdentifier="BirthdateViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JVS-32-3OH" customClass="BirthdateViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BirthdateViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="JVS-32-3OH" customClass="BirthdateViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zxN-oI-UIF"/>
                         <viewControllerLayoutGuide type="bottom" id="2VS-Fn-fE1"/>
@@ -258,16 +257,16 @@ contraseña es</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="WT2-4O-Y88">
-                                <rect key="frame" x="16" y="40" width="343" height="418"/>
+                                <rect key="frame" x="16" y="40" width="343" height="493"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zqA-rq-PcR">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="100"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="175"/>
                                         <attributedString key="attributedText">
                                             <fragment>
                                                 <string key="content">Mi
 cumplenaños  es</string>
                                                 <attributes>
-                                                    <font key="NSFont" size="50" name="RemachineScriptPersonalUse"/>
+                                                    <font key="NSFont" metaFont="system" size="50"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -275,7 +274,7 @@ cumplenaños  es</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="aWW-52-v8j">
-                                        <rect key="frame" x="0.0" y="120" width="343" height="216"/>
+                                        <rect key="frame" x="0.0" y="195" width="343" height="216"/>
                                         <date key="date" timeIntervalSinceReferenceDate="523022714.48880899">
                                             <!--2017-07-29 12:05:14 +0000-->
                                         </date>
@@ -287,7 +286,7 @@ cumplenaños  es</string>
                                         </connections>
                                     </datePicker>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C3T-js-xnz">
-                                        <rect key="frame" x="0.0" y="356" width="343" height="62"/>
+                                        <rect key="frame" x="0.0" y="431" width="343" height="62"/>
                                         <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="50"/>
                                         <state key="normal" title="Continuar">
                                             <color key="titleColor" red="0.96460580579999999" green="0.96460580579999999" blue="0.96460580579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -322,7 +321,7 @@ cumplenaños  es</string>
         <!--sexo-->
         <scene sceneID="r9w-uF-zHD">
             <objects>
-                <viewController storyboardIdentifier="GenderViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5fm-Ci-TAw" customClass="GenderViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GenderViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="5fm-Ci-TAw" customClass="GenderViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="eoE-3y-aHG"/>
                         <viewControllerLayoutGuide type="bottom" id="j4T-Yw-eTV"/>
@@ -332,14 +331,14 @@ cumplenaños  es</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="geW-Sf-4Nv">
-                                <rect key="frame" x="16" y="40" width="343" height="326"/>
+                                <rect key="frame" x="16" y="40" width="343" height="338"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iuv-Bd-aFl">
-                                        <rect key="frame" x="0.0" y="0.0" width="343" height="70"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="82"/>
                                         <attributedString key="attributedText">
                                             <fragment content="Soy">
                                                 <attributes>
-                                                    <font key="NSFont" size="70" name="RemachineScriptPersonalUse"/>
+                                                    <font key="NSFont" metaFont="system" size="70"/>
                                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                 </attributes>
                                             </fragment>
@@ -347,7 +346,7 @@ cumplenaños  es</string>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eob-XT-MZZ">
-                                        <rect key="frame" x="0.0" y="90" width="343" height="62"/>
+                                        <rect key="frame" x="0.0" y="102" width="343" height="62"/>
                                         <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="50"/>
                                         <state key="normal" title="Mujer">
                                             <color key="titleColor" red="0.96460580579999999" green="0.96460580579999999" blue="0.96460580579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -357,7 +356,7 @@ cumplenaños  es</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="68s-Mt-jUh">
-                                        <rect key="frame" x="0.0" y="172" width="343" height="62"/>
+                                        <rect key="frame" x="0.0" y="184" width="343" height="62"/>
                                         <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="50"/>
                                         <state key="normal" title="Hombre">
                                             <color key="titleColor" red="0.96460580579999999" green="0.96460580579999999" blue="0.96460580579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -367,7 +366,7 @@ cumplenaños  es</string>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6N-Xw-cgT">
-                                        <rect key="frame" x="0.0" y="254" width="343" height="72"/>
+                                        <rect key="frame" x="0.0" y="266" width="343" height="72"/>
                                         <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="60"/>
                                         <state key="normal" title="Continuar">
                                             <color key="titleColor" red="0.96460580579999999" green="0.96460580579999999" blue="0.96460580579999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -403,7 +402,7 @@ cumplenaños  es</string>
         <!--intereses-->
         <scene sceneID="MYe-Bj-Uef">
             <objects>
-                <tableViewController storyboardIdentifier="CategoriesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="i2K-dN-qsi" customClass="InterestsTableViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CategoriesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="i2K-dN-qsi" customClass="InterestsTableViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="gIO-OD-lE0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

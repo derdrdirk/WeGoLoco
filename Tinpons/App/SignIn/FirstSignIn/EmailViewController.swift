@@ -40,9 +40,7 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let myNavigationController = self.navigationController as? SignInNavigationController {
-            myNavigationController.progressView.progress = 0.14
-        }
+        signInNavigationController.progressView.progress = 0.14
     }
     
     override func viewDidLoad() {
@@ -135,9 +133,7 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
     }
 
     func guardEmail() {
-        if let myNavigationController = self.navigationController as? SignInNavigationController {
-            myNavigationController.user.email = emailTextField.text!
-        }
+        signInNavigationController.user.email = emailTextField.text!
     }
 
     // MARK: - Navigation
