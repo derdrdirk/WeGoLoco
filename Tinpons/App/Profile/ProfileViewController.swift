@@ -13,6 +13,7 @@ import AWSDynamoDB
 import AWSMobileHubHelper
 import CoreLocation
 import Whisper
+import PromiseKit
 
 class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUIProtocol, LoadingAnimationProtocol {
     // MARK: Authentication Protocol
@@ -32,7 +33,7 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
         }
     }
     
-    var user : DynamoDBUser!
+    var user : User!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,7 +56,7 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
                 $0.title = "Date of Birth"
                 $0.tag = "Birthdate"
                 }.onChange{[weak self] in
-                    self?.user?.birthdate = $0.value?.iso8601
+                    self?.user?.birthdate = $0.value
             }
             <<< SegmentedRow<String>() {
                 $0.title = "Gender"
@@ -64,16 +65,7 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
                 }.onChange{[weak self] in
                     self?.user?.gender = $0.value
             }
-            <<< SliderRow() {
-                $0.title = "Height"
-                $0.value = 1.0
-                $0.tag = "Height"
-                $0.minimumValue = 1.00
-                $0.maximumValue = 2.00
-                $0.steps = 100
-                }.onChange{ [weak self] in
-                    self?.user?.height = NSNumber(value: $0.value!)
-        }
+
         form +++ Section("Tinpons")
             <<< MultipleSelectorRow<String>() {
                 $0.title = "Categories"
@@ -92,7 +84,7 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
                     
                     to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(ProfileViewController.multipleSelectorDone(_:)))
                 }.onChange{[weak self] in
-                    self?.user?.tinponCategories = $0.value
+                    self?.user?.categories = $0.value!
                 }
         form +++ Section("Distributor") {
             $0.tag = "Distributor"
@@ -135,43 +127,31 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
         print("start loading")
         startLoadingAnimation()
         
-        UserWrapper.getSignedInUser{ [weak self] user in
-            guard let strongSelf = self else { return }
-            
-            strongSelf.user = user
+        firstly {
+            UserAPI.getSignedInUser()
+        }.then { user -> Void in
+            self.user = user
             
             DispatchQueue.main.async {
-                strongSelf.updateForm()
-                strongSelf.presentingViewController?.dismiss(animated: true)
-        
-                strongSelf.stopLoadingAnimation()
+                self.updateForm()
+                self.presentingViewController?.dismiss(animated: true)
+                self.stopLoadingAnimation()
             }
         }
-        
-        
     }
     
     func updateForm() {
         let birthdateRow = form.rowBy(tag: "Birthdate") as? DateRow
-        birthdateRow?.value = user.birthdate?.dateFromISO8601
+        birthdateRow?.value = user.birthdate
         birthdateRow?.reload()
         
         let genderRow = form.rowBy(tag: "Gender") as? SegmentedRow<String>
         genderRow?.value = user.gender
         genderRow?.reload()
         
-        
-        let heightRow = form.rowBy(tag: "Height") as? SliderRow
-        if let height = user.height {
-            heightRow?.value = height as? Float
-        } else {
-            heightRow?.value = 1.0
-        }
-        heightRow?.reload()
-        
-        let tinponCategoriesRow = form.rowBy(tag: "tinponCategories") as? MultipleSelectorRow<String>
-        tinponCategoriesRow?.value = user.tinponCategories
-        tinponCategoriesRow?.reload()
+        let categoriesRow = form.rowBy(tag: "tinponCategories") as? MultipleSelectorRow<String>
+        categoriesRow?.value = user.categories
+        categoriesRow?.reload()
 
     }
     
@@ -179,26 +159,19 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
     // MARK: save & cancel
     @IBAction func tabSaveButton(_ sender: UIBarButtonItem) {
         startLoadingAnimation()
-        
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        let dynamoDBObjectMapper = AWSDynamoDBObjectMapper.default()
-        dynamoDBObjectMapper.save(user!).continueWith(block: { [weak self] (task:AWSTask<AnyObject>!) -> Void in
-            guard let strongSelf = self else { print("self fail"); return }
-            if let error = task.error {
-                print("The request failed. Error: \(error)")
-            } else {
-                DispatchQueue.main.async {
-                    strongSelf.stopLoadingAnimation()
-                    
-                    strongSelf.presentingViewController?.dismiss(animated: true)
-                    
-                    let message = Message(title: "Profile saved.", backgroundColor: .green)
-                    // Show and hide a message after delay
-                    Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)
-                }
+        firstly {
+            UserAPI.update(user: user)
+        }.then {
+            DispatchQueue.main.async {
+                self.stopLoadingAnimation()
+                self.presentedViewController?.dismiss(animated: true)
+                
+                let message = Message(title: "Profile saved.", backgroundColor: .green)
+                Whisper.show(whisper: message, to: self.navigationController!, action: .show)
             }
-        })
+        }
     }
 
 }

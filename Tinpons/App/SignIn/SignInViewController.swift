@@ -163,7 +163,7 @@ class SignInViewController : UIViewController {
         }.then { user -> Void in
             // check registration status
             if self.isUserCompletelyRegistered(user: user) {
-                print("login")
+                self.presentedViewController?.dismiss(animated: true)
             } else {
                 self.signInNavigationController.user = user
                 

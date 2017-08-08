@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="zjm-Jq-gKa">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -9,7 +13,7 @@
         <!--Main Tab Bar Controller-->
         <scene sceneID="gBf-bx-14h">
             <objects>
-                <tabBarController id="zjm-Jq-gKa" customClass="MainTabBarController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController id="zjm-Jq-gKa" customClass="MainTabBarController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="E6M-I2-tYl"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="5zU-G4-OHP">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
@@ -30,7 +34,7 @@
         <!--WeGoLoco-->
         <scene sceneID="csY-G8-4MX">
             <objects>
-                <viewController storyboardIdentifier="Swiper" id="gfq-04-FT2" customClass="SwiperViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Swiper" id="gfq-04-FT2" customClass="SwiperViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="X32-br-pVi"/>
                         <viewControllerLayoutGuide type="bottom" id="kCt-oL-c4I"/>
@@ -39,7 +43,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9LJ-Ha-R53" customClass="CustomKolodaView" customModule="Tinpons" customModuleProvider="target">
+                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9LJ-Ha-R53" customClass="CustomKolodaView" customModule="WeGoLoco" customModuleProvider="target">
                                 <rect key="frame" x="16" y="56" width="343" height="554"/>
                                 <subviews>
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dJB-iD-02l" userLabel="outOfTinpons Stack">
@@ -52,7 +56,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2v-x2-sVS">
-                                                <rect key="frame" x="113" y="33" width="63" height="30"/>
+                                                <rect key="frame" x="113.5" y="33.5" width="63" height="30"/>
                                                 <state key="normal" title="Try again"/>
                                                 <connections>
                                                     <action selector="tryAgain:" destination="gfq-04-FT2" eventType="touchUpInside" id="Hfy-YV-wf7"/>
@@ -114,6 +118,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OXR-Cz-A2X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.0" green="0.035294117649999998" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="40"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="hY0-aP-LQ0" kind="relationship" relationship="rootViewController" id="PLX-ia-H5f"/>
@@ -126,7 +135,7 @@
         <!--Profile-->
         <scene sceneID="NgV-rW-E2Q">
             <objects>
-                <viewController id="hY0-aP-LQ0" customClass="ProfileViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="hY0-aP-LQ0" customClass="ProfileViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ERl-kT-Lwk"/>
                         <viewControllerLayoutGuide type="bottom" id="2RY-Pc-4Al"/>
@@ -170,7 +179,7 @@
         <!--Add Tinpon View Controller-->
         <scene sceneID="gwK-Kj-gQz">
             <objects>
-                <viewController storyboardIdentifier="AddProduct" id="p5A-2U-bQ0" customClass="AddTinponViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddProduct" id="p5A-2U-bQ0" customClass="AddTinponViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="U9P-Vl-BVk"/>
                         <viewControllerLayoutGuide type="bottom" id="DJd-NR-8Uj"/>
@@ -250,13 +259,13 @@
         <!--Tinpon Manager-->
         <scene sceneID="AFQ-pa-ylr">
             <objects>
-                <tableViewController id="EEM-2p-Tew" customClass="TinponManagerTableViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="EEM-2p-Tew" customClass="TinponManagerTableViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" id="82w-W2-lYv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="tinponManagerCell" rowHeight="120" id="pIy-ak-5JN" customClass="TinponManagerTableViewCell" customModule="Tinpons" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="tinponManagerCell" rowHeight="120" id="pIy-ak-5JN" customClass="TinponManagerTableViewCell" customModule="WeGoLoco" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pIy-ak-5JN" id="40z-b7-c5r">
@@ -398,9 +407,9 @@
         <!--Favourites-->
         <scene sceneID="Pes-tX-gnk">
             <objects>
-                <collectionViewController id="5EV-VG-RIe" customClass="FavouriteCollectionViewController" customModule="Tinpons" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="5EV-VG-RIe" customClass="FavouriteCollectionViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="lOV-TQ-cSZ">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Mx6-v2-XgV">
@@ -410,7 +419,7 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="favouriteCollectionViewCell" id="70v-E8-hym" customClass="FavouriteCollectionViewCell" customModule="Tinpons" customModuleProvider="target">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="favouriteCollectionViewCell" id="70v-E8-hym" customClass="FavouriteCollectionViewCell" customModule="WeGoLoco" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="177" height="231"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
