@@ -154,7 +154,7 @@ contraseña es</string>
                     <connections>
                         <outlet property="continueButton" destination="Tp7-DU-Lmj" id="Yrq-1I-17q"/>
                         <outlet property="passwordTextField" destination="cRb-dD-wnB" id="RPu-3x-B2W"/>
-                        <segue destination="utJ-st-y1u" kind="show" identifier="segueToUserPoolConfirmationViewController" id="53K-5v-pni"/>
+                        <segue destination="utJ-st-y1u" kind="show" identifier="segueToUserPoolEmailConfirmationViewController" id="53K-5v-pni"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G4l-Tt-W1k" userLabel="First Responder" sceneMemberID="firstResponder"/>

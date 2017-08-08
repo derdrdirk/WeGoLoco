@@ -108,9 +108,12 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
         firstly {
             UserAPI.isEmailAvailable(email: signInNavigationController.user.email!)
         }.then { isEmailAvailable -> Void in
+            print("email is available : \(isEmailAvailable)")
             if isEmailAvailable {
-                self.stopLoadingAnimation()
-                self.onValidEmailEntered()
+                DispatchQueue.main.async {
+                    self.stopLoadingAnimation()
+                    self.onValidEmailEntered()
+                }
             } else {
                 DispatchQueue.main.async {
                     self.stopLoadingAnimation()

@@ -36,7 +36,7 @@ class UserPoolPasswordViewController: PasswordViewController {
         self.startLoadingAnimation()
         
         //sign up the user
-        self.pool?.signUp(userId, password: passwordTextField.text!, userAttributes: attributes, validationData: nil).continueWith {[weak self] (task: AWSTask<AWSCognitoIdentityUserPoolSignUpResponse>) -> AnyObject? in
+        self.pool?.signUp(userId, password: passwordTextField.text!, userAttributes: attributes, validationData: nil).continueWith { [weak self] (task: AWSTask<AWSCognitoIdentityUserPoolSignUpResponse>) -> AnyObject? in
             guard let strongSelf = self else { return nil }
             if let error = task.error as? NSError {
                 print("Email UserPool Error: \(error)")
@@ -45,7 +45,7 @@ class UserPoolPasswordViewController: PasswordViewController {
                     DispatchQueue.main.async {
                         strongSelf.stopLoadingAnimation()
                         
-                        let signInViewController = self?.navigationController?.viewControllers[0] as! SignInViewController
+                        let signInViewController = strongSelf.navigationController?.viewControllers[0] as! SignInViewController
                         signInViewController.userNameRow?.staticText = self?.userId
                         signInViewController.passwordRow?.staticText = self?.passwordTextField.text
                     

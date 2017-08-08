@@ -25,14 +25,20 @@ class UserPoolEmailConfirmationViewController: EmailConfirmationViewController {
     }
     
     override func onUserConfirmed() {
+        startLoadingAnimation()
+        print(signInNavigationController.user)
         firstly {
             UserAPI.save(user: signInNavigationController.user)
         }.then { Void -> Void in
-            // Login new User
-            self.signInViewController.tableDelegate?.getCell(self.signInViewController.tableView, for: self.signInViewController.userNameRow!)?.inputBox.text = self.signInNavigationController.user.email
-            self.signInViewController.tableDelegate?.getCell(self.signInViewController.tableView, for: self.signInViewController.passwordRow!)?.inputBox.text = self.signInNavigationController.user.password
-            
-            self.signInViewController.handleUserPoolSignIn()
+            DispatchQueue.main.async {
+                self.stopLoadingAnimation()
+                
+                // Login new User
+                self.signInViewController.tableDelegate?.getCell(self.signInViewController.tableView, for: self.signInViewController.userNameRow!)?.inputBox.text = self.signInNavigationController.user.email
+                self.signInViewController.tableDelegate?.getCell(self.signInViewController.tableView, for: self.signInViewController.passwordRow!)?.inputBox.text = self.signInNavigationController.user.password
+                
+                self.signInViewController.handleUserPoolSignIn()
+            }
         }
     }
 
