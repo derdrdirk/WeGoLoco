@@ -115,7 +115,7 @@ class AddProductViewController: FormViewController, CLLocationManagerDelegate, L
                 }
             }.onChange{ [unowned self] in
                 self.tinpon.mainImage = $0.value
-                if $0.value != nil {
+                if $0.value != nil && self.tinpon.additionalImages?.isEmpty ?? true {
                     self.form.sectionBy(tag: "imageSection")! <<< self.additionalImageRow()
                 }
         }
@@ -153,10 +153,12 @@ class AddProductViewController: FormViewController, CLLocationManagerDelegate, L
                     self.form.sectionBy(tag: "imageSection")! <<< self.additionalImageRow()
                 }
             } else {
-                // delete
+                // delete (only if not last)
                 let index = $0.indexPath!.row
+                if self.tinpon.additionalImages?.count ?? 0 > 1 {
+                    $0.section?.remove(at: index)
+                }
                 self.tinpon.additionalImages?.remove(at: index-1)
-                $0.section?.remove(at: index)
             }
             print("additional images count \(self.tinpon.additionalImages?.count)")
         }
