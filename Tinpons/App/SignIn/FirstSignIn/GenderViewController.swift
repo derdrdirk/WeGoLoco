@@ -94,9 +94,9 @@ class GenderViewController: UIViewController, LoadingAnimationProtocol {
     
     func guardGender() {
         if let myNavigationController = self.navigationController as? SignInNavigationController {
-            var gender = "👨‍💼"
+            var gender = "👱"
             if womanButton.isSelected {
-                gender = "👩‍💼"
+                gender = "👩"
             }
             myNavigationController.user.gender = gender
         }

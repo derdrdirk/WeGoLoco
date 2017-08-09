@@ -61,7 +61,9 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
             <<< SegmentedRow<String>() {
                 $0.title = "Gender"
                 $0.tag = "Gender"
-                $0.options = ["👨‍💼", "👩‍💼"]
+                $0.options = ["👱", "👩"]
+                }.cellSetup { segmentedCell, segmentedRow in
+                    segmentedCell.tintColor = #colorLiteral(red: 0, green: 0.8166723847, blue: 0.9823040366, alpha: 1)
                 }.onChange{[weak self] in
                     self?.user?.gender = $0.value
             }
@@ -110,6 +112,8 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
         form +++ Section("Logout")
             <<< ButtonRow() {
                 $0.title = "Sign Out"
+                }.cellSetup { buttonCell, _ in
+                    buttonCell.tintColor = #colorLiteral(red: 0, green: 0.8166723847, blue: 0.9823040366, alpha: 1)
                 }.onCellSelection{[weak self] _,_ in
                     guard let strongSelf = self else { return }
                     strongSelf.handleLogout()
@@ -124,7 +128,6 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
     }
     
     func updateUI() {
-        print("start loading")
         startLoadingAnimation()
         
         firstly {
