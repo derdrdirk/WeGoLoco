@@ -25,20 +25,8 @@ class AddProductViewController: FormViewController, CLLocationManagerDelegate, L
     let locationManager = CLLocationManager()
     @IBOutlet weak var progressView: UIProgressView!
     
-    struct TinponToAdd {
-        init() {
-            tinpon = DynamoDBTinpon()
-            tinpon.tinponId = UUID().uuidString
-            tinpon.createdAt = Date().iso8601
-            tinpon.active = NSNumber(value: 1)
-            tinpon.imgUrl = tinpon.tinponId
-            image = UIImage()
-        }
-        var tinpon: DynamoDBTinpon!
-        var image: UIImage
-    }
-    var tinponToAdd = TinponToAdd()
-
+    var tinpon = Tinpon()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -68,7 +56,7 @@ class AddProductViewController: FormViewController, CLLocationManagerDelegate, L
         // Set up Eureka form
         form +++ Section("Product")
             <<< TextRow(){
-                $0.title = "Name"
+                $0.title = "Nombre"
                 $0.placeholder = "Shoes"
                 $0.tag = "name"
                 $0.add(rule: RuleRequired())
@@ -78,10 +66,10 @@ class AddProductViewController: FormViewController, CLLocationManagerDelegate, L
                     cell.titleLabel?.textColor = .red
                 }
             }.onChange{ [unowned self] in
-                self.tinponToAdd.tinpon.name = $0.value
+                self.tinpon.name = $0.value
             }
             <<< ImageRow() {
-                $0.title = "Image"
+                $0.title = "Imagen Principal"
                 $0.sourceTypes = [.PhotoLibrary]
                 $0.clearAction = .yes(style: .default)
                 $0.tag = "image"
@@ -91,27 +79,60 @@ class AddProductViewController: FormViewController, CLLocationManagerDelegate, L
                 if !row.isValid {
                     cell.textLabel?.textColor = .red
                 }
+
+                print("isClean : \(self.form.isClean())")
             }.onChange{ [unowned self] in
-                self.tinponToAdd.image = $0.value!
+                self.tinpon.image = $0.value
+            }
+            <<< ImageRow() {
+                $0.hidden = Condition.function(["image"], { form in
+                    print("isClean2 : \(form.isClean())")
+                    print("image \(form.rowBy(tag: "image")?.isValid)")
+                    return  (self.tinpon.image == nil) || !(form.rowBy(tag: "image")?.isValid ?? false)
+                })
+                $0.title = "Imagen Adicional"
+                $0.sourceTypes = [.PhotoLibrary]
+                $0.clearAction = .yes(style: .default)
+                $0.tag = "additionalImage1"
+                $0.add(rule: RuleRequired())
+                //$0.validationOptions = .validatesOnChange
+            }
+            <<< ImageRow() {
+
+                $0.title = "Imagen Adicional"
+                $0.sourceTypes = [.PhotoLibrary]
+                $0.clearAction = .yes(style: .default)
+                $0.tag = "additionalImage2"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+            }
+            <<< ImageRow() {
+
+                $0.title = "Imagen Adicional"
+                $0.sourceTypes = [.PhotoLibrary]
+                $0.clearAction = .yes(style: .default)
+                $0.tag = "additionalImage3"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
             }
             <<< DecimalRow() {
-                $0.title = "Price"
+                $0.title = "Precio"
                 $0.value = 5
                 $0.formatter = DecimalFormatter()
                 $0.useFormatterDuringInput = true
             }.cellSetup { [unowned self] cell, row  in
                 cell.textField.keyboardType = .numberPad
-                self.tinponToAdd.tinpon.price = row.value as NSNumber?
+                self.tinpon.price = row.value
             }.onChange{ [unowned self] in
-                self.tinponToAdd.tinpon.price = $0.value as NSNumber?
+                self.tinpon.price = $0.value
             }
             <<< PushRow<String>() {
-                $0.title = "Category"
+                $0.title = "Categoría"
                 $0.options = ["👕", "👖", "👞", "👜", "🕶"]
                 $0.value = "👕"
                 $0.selectorTitle = "Choose an Emoji!"
             }.cellSetup{ [unowned self] in
-                self.tinponToAdd.tinpon.category = $1.value
+                self.tinpon.category = $1.value
             }.onPresent { from, to in
                 to.enableDeselection = false
                 to.sectionKeyForValue = { option in
@@ -122,7 +143,7 @@ class AddProductViewController: FormViewController, CLLocationManagerDelegate, L
                     }
                 }
             }.onChange{ [unowned self] in
-                self.tinponToAdd.tinpon.category = $0.value
+                self.tinpon.category = $0.value
             }
         
         form +++ Section("Variaciónes") {
@@ -140,14 +161,13 @@ class AddProductViewController: FormViewController, CLLocationManagerDelegate, L
                     
                     strongSelf.form.sectionBy(tag: "Variations")! <<< ProductVariationRow()
         }
-
     }
     
     // MARK: Location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
-        tinponToAdd.tinpon.latitude = NSNumber(value: locValue.latitude)
-        tinponToAdd.tinpon.longitude = NSNumber(value: locValue.longitude)
+        tinpon.latitude = locValue.latitude
+        tinpon.longitude = locValue.longitude
     }
     
     // MARK: Actions
@@ -157,22 +177,34 @@ class AddProductViewController: FormViewController, CLLocationManagerDelegate, L
     
     @IBAction func save(_ sender: UIBarButtonItem) {
         if (form.validate().count == 0) {
-            startLoadingAnimation()
+//            startLoadingAnimation()
             
-            tinponToAdd.tinpon.save(imageToUpload: tinponToAdd.image, progressView, onCompletionClosure: { [weak self] in
-                DispatchQueue.main.async {
-                    guard let strongSelf = self else { return }
-                    
-                    strongSelf.stopLoadingAnimation()
-                    
-                    strongSelf.performSegue(withIdentifier: "unwindToTinponManager", sender: strongSelf)
-                }
-                })
+//            tinponToAdd.tinpon.save(imageToUpload: tinponToAdd.image, progressView, onCompletionClosure: { [weak self] in
+//                DispatchQueue.main.async {
+//                    guard let strongSelf = self else { return }
+//                    
+//                    strongSelf.stopLoadingAnimation()
+//                    
+//                    strongSelf.performSegue(withIdentifier: "unwindToTinponManager", sender: strongSelf)
+//                }
+//            })
         } else {
             let alert = UIAlertController(title: "Form Invalid", message: "Check the red marked fields.", preferredStyle: UIAlertControllerStyle.alert)
             alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
             self.present(alert, animated: true, completion: nil)
         }
+    }
+}
+
+extension Form {
+    
+    public func isClean() ->Bool {
+        for row in rows {
+            if row.wasChanged {
+                return false
+            }
+        }
+        return true
     }
 }
 

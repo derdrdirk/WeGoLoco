@@ -50,7 +50,7 @@ final class ProductVariationCell: Cell<ProductVariation>, CellType, UIPickerView
         colorPickerView.dataSource = self
         colorPickerView.delegate = self
         colorPickerView.showsSelectionIndicator = true
-        colorPickerView.backgroundColor = #colorLiteral(red: 0, green: 0.03529411765, blue: 0.0862745098, alpha: 1)
+//        colorPickerView.backgroundColor = #colorLiteral(red: 0, green: 0.03529411765, blue: 0.0862745098, alpha: 1)
         self.colorTextField.inputView = colorPickerView
 
     }
@@ -80,7 +80,7 @@ final class ProductVariationCell: Cell<ProductVariation>, CellType, UIPickerView
         case sizePickerView:
             label.text = 👕Sizes[row]
         case colorPickerView:
-            label.backgroundColor = colors[row].values.first
+            label.textColor = colors[row].values.first
             label.text = colors[row].keys.first
         default:
             label.text = ""
@@ -89,7 +89,15 @@ final class ProductVariationCell: Cell<ProductVariation>, CellType, UIPickerView
         return label
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        print("selected row value \(pickerView.selectedRow(inComponent: component))")
+        switch pickerView {
+        case sizePickerView:
+            sizeTextField.text = 👕Sizes[row]
+        case colorPickerView:
+            colorTextField.textColor = colors[row].values.first
+            colorTextField.text = colors[row].keys.first
+        default:
+            return
+        }
     }
  
     
