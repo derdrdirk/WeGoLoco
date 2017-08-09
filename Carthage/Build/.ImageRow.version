@@ -2,7 +2,7 @@
   "commitish" : "1.0.1",
   "iOS" : [
     {
-      "hash" : "b0592f2a2e0733da9ca4c57e0e4990086ec30c18e23a75e916dc9f3f80b50bf9",
+      "hash" : "ea63d07221dcee752768b26dcccc3e2bfca8172f5687cb9f937ea5646187c8d6",
       "name" : "ImageRow"
     }
   ]

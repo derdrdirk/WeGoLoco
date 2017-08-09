@@ -32,6 +32,8 @@
 		D41EB26B1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2671F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.m */; };
 		D41EB26E1F338758003842E4 /* PasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41EB26D1F338758003842E4 /* PasswordViewController.swift */; };
 		D41EB2701F3395A0003842E4 /* EmailConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41EB26F1F3395A0003842E4 /* EmailConfirmationViewController.swift */; };
+		D423ABA81F3B079300A6FE2A /* ProductVariationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D423ABA71F3B079300A6FE2A /* ProductVariationCell.xib */; };
+		D423ABAA1F3B111200A6FE2A /* ProductVariationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423ABA91F3B111200A6FE2A /* ProductVariationCell.swift */; };
 		D42DC6BB1F1BF9800087EB4F /* Whisper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D42DC6B91F1BF8D40087EB4F /* Whisper.framework */; };
 		D42DC6BC1F1BF9800087EB4F /* Whisper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D42DC6B91F1BF8D40087EB4F /* Whisper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4306C811F0E6BEC0073A11E /* Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4306C801F0E6BEC0073A11E /* Stores.swift */; };
@@ -43,9 +45,9 @@
 		D43777981F262CDB0023448F /* APIGatewayProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43777971F262CDB0023448F /* APIGatewayProtocol.swift */; };
 		D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F51EEC699D00FD148F /* SwiperViewController.swift */; };
 		D443C0F81EEC6CA300FD148F /* BackgroundKolodaAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */; };
-		D443C0FA1EEC728100FD148F /* AddTinponViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F91EEC728100FD148F /* AddTinponViewController.swift */; };
-		D4512B481F18E448009B109C /* TinponManagerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4512B471F18E448009B109C /* TinponManagerTableViewController.swift */; };
-		D4512B4A1F1930BE009B109C /* TinponManagerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4512B491F1930BE009B109C /* TinponManagerTableViewCell.swift */; };
+		D443C0FA1EEC728100FD148F /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F91EEC728100FD148F /* AddProductViewController.swift */; };
+		D4512B481F18E448009B109C /* ManagerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4512B471F18E448009B109C /* ManagerTableViewController.swift */; };
+		D4512B4A1F1930BE009B109C /* ManagerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4512B491F1930BE009B109C /* ManagerTableViewCell.swift */; };
 		D452206A1F2C924C00D01C43 /* Validator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45220691F2C924C00D01C43 /* Validator.framework */; };
 		D452206B1F2C924C00D01C43 /* Validator.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D45220691F2C924C00D01C43 /* Validator.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D452206F1F2CC85A00D01C43 /* GenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D452206E1F2CC85A00D01C43 /* GenderViewController.swift */; };
@@ -61,6 +63,7 @@
 		D480D0551EEBEEF300B4193A /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0531EEBEEF300B4193A /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D480D0581EEBEF7200B4193A /* Koloda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0561EEBEF3500B4193A /* Koloda.framework */; };
 		D480D0591EEBEF7200B4193A /* Koloda.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0561EEBEF3500B4193A /* Koloda.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D4A69BA01F3B13A900037002 /* ProductVariationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A69B9F1F3B13A900037002 /* ProductVariationRow.swift */; };
 		D4AAB5A71F305A0900050E02 /* TinponsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */; };
 		D4B7D1FE1F28C442008F3AE1 /* RemachineScript.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4B7D1FD1F28C442008F3AE1 /* RemachineScript.ttf */; };
 		D4B7D2001F28C71A008F3AE1 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7D1FF1F28C71A008F3AE1 /* MainTabBarController.swift */; };
@@ -234,6 +237,8 @@
 		D41EB26C1F333D01003842E4 /* Bridging_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Bridging_Header.h; path = Tinpons/AmazonAws/Bridging_Header.h; sourceTree = SOURCE_ROOT; };
 		D41EB26D1F338758003842E4 /* PasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PasswordViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/PasswordViewController.swift; sourceTree = SOURCE_ROOT; };
 		D41EB26F1F3395A0003842E4 /* EmailConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmailConfirmationViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/EmailConfirmationViewController.swift; sourceTree = SOURCE_ROOT; };
+		D423ABA71F3B079300A6FE2A /* ProductVariationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductVariationCell.xib; path = Tinpons/App/Favourites/ProductVariationCell.xib; sourceTree = SOURCE_ROOT; };
+		D423ABA91F3B111200A6FE2A /* ProductVariationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductVariationCell.swift; path = Tinpons/App/Favourites/ProductVariationCell.swift; sourceTree = SOURCE_ROOT; };
 		D42DC6B91F1BF8D40087EB4F /* Whisper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Whisper.framework; path = Carthage/Build/iOS/Whisper.framework; sourceTree = "<group>"; };
 		D4306C801F0E6BEC0073A11E /* Stores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stores.swift; path = Tinpons/AmazonAws/Models/NoSQL/Stores.swift; sourceTree = SOURCE_ROOT; };
 		D4306C821F0E73780073A11E /* AWSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AWSHelper.swift; path = Tinpons/AmazonAws/Models/NoSQL/AWSHelper.swift; sourceTree = SOURCE_ROOT; };
@@ -244,9 +249,9 @@
 		D43777971F262CDB0023448F /* APIGatewayProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIGatewayProtocol.swift; path = Tinpons/App/API/APIGatewayProtocol.swift; sourceTree = SOURCE_ROOT; };
 		D443C0F51EEC699D00FD148F /* SwiperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiperViewController.swift; path = Tinpons/App/Swiper/SwiperViewController.swift; sourceTree = SOURCE_ROOT; };
 		D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundKolodaAnimator.swift; path = Tinpons/App/Swiper/BackgroundKolodaAnimator.swift; sourceTree = SOURCE_ROOT; };
-		D443C0F91EEC728100FD148F /* AddTinponViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddTinponViewController.swift; path = Tinpons/App/AddProduct/AddTinponViewController.swift; sourceTree = SOURCE_ROOT; };
-		D4512B471F18E448009B109C /* TinponManagerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponManagerTableViewController.swift; path = Tinpons/App/Favourites/TinponManagerTableViewController.swift; sourceTree = SOURCE_ROOT; };
-		D4512B491F1930BE009B109C /* TinponManagerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponManagerTableViewCell.swift; path = Tinpons/App/Favourites/TinponManagerTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		D443C0F91EEC728100FD148F /* AddProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddProductViewController.swift; path = Tinpons/App/AddProduct/AddProductViewController.swift; sourceTree = SOURCE_ROOT; };
+		D4512B471F18E448009B109C /* ManagerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagerTableViewController.swift; path = Tinpons/App/Favourites/ManagerTableViewController.swift; sourceTree = SOURCE_ROOT; };
+		D4512B491F1930BE009B109C /* ManagerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagerTableViewCell.swift; path = Tinpons/App/Favourites/ManagerTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		D45220681F2C840400D01C43 /* Validator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Validator.framework; path = Carthage/Build/iOS/Validator.framework; sourceTree = "<group>"; };
 		D45220691F2C924C00D01C43 /* Validator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Validator.framework; path = Carthage/Build/iOS/Validator.framework; sourceTree = "<group>"; };
 		D452206E1F2CC85A00D01C43 /* GenderViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenderViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/GenderViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -260,6 +265,8 @@
 		D47F96EF1EED938400B9FCE3 /* ImageRow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageRow.framework; path = Carthage/Build/iOS/ImageRow.framework; sourceTree = "<group>"; };
 		D480D0531EEBEEF300B4193A /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = Carthage/Build/iOS/pop.framework; sourceTree = "<group>"; };
 		D480D0561EEBEF3500B4193A /* Koloda.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Koloda.framework; path = Carthage/Build/iOS/Koloda.framework; sourceTree = "<group>"; };
+		D4A69B9F1F3B13A900037002 /* ProductVariationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductVariationRow.swift; path = Tinpons/App/Favourites/ProductVariationRow.swift; sourceTree = SOURCE_ROOT; };
+		D4A69BA21F3B2CAD00037002 /* CoreActionSheetPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreActionSheetPicker.framework; path = Carthage/Build/iOS/CoreActionSheetPicker.framework; sourceTree = "<group>"; };
 		D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponsAPI.swift; path = Tinpons/App/API/TinponsAPI.swift; sourceTree = SOURCE_ROOT; };
 		D4B7D1FD1F28C442008F3AE1 /* RemachineScript.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = RemachineScript.ttf; path = Assets/Fonts/RemachineScript.ttf; sourceTree = "<group>"; };
 		D4B7D1FF1F28C71A008F3AE1 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Tinpons/App/MainTabBarController.swift; sourceTree = SOURCE_ROOT; };
@@ -338,6 +345,7 @@
 				1DD70E2927114D4C00000000 /* AuthenticationProtocol.swift */,
 				D417F0901F1F81E700D803E0 /* LoadingAnimationProtocol.swift */,
 				D480D05A1EEBF0ED00B4193A /* Swiper */,
+				D423ABA41F3B06D400A6FE2A /* Manager */,
 				D4512B421F189D42009B109C /* Favourites */,
 				B401C979550308D500000000 /* SignIn */,
 				D4FA2ECA1F0CE83A00B287FB /* Profile */,
@@ -352,6 +360,17 @@
 		B401C9792ED981A800000000 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D4A69BA21F3B2CAD00037002 /* CoreActionSheetPicker.framework */,
+				D47D705D1F36F8C5003E0708 /* PromiseKit.framework */,
+				D47D705A1F36F326003E0708 /* BoltsSwift.framework */,
+				D45220691F2C924C00D01C43 /* Validator.framework */,
+				D45220681F2C840400D01C43 /* Validator.framework */,
+				D40EA7171F2A461300A44735 /* IQKeyboardManagerSwift.framework */,
+				D410C5D71F23828A008D6C92 /* AWSCognitoIdentityProvider.framework */,
+				D410C5D41F238242008D6C92 /* AWSCore.framework */,
+				D410C5C51F2375CC008D6C92 /* AWSAPIGateway.framework */,
+				D47F96EF1EED938400B9FCE3 /* ImageRow.framework */,
+				D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */,
 				D42DC6B91F1BF8D40087EB4F /* Whisper.framework */,
 				D4DA424A1F0E2C4200A1C69E /* MapKit.framework */,
 				D4DA42451F0E123100A1C69E /* SwiftIconFont.framework */,
@@ -396,17 +415,7 @@
 		B401C9793DAC23B500000000 /* mainGroup */ = {
 			isa = PBXGroup;
 			children = (
-				D47D705D1F36F8C5003E0708 /* PromiseKit.framework */,
-				D47D705A1F36F326003E0708 /* BoltsSwift.framework */,
-				D45220691F2C924C00D01C43 /* Validator.framework */,
-				D45220681F2C840400D01C43 /* Validator.framework */,
-				D40EA7171F2A461300A44735 /* IQKeyboardManagerSwift.framework */,
 				D4CA25BC1F279879007AF347 /* Assets */,
-				D410C5D71F23828A008D6C92 /* AWSCognitoIdentityProvider.framework */,
-				D410C5D41F238242008D6C92 /* AWSCore.framework */,
-				D410C5C51F2375CC008D6C92 /* AWSAPIGateway.framework */,
-				D47F96EF1EED938400B9FCE3 /* ImageRow.framework */,
-				D47F96E71EED8CFF00B9FCE3 /* Eureka.framework */,
 				B401C9792ED981A800000000 /* Frameworks */,
 				B401C9793F3D745900000000 /* WeGoLoco */,
 				B401C9792EF2543B00000000 /* Products */,
@@ -575,12 +584,23 @@
 			name = UserPoolSignUp;
 			sourceTree = "<group>";
 		};
+		D423ABA41F3B06D400A6FE2A /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				D443C0F91EEC728100FD148F /* AddProductViewController.swift */,
+				D4512B491F1930BE009B109C /* ManagerTableViewCell.swift */,
+				D4512B471F18E448009B109C /* ManagerTableViewController.swift */,
+				D423ABA71F3B079300A6FE2A /* ProductVariationCell.xib */,
+				D423ABA91F3B111200A6FE2A /* ProductVariationCell.swift */,
+				D4A69B9F1F3B13A900037002 /* ProductVariationRow.swift */,
+			);
+			name = Manager;
+			path = Tinpons/App/Favourites;
+			sourceTree = "<group>";
+		};
 		D4512B421F189D42009B109C /* Favourites */ = {
 			isa = PBXGroup;
 			children = (
-				D443C0F91EEC728100FD148F /* AddTinponViewController.swift */,
-				D4512B491F1930BE009B109C /* TinponManagerTableViewCell.swift */,
-				D4512B471F18E448009B109C /* TinponManagerTableViewController.swift */,
 				D4DAE9711F1C9B20000C447E /* FavouriteCollectionViewCell.swift */,
 				D4DAE9731F1C9B4A000C447E /* FavouriteCollectionViewController.swift */,
 			);
@@ -690,6 +710,7 @@
 				D40EA7151F2A40CB00A44735 /* proxima-nova-soft-bold.ttf in Resources */,
 				D4E258221EEC1A6400B2B986 /* CustomOverlayView.xib in Resources */,
 				D40EA7161F2A40CB00A44735 /* proxima-nova-soft-regular.ttf in Resources */,
+				D423ABA81F3B079300A6FE2A /* ProductVariationCell.xib in Resources */,
 				E7A30F04490C0AB000000000 /* Images.xcassets in Resources */,
 				E7A30F0489AA356400000000 /* UserPools.storyboard in Resources */,
 				E7A30F04274F6B6700000000 /* AWSFacebookSignInResources.bundle in Resources */,
@@ -749,7 +770,7 @@
 				E7A30F04C071CC9E00000000 /* UserPoolMFAViewController.swift in Sources */,
 				D417F0911F1F81E700D803E0 /* LoadingAnimationProtocol.swift in Sources */,
 				E7A30F040AAE5A4B00000000 /* AppDelegate.swift in Sources */,
-				D4512B481F18E448009B109C /* TinponManagerTableViewController.swift in Sources */,
+				D4512B481F18E448009B109C /* ManagerTableViewController.swift in Sources */,
 				D41A5D601F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift in Sources */,
 				D410C5E41F23A14D008D6C92 /* AWSConfiguration.swift in Sources */,
 				D4B7D2001F28C71A008F3AE1 /* MainTabBarController.swift in Sources */,
@@ -777,7 +798,7 @@
 				E7A30F048DE0B1CD00000000 /* DynamoDBTinpon.swift in Sources */,
 				D4B95B961F1E84180078289F /* Extensions.swift in Sources */,
 				D4DC434E1F1E3A2000BC1283 /* UserWrapper.swift in Sources */,
-				D443C0FA1EEC728100FD148F /* AddTinponViewController.swift in Sources */,
+				D443C0FA1EEC728100FD148F /* AddProductViewController.swift in Sources */,
 				E7A30F04023CE26000000000 /* FacebookIdentityProfile.swift in Sources */,
 				D41A5D5E1F39959D00D1191C /* UserPoolPasswordViewController.swift in Sources */,
 				E7A30F04C2DDB4B200000000 /* SignInViewControllerExtensions.swift in Sources */,
@@ -790,9 +811,11 @@
 				D430CC911F2B2E0300174E5C /* SignUpViewController.swift in Sources */,
 				D4FC90E51F1669F8002A6F9E /* SwipedTinponsCore.swift in Sources */,
 				D45220731F2CD96200D01C43 /* CategoriesTableViewController.swift in Sources */,
-				D4512B4A1F1930BE009B109C /* TinponManagerTableViewCell.swift in Sources */,
+				D4512B4A1F1930BE009B109C /* ManagerTableViewCell.swift in Sources */,
 				D41EB26B1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.m in Sources */,
 				D410C5F21F24E443008D6C92 /* UsersAPI.swift in Sources */,
+				D4A69BA01F3B13A900037002 /* ProductVariationRow.swift in Sources */,
+				D423ABAA1F3B111200A6FE2A /* ProductVariationCell.swift in Sources */,
 				D430CC931F2B2FA100174E5C /* SignInNavigationController.swift in Sources */,
 				D410C5EF1F24D7E0008D6C92 /* User.swift in Sources */,
 				E7A30F0400925D1700000000 /* AWSMobileClient.swift in Sources */,

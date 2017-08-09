@@ -53,13 +53,13 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
         form +++ Section("Profil")
             <<< DateRow() {
                 $0.value = Date()
-                $0.title = "Date of Birth"
+                $0.title = "Cumpleaños"
                 $0.tag = "Birthdate"
                 }.onChange{[weak self] in
                     self?.user?.birthdate = $0.value
             }
             <<< SegmentedRow<String>() {
-                $0.title = "Gender"
+                $0.title = "Sexo"
                 $0.tag = "Gender"
                 $0.options = ["👱", "👩"]
                 }.cellSetup { segmentedCell, segmentedRow in
@@ -70,7 +70,7 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
 
         form +++ Section("Tinpons")
             <<< MultipleSelectorRow<String>() {
-                $0.title = "Categories"
+                $0.title = "Categorías"
                 $0.tag = "tinponCategories"
                 $0.options = ["👕", "👖", "👞", "👜", "🕶"]
                 $0.value = ["👕"]
@@ -111,7 +111,7 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
         }
         form +++ Section("Logout")
             <<< ButtonRow() {
-                $0.title = "Sign Out"
+                $0.title = "Desconectar"
                 }.cellSetup { buttonCell, _ in
                     buttonCell.tintColor = #colorLiteral(red: 0, green: 0.8166723847, blue: 0.9823040366, alpha: 1)
                 }.onCellSelection{[weak self] _,_ in

@@ -2,7 +2,7 @@
   "commitish" : "v2.1.1",
   "iOS" : [
     {
-      "hash" : "66f0405f927587bedf7a6746c46e3dfffe2216c121820db6aff4d8c19fc6d6e9",
+      "hash" : "444baa30b7b1ac7a5b67376f14a27d9185bfff5a83b180b3bede55725c8abd35",
       "name" : "Validator"
     }
   ]

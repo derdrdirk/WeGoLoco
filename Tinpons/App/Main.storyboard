@@ -170,6 +170,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wDa-sv-Kwb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.0" green="0.77647058820000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.035294117649999998" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <connections>
                         <segue destination="p5A-2U-bQ0" kind="relationship" relationship="rootViewController" id="VSJ-pV-IbV"/>
@@ -179,10 +181,10 @@
             </objects>
             <point key="canvasLocation" x="3114" y="1979"/>
         </scene>
-        <!--Add Tinpon View Controller-->
+        <!--Add Product View Controller-->
         <scene sceneID="gwK-Kj-gQz">
             <objects>
-                <viewController storyboardIdentifier="AddProduct" id="p5A-2U-bQ0" customClass="AddTinponViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddProduct" id="p5A-2U-bQ0" customClass="AddProductViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="U9P-Vl-BVk"/>
                         <viewControllerLayoutGuide type="bottom" id="DJd-NR-8Uj"/>
@@ -252,6 +254,12 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WUr-7k-hFm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.0" green="0.77647058820000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="barTintColor" red="0.0" green="0.035294117649999998" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="40"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="EEM-2p-Tew" kind="relationship" relationship="rootViewController" id="RHX-B7-JlF"/>
@@ -261,16 +269,16 @@
             </objects>
             <point key="canvasLocation" x="1689" y="1979"/>
         </scene>
-        <!--Tinpon Manager-->
+        <!--Manager-->
         <scene sceneID="AFQ-pa-ylr">
             <objects>
-                <tableViewController id="EEM-2p-Tew" customClass="TinponManagerTableViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="EEM-2p-Tew" customClass="ManagerTableViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" id="82w-W2-lYv">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="tinponManagerCell" rowHeight="120" id="pIy-ak-5JN" customClass="TinponManagerTableViewCell" customModule="WeGoLoco" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="0.0" reuseIdentifier="managerCell" rowHeight="120" id="pIy-ak-5JN" userLabel="ManagerCell" customClass="ManagerTableViewCell" customModule="WeGoLoco" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pIy-ak-5JN" id="40z-b7-c5r">
@@ -341,7 +349,7 @@
                     <tabBarItem key="tabBarItem" title="" image="faDatabase" id="rl9-7H-Fjf">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Tinpon Manager" id="bQC-jh-fc4">
+                    <navigationItem key="navigationItem" title="Manager" id="bQC-jh-fc4">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Zfz-LR-ZeG">
                             <connections>
                                 <segue destination="p8H-ep-t55" kind="presentation" id="M3e-bh-qJq"/>
