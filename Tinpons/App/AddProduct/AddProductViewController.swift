@@ -54,7 +54,7 @@ class AddProductViewController: FormViewController, CLLocationManagerDelegate, L
         self.navigationController?.navigationBar.addSubview(progressView)
         
         // Set up Eureka form
-        form +++ Section("Product")
+        form +++ Section("Basicos")
             <<< TextRow(){
                 $0.title = "Nombre"
                 $0.placeholder = "Shoes"
@@ -67,53 +67,6 @@ class AddProductViewController: FormViewController, CLLocationManagerDelegate, L
                 }
             }.onChange{ [unowned self] in
                 self.tinpon.name = $0.value
-            }
-            <<< ImageRow() {
-                $0.title = "Imagen Principal"
-                $0.sourceTypes = [.PhotoLibrary]
-                $0.clearAction = .yes(style: .default)
-                $0.tag = "image"
-                $0.add(rule: RuleRequired())
-                $0.validationOptions = .validatesOnChange
-            }.cellUpdate { cell, row in
-                if !row.isValid {
-                    cell.textLabel?.textColor = .red
-                }
-
-                print("isClean : \(self.form.isClean())")
-            }.onChange{ [unowned self] in
-                self.tinpon.image = $0.value
-            }
-            <<< ImageRow() {
-                $0.hidden = Condition.function(["image"], { form in
-                    print("isClean2 : \(form.isClean())")
-                    print("image \(form.rowBy(tag: "image")?.isValid)")
-                    return  (self.tinpon.image == nil) || !(form.rowBy(tag: "image")?.isValid ?? false)
-                })
-                $0.title = "Imagen Adicional"
-                $0.sourceTypes = [.PhotoLibrary]
-                $0.clearAction = .yes(style: .default)
-                $0.tag = "additionalImage1"
-                $0.add(rule: RuleRequired())
-                //$0.validationOptions = .validatesOnChange
-            }
-            <<< ImageRow() {
-
-                $0.title = "Imagen Adicional"
-                $0.sourceTypes = [.PhotoLibrary]
-                $0.clearAction = .yes(style: .default)
-                $0.tag = "additionalImage2"
-                $0.add(rule: RuleRequired())
-                $0.validationOptions = .validatesOnChange
-            }
-            <<< ImageRow() {
-
-                $0.title = "Imagen Adicional"
-                $0.sourceTypes = [.PhotoLibrary]
-                $0.clearAction = .yes(style: .default)
-                $0.tag = "additionalImage3"
-                $0.add(rule: RuleRequired())
-                $0.validationOptions = .validatesOnChange
             }
             <<< DecimalRow() {
                 $0.title = "Precio"
@@ -146,6 +99,28 @@ class AddProductViewController: FormViewController, CLLocationManagerDelegate, L
                 self.tinpon.category = $0.value
             }
         
+        form +++ Section("Imagenes") {
+            $0.tag = "imageSection"
+        }
+            <<< ImageRow() {
+                $0.title = "Imagen Principal"
+                $0.sourceTypes = [.PhotoLibrary]
+                $0.clearAction = .yes(style: .default)
+                $0.tag = "mainImageRow"
+                $0.add(rule: RuleRequired())
+                $0.validationOptions = .validatesOnChange
+            }.cellUpdate { cell, row in
+                if !row.isValid {
+                    cell.textLabel?.textColor = .red
+                }
+            }.onChange{ [unowned self] in
+                self.tinpon.mainImage = $0.value
+                if $0.value != nil {
+                    self.form.sectionBy(tag: "imageSection")! <<< self.additionalImageRow()
+                }
+        }
+
+        
         form +++ Section("Variaciónes") {
             $0.tag = "Variations"
         }
@@ -161,6 +136,32 @@ class AddProductViewController: FormViewController, CLLocationManagerDelegate, L
                     
                     strongSelf.form.sectionBy(tag: "Variations")! <<< ProductVariationRow()
         }
+    }
+    
+    private func additionalImageRow() -> ImageRow {
+        let imageRow = ImageRow() {
+            $0.title = "Imagen Addicional"
+            $0.sourceTypes = [.PhotoLibrary]
+            $0.clearAction = .yes(style: .default)
+        }.onChange {
+            print("on change add image")
+            print($0.indexPath?.row)
+            if let image = $0.value {
+                // add (wOw one line arrray initelizer!)
+                (self.tinpon.additionalImages?.append(image)) ?? (self.tinpon.additionalImages = [image])
+                if self.tinpon.additionalImages?.count ?? 0 < 3 {
+                    self.form.sectionBy(tag: "imageSection")! <<< self.additionalImageRow()
+                }
+            } else {
+                // delete
+                let index = $0.indexPath!.row
+                self.tinpon.additionalImages?.remove(at: index-1)
+                $0.section?.remove(at: index)
+            }
+            print("additional images count \(self.tinpon.additionalImages?.count)")
+        }
+        
+        return imageRow
     }
     
     // MARK: Location
@@ -196,16 +197,5 @@ class AddProductViewController: FormViewController, CLLocationManagerDelegate, L
     }
 }
 
-extension Form {
-    
-    public func isClean() ->Bool {
-        for row in rows {
-            if row.wasChanged {
-                return false
-            }
-        }
-        return true
-    }
-}
 
 

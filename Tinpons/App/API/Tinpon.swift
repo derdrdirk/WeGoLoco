@@ -20,7 +20,8 @@ class Tinpon: CustomStringConvertible {
     var price: Double?
     var updatedAt: Date?
     var userId: String?
-    var image: UIImage?
+    var mainImage: UIImage?
+    var additionalImages: [UIImage]?
 
     var description: String {
         return "tinponId: \(tinponId ?? "nil")"
