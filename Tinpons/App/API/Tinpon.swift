@@ -22,7 +22,18 @@ class Tinpon: CustomStringConvertible {
     var userId: String?
     var mainImage: UIImage?
     var additionalImages: [UIImage]?
-
+    var productVariations: [ProductVariation]?
+    
+    struct ProductVariation {
+        var productSizes = [ProductSizes]()
+        var images = [UIImage]()
+    }
+    
+    struct ProductSizes {
+        var size: String
+        var quantity: Double
+    }
+    
     var description: String {
         return "tinponId: \(tinponId ?? "nil")"
     }

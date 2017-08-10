@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40308451F0FCBDE00BF1BD5 /* TinponOld.swift */; };
+		D40D974F1F3C752D00B246D0 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D974E1F3C752D00B246D0 /* Color.swift */; };
 		D40EA7101F2A315700A44735 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40EA70F1F2A315700A44735 /* SignUp.storyboard */; };
 		D40EA7151F2A40CB00A44735 /* proxima-nova-soft-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D40EA7131F2A40CA00A44735 /* proxima-nova-soft-bold.ttf */; };
 		D40EA7161F2A40CB00A44735 /* proxima-nova-soft-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D40EA7141F2A40CB00A44735 /* proxima-nova-soft-regular.ttf */; };
@@ -212,6 +213,7 @@
 		1DD70E29F77E3E0700000000 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = Tinpons/Sdk/Aws/AWSS3.framework; sourceTree = "<group>"; };
 		1DD70E29FF24C27A00000000 /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSMobileHubHelper.framework; path = Tinpons/AmazonAws/AWSMobileHubHelper.framework; sourceTree = "<group>"; };
 		D40308451F0FCBDE00BF1BD5 /* TinponOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponOld.swift; path = Tinpons/AmazonAws/Models/NoSQL/TinponOld.swift; sourceTree = SOURCE_ROOT; };
+		D40D974E1F3C752D00B246D0 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Tinpons/App/API/Color.swift; sourceTree = SOURCE_ROOT; };
 		D40EA70F1F2A315700A44735 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignUp.storyboard; path = Tinpons/App/SignIn/FirstSignIn/SignUp.storyboard; sourceTree = SOURCE_ROOT; };
 		D40EA7131F2A40CA00A44735 /* proxima-nova-soft-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "proxima-nova-soft-bold.ttf"; path = "Assets/Fonts/proxima-nova-soft-bold.ttf"; sourceTree = "<group>"; };
 		D40EA7141F2A40CB00A44735 /* proxima-nova-soft-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "proxima-nova-soft-regular.ttf"; path = "Assets/Fonts/proxima-nova-soft-regular.ttf"; sourceTree = "<group>"; };
@@ -569,6 +571,7 @@
 				D4EEF6591F2F9F8700297A5E /* Tinpon.swift */,
 				D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */,
 				D47D70601F37045B003E0708 /* APIError.swift */,
+				D40D974E1F3C752D00B246D0 /* Color.swift */,
 			);
 			name = Api;
 			path = Tinpons/App/API;
@@ -764,6 +767,7 @@
 				D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */,
 				D4AAB5A71F305A0900050E02 /* TinponsAPI.swift in Sources */,
 				D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */,
+				D40D974F1F3C752D00B246D0 /* Color.swift in Sources */,
 				D4DAE9721F1C9B20000C447E /* FavouriteCollectionViewCell.swift in Sources */,
 				D4EEF65A1F2F9F8700297A5E /* Tinpon.swift in Sources */,
 				E7A30F042B278B4700000000 /* UserPoolSignUpConfirmationViewController.swift in Sources */,

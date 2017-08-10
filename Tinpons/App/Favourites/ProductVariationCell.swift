@@ -27,6 +27,8 @@ final class ProductVariationCell: Cell<ProductVariation>, CellType, UIPickerView
     // Pickers
     var sizePickerView = UIPickerView()
     var 👕Sizes = ["XS", "S", "M", "L", "XL"]
+    var 👖Sizes = [[36, 38, 40, 42, 44, 46, 48], [36, 38, 40, 42, 44, 46, 48]]
+    var 👞Sizes = [7, 7.5, 8, 8.5, 9]
     var colorPickerView = UIPickerView()
     var colors : [[String: UIColor]] = [["Negro" : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)],["Azul" : #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1)],["Rojo" : #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)]]
     
@@ -52,7 +54,6 @@ final class ProductVariationCell: Cell<ProductVariation>, CellType, UIPickerView
         colorPickerView.showsSelectionIndicator = true
 //        colorPickerView.backgroundColor = #colorLiteral(red: 0, green: 0.03529411765, blue: 0.0862745098, alpha: 1)
         self.colorTextField.inputView = colorPickerView
-
     }
     
     // DataSource
