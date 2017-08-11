@@ -100,7 +100,7 @@
             <objects>
                 <navigationController id="ddS-sC-jhU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="ebJ-m8-Ril"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jd7-Ed-EQj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jd7-Ed-EQj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -117,7 +117,7 @@
             <objects>
                 <navigationController id="LfB-L5-P3L" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="Cbp-Nx-JGf"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OXR-Cz-A2X">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OXR-Cz-A2X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.77647058820000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -167,7 +167,7 @@
         <scene sceneID="36f-YR-cYy">
             <objects>
                 <navigationController id="p8H-ep-t55" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wDa-sv-Kwb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wDa-sv-Kwb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.77647058820000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -177,7 +177,7 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="p5A-2U-bQ0" kind="relationship" relationship="rootViewController" id="VSJ-pV-IbV"/>
+                        <segue destination="p5A-2U-bQ0" kind="relationship" relationship="rootViewController" id="cvu-Ck-vXf"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15V-f1-pXb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -248,7 +248,7 @@
         <!--Cuantidades-->
         <scene sceneID="74S-3e-Ls8">
             <objects>
-                <viewController id="nAS-J1-4rB" customClass="QuantityViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="nAS-J1-4rB" customClass="QuantitiesViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="VlC-HE-cy2"/>
                         <viewControllerLayoutGuide type="bottom" id="wkE-mb-BsN"/>
@@ -258,7 +258,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Cuantidades" id="iOI-K6-paM"/>
+                    <navigationItem key="navigationItem" title="Cuantidades" id="iOI-K6-paM">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="6zW-sr-K1v">
+                            <color key="tintColor" red="0.0" green="0.77647058820000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zZT-wq-WMN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -269,7 +273,7 @@
             <objects>
                 <navigationController id="Kpi-Xm-XQ0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="aBK-0P-8I7"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iHk-9t-19I">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iHk-9t-19I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.035294117649999998" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -291,7 +295,7 @@
             <objects>
                 <navigationController id="o7V-gW-8HN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="hcs-Nb-vM5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WUr-7k-hFm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WUr-7k-hFm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.77647058820000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -423,7 +427,7 @@
             <objects>
                 <navigationController id="wzu-Na-rKZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="Mq1-Rf-Fpz"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iG6-3H-mA5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iG6-3H-mA5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -461,7 +465,7 @@
         <scene sceneID="Pes-tX-gnk">
             <objects>
                 <collectionViewController id="5EV-VG-RIe" customClass="FavouriteCollectionViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lOV-TQ-cSZ">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="lOV-TQ-cSZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

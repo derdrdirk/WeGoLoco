@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D4025B431F3DD03600436442 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4025B421F3DD03600436442 /* Color.swift */; };
 		D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40308451F0FCBDE00BF1BD5 /* TinponOld.swift */; };
 		D40D97521F3CCCC600B246D0 /* ColorsAndSizesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97511F3CCCC600B246D0 /* ColorsAndSizesViewController.swift */; };
-		D40D97551F3CE61200B246D0 /* QuantityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97541F3CE61200B246D0 /* QuantityViewController.swift */; };
+		D40D97551F3CE61200B246D0 /* QuantitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97541F3CE61200B246D0 /* QuantitiesViewController.swift */; };
 		D40D97571F3CEACF00B246D0 /* ColorCheckRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97561F3CEACF00B246D0 /* ColorCheckRow.swift */; };
 		D40D975B1F3CEBD200B246D0 /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40D975A1F3CEBD200B246D0 /* ColorCell.xib */; };
 		D40EA7101F2A315700A44735 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40EA70F1F2A315700A44735 /* SignUp.storyboard */; };
@@ -215,9 +216,10 @@
 		1DD70E29F74071EF00000000 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = Tinpons/App/SignIn/SignInViewController.swift; sourceTree = SOURCE_ROOT; };
 		1DD70E29F77E3E0700000000 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = Tinpons/Sdk/Aws/AWSS3.framework; sourceTree = "<group>"; };
 		1DD70E29FF24C27A00000000 /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSMobileHubHelper.framework; path = Tinpons/AmazonAws/AWSMobileHubHelper.framework; sourceTree = "<group>"; };
+		D4025B421F3DD03600436442 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Tinpons/App/API/Color.swift; sourceTree = SOURCE_ROOT; };
 		D40308451F0FCBDE00BF1BD5 /* TinponOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponOld.swift; path = Tinpons/AmazonAws/Models/NoSQL/TinponOld.swift; sourceTree = SOURCE_ROOT; };
 		D40D97511F3CCCC600B246D0 /* ColorsAndSizesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorsAndSizesViewController.swift; path = Tinpons/App/Favourites/ColorsAndSizesViewController.swift; sourceTree = SOURCE_ROOT; };
-		D40D97541F3CE61200B246D0 /* QuantityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuantityViewController.swift; path = Tinpons/App/Favourites/QuantityViewController.swift; sourceTree = SOURCE_ROOT; };
+		D40D97541F3CE61200B246D0 /* QuantitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuantitiesViewController.swift; path = Tinpons/App/Favourites/QuantitiesViewController.swift; sourceTree = SOURCE_ROOT; };
 		D40D97561F3CEACF00B246D0 /* ColorCheckRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorCheckRow.swift; path = Tinpons/App/Favourites/ColorCheckRow.swift; sourceTree = SOURCE_ROOT; };
 		D40D975A1F3CEBD200B246D0 /* ColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ColorCell.xib; path = Tinpons/App/Favourites/ColorCell.xib; sourceTree = SOURCE_ROOT; };
 		D40EA70F1F2A315700A44735 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignUp.storyboard; path = Tinpons/App/SignIn/FirstSignIn/SignUp.storyboard; sourceTree = SOURCE_ROOT; };
@@ -540,7 +542,7 @@
 			children = (
 				D443C0F91EEC728100FD148F /* BasicsViewController.swift */,
 				D40D97511F3CCCC600B246D0 /* ColorsAndSizesViewController.swift */,
-				D40D97541F3CE61200B246D0 /* QuantityViewController.swift */,
+				D40D97541F3CE61200B246D0 /* QuantitiesViewController.swift */,
 				D40D975A1F3CEBD200B246D0 /* ColorCell.xib */,
 				D40D97561F3CEACF00B246D0 /* ColorCheckRow.swift */,
 				D423ABA71F3B079300A6FE2A /* ProductVariationCell.xib */,
@@ -590,6 +592,7 @@
 				D410C5EE1F24D7E0008D6C92 /* User.swift */,
 				D410C5F11F24E443008D6C92 /* UsersAPI.swift */,
 				D4EEF6591F2F9F8700297A5E /* Tinpon.swift */,
+				D4025B421F3DD03600436442 /* Color.swift */,
 				D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */,
 				D47D70601F37045B003E0708 /* APIError.swift */,
 			);
@@ -787,7 +790,7 @@
 				D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */,
 				D4DAE9721F1C9B20000C447E /* FavouriteCollectionViewCell.swift in Sources */,
 				D4EEF65A1F2F9F8700297A5E /* Tinpon.swift in Sources */,
-				D40D97551F3CE61200B246D0 /* QuantityViewController.swift in Sources */,
+				D40D97551F3CE61200B246D0 /* QuantitiesViewController.swift in Sources */,
 				E7A30F042B278B4700000000 /* UserPoolSignUpConfirmationViewController.swift in Sources */,
 				E7A30F04C071CC9E00000000 /* UserPoolMFAViewController.swift in Sources */,
 				D417F0911F1F81E700D803E0 /* LoadingAnimationProtocol.swift in Sources */,
@@ -798,6 +801,7 @@
 				D4B7D2001F28C71A008F3AE1 /* MainTabBarController.swift in Sources */,
 				D4306C811F0E6BEC0073A11E /* Stores.swift in Sources */,
 				D40D97571F3CEACF00B246D0 /* ColorCheckRow.swift in Sources */,
+				D4025B431F3DD03600436442 /* Color.swift in Sources */,
 				D4DAE9741F1C9B4A000C447E /* FavouriteCollectionViewController.swift in Sources */,
 				D41EB26A1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m in Sources */,
 				E7A30F043DD4F57200000000 /* FormTableCell.swift in Sources */,

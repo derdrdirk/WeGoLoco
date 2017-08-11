@@ -9,15 +9,6 @@
 import Foundation
 import Eureka
 
-struct Color: Equatable {
-    var name: String
-    var color: UIColor
-}
-
-func ==(lhs: Color, rhs: Color) -> Bool {
-    return lhs.name == rhs.name
-}
-
 public final class ColorCheckRow<T: Equatable>: Row<ColorCheckCell<T>>, SelectableRowType, RowType {
     public var selectableValue: T?
     required public init(tag: String?) {

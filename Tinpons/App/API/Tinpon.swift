@@ -8,6 +8,16 @@
 
 import Foundation
 
+struct ColorVariation {
+    var sizeVariations = [SizeVariation]()
+    var images = [UIImage]()
+}
+
+struct SizeVariation {
+    var size: String
+    var quantity: Int
+}
+
 class Tinpon: CustomStringConvertible {
     var tinponId: String?
     var active: Bool?
@@ -22,17 +32,7 @@ class Tinpon: CustomStringConvertible {
     var userId: String?
     var mainImage: UIImage?
     var additionalImages: [UIImage]?
-    var productVariations: [ProductVariation]?
-    
-    struct ProductVariation {
-        var productSizes = [ProductSizes]()
-        var images = [UIImage]()
-    }
-    
-    struct ProductSizes {
-        var size: String
-        var quantity: Double
-    }
+    var productVariations = [Color : ColorVariation]()
     
     var description: String {
         return "tinponId: \(tinponId ?? "nil")"
