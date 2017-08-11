@@ -28,7 +28,7 @@ class ColorsAndSizesViewController: FormViewController, LoadingAnimationProtocol
         tableView.isEditing = false
         
         // Sizes
-        form +++ SelectableSection<ListCheckRow<String>>("Tamaños", selectionType: .multipleSelection)
+        form +++ SelectableSection<ListCheckRow<String>>("Tamaños", selectionType: .multipleSelection) { $0.tag = "sizeSection" }
         let sizes = ["XS", "S", "M", "L", "XL", "XXL"]
         for option in sizes {
             form.last! <<< ListCheckRow<String>(option){ listRow in
@@ -39,7 +39,7 @@ class ColorsAndSizesViewController: FormViewController, LoadingAnimationProtocol
         }
         
         // Colors
-        form +++ SelectableSection<ListCheckRow<String>>("Colores", selectionType: .multipleSelection)
+        form +++ SelectableSection<ListCheckRow<String>>("Colores", selectionType: .multipleSelection) { $0.tag = "colorSection" }
         let colors = ["Negro", "Azul", "Rojo"]
         for option in colors {
             form.last! <<< ListCheckRow<String>(option){ listRow in
@@ -64,10 +64,15 @@ class ColorsAndSizesViewController: FormViewController, LoadingAnimationProtocol
                 }.onCellSelection{[weak self] buttonCell, row in
                     guard let strongSelf = self else { return }
                     
-                    if strongSelf.form.validate().isEmpty {
+                    let sizeSection = strongSelf.form.sectionBy(tag: "sizeSection") as! SelectableSection<ListCheckRow<String>>
+                    let selectedSizes = sizeSection.selectedRows()
+                    let colorSection = strongSelf.form.sectionBy(tag: "colorSection") as! SelectableSection<ListCheckRow<String>>
+                    let selectedColors = colorSection.selectedRows()
+                    
+                    if selectedSizes.count > 0 && selectedColors.count > 0 {
                         strongSelf.performSegue(withIdentifier: "segueToQuantities", sender: self)
                     } else {
-                        let message = Message(title: "El formulario no es valido.", backgroundColor: .red)
+                        let message = Message(title: "Hay que seleccionar tamaños y colores.", backgroundColor: .red)
                         Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)
                     }
         }
