@@ -18,6 +18,7 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
     var loadingAnimationOverlay: UIView!
     var loadingAnimationIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var saveButton: UIBarButtonItem!
     var tinpon: Tinpon!
     
     override func viewDidLoad() {
@@ -46,6 +47,11 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
         for sizeVariation in colorVariation.sizeVariations {
             section <<< IntRow() {
                 $0.title = "Cuantidad - "+sizeVariation.size
+                $0.add(rule: RuleRequired())
+            }.cellUpdate { cell, row in
+                if !row.isValid {
+                    cell.titleLabel?.textColor = .red
+                }
             }
         }
         
@@ -79,4 +85,16 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
         
         return imageRow
     }
+    
+    // MARK : Actions
+    
+    @IBAction func saveButton(_ sender: UIBarButtonItem) {
+        if form.validate().isEmpty {
+            print("nice continue")
+        } else {
+            let message = Message(title: "Faltan cuantidades.", backgroundColor: .red)
+            Whisper.show(whisper: message, to: navigationController!, action: .show)
+        }
+    }
+    
 }
