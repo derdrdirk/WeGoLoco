@@ -1,0 +1,80 @@
+//
+//  productVariationCell.swift
+//  WeGoLoco
+//
+//  Created by Dirk Hornung on 9/8/17.
+//
+//
+
+import Foundation
+import Eureka
+
+struct Color: Equatable {
+    var name: String
+    var color: UIColor
+}
+
+func ==(lhs: Color, rhs: Color) -> Bool {
+    return lhs.name == rhs.name
+}
+
+public final class ColorCheckRow<T: Equatable>: Row<ColorCheckCell<T>>, SelectableRowType, RowType {
+    public var selectableValue: T?
+    required public init(tag: String?) {
+        super.init(tag: tag)
+        displayValueFor = nil
+    }
+}
+
+public class ColorCheckCell<T: Equatable> : Cell<T>, CellType {
+    
+    required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    var circleView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
+    var circleColor: UIColor!
+    
+    public override func setup() {
+        super.setup()
+        print("setup \(row.title)")
+        accessoryType = .none
+        
+        circleColor = colorDictionary[row.title!]
+        
+        circleView.layer.borderColor = circleColor.cgColor
+        circleView.layer.borderWidth = 1
+        
+        accessoryView = circleView
+        accessoryView?.sizeToFit()
+        
+    }
+
+    public override func update() {
+        super.update()
+        print("update \(row.title)")
+        print("row value \(row.value)")
+        
+        if row.value != nil {
+            circleView.backgroundColor = circleColor
+        } else {
+            circleView.backgroundColor = nil
+        }
+    }
+    
+    public override func didSelect() {
+        row.select()
+        row.deselect()
+    }
+    
+}
+
+
+
+
+
+

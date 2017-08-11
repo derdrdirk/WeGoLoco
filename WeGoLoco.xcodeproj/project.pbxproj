@@ -8,7 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40308451F0FCBDE00BF1BD5 /* TinponOld.swift */; };
-		D40D974F1F3C752D00B246D0 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D974E1F3C752D00B246D0 /* Color.swift */; };
+		D40D97521F3CCCC600B246D0 /* ColorsAndSizesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97511F3CCCC600B246D0 /* ColorsAndSizesViewController.swift */; };
+		D40D97551F3CE61200B246D0 /* QuantityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97541F3CE61200B246D0 /* QuantityViewController.swift */; };
+		D40D97571F3CEACF00B246D0 /* ColorCheckRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97561F3CEACF00B246D0 /* ColorCheckRow.swift */; };
+		D40D975B1F3CEBD200B246D0 /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40D975A1F3CEBD200B246D0 /* ColorCell.xib */; };
 		D40EA7101F2A315700A44735 /* SignUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D40EA70F1F2A315700A44735 /* SignUp.storyboard */; };
 		D40EA7151F2A40CB00A44735 /* proxima-nova-soft-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D40EA7131F2A40CA00A44735 /* proxima-nova-soft-bold.ttf */; };
 		D40EA7161F2A40CB00A44735 /* proxima-nova-soft-regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D40EA7141F2A40CB00A44735 /* proxima-nova-soft-regular.ttf */; };
@@ -46,7 +49,7 @@
 		D43777981F262CDB0023448F /* APIGatewayProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43777971F262CDB0023448F /* APIGatewayProtocol.swift */; };
 		D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F51EEC699D00FD148F /* SwiperViewController.swift */; };
 		D443C0F81EEC6CA300FD148F /* BackgroundKolodaAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */; };
-		D443C0FA1EEC728100FD148F /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F91EEC728100FD148F /* AddProductViewController.swift */; };
+		D443C0FA1EEC728100FD148F /* BasicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F91EEC728100FD148F /* BasicsViewController.swift */; };
 		D4512B481F18E448009B109C /* ManagerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4512B471F18E448009B109C /* ManagerTableViewController.swift */; };
 		D4512B4A1F1930BE009B109C /* ManagerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4512B491F1930BE009B109C /* ManagerTableViewCell.swift */; };
 		D452206A1F2C924C00D01C43 /* Validator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45220691F2C924C00D01C43 /* Validator.framework */; };
@@ -213,7 +216,10 @@
 		1DD70E29F77E3E0700000000 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = Tinpons/Sdk/Aws/AWSS3.framework; sourceTree = "<group>"; };
 		1DD70E29FF24C27A00000000 /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSMobileHubHelper.framework; path = Tinpons/AmazonAws/AWSMobileHubHelper.framework; sourceTree = "<group>"; };
 		D40308451F0FCBDE00BF1BD5 /* TinponOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponOld.swift; path = Tinpons/AmazonAws/Models/NoSQL/TinponOld.swift; sourceTree = SOURCE_ROOT; };
-		D40D974E1F3C752D00B246D0 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Tinpons/App/API/Color.swift; sourceTree = SOURCE_ROOT; };
+		D40D97511F3CCCC600B246D0 /* ColorsAndSizesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorsAndSizesViewController.swift; path = Tinpons/App/Favourites/ColorsAndSizesViewController.swift; sourceTree = SOURCE_ROOT; };
+		D40D97541F3CE61200B246D0 /* QuantityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuantityViewController.swift; path = Tinpons/App/Favourites/QuantityViewController.swift; sourceTree = SOURCE_ROOT; };
+		D40D97561F3CEACF00B246D0 /* ColorCheckRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorCheckRow.swift; path = Tinpons/App/Favourites/ColorCheckRow.swift; sourceTree = SOURCE_ROOT; };
+		D40D975A1F3CEBD200B246D0 /* ColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ColorCell.xib; path = Tinpons/App/Favourites/ColorCell.xib; sourceTree = SOURCE_ROOT; };
 		D40EA70F1F2A315700A44735 /* SignUp.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SignUp.storyboard; path = Tinpons/App/SignIn/FirstSignIn/SignUp.storyboard; sourceTree = SOURCE_ROOT; };
 		D40EA7131F2A40CA00A44735 /* proxima-nova-soft-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "proxima-nova-soft-bold.ttf"; path = "Assets/Fonts/proxima-nova-soft-bold.ttf"; sourceTree = "<group>"; };
 		D40EA7141F2A40CB00A44735 /* proxima-nova-soft-regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "proxima-nova-soft-regular.ttf"; path = "Assets/Fonts/proxima-nova-soft-regular.ttf"; sourceTree = "<group>"; };
@@ -251,7 +257,7 @@
 		D43777971F262CDB0023448F /* APIGatewayProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = APIGatewayProtocol.swift; path = Tinpons/App/API/APIGatewayProtocol.swift; sourceTree = SOURCE_ROOT; };
 		D443C0F51EEC699D00FD148F /* SwiperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiperViewController.swift; path = Tinpons/App/Swiper/SwiperViewController.swift; sourceTree = SOURCE_ROOT; };
 		D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundKolodaAnimator.swift; path = Tinpons/App/Swiper/BackgroundKolodaAnimator.swift; sourceTree = SOURCE_ROOT; };
-		D443C0F91EEC728100FD148F /* AddProductViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddProductViewController.swift; path = Tinpons/App/AddProduct/AddProductViewController.swift; sourceTree = SOURCE_ROOT; };
+		D443C0F91EEC728100FD148F /* BasicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicsViewController.swift; path = Tinpons/App/AddProduct/BasicsViewController.swift; sourceTree = SOURCE_ROOT; };
 		D4512B471F18E448009B109C /* ManagerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagerTableViewController.swift; path = Tinpons/App/Favourites/ManagerTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		D4512B491F1930BE009B109C /* ManagerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagerTableViewCell.swift; path = Tinpons/App/Favourites/ManagerTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		D45220681F2C840400D01C43 /* Validator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Validator.framework; path = Carthage/Build/iOS/Validator.framework; sourceTree = "<group>"; };
@@ -529,6 +535,21 @@
 			path = Tinpons/amazonaws/models;
 			sourceTree = "<group>";
 		};
+		D40D97531F3CCCFB00B246D0 /* Add Product */ = {
+			isa = PBXGroup;
+			children = (
+				D443C0F91EEC728100FD148F /* BasicsViewController.swift */,
+				D40D97511F3CCCC600B246D0 /* ColorsAndSizesViewController.swift */,
+				D40D97541F3CE61200B246D0 /* QuantityViewController.swift */,
+				D40D975A1F3CEBD200B246D0 /* ColorCell.xib */,
+				D40D97561F3CEACF00B246D0 /* ColorCheckRow.swift */,
+				D423ABA71F3B079300A6FE2A /* ProductVariationCell.xib */,
+				D423ABA91F3B111200A6FE2A /* ProductVariationCell.swift */,
+				D4A69B9F1F3B13A900037002 /* ProductVariationRow.swift */,
+			);
+			name = "Add Product";
+			sourceTree = "<group>";
+		};
 		D40EA70E1F2A313C00A44735 /* SignUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -571,7 +592,6 @@
 				D4EEF6591F2F9F8700297A5E /* Tinpon.swift */,
 				D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */,
 				D47D70601F37045B003E0708 /* APIError.swift */,
-				D40D974E1F3C752D00B246D0 /* Color.swift */,
 			);
 			name = Api;
 			path = Tinpons/App/API;
@@ -590,12 +610,9 @@
 		D423ABA41F3B06D400A6FE2A /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				D443C0F91EEC728100FD148F /* AddProductViewController.swift */,
+				D40D97531F3CCCFB00B246D0 /* Add Product */,
 				D4512B491F1930BE009B109C /* ManagerTableViewCell.swift */,
 				D4512B471F18E448009B109C /* ManagerTableViewController.swift */,
-				D423ABA71F3B079300A6FE2A /* ProductVariationCell.xib */,
-				D423ABA91F3B111200A6FE2A /* ProductVariationCell.swift */,
-				D4A69B9F1F3B13A900037002 /* ProductVariationRow.swift */,
 			);
 			name = Manager;
 			path = Tinpons/App/Favourites;
@@ -713,6 +730,7 @@
 				D40EA7151F2A40CB00A44735 /* proxima-nova-soft-bold.ttf in Resources */,
 				D4E258221EEC1A6400B2B986 /* CustomOverlayView.xib in Resources */,
 				D40EA7161F2A40CB00A44735 /* proxima-nova-soft-regular.ttf in Resources */,
+				D40D975B1F3CEBD200B246D0 /* ColorCell.xib in Resources */,
 				D423ABA81F3B079300A6FE2A /* ProductVariationCell.xib in Resources */,
 				E7A30F04490C0AB000000000 /* Images.xcassets in Resources */,
 				E7A30F0489AA356400000000 /* UserPools.storyboard in Resources */,
@@ -767,9 +785,9 @@
 				D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */,
 				D4AAB5A71F305A0900050E02 /* TinponsAPI.swift in Sources */,
 				D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */,
-				D40D974F1F3C752D00B246D0 /* Color.swift in Sources */,
 				D4DAE9721F1C9B20000C447E /* FavouriteCollectionViewCell.swift in Sources */,
 				D4EEF65A1F2F9F8700297A5E /* Tinpon.swift in Sources */,
+				D40D97551F3CE61200B246D0 /* QuantityViewController.swift in Sources */,
 				E7A30F042B278B4700000000 /* UserPoolSignUpConfirmationViewController.swift in Sources */,
 				E7A30F04C071CC9E00000000 /* UserPoolMFAViewController.swift in Sources */,
 				D417F0911F1F81E700D803E0 /* LoadingAnimationProtocol.swift in Sources */,
@@ -779,6 +797,7 @@
 				D410C5E41F23A14D008D6C92 /* AWSConfiguration.swift in Sources */,
 				D4B7D2001F28C71A008F3AE1 /* MainTabBarController.swift in Sources */,
 				D4306C811F0E6BEC0073A11E /* Stores.swift in Sources */,
+				D40D97571F3CEACF00B246D0 /* ColorCheckRow.swift in Sources */,
 				D4DAE9741F1C9B4A000C447E /* FavouriteCollectionViewController.swift in Sources */,
 				D41EB26A1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m in Sources */,
 				E7A30F043DD4F57200000000 /* FormTableCell.swift in Sources */,
@@ -802,7 +821,7 @@
 				E7A30F048DE0B1CD00000000 /* DynamoDBTinpon.swift in Sources */,
 				D4B95B961F1E84180078289F /* Extensions.swift in Sources */,
 				D4DC434E1F1E3A2000BC1283 /* UserWrapper.swift in Sources */,
-				D443C0FA1EEC728100FD148F /* AddProductViewController.swift in Sources */,
+				D443C0FA1EEC728100FD148F /* BasicsViewController.swift in Sources */,
 				E7A30F04023CE26000000000 /* FacebookIdentityProfile.swift in Sources */,
 				D41A5D5E1F39959D00D1191C /* UserPoolPasswordViewController.swift in Sources */,
 				E7A30F04C2DDB4B200000000 /* SignInViewControllerExtensions.swift in Sources */,
@@ -816,6 +835,7 @@
 				D4FC90E51F1669F8002A6F9E /* SwipedTinponsCore.swift in Sources */,
 				D45220731F2CD96200D01C43 /* CategoriesTableViewController.swift in Sources */,
 				D4512B4A1F1930BE009B109C /* ManagerTableViewCell.swift in Sources */,
+				D40D97521F3CCCC600B246D0 /* ColorsAndSizesViewController.swift in Sources */,
 				D41EB26B1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.m in Sources */,
 				D410C5F21F24E443008D6C92 /* UsersAPI.swift in Sources */,
 				D4A69BA01F3B13A900037002 /* ProductVariationRow.swift in Sources */,
