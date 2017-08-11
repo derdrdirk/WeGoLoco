@@ -23,12 +23,14 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         loadingAnimationView = navigationController?.view
         
         tableView.isEditing = false
         
         productSections()
     }
+    
     
     
     // MARK: Sections
@@ -41,7 +43,10 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
     }
     
     private func colorSection(color: Color) -> Section {
-        let section = Section(color.spanishName)
+        let section = MultivaluedSection(multivaluedOptions: [.Reorder, .Delete],
+                               header: color.spanishName,
+                               footer: "Swipe a la izquierda para borrar fillas.")
+
         let colorVariation = tinpon.productVariations[color]!
         
         for sizeVariation in colorVariation.sizeVariations {
@@ -59,7 +64,6 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
         
         return section
     }
-    
     
     // MARK: Rows
     
@@ -97,4 +101,10 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
         }
     }
     
+    
+    // MARK : Navigation
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("segue")
+    }
 }
