@@ -16,6 +16,8 @@ import MapKit
 import CoreLocation
 import Whisper
 import PromiseKit
+import TOCropViewController
+
 
 class BasicsViewController: FormViewController, CLLocationManagerDelegate, LoadingAnimationProtocol {
     
@@ -36,14 +38,14 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
         super.viewWillAppear(animated)
         
         // test tinpon
-        let tinpon = Tinpon(testing: true)
-        firstly {
-            TinponsAPI.save(tinpon: tinpon)
-            }.then {
-                print("tinpon uploaded")
-            }.catch { error in
-                print("some error \(error)")
-        }
+//        let tinpon = Tinpon(testing: true)
+//        firstly {
+//            TinponsAPI.save(tinpon: tinpon)
+//            }.then {
+//                print("tinpon uploaded")
+//            }.catch { error in
+//                print("some error \(error)")
+//        }
 
     }
     
@@ -132,6 +134,10 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
                     if !row.isValid {
                         cell.textLabel?.textColor = .red
                     }
+                    if let image = row.value {
+                        self.presentCropViewController(image: image)
+                    }
+                    
                 }.onChange{ [unowned self] in
                     self.tinpon.mainImage = $0.value
         }
@@ -173,6 +179,46 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let colorsAndSizesViewController = segue.destination as! ColorsAndSizesViewController
         colorsAndSizesViewController.tinpon = self.tinpon
+    }
+}
+
+extension BasicsViewController:  TOCropViewControllerDelegate {
+    func presentCropViewController(image: UIImage) {
+        let image = image
+        
+        let cropViewController = TOCropViewController(image: image)
+        cropViewController.aspectRatioLockEnabled = true
+        cropViewController.aspectRatioPickerButtonHidden = true
+        cropViewController.aspectRatioPreset = .presetSquare
+        cropViewController.resetAspectRatioEnabled = false
+        cropViewController.delegate = self
+        self.present(cropViewController, animated: true, completion: nil)
+    }
+    
+    func cropViewController(_ cropViewController: TOCropViewController, didCropToImage image: UIImage, rect cropRect: CGRect, angle angle: NSInteger) {
+        dismiss(animated: false)
+        presentFilterViewController(image: image)
+    }
+}
+
+extension BasicsViewController: SHViewControllerDelegate {
+    func presentFilterViewController(image: UIImage) {
+        let imageToBeFiltered = image
+        let vc = SHViewController(image: imageToBeFiltered)
+        vc.delegate = self
+        present(vc, animated:true, completion: nil)
+
+    }
+    
+    func shViewControllerImageDidFilter(image: UIImage) {
+        if let imageRow = form.rowBy(tag: "mainImageRow") as? ImageRow {
+            imageRow.value = image
+            imageRow.reload()
+        }
+    }
+    
+    func shViewControllerDidCancel() {
+        // This will be called when you cancel filtering the image.
     }
 }
 

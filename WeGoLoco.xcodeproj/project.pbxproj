@@ -39,6 +39,13 @@
 		D41EB2701F3395A0003842E4 /* EmailConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41EB26F1F3395A0003842E4 /* EmailConfirmationViewController.swift */; };
 		D423ABA81F3B079300A6FE2A /* ProductVariationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D423ABA71F3B079300A6FE2A /* ProductVariationCell.xib */; };
 		D423ABAA1F3B111200A6FE2A /* ProductVariationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D423ABA91F3B111200A6FE2A /* ProductVariationCell.swift */; };
+		D42994471F3F5DEA0031B280 /* TOCropViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D42994461F3F5DEA0031B280 /* TOCropViewController.framework */; };
+		D42994481F3F5DEA0031B280 /* TOCropViewController.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D42994461F3F5DEA0031B280 /* TOCropViewController.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D429944F1F3F64320031B280 /* SHCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D429944E1F3F64320031B280 /* SHCollectionViewCell.swift */; };
+		D42994511F3F643A0031B280 /* SHViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D42994501F3F643A0031B280 /* SHViewController.swift */; };
+		D42994531F3F64500031B280 /* SHCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42994521F3F64500031B280 /* SHCollectionViewCell.xib */; };
+		D42994551F3F64550031B280 /* SHViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D42994541F3F64550031B280 /* SHViewController.xib */; };
+		D42994571F3F650A0031B280 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D42994561F3F650A0031B280 /* Media.xcassets */; };
 		D42DC6BB1F1BF9800087EB4F /* Whisper.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D42DC6B91F1BF8D40087EB4F /* Whisper.framework */; };
 		D42DC6BC1F1BF9800087EB4F /* Whisper.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D42DC6B91F1BF8D40087EB4F /* Whisper.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4306C811F0E6BEC0073A11E /* Stores.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4306C801F0E6BEC0073A11E /* Stores.swift */; };
@@ -146,6 +153,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D42994481F3F5DEA0031B280 /* TOCropViewController.framework in Embed Frameworks */,
 				D47F96E91EED8D0000B9FCE3 /* Eureka.framework in Embed Frameworks */,
 				D47F96F11EED938400B9FCE3 /* ImageRow.framework in Embed Frameworks */,
 				D480D0591EEBEF7200B4193A /* Koloda.framework in Embed Frameworks */,
@@ -249,6 +257,12 @@
 		D41EB26F1F3395A0003842E4 /* EmailConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = EmailConfirmationViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/EmailConfirmationViewController.swift; sourceTree = SOURCE_ROOT; };
 		D423ABA71F3B079300A6FE2A /* ProductVariationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductVariationCell.xib; path = Tinpons/App/Favourites/ProductVariationCell.xib; sourceTree = SOURCE_ROOT; };
 		D423ABA91F3B111200A6FE2A /* ProductVariationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductVariationCell.swift; path = Tinpons/App/Favourites/ProductVariationCell.swift; sourceTree = SOURCE_ROOT; };
+		D42994461F3F5DEA0031B280 /* TOCropViewController.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = TOCropViewController.framework; path = Carthage/Build/iOS/TOCropViewController.framework; sourceTree = "<group>"; };
+		D429944E1F3F64320031B280 /* SHCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHCollectionViewCell.swift; sourceTree = "<group>"; };
+		D42994501F3F643A0031B280 /* SHViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SHViewController.swift; sourceTree = "<group>"; };
+		D42994521F3F64500031B280 /* SHCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SHCollectionViewCell.xib; sourceTree = "<group>"; };
+		D42994541F3F64550031B280 /* SHViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SHViewController.xib; sourceTree = "<group>"; };
+		D42994561F3F650A0031B280 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		D42DC6B91F1BF8D40087EB4F /* Whisper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Whisper.framework; path = Carthage/Build/iOS/Whisper.framework; sourceTree = "<group>"; };
 		D4306C801F0E6BEC0073A11E /* Stores.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Stores.swift; path = Tinpons/AmazonAws/Models/NoSQL/Stores.swift; sourceTree = SOURCE_ROOT; };
 		D4306C821F0E73780073A11E /* AWSHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AWSHelper.swift; path = Tinpons/AmazonAws/Models/NoSQL/AWSHelper.swift; sourceTree = SOURCE_ROOT; };
@@ -316,6 +330,7 @@
 				E7A30F040879B56F00000001 /* AWSCognito.framework in Frameworks */,
 				D47F96F01EED938400B9FCE3 /* ImageRow.framework in Frameworks */,
 				E7A30F046317E39C00000001 /* AWSS3.framework in Frameworks */,
+				D42994471F3F5DEA0031B280 /* TOCropViewController.framework in Frameworks */,
 				E7A30F045560C2B200000000 /* AWSMobileHubHelper.framework in Frameworks */,
 				E7A30F04F1E5184200000000 /* AWSFacebookSignIn.framework in Frameworks */,
 				E7A30F040E0E6CF100000000 /* UIKit.framework in Frameworks */,
@@ -425,6 +440,7 @@
 		B401C9793DAC23B500000000 /* mainGroup */ = {
 			isa = PBXGroup;
 			children = (
+				D42994461F3F5DEA0031B280 /* TOCropViewController.framework */,
 				D4CA25BC1F279879007AF347 /* Assets */,
 				B401C9792ED981A800000000 /* Frameworks */,
 				B401C9793F3D745900000000 /* WeGoLoco */,
@@ -436,6 +452,7 @@
 		B401C9793F3D745900000000 /* WeGoLoco */ = {
 			isa = PBXGroup;
 			children = (
+				D429944D1F3F64250031B280 /* Sharaku */,
 				B401C97953B32C8900000000 /* AmazonAws */,
 				B401C9792DF24DB900000000 /* App */,
 				1DD70E299FE8008200000000 /* Tinpons.entitlements */,
@@ -621,6 +638,18 @@
 			path = Tinpons/App/Favourites;
 			sourceTree = "<group>";
 		};
+		D429944D1F3F64250031B280 /* Sharaku */ = {
+			isa = PBXGroup;
+			children = (
+				D42994561F3F650A0031B280 /* Media.xcassets */,
+				D42994541F3F64550031B280 /* SHViewController.xib */,
+				D42994521F3F64500031B280 /* SHCollectionViewCell.xib */,
+				D429944E1F3F64320031B280 /* SHCollectionViewCell.swift */,
+				D42994501F3F643A0031B280 /* SHViewController.swift */,
+			);
+			name = Sharaku;
+			sourceTree = "<group>";
+		};
 		D4512B421F189D42009B109C /* Favourites */ = {
 			isa = PBXGroup;
 			children = (
@@ -726,7 +755,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D42994551F3F64550031B280 /* SHViewController.xib in Resources */,
 				D4B7D1FE1F28C442008F3AE1 /* RemachineScript.ttf in Resources */,
+				D42994531F3F64500031B280 /* SHCollectionViewCell.xib in Resources */,
 				E7A30F0479F95AEB00000000 /* SignIn.storyboard in Resources */,
 				D40EA7101F2A315700A44735 /* SignUp.storyboard in Resources */,
 				E7A30F046FFFB5F100000000 /* Launch Screen.storyboard in Resources */,
@@ -734,6 +765,7 @@
 				D4E258221EEC1A6400B2B986 /* CustomOverlayView.xib in Resources */,
 				D40EA7161F2A40CB00A44735 /* proxima-nova-soft-regular.ttf in Resources */,
 				D40D975B1F3CEBD200B246D0 /* ColorCell.xib in Resources */,
+				D42994571F3F650A0031B280 /* Media.xcassets in Resources */,
 				D423ABA81F3B079300A6FE2A /* ProductVariationCell.xib in Resources */,
 				E7A30F04490C0AB000000000 /* Images.xcassets in Resources */,
 				E7A30F0489AA356400000000 /* UserPools.storyboard in Resources */,
@@ -805,6 +837,7 @@
 				D4DAE9741F1C9B4A000C447E /* FavouriteCollectionViewController.swift in Sources */,
 				D41EB26A1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m in Sources */,
 				E7A30F043DD4F57200000000 /* FormTableCell.swift in Sources */,
+				D42994511F3F643A0031B280 /* SHViewController.swift in Sources */,
 				D4FA2EC91F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift in Sources */,
 				E7A30F04FE04727700000000 /* TableInputCell.swift in Sources */,
 				D47D70611F37045B003E0708 /* APIError.swift in Sources */,
@@ -817,6 +850,7 @@
 				E7A30F0493F7667400000000 /* UtilityFunctions.swift in Sources */,
 				E7A30F04741B216700000000 /* AuthenticationProtocol.swift in Sources */,
 				E7A30F04B8261BDC00000000 /* UserPoolsIdentityProfile.swift in Sources */,
+				D429944F1F3F64320031B280 /* SHCollectionViewCell.swift in Sources */,
 				D4FC90E31F163328002A6F9E /* SwipedTinpon.swift in Sources */,
 				D4FA2ED21F0D10FD00B287FB /* DynamoDBUser.swift in Sources */,
 				E7A30F044B6ABE3800000000 /* UserPoolSignUpViewController.swift in Sources */,

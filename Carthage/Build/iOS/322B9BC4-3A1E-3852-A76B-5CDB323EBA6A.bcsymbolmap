@@ -1,0 +1,758 @@
+BCSymbolMap Version: 2.0
+-[TOCropViewControllerTransitioning transitionDuration:]
+-[TOCropViewControllerTransitioning animateTransition:]
+___55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke
+___copy_helper_block_
+___destroy_helper_block_
+___55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke.46
+___55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke_2
+___copy_helper_block_.47
+___destroy_helper_block_.48
+___55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke.50
+___copy_helper_block_.53
+___destroy_helper_block_.54
+___copy_helper_block_.59
+___destroy_helper_block_.60
+___55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke.64
+___copy_helper_block_.65
+___destroy_helper_block_.66
+___55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke.68
+___copy_helper_block_.75
+___destroy_helper_block_.76
+-[TOCropViewControllerTransitioning reset]
+-[TOCropViewControllerTransitioning isDismissing]
+-[TOCropViewControllerTransitioning setIsDismissing:]
+-[TOCropViewControllerTransitioning image]
+-[TOCropViewControllerTransitioning setImage:]
+-[TOCropViewControllerTransitioning fromView]
+-[TOCropViewControllerTransitioning setFromView:]
+-[TOCropViewControllerTransitioning toView]
+-[TOCropViewControllerTransitioning setToView:]
+-[TOCropViewControllerTransitioning fromFrame]
+-[TOCropViewControllerTransitioning setFromFrame:]
+-[TOCropViewControllerTransitioning toFrame]
+-[TOCropViewControllerTransitioning setToFrame:]
+-[TOCropViewControllerTransitioning prepareForTransitionHandler]
+-[TOCropViewControllerTransitioning setPrepareForTransitionHandler:]
+-[TOCropViewControllerTransitioning .cxx_destruct]
+___block_descriptor_tmp
+___block_descriptor_tmp.49
+___block_descriptor_tmp.56
+___block_descriptor_tmp.61
+___block_descriptor_tmp.67
+___block_descriptor_tmp.77
+_OBJC_IVAR_$_TOCropViewControllerTransitioning._isDismissing
+_OBJC_IVAR_$_TOCropViewControllerTransitioning._image
+_OBJC_IVAR_$_TOCropViewControllerTransitioning._fromView
+_OBJC_IVAR_$_TOCropViewControllerTransitioning._toView
+_OBJC_IVAR_$_TOCropViewControllerTransitioning._fromFrame
+_OBJC_IVAR_$_TOCropViewControllerTransitioning._toFrame
+_OBJC_IVAR_$_TOCropViewControllerTransitioning._prepareForTransitionHandler
+l_OBJC_PROTOCOL_$_NSObject
+l_OBJC_LABEL_PROTOCOL_$_NSObject
+l_OBJC_PROTOCOL_$_UIViewControllerAnimatedTransitioning
+l_OBJC_LABEL_PROTOCOL_$_UIViewControllerAnimatedTransitioning
+Apple LLVM version 8.1.0 (clang-802.0.42)
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/Models/TOCropViewControllerTransitioning.m
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/Models/TOCropViewControllerTransitioning.h
+__destroy_helper_block_
+__copy_helper_block_
+__55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke.68
+__55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke.64
+__55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke.50
+__55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke_2
+__55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke.46
+__55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke
+-[TOActivityCroppedImageProvider initWithImage:cropFrame:angle:circular:]
+-[TOActivityCroppedImageProvider activityViewControllerPlaceholderItem:]
+-[TOActivityCroppedImageProvider activityViewController:itemForActivityType:]
+-[TOActivityCroppedImageProvider item]
+-[TOActivityCroppedImageProvider image]
+-[TOActivityCroppedImageProvider setImage:]
+-[TOActivityCroppedImageProvider cropFrame]
+-[TOActivityCroppedImageProvider setCropFrame:]
+-[TOActivityCroppedImageProvider angle]
+-[TOActivityCroppedImageProvider setAngle:]
+-[TOActivityCroppedImageProvider circular]
+-[TOActivityCroppedImageProvider setCircular:]
+-[TOActivityCroppedImageProvider croppedImage]
+-[TOActivityCroppedImageProvider setCroppedImage:]
+-[TOActivityCroppedImageProvider .cxx_destruct]
+_OBJC_IVAR_$_TOActivityCroppedImageProvider._image
+_OBJC_IVAR_$_TOActivityCroppedImageProvider._cropFrame
+_OBJC_IVAR_$_TOActivityCroppedImageProvider._angle
+_OBJC_IVAR_$_TOActivityCroppedImageProvider._circular
+_OBJC_IVAR_$_TOActivityCroppedImageProvider._croppedImage
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/Models/TOActivityCroppedImageProvider.m
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/Models/TOActivityCroppedImageProvider.h
+-[TOCroppedImageAttributes initWithCroppedFrame:angle:originalImageSize:]
+-[TOCroppedImageAttributes angle]
+-[TOCroppedImageAttributes setAngle:]
+-[TOCroppedImageAttributes croppedFrame]
+-[TOCroppedImageAttributes setCroppedFrame:]
+-[TOCroppedImageAttributes originalImageSize]
+-[TOCroppedImageAttributes setOriginalImageSize:]
+_OBJC_IVAR_$_TOCroppedImageAttributes._angle
+_OBJC_IVAR_$_TOCroppedImageAttributes._croppedFrame
+_OBJC_IVAR_$_TOCroppedImageAttributes._originalImageSize
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/Models/TOCroppedImageAttributes.m
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/Models/TOCroppedImageAttributes.h
+-[UIImage(CropRotate) hasAlpha]
+-[UIImage(CropRotate) croppedImageWithFrame:angle:circularClip:]
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/Models/UIImage+CropRotate.m
+-[TOCropOverlayView initWithFrame:]
+-[TOCropOverlayView setup]
+___26-[TOCropOverlayView setup]_block_invoke
+-[TOCropOverlayView setFrame:]
+-[TOCropOverlayView didMoveToSuperview]
+-[TOCropOverlayView layoutLines]
+-[TOCropOverlayView setGridHidden:animated:]
+___44-[TOCropOverlayView setGridHidden:animated:]_block_invoke
+___copy_helper_block_.49
+___destroy_helper_block_.50
+-[TOCropOverlayView setDisplayHorizontalGridLines:]
+___51-[TOCropOverlayView setDisplayHorizontalGridLines:]_block_invoke
+-[TOCropOverlayView setDisplayVerticalGridLines:]
+___49-[TOCropOverlayView setDisplayVerticalGridLines:]_block_invoke
+-[TOCropOverlayView setGridHidden:]
+-[TOCropOverlayView createNewLineView]
+-[TOCropOverlayView gridHidden]
+-[TOCropOverlayView displayHorizontalGridLines]
+-[TOCropOverlayView displayVerticalGridLines]
+-[TOCropOverlayView horizontalGridLines]
+-[TOCropOverlayView setHorizontalGridLines:]
+-[TOCropOverlayView verticalGridLines]
+-[TOCropOverlayView setVerticalGridLines:]
+-[TOCropOverlayView outerLineViews]
+-[TOCropOverlayView setOuterLineViews:]
+-[TOCropOverlayView topLeftLineViews]
+-[TOCropOverlayView setTopLeftLineViews:]
+-[TOCropOverlayView bottomLeftLineViews]
+-[TOCropOverlayView setBottomLeftLineViews:]
+-[TOCropOverlayView bottomRightLineViews]
+-[TOCropOverlayView setBottomRightLineViews:]
+-[TOCropOverlayView topRightLineViews]
+-[TOCropOverlayView setTopRightLineViews:]
+-[TOCropOverlayView .cxx_destruct]
+_OBJC_IVAR_$_TOCropOverlayView._outerLineViews
+_OBJC_IVAR_$_TOCropOverlayView._topLeftLineViews
+_OBJC_IVAR_$_TOCropOverlayView._bottomLeftLineViews
+_OBJC_IVAR_$_TOCropOverlayView._topRightLineViews
+_OBJC_IVAR_$_TOCropOverlayView._bottomRightLineViews
+_OBJC_IVAR_$_TOCropOverlayView._gridHidden
+___block_descriptor_tmp.52
+_OBJC_IVAR_$_TOCropOverlayView._displayHorizontalGridLines
+___block_descriptor_tmp.58
+___block_literal_global
+_OBJC_IVAR_$_TOCropOverlayView._displayVerticalGridLines
+___block_descriptor_tmp.65
+___block_literal_global.66
+_OBJC_IVAR_$_TOCropOverlayView._horizontalGridLines
+_OBJC_IVAR_$_TOCropOverlayView._verticalGridLines
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/Views/TOCropOverlayView.m
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/Views/TOCropOverlayView.h
+__49-[TOCropOverlayView setDisplayVerticalGridLines:]_block_invoke
+__51-[TOCropOverlayView setDisplayHorizontalGridLines:]_block_invoke
+__44-[TOCropOverlayView setGridHidden:animated:]_block_invoke
+__26-[TOCropOverlayView setup]_block_invoke
+-[TOCropScrollView touchesBegan:withEvent:]
+-[TOCropScrollView touchesEnded:withEvent:]
+-[TOCropScrollView touchesCancelled:withEvent:]
+-[TOCropScrollView touchesBegan]
+-[TOCropScrollView setTouchesBegan:]
+-[TOCropScrollView touchesCancelled]
+-[TOCropScrollView setTouchesCancelled:]
+-[TOCropScrollView touchesEnded]
+-[TOCropScrollView setTouchesEnded:]
+-[TOCropScrollView .cxx_destruct]
+_OBJC_IVAR_$_TOCropScrollView._touchesBegan
+_OBJC_IVAR_$_TOCropScrollView._touchesCancelled
+_OBJC_IVAR_$_TOCropScrollView._touchesEnded
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/Views/TOCropScrollView.m
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/Views/TOCropScrollView.h
+-[TOCropToolbar initWithFrame:]
+-[TOCropToolbar setup]
+-[TOCropToolbar layoutSubviews]
+-[TOCropToolbar layoutToolbarButtons:withSameButtonSize:inContainerRect:horizontally:]
+-[TOCropToolbar buttonTapped:]
+-[TOCropToolbar clampButtonFrame]
+-[TOCropToolbar setClampButtonHidden:]
+-[TOCropToolbar setClampButtonGlowing:]
+-[TOCropToolbar setRotateCounterClockwiseButtonHidden:]
+-[TOCropToolbar resetButtonEnabled]
+-[TOCropToolbar setResetButtonEnabled:]
+-[TOCropToolbar doneButtonFrame]
++[TOCropToolbar doneImage]
++[TOCropToolbar cancelImage]
++[TOCropToolbar rotateCCWImage]
++[TOCropToolbar rotateCWImage]
++[TOCropToolbar resetImage]
++[TOCropToolbar clampImage]
+-[TOCropToolbar setRotateClockwiseButtonHidden:]
+-[TOCropToolbar rotateButton]
+-[TOCropToolbar statusBarVisible]
+-[TOCropToolbar setStatusBarVisible:]
+-[TOCropToolbar doneTextButton]
+-[TOCropToolbar setDoneTextButton:]
+-[TOCropToolbar doneIconButton]
+-[TOCropToolbar setDoneIconButton:]
+-[TOCropToolbar cancelTextButton]
+-[TOCropToolbar setCancelTextButton:]
+-[TOCropToolbar cancelIconButton]
+-[TOCropToolbar setCancelIconButton:]
+-[TOCropToolbar rotateCounterclockwiseButton]
+-[TOCropToolbar resetButton]
+-[TOCropToolbar setResetButton:]
+-[TOCropToolbar clampButton]
+-[TOCropToolbar setClampButton:]
+-[TOCropToolbar rotateClockwiseButton]
+-[TOCropToolbar cancelButtonTapped]
+-[TOCropToolbar setCancelButtonTapped:]
+-[TOCropToolbar doneButtonTapped]
+-[TOCropToolbar setDoneButtonTapped:]
+-[TOCropToolbar rotateCounterclockwiseButtonTapped]
+-[TOCropToolbar setRotateCounterclockwiseButtonTapped:]
+-[TOCropToolbar rotateClockwiseButtonTapped]
+-[TOCropToolbar setRotateClockwiseButtonTapped:]
+-[TOCropToolbar clampButtonTapped]
+-[TOCropToolbar setClampButtonTapped:]
+-[TOCropToolbar resetButtonTapped]
+-[TOCropToolbar setResetButtonTapped:]
+-[TOCropToolbar clampButtonGlowing]
+-[TOCropToolbar clampButtonHidden]
+-[TOCropToolbar rotateCounterclockwiseButtonHidden]
+-[TOCropToolbar setRotateCounterclockwiseButtonHidden:]
+-[TOCropToolbar rotateClockwiseButtonHidden]
+-[TOCropToolbar setRotateButton:]
+-[TOCropToolbar reverseContentLayout]
+-[TOCropToolbar setReverseContentLayout:]
+-[TOCropToolbar .cxx_destruct]
+_OBJC_IVAR_$_TOCropToolbar._rotateClockwiseButtonHidden
+_OBJC_IVAR_$_TOCropToolbar._doneTextButton
+_OBJC_IVAR_$_TOCropToolbar._doneIconButton
+_OBJC_IVAR_$_TOCropToolbar._cancelTextButton
+_OBJC_IVAR_$_TOCropToolbar._cancelIconButton
+_OBJC_IVAR_$_TOCropToolbar._clampButton
+_OBJC_IVAR_$_TOCropToolbar._rotateCounterclockwiseButton
+_OBJC_IVAR_$_TOCropToolbar._resetButton
+_OBJC_IVAR_$_TOCropToolbar._clampButtonHidden
+_OBJC_IVAR_$_TOCropToolbar._clampButtonGlowing
+_OBJC_IVAR_$_TOCropToolbar._rotateCounterclockwiseButtonHidden
+_OBJC_IVAR_$_TOCropToolbar._rotateClockwiseButton
+_OBJC_IVAR_$_TOCropToolbar._statusBarVisible
+_OBJC_IVAR_$_TOCropToolbar._cancelButtonTapped
+_OBJC_IVAR_$_TOCropToolbar._doneButtonTapped
+_OBJC_IVAR_$_TOCropToolbar._rotateCounterclockwiseButtonTapped
+_OBJC_IVAR_$_TOCropToolbar._rotateClockwiseButtonTapped
+_OBJC_IVAR_$_TOCropToolbar._clampButtonTapped
+_OBJC_IVAR_$_TOCropToolbar._resetButtonTapped
+_OBJC_IVAR_$_TOCropToolbar._rotateButton
+_OBJC_IVAR_$_TOCropToolbar._reverseContentLayout
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/Views/TOCropToolbar.m
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/Views/TOCropToolbar.h
+-[TOCropView initWithCroppingStyle:image:]
+-[TOCropView initWithImage:]
+-[TOCropView setup]
+___19-[TOCropView setup]_block_invoke
+___19-[TOCropView setup]_block_invoke.66
+___copy_helper_block_.69
+___destroy_helper_block_.70
+-[TOCropView didMoveToSuperview]
+-[TOCropView layoutInitialImage]
+-[TOCropView prepareforRotation]
+-[TOCropView performRelayoutForRotation]
+-[TOCropView matchForegroundToBackground]
+-[TOCropView updateCropBoxFrameWithGesturePoint:]
+-[TOCropView resetLayoutToDefaultAnimated:]
+___43-[TOCropView resetLayoutToDefaultAnimated:]_block_invoke
+___43-[TOCropView resetLayoutToDefaultAnimated:]_block_invoke_2
+___copy_helper_block_.269
+___destroy_helper_block_.270
+___43-[TOCropView resetLayoutToDefaultAnimated:]_block_invoke.272
+___copy_helper_block_.273
+___destroy_helper_block_.274
+___copy_helper_block_.279
+___destroy_helper_block_.280
+-[TOCropView toggleTranslucencyViewVisible:]
+-[TOCropView updateToImageCropFrame:]
+-[TOCropView gridPanGestureRecognized:]
+-[TOCropView longPressGestureRecognized:]
+-[TOCropView gestureRecognizerShouldBegin:]
+-[TOCropView gestureRecognizer:shouldReceiveTouch:]
+-[TOCropView startResetTimer]
+-[TOCropView timerTriggered]
+-[TOCropView cancelResetTimer]
+-[TOCropView cropEdgeForPoint:]
+-[TOCropView viewForZoomingInScrollView:]
+-[TOCropView scrollViewDidScroll:]
+-[TOCropView scrollViewWillBeginDragging:]
+-[TOCropView scrollViewWillBeginZooming:withView:]
+-[TOCropView scrollViewDidEndDecelerating:]
+-[TOCropView scrollViewDidEndZooming:withView:atScale:]
+-[TOCropView scrollViewDidZoom:]
+-[TOCropView scrollViewDidEndDragging:willDecelerate:]
+-[TOCropView setCropBoxResizeEnabled:]
+-[TOCropView setCropBoxFrame:]
+-[TOCropView setEditing:]
+-[TOCropView setSimpleRenderMode:]
+-[TOCropView cropBoxAspectRatioIsPortrait]
+-[TOCropView imageCropFrame]
+-[TOCropView setImageCropFrame:]
+-[TOCropView setCroppingViewsHidden:]
+-[TOCropView setCroppingViewsHidden:animated:]
+___46-[TOCropView setCroppingViewsHidden:animated:]_block_invoke
+___copy_helper_block_.331
+___destroy_helper_block_.332
+-[TOCropView setBackgroundImageViewHidden:animated:]
+___52-[TOCropView setBackgroundImageViewHidden:animated:]_block_invoke
+___copy_helper_block_.336
+___destroy_helper_block_.337
+___52-[TOCropView setBackgroundImageViewHidden:animated:]_block_invoke.339
+___copy_helper_block_.340
+___destroy_helper_block_.341
+-[TOCropView setGridOverlayHidden:]
+-[TOCropView setGridOverlayHidden:animated:]
+___44-[TOCropView setGridOverlayHidden:animated:]_block_invoke
+___copy_helper_block_.347
+___destroy_helper_block_.348
+-[TOCropView imageViewFrame]
+-[TOCropView setCanBeReset:]
+-[TOCropView setAngle:]
+-[TOCropView startEditing]
+-[TOCropView setEditing:animated:]
+___34-[TOCropView setEditing:animated:]_block_invoke
+___copy_helper_block_.362
+___destroy_helper_block_.363
+-[TOCropView moveCroppedContentToCenterAnimated:]
+___49-[TOCropView moveCroppedContentToCenterAnimated:]_block_invoke
+___copy_helper_block_.373
+___destroy_helper_block_.374
+___49-[TOCropView moveCroppedContentToCenterAnimated:]_block_invoke.376
+___copy_helper_block_.377
+___destroy_helper_block_.378
+-[TOCropView setSimpleRenderMode:animated:]
+___43-[TOCropView setSimpleRenderMode:animated:]_block_invoke
+___copy_helper_block_.380
+___destroy_helper_block_.381
+-[TOCropView setAspectRatio:]
+-[TOCropView setAspectRatio:animated:]
+___38-[TOCropView setAspectRatio:animated:]_block_invoke
+___copy_helper_block_.387
+___destroy_helper_block_.388
+-[TOCropView rotateImageNinetyDegreesAnimated:]
+-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]
+___57-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]_block_invoke
+___copy_helper_block_.410
+___destroy_helper_block_.411
+___57-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]_block_invoke.413
+___57-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]_block_invoke_2
+___copy_helper_block_.414
+___destroy_helper_block_.415
+___57-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]_block_invoke.417
+___copy_helper_block_.420
+___destroy_helper_block_.421
+___copy_helper_block_.423
+___destroy_helper_block_.424
+-[TOCropView captureStateForImageRotation]
+-[TOCropView checkForCanReset]
+-[TOCropView contentBounds]
+-[TOCropView imageSize]
+-[TOCropView hasAspectRatio]
+-[TOCropView image]
+-[TOCropView setImage:]
+-[TOCropView croppingStyle]
+-[TOCropView setCroppingStyle:]
+-[TOCropView gridOverlayView]
+-[TOCropView setGridOverlayView:]
+-[TOCropView delegate]
+-[TOCropView setDelegate:]
+-[TOCropView cropBoxResizeEnabled]
+-[TOCropView canBeReset]
+-[TOCropView cropBoxFrame]
+-[TOCropView cropRegionInsets]
+-[TOCropView setCropRegionInsets:]
+-[TOCropView simpleRenderMode]
+-[TOCropView internalLayoutDisabled]
+-[TOCropView setInternalLayoutDisabled:]
+-[TOCropView aspectRatio]
+-[TOCropView aspectRatioLockEnabled]
+-[TOCropView setAspectRatioLockEnabled:]
+-[TOCropView resetAspectRatioEnabled]
+-[TOCropView setResetAspectRatioEnabled:]
+-[TOCropView angle]
+-[TOCropView croppingViewsHidden]
+-[TOCropView gridOverlayHidden]
+-[TOCropView backgroundImageView]
+-[TOCropView setBackgroundImageView:]
+-[TOCropView backgroundContainerView]
+-[TOCropView setBackgroundContainerView:]
+-[TOCropView foregroundImageView]
+-[TOCropView setForegroundImageView:]
+-[TOCropView foregroundContainerView]
+-[TOCropView setForegroundContainerView:]
+-[TOCropView scrollView]
+-[TOCropView setScrollView:]
+-[TOCropView overlayView]
+-[TOCropView setOverlayView:]
+-[TOCropView translucencyView]
+-[TOCropView setTranslucencyView:]
+-[TOCropView translucencyEffect]
+-[TOCropView setTranslucencyEffect:]
+-[TOCropView circularMaskLayer]
+-[TOCropView setCircularMaskLayer:]
+-[TOCropView gridPanGestureRecognizer]
+-[TOCropView setGridPanGestureRecognizer:]
+-[TOCropView applyInitialCroppedImageFrame]
+-[TOCropView setApplyInitialCroppedImageFrame:]
+-[TOCropView tappedEdge]
+-[TOCropView setTappedEdge:]
+-[TOCropView cropOriginFrame]
+-[TOCropView setCropOriginFrame:]
+-[TOCropView panOriginPoint]
+-[TOCropView setPanOriginPoint:]
+-[TOCropView resetTimer]
+-[TOCropView setResetTimer:]
+-[TOCropView editing]
+-[TOCropView disableForgroundMatching]
+-[TOCropView setDisableForgroundMatching:]
+-[TOCropView rotationContentOffset]
+-[TOCropView setRotationContentOffset:]
+-[TOCropView rotationContentSize]
+-[TOCropView setRotationContentSize:]
+-[TOCropView rotationBoundSize]
+-[TOCropView setRotationBoundSize:]
+-[TOCropView applyInitialRotatedAngle]
+-[TOCropView setApplyInitialRotatedAngle:]
+-[TOCropView cropBoxLastEditedSize]
+-[TOCropView setCropBoxLastEditedSize:]
+-[TOCropView cropBoxLastEditedAngle]
+-[TOCropView setCropBoxLastEditedAngle:]
+-[TOCropView cropBoxLastEditedZoomScale]
+-[TOCropView setCropBoxLastEditedZoomScale:]
+-[TOCropView cropBoxLastEditedMinZoomScale]
+-[TOCropView setCropBoxLastEditedMinZoomScale:]
+-[TOCropView rotateAnimationInProgress]
+-[TOCropView setRotateAnimationInProgress:]
+-[TOCropView originalCropBoxSize]
+-[TOCropView setOriginalCropBoxSize:]
+-[TOCropView originalContentOffset]
+-[TOCropView setOriginalContentOffset:]
+-[TOCropView dynamicBlurEffect]
+-[TOCropView setDynamicBlurEffect:]
+-[TOCropView restoreAngle]
+-[TOCropView setRestoreAngle:]
+-[TOCropView restoreImageCropFrame]
+-[TOCropView setRestoreImageCropFrame:]
+-[TOCropView .cxx_destruct]
+_OBJC_IVAR_$_TOCropView._image
+_OBJC_IVAR_$_TOCropView._croppingStyle
+___block_descriptor_tmp.71
+_OBJC_IVAR_$_TOCropView._aspectRatio
+_OBJC_IVAR_$_TOCropView._angle
+___block_descriptor_tmp.271
+___block_descriptor_tmp.276
+___block_descriptor_tmp.281
+_OBJC_IVAR_$_TOCropView._cropBoxResizeEnabled
+_OBJC_IVAR_$_TOCropView._cropBoxFrame
+_OBJC_IVAR_$_TOCropView._croppingViewsHidden
+___block_descriptor_tmp.333
+___block_descriptor_tmp.338
+___block_descriptor_tmp.342
+_OBJC_IVAR_$_TOCropView._gridOverlayHidden
+___block_descriptor_tmp.349
+_OBJC_IVAR_$_TOCropView._canBeReset
+_OBJC_IVAR_$_TOCropView._editing
+___block_descriptor_tmp.364
+___block_descriptor_tmp.375
+___block_descriptor_tmp.379
+_OBJC_IVAR_$_TOCropView._simpleRenderMode
+___block_descriptor_tmp.382
+___block_descriptor_tmp.389
+___block_descriptor_tmp.412
+___block_descriptor_tmp.416
+___block_descriptor_tmp.422
+___block_descriptor_tmp.425
+_OBJC_IVAR_$_TOCropView._gridOverlayView
+_OBJC_IVAR_$_TOCropView._delegate
+_OBJC_IVAR_$_TOCropView._cropRegionInsets
+_OBJC_IVAR_$_TOCropView._internalLayoutDisabled
+_OBJC_IVAR_$_TOCropView._aspectRatioLockEnabled
+_OBJC_IVAR_$_TOCropView._resetAspectRatioEnabled
+_OBJC_IVAR_$_TOCropView._backgroundImageView
+_OBJC_IVAR_$_TOCropView._backgroundContainerView
+_OBJC_IVAR_$_TOCropView._foregroundImageView
+_OBJC_IVAR_$_TOCropView._foregroundContainerView
+_OBJC_IVAR_$_TOCropView._scrollView
+_OBJC_IVAR_$_TOCropView._overlayView
+_OBJC_IVAR_$_TOCropView._translucencyView
+_OBJC_IVAR_$_TOCropView._translucencyEffect
+_OBJC_IVAR_$_TOCropView._circularMaskLayer
+_OBJC_IVAR_$_TOCropView._gridPanGestureRecognizer
+_OBJC_IVAR_$_TOCropView._applyInitialCroppedImageFrame
+_OBJC_IVAR_$_TOCropView._tappedEdge
+_OBJC_IVAR_$_TOCropView._cropOriginFrame
+_OBJC_IVAR_$_TOCropView._panOriginPoint
+_OBJC_IVAR_$_TOCropView._resetTimer
+_OBJC_IVAR_$_TOCropView._disableForgroundMatching
+_OBJC_IVAR_$_TOCropView._rotationContentOffset
+_OBJC_IVAR_$_TOCropView._rotationContentSize
+_OBJC_IVAR_$_TOCropView._rotationBoundSize
+_OBJC_IVAR_$_TOCropView._applyInitialRotatedAngle
+_OBJC_IVAR_$_TOCropView._cropBoxLastEditedSize
+_OBJC_IVAR_$_TOCropView._cropBoxLastEditedAngle
+_OBJC_IVAR_$_TOCropView._cropBoxLastEditedZoomScale
+_OBJC_IVAR_$_TOCropView._cropBoxLastEditedMinZoomScale
+_OBJC_IVAR_$_TOCropView._rotateAnimationInProgress
+_OBJC_IVAR_$_TOCropView._originalCropBoxSize
+_OBJC_IVAR_$_TOCropView._originalContentOffset
+_OBJC_IVAR_$_TOCropView._dynamicBlurEffect
+_OBJC_IVAR_$_TOCropView._restoreAngle
+_OBJC_IVAR_$_TOCropView._restoreImageCropFrame
+l_OBJC_PROTOCOL_$_UIScrollViewDelegate
+l_OBJC_LABEL_PROTOCOL_$_UIScrollViewDelegate
+l_OBJC_PROTOCOL_$_UIGestureRecognizerDelegate
+l_OBJC_LABEL_PROTOCOL_$_UIGestureRecognizerDelegate
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/Views/TOCropView.m
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/Views/TOCropView.h
+__57-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]_block_invoke.417
+__57-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]_block_invoke_2
+__57-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]_block_invoke.413
+__57-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]_block_invoke
+__38-[TOCropView setAspectRatio:animated:]_block_invoke
+__43-[TOCropView setSimpleRenderMode:animated:]_block_invoke
+__49-[TOCropView moveCroppedContentToCenterAnimated:]_block_invoke.376
+__49-[TOCropView moveCroppedContentToCenterAnimated:]_block_invoke
+__34-[TOCropView setEditing:animated:]_block_invoke
+__44-[TOCropView setGridOverlayHidden:animated:]_block_invoke
+__52-[TOCropView setBackgroundImageViewHidden:animated:]_block_invoke.339
+__52-[TOCropView setBackgroundImageViewHidden:animated:]_block_invoke
+__46-[TOCropView setCroppingViewsHidden:animated:]_block_invoke
+__43-[TOCropView resetLayoutToDefaultAnimated:]_block_invoke.272
+__43-[TOCropView resetLayoutToDefaultAnimated:]_block_invoke_2
+__43-[TOCropView resetLayoutToDefaultAnimated:]_block_invoke
+__19-[TOCropView setup]_block_invoke.66
+__19-[TOCropView setup]_block_invoke
+-[TOCropViewController initWithCroppingStyle:image:]
+-[TOCropViewController initWithImage:]
+-[TOCropViewController viewDidLoad]
+___35-[TOCropViewController viewDidLoad]_block_invoke
+___35-[TOCropViewController viewDidLoad]_block_invoke.35
+___copy_helper_block_.38
+___destroy_helper_block_.39
+___35-[TOCropViewController viewDidLoad]_block_invoke.43
+___copy_helper_block_.46
+___destroy_helper_block_.47
+___35-[TOCropViewController viewDidLoad]_block_invoke.51
+___copy_helper_block_.54
+___destroy_helper_block_.55
+___35-[TOCropViewController viewDidLoad]_block_invoke.59
+___copy_helper_block_.62
+___destroy_helper_block_.63
+___35-[TOCropViewController viewDidLoad]_block_invoke.67
+___copy_helper_block_.70
+___destroy_helper_block_.71
+-[TOCropViewController viewWillAppear:]
+-[TOCropViewController viewDidAppear:]
+___38-[TOCropViewController viewDidAppear:]_block_invoke
+___copy_helper_block_.125
+___destroy_helper_block_.126
+-[TOCropViewController viewWillDisappear:]
+___42-[TOCropViewController viewWillDisappear:]_block_invoke
+___copy_helper_block_.136
+___destroy_helper_block_.137
+-[TOCropViewController viewDidDisappear:]
+-[TOCropViewController preferredStatusBarStyle]
+-[TOCropViewController prefersStatusBarHidden]
+-[TOCropViewController frameForToolBarWithVerticalLayout:]
+-[TOCropViewController frameForCropViewWithVerticalLayout:]
+-[TOCropViewController viewDidLayoutSubviews]
+___45-[TOCropViewController viewDidLayoutSubviews]_block_invoke
+___copy_helper_block_.167
+___destroy_helper_block_.168
+-[TOCropViewController willRotateToInterfaceOrientation:duration:]
+___66-[TOCropViewController willRotateToInterfaceOrientation:duration:]_block_invoke
+___copy_helper_block_.184
+___destroy_helper_block_.185
+-[TOCropViewController willAnimateRotationToInterfaceOrientation:duration:]
+___75-[TOCropViewController willAnimateRotationToInterfaceOrientation:duration:]_block_invoke
+___copy_helper_block_.201
+___destroy_helper_block_.202
+-[TOCropViewController didRotateFromInterfaceOrientation:]
+-[TOCropViewController viewWillTransitionToSize:withTransitionCoordinator:]
+___75-[TOCropViewController viewWillTransitionToSize:withTransitionCoordinator:]_block_invoke
+___copy_helper_block_.216
+___destroy_helper_block_.217
+___75-[TOCropViewController viewWillTransitionToSize:withTransitionCoordinator:]_block_invoke.220
+___copy_helper_block_.223
+___destroy_helper_block_.224
+-[TOCropViewController resetCropViewLayout]
+-[TOCropViewController showAspectRatioDialog]
+___45-[TOCropViewController showAspectRatioDialog]_block_invoke
+___copy_helper_block_.310
+___destroy_helper_block_.311
+-[TOCropViewController actionSheet:didDismissWithButtonIndex:]
+-[TOCropViewController setAspectRatioPreset:animated:]
+-[TOCropViewController rotateCropViewClockwise]
+-[TOCropViewController rotateCropViewCounterclockwise]
+-[TOCropViewController cropViewDidBecomeResettable:]
+-[TOCropViewController cropViewDidBecomeNonResettable:]
+-[TOCropViewController presentAnimatedFromParentViewController:fromView:fromFrame:setup:completion:]
+-[TOCropViewController presentAnimatedFromParentViewController:fromImage:fromView:fromFrame:angle:toImageFrame:setup:completion:]
+___129-[TOCropViewController presentAnimatedFromParentViewController:fromImage:fromView:fromFrame:angle:toImageFrame:setup:completion:]_block_invoke
+___copy_helper_block_.361
+___destroy_helper_block_.362
+-[TOCropViewController dismissAnimatedFromParentViewController:toView:toFrame:setup:completion:]
+-[TOCropViewController dismissAnimatedFromParentViewController:withCroppedImage:toView:toFrame:setup:completion:]
+___113-[TOCropViewController dismissAnimatedFromParentViewController:withCroppedImage:toView:toFrame:setup:completion:]_block_invoke
+___copy_helper_block_.376
+___destroy_helper_block_.377
+-[TOCropViewController animationControllerForPresentedController:presentingController:sourceController:]
+___104-[TOCropViewController animationControllerForPresentedController:presentingController:sourceController:]_block_invoke
+___copy_helper_block_.391
+___destroy_helper_block_.392
+-[TOCropViewController animationControllerForDismissedController:]
+___66-[TOCropViewController animationControllerForDismissedController:]_block_invoke
+___copy_helper_block_.400
+___destroy_helper_block_.401
+-[TOCropViewController cancelButtonTapped]
+-[TOCropViewController doneButtonTapped]
+___40-[TOCropViewController doneButtonTapped]_block_invoke
+___copy_helper_block_.453
+___destroy_helper_block_.454
+___40-[TOCropViewController doneButtonTapped]_block_invoke.463
+___copy_helper_block_.464
+___destroy_helper_block_.465
+___40-[TOCropViewController doneButtonTapped]_block_invoke.469
+___copy_helper_block_.470
+___destroy_helper_block_.471
+-[TOCropViewController cropView]
+-[TOCropViewController toolbar]
+-[TOCropViewController setAspectRatioLockEnabled:]
+-[TOCropViewController aspectRatioLockEnabled]
+-[TOCropViewController setRotateButtonsHidden:]
+-[TOCropViewController rotateButtonsHidden]
+-[TOCropViewController setRotateClockwiseButtonHidden:]
+-[TOCropViewController setAspectRatioPickerButtonHidden:]
+-[TOCropViewController aspectRatioPickerButtonHidden]
+-[TOCropViewController setResetAspectRatioEnabled:]
+-[TOCropViewController setCustomAspectRatio:]
+-[TOCropViewController resetAspectRatioEnabled]
+-[TOCropViewController setAngle:]
+-[TOCropViewController angle]
+-[TOCropViewController setImageCropFrame:]
+-[TOCropViewController imageCropFrame]
+-[TOCropViewController image]
+-[TOCropViewController setImage:]
+-[TOCropViewController delegate]
+-[TOCropViewController setDelegate:]
+-[TOCropViewController showActivitySheetOnDone]
+-[TOCropViewController setShowActivitySheetOnDone:]
+-[TOCropViewController croppingStyle]
+-[TOCropViewController setCroppingStyle:]
+-[TOCropViewController aspectRatioPreset]
+-[TOCropViewController setAspectRatioPreset:]
+-[TOCropViewController customAspectRatio]
+-[TOCropViewController toolbarPosition]
+-[TOCropViewController setToolbarPosition:]
+-[TOCropViewController rotateClockwiseButtonHidden]
+-[TOCropViewController activityItems]
+-[TOCropViewController setActivityItems:]
+-[TOCropViewController applicationActivities]
+-[TOCropViewController setApplicationActivities:]
+-[TOCropViewController excludedActivityTypes]
+-[TOCropViewController setExcludedActivityTypes:]
+-[TOCropViewController setToolbar:]
+-[TOCropViewController setCropView:]
+-[TOCropViewController toolbarSnapshotView]
+-[TOCropViewController setToolbarSnapshotView:]
+-[TOCropViewController prepareForTransitionHandler]
+-[TOCropViewController setPrepareForTransitionHandler:]
+-[TOCropViewController transitionController]
+-[TOCropViewController setTransitionController:]
+-[TOCropViewController inTransition]
+-[TOCropViewController setInTransition:]
+-[TOCropViewController initialLayout]
+-[TOCropViewController setInitialLayout:]
+-[TOCropViewController navigationBarHidden]
+-[TOCropViewController setNavigationBarHidden:]
+-[TOCropViewController toolbarHidden]
+-[TOCropViewController setToolbarHidden:]
+-[TOCropViewController activityPopoverController]
+-[TOCropViewController setActivityPopoverController:]
+-[TOCropViewController .cxx_destruct]
+_OBJC_IVAR_$_TOCropViewController._transitionController
+_OBJC_IVAR_$_TOCropViewController._image
+_OBJC_IVAR_$_TOCropViewController._croppingStyle
+_OBJC_IVAR_$_TOCropViewController._aspectRatioPreset
+_OBJC_IVAR_$_TOCropViewController._toolbarPosition
+_OBJC_IVAR_$_TOCropViewController._rotateClockwiseButtonHidden
+___block_descriptor_tmp.40
+___block_descriptor_tmp.48
+___block_descriptor_tmp.64
+___block_descriptor_tmp.72
+___block_descriptor_tmp.127
+___block_descriptor_tmp.138
+___block_descriptor_tmp.169
+___block_descriptor_tmp.186
+___block_descriptor_tmp.203
+___block_descriptor_tmp.219
+___block_descriptor_tmp.225
+___block_descriptor_tmp.313
+___block_descriptor_tmp.363
+___block_descriptor_tmp.378
+___block_descriptor_tmp.393
+___block_descriptor_tmp.402
+___block_descriptor_tmp.456
+___block_descriptor_tmp.466
+___block_descriptor_tmp.472
+_OBJC_IVAR_$_TOCropViewController._cropView
+_OBJC_IVAR_$_TOCropViewController._toolbar
+_OBJC_IVAR_$_TOCropViewController._customAspectRatio
+_OBJC_IVAR_$_TOCropViewController._delegate
+_OBJC_IVAR_$_TOCropViewController._showActivitySheetOnDone
+_OBJC_IVAR_$_TOCropViewController._activityItems
+_OBJC_IVAR_$_TOCropViewController._applicationActivities
+_OBJC_IVAR_$_TOCropViewController._excludedActivityTypes
+_OBJC_IVAR_$_TOCropViewController._toolbarSnapshotView
+_OBJC_IVAR_$_TOCropViewController._prepareForTransitionHandler
+_OBJC_IVAR_$_TOCropViewController._inTransition
+_OBJC_IVAR_$_TOCropViewController._initialLayout
+_OBJC_IVAR_$_TOCropViewController._navigationBarHidden
+_OBJC_IVAR_$_TOCropViewController._toolbarHidden
+_OBJC_IVAR_$_TOCropViewController._activityPopoverController
+l_OBJC_PROTOCOL_$_UIActionSheetDelegate
+l_OBJC_LABEL_PROTOCOL_$_UIActionSheetDelegate
+l_OBJC_PROTOCOL_$_UIViewControllerTransitioningDelegate
+l_OBJC_LABEL_PROTOCOL_$_UIViewControllerTransitioningDelegate
+l_OBJC_PROTOCOL_$_TOCropViewDelegate
+l_OBJC_LABEL_PROTOCOL_$_TOCropViewDelegate
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/TOCropViewController.m
+/Users/knowledge/Developer/WeGoLoco/Carthage/Checkouts/TOCropViewController/TOCropViewController/TOCropViewController.h
+__40-[TOCropViewController doneButtonTapped]_block_invoke.469
+__40-[TOCropViewController doneButtonTapped]_block_invoke.463
+__40-[TOCropViewController doneButtonTapped]_block_invoke
+UI_USER_INTERFACE_IDIOM
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIDevice.h
+__66-[TOCropViewController animationControllerForDismissedController:]_block_invoke
+__104-[TOCropViewController animationControllerForPresentedController:presentingController:sourceController:]_block_invoke
+__113-[TOCropViewController dismissAnimatedFromParentViewController:withCroppedImage:toView:toFrame:setup:completion:]_block_invoke
+__129-[TOCropViewController presentAnimatedFromParentViewController:fromImage:fromView:fromFrame:angle:toImageFrame:setup:completion:]_block_invoke
+__45-[TOCropViewController showAspectRatioDialog]_block_invoke
+__75-[TOCropViewController viewWillTransitionToSize:withTransitionCoordinator:]_block_invoke.220
+__75-[TOCropViewController viewWillTransitionToSize:withTransitionCoordinator:]_block_invoke
+__75-[TOCropViewController willAnimateRotationToInterfaceOrientation:duration:]_block_invoke
+UIInterfaceOrientationIsLandscape
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIApplication.h
+__66-[TOCropViewController willRotateToInterfaceOrientation:duration:]_block_invoke
+UIInterfaceOrientationIsPortrait
+__45-[TOCropViewController viewDidLayoutSubviews]_block_invoke
+__42-[TOCropViewController viewWillDisappear:]_block_invoke
+__38-[TOCropViewController viewDidAppear:]_block_invoke
+__35-[TOCropViewController viewDidLoad]_block_invoke.67
+__35-[TOCropViewController viewDidLoad]_block_invoke.59
+__35-[TOCropViewController viewDidLoad]_block_invoke.51
+__35-[TOCropViewController viewDidLoad]_block_invoke.43
+__35-[TOCropViewController viewDidLoad]_block_invoke.35
+__35-[TOCropViewController viewDidLoad]_block_invoke
+/Users/knowledge/Library/Caches/org.carthage.CarthageKit/DerivedData/TOCropViewController/2.0.12/Build/Intermediates/TOCropViewControllerExample.build/Release-iphoneos/TOCropViewController.build/DerivedSources/TOCropViewController_vers.c

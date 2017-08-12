@@ -135,7 +135,7 @@ exports.handler = (event, context, callback) =>  {
               return query;
             } else {
                 connection.end();
-                respond(context, 200, 'Success: Created User.');
+                respond(context, 200, 'Success: Created Tinpon WITHOUT variations?.');
             }
 
 

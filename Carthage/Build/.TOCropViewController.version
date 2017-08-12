@@ -1,0 +1,9 @@
+{
+  "commitish" : "2.0.12",
+  "iOS" : [
+    {
+      "hash" : "14474b6248e752aadda6af80dcb92d20faac7d6f9cf9df939f8c63733b4fcbbd",
+      "name" : "TOCropViewController"
+    }
+  ]
+}
