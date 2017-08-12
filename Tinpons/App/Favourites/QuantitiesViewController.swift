@@ -69,7 +69,6 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
     }
     
     // MARK: Rows
-    
     func recursiveImageRow(color: Color) -> ImageRow {
         let imageRow = ImageRow() {
             $0.title = "Imagen"
@@ -77,22 +76,19 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
             $0.clearAction = .yes(style: .default)
             }.cellUpdate { [weak self] cell, row in
                 guard let strongSelf = self else { return }
-                if let image = row.value {
+                if let image = row.value, strongSelf.editingImageRow == nil {
+                    row.sourceTypes = [.Camera]
                     strongSelf.editingImageRow = row
                     strongSelf.editingColor = color
                     strongSelf.presentCropViewController(image: image)
                 }
-                
             }.onChange {
                 var productVariation = self.tinpon.productVariations[color]!
                 let rowIndex = $0.indexPath!.row
                 let imageIndex = rowIndex - productVariation.sizeVariations.count
-                if let image = $0.value {
-                    // add row
-                } else {
+                if $0.value != nil {
                     // delete row
                     $0.section?.remove(at: rowIndex)
-                    self.tinpon.productVariations[color]!.images.remove(at: imageIndex)
                 }
         }
         
@@ -128,7 +124,12 @@ extension QuantitiesViewController:  TOCropViewControllerDelegate {
         cropViewController.aspectRatioPreset = .presetSquare
         cropViewController.resetAspectRatioEnabled = false
         cropViewController.delegate = self
-        self.present(cropViewController, animated: true, completion: nil)
+        startLoadingAnimation()
+        self.present(cropViewController, animated: true, completion: {
+            DispatchQueue.main.async {
+                self.stopLoadingAnimation()
+            }
+        })
     }
     
     func cropViewController(_ cropViewController: TOCropViewController, didCropToImage image: UIImage, rect cropRect: CGRect, angle angle: NSInteger) {
@@ -142,13 +143,17 @@ extension QuantitiesViewController: SHViewControllerDelegate {
         let imageToBeFiltered = image
         let vc = SHViewController(image: imageToBeFiltered)
         vc.delegate = self
-        present(vc, animated:true, completion: nil)
+        startLoadingAnimation()
+        present(vc, animated:true, completion: {
+            DispatchQueue.main.async {
+                self.stopLoadingAnimation()
+            }
+        })
         
     }
     
     func shViewControllerImageDidFilter(image: UIImage) {
         let color = editingColor!
-        self.tinpon.productVariations[color]!.images.append(image)
         let rowIndex = (editingImageRow?.indexPath?.row)!
         editingImageRow?.section?.insert(recursiveImageRow(color: color), at: rowIndex+1)
         

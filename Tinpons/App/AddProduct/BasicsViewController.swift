@@ -83,7 +83,7 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
             <<< TextRow(){
                 $0.title = "Nombre"
                 $0.placeholder = "Shoes"
-                $0.tag = "name"
+                $0.tag = "nameRow"
                 $0.add(rule: RuleRequired())
                 $0.validationOptions = .validatesOnChange
             }.cellUpdate { cell, row in
@@ -98,6 +98,7 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
                 $0.options = ["👕", "👖", "👞", "👜", "🕶"]
                 $0.value = "👕"
                 $0.selectorTitle = "Choose an Emoji!"
+                $0.tag = "categoryRow"
             }.cellSetup{ [unowned self] in
                 self.tinpon.category = $1.value
             }.onPresent { from, to in
@@ -117,30 +118,14 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
                 $0.value = 5
                 $0.formatter = DecimalFormatter()
                 $0.useFormatterDuringInput = true
+                $0.tag = "priceRow"
                 }.cellSetup { [unowned self] cell, row  in
                     cell.textField.keyboardType = .numberPad
                     self.tinpon.price = row.value
                 }.onChange{ [unowned self] in
                     self.tinpon.price = $0.value
         }
-            <<< ImageRow() {
-                $0.title = "Imagen Principal"
-                $0.sourceTypes = [.PhotoLibrary]
-                $0.clearAction = .yes(style: .default)
-                $0.tag = "mainImageRow"
-                $0.add(rule: RuleRequired())
-                $0.validationOptions = .validatesOnChange
-                }.cellUpdate { cell, row in
-                    if !row.isValid {
-                        cell.textLabel?.textColor = .red
-                    }
-                    if let image = row.value {
-                        self.presentCropViewController(image: image)
-                    }
-                    
-                }.onChange{ [unowned self] in
-                    self.tinpon.mainImage = $0.value
-        }
+            <<< recursiveImageRow()
         
         form +++ Section("") {
             $0.tag = "Continuar"
@@ -161,6 +146,19 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
         }
     }
     
+    // MARK: guard Tinpon Basics
+    private func guardTinponBasics() {
+        tinpon.name = (form.rowBy(tag: "nameRow") as! TextRow).value
+        tinpon.category = (form.rowBy(tag: "categoryRow") as! PushRow).value
+        tinpon.price = (form.rowBy(tag: "priceRow") as! DecimalRow).value
+
+        for row in form.allRows {
+            if let image = (row as? ImageRow)?.value {
+                tinpon.images.append(image)
+            }
+        }
+    }
+    
     // MARK: Location
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let locValue:CLLocationCoordinate2D = manager.location!.coordinate
@@ -173,14 +171,57 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
         presentingViewController?.dismiss(animated: true)
     }
     
+    // MARK: RecursiveImageRow
+    var editingImageRow: ImageRow?
+    var editingColor: Color?
+    
+    func recursiveImageRow() -> ImageRow {
+        let imageRow = ImageRow() {
+            $0.title = "Añadir Imagen"
+            $0.sourceTypes = [.PhotoLibrary, .Camera]
+            $0.clearAction = .yes(style: UIAlertActionStyle.destructive)
+            }.cellUpdate { [weak self] cell, row in
+                guard let strongSelf = self else { return }
+                
+                if row.title != "Imagen" {
+                    cell.textLabel?.textAlignment = .center
+                    cell.textLabel?.textColor = #colorLiteral(red: 0, green: 0.8166723847, blue: 0.9823040366, alpha: 1)
+                } else {
+                    cell.textLabel?.textAlignment = .left
+                    cell.textLabel?.textColor = #colorLiteral(red: 0, green: 0.03529411765, blue: 0.0862745098, alpha: 1)
+                }
+                
+                if let image = row.value, strongSelf.editingImageRow == nil {
+                    strongSelf.editingImageRow = row
+                    strongSelf.presentCropViewController(image: image)
+                }
+            }.onChange { [weak self] row in
+                guard let strongSelf = self else { return }
+                let rowIndex = row.indexPath!.row
+                if row.value == nil {
+                    // delete row
+                    row.section?.remove(at: rowIndex)
+                } else if row.title != "Imagen" {
+                    // add row
+                    row.title = "Imagen"
+                    row.section?.insert(strongSelf.recursiveImageRow(), at: rowIndex+1)
+                }
+        }
+        
+        return imageRow
+    }
+    
     
     // MARK: Navigation
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guardTinponBasics()
+        print(tinpon.images.count)
         let colorsAndSizesViewController = segue.destination as! ColorsAndSizesViewController
         colorsAndSizesViewController.tinpon = self.tinpon
     }
 }
+
+
 
 extension BasicsViewController:  TOCropViewControllerDelegate {
     func presentCropViewController(image: UIImage) {
@@ -192,7 +233,12 @@ extension BasicsViewController:  TOCropViewControllerDelegate {
         cropViewController.aspectRatioPreset = .presetSquare
         cropViewController.resetAspectRatioEnabled = false
         cropViewController.delegate = self
-        self.present(cropViewController, animated: true, completion: nil)
+        startLoadingAnimation()
+        self.present(cropViewController, animated: true, completion: {
+            DispatchQueue.main.async {
+                self.stopLoadingAnimation()
+            }
+        })
     }
     
     func cropViewController(_ cropViewController: TOCropViewController, didCropToImage image: UIImage, rect cropRect: CGRect, angle angle: NSInteger) {
@@ -206,15 +252,19 @@ extension BasicsViewController: SHViewControllerDelegate {
         let imageToBeFiltered = image
         let vc = SHViewController(image: imageToBeFiltered)
         vc.delegate = self
-        present(vc, animated:true, completion: nil)
-
+        startLoadingAnimation()
+        present(vc, animated:true, completion: {
+            DispatchQueue.main.async {
+                self.stopLoadingAnimation()
+            }
+        })
+        
     }
     
     func shViewControllerImageDidFilter(image: UIImage) {
-        if let imageRow = form.rowBy(tag: "mainImageRow") as? ImageRow {
-            imageRow.value = image
-            imageRow.reload()
-        }
+        editingImageRow?.value = image
+        editingImageRow?.reload()
+        editingImageRow = nil
     }
     
     func shViewControllerDidCancel() {

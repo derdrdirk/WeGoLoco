@@ -35,7 +35,7 @@ class Tinpon: CustomStringConvertible {
     var price: Double?
     var updatedAt: Date?
     var userId: String?
-    var mainImage: UIImage?
+    var images = [UIImage]()
     var productVariations = [Color : ColorVariation]()
     
     var description: String {
