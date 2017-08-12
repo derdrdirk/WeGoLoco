@@ -10,6 +10,7 @@ import UIKit
 import Eureka
 import Whisper
 import ImageRow
+import TOCropViewController
 
 class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
     
@@ -20,6 +21,8 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     var tinpon: Tinpon!
+    var editingImageRow: ImageRow?
+    var editingColor: Color?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,19 +70,25 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
     
     // MARK: Rows
     
-    private func recursiveImageRow(color: Color) -> ImageRow {
+    func recursiveImageRow(color: Color) -> ImageRow {
         let imageRow = ImageRow() {
             $0.title = "Imagen"
             $0.sourceTypes = [.PhotoLibrary]
             $0.clearAction = .yes(style: .default)
+            }.cellUpdate { [weak self] cell, row in
+                guard let strongSelf = self else { return }
+                if let image = row.value {
+                    strongSelf.editingImageRow = row
+                    strongSelf.editingColor = color
+                    strongSelf.presentCropViewController(image: image)
+                }
+                
             }.onChange {
                 var productVariation = self.tinpon.productVariations[color]!
                 let rowIndex = $0.indexPath!.row
                 let imageIndex = rowIndex - productVariation.sizeVariations.count
                 if let image = $0.value {
                     // add row
-                    self.tinpon.productVariations[color]!.images.append(image)
-                    $0.section?.insert(self.recursiveImageRow(color: color), at: rowIndex+1)
                 } else {
                     // delete row
                     $0.section?.remove(at: rowIndex)
@@ -106,5 +115,49 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("segue")
+    }
+}
+
+extension QuantitiesViewController:  TOCropViewControllerDelegate {
+    func presentCropViewController(image: UIImage) {
+        let image = image
+        
+        let cropViewController = TOCropViewController(image: image)
+        cropViewController.aspectRatioLockEnabled = true
+        cropViewController.aspectRatioPickerButtonHidden = true
+        cropViewController.aspectRatioPreset = .presetSquare
+        cropViewController.resetAspectRatioEnabled = false
+        cropViewController.delegate = self
+        self.present(cropViewController, animated: true, completion: nil)
+    }
+    
+    func cropViewController(_ cropViewController: TOCropViewController, didCropToImage image: UIImage, rect cropRect: CGRect, angle angle: NSInteger) {
+        dismiss(animated: false)
+        presentFilterViewController(image: image)
+    }
+}
+
+extension QuantitiesViewController: SHViewControllerDelegate {
+    func presentFilterViewController(image: UIImage) {
+        let imageToBeFiltered = image
+        let vc = SHViewController(image: imageToBeFiltered)
+        vc.delegate = self
+        present(vc, animated:true, completion: nil)
+        
+    }
+    
+    func shViewControllerImageDidFilter(image: UIImage) {
+        let color = editingColor!
+        self.tinpon.productVariations[color]!.images.append(image)
+        let rowIndex = (editingImageRow?.indexPath?.row)!
+        editingImageRow?.section?.insert(recursiveImageRow(color: color), at: rowIndex+1)
+        
+        editingImageRow?.value = image
+        editingImageRow?.reload()
+        editingImageRow = nil
+    }
+    
+    func shViewControllerDidCancel() {
+        // This will be called when you cancel filtering the image.
     }
 }

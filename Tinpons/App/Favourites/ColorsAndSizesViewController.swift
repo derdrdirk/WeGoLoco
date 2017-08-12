@@ -40,7 +40,7 @@ class ColorsAndSizesViewController: FormViewController, LoadingAnimationProtocol
         
         // Colors
         form +++ SelectableSection<ListCheckRow<String>>("Colores", selectionType: .multipleSelection) { $0.tag = "colorSection" }
-        let colors = ["Negro", "Azul", "Rojo"]
+        let colors = ["negro", "azul", "rojo"]
         for option in colors {
             form.last! <<< ListCheckRow<String>(option){ listRow in
                 listRow.title = option
