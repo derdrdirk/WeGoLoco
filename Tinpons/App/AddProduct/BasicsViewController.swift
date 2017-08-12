@@ -15,6 +15,7 @@ import AWSS3
 import MapKit
 import CoreLocation
 import Whisper
+import PromiseKit
 
 class BasicsViewController: FormViewController, CLLocationManagerDelegate, LoadingAnimationProtocol {
     
@@ -31,8 +32,24 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
     var colorPicker = UIPickerView()
     
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // test tinpon
+        let tinpon = Tinpon(testing: true)
+        firstly {
+            TinponsAPI.save(tinpon: tinpon)
+            }.then {
+                print("tinpon uploaded")
+            }.catch { error in
+                print("some error \(error)")
+        }
+
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         tableView.isEditing = false
         

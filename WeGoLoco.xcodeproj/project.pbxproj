@@ -592,8 +592,8 @@
 				D410C5EE1F24D7E0008D6C92 /* User.swift */,
 				D410C5F11F24E443008D6C92 /* UsersAPI.swift */,
 				D4EEF6591F2F9F8700297A5E /* Tinpon.swift */,
-				D4025B421F3DD03600436442 /* Color.swift */,
 				D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */,
+				D4025B421F3DD03600436442 /* Color.swift */,
 				D47D70601F37045B003E0708 /* APIError.swift */,
 			);
 			name = Api;

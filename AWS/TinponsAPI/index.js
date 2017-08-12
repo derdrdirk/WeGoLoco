@@ -1,7 +1,7 @@
 'use strict';
 var mysql = require('promise-mysql');
 
-var connection, person, categories;
+var connection, tinpon, productVariations;
 let host = "wegoloco-cluster.cluster-cb5jwvcwolur.eu-west-1.rds.amazonaws.com";
 let user = "admin";
 let password = "1269Y5$ST50j";
@@ -29,7 +29,7 @@ function isEmpty(obj) {
     return JSON.stringify(obj) === JSON.stringify({});
 }
 
-exports.handler = (event, context, callback) => {
+exports.handler = (event, context, callback) =>  {
   console.log("Lambda started");
 
   // init params
@@ -93,7 +93,11 @@ exports.handler = (event, context, callback) => {
         case "POST":
           console.log("POST case");
 
-          console.log(JSON.stringify(requestBody));
+          console.log(requestBody);
+          tinpon = JSON.parse(requestBody);
+          productVariations = tinpon.productVariations;
+          delete tinpon.productVariations;
+
 
 
           mysql.createConnection({
@@ -103,14 +107,43 @@ exports.handler = (event, context, callback) => {
               database: database,
               charset: charset
           }).then(function(conn){
-              // insert User
+              // insert Tinpon
               connection = conn;
 
-              // var query = connection.query("SELECT * FROM person "
-              //                         +"WHERE id = '"+cognitoIdentityId+"';");
-              // console.log("SQL QUERY : ", query.sql);
-              // return query;
-          })
+              var query = connection.query("INSERT INTO tinpon SET ?", tinpon);
+              console.log("SQL QUERY : ", query.sql);
+              return query;
+          }).then( function(result) {
+            // insert product Variations
+            let insertId = result.insertId;
+
+            var values = "";
+            for (var color in productVariations) {
+              for (var sizeVariation of productVariations[color].sizeVariation) {
+                let size = sizeVariation.size
+                let quantity = sizeVariation.quantity
+
+                values = values.concat("('"+insertId+"', '"+color+"', '"+size+"', '"+quantity+"'),");
+              }
+            }
+
+            if (values != "") {
+              values = values.slice(0, -1);
+
+              var query = connection.query("INSERT INTO tinpon_variation(tinpon_id, color, size, quantity)"
+                          +"VALUES "+values+";");
+              return query;
+            } else {
+                connection.end();
+                respond(context, 200, 'Success: Created User.');
+            }
+
+
+
+          }).then(function(result) {
+            connection.end();
+            respond(context, 200, "Success: Created Tinpon");
+          });
           // .then(function(rows) {
           //   if (rows.length > 0) {
           //     // User exists
@@ -144,7 +177,9 @@ exports.handler = (event, context, callback) => {
           //   console.log("ERROR : ", error);
           // });
           break;
+        }
+        break;
     default :
       respond(context, 500, "Not a valid resoucrce called");
-    }
-}
+  }
+};

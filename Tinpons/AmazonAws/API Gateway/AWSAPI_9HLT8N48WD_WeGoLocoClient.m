@@ -150,6 +150,28 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     return self;
 }
 
+- (AWSTask *)tinponsPost:(AWSAPI_9HLT8N48WD_RequestSchema *)body {
+    NSDictionary *headerParameters = @{
+                                       @"Content-Type": @"application/json",
+                                       @"Accept": @"application/json",
+                                       
+                                       };
+    NSDictionary *queryParameters = @{
+                                      
+                                      };
+    NSDictionary *pathParameters = @{
+                                     
+                                     };
+    
+    return [self invokeHTTPRequest:@"POST"
+                         URLString:@"/tinpons"
+                    pathParameters:pathParameters
+                   queryParameters:queryParameters
+                  headerParameters:headerParameters
+                              body:body
+                     responseClass:[AWSAPI_9HLT8N48WD_ResponseSchema class]];
+}
+
 - (AWSTask *)usersGet:(AWSAPI_9HLT8N48WD_RequestSchema *)body {
     NSDictionary *headerParameters = @{
                                        @"Content-Type": @"application/json",

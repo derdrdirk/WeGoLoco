@@ -8,6 +8,7 @@
 
 import Foundation
 import AWSAPIGateway
+import PromiseKit
 
 class TinponsAPI: APIGatewayProtocol {
     static func getNotSwipedTinpons(onComplete: @escaping ([Tinpon]?) -> ()) {
@@ -69,7 +70,27 @@ class TinponsAPI: APIGatewayProtocol {
                 }
             }
         }
-
+    }
+    
+    /**
+     save Tinpon in RDS
+     */
+    static func save(tinpon: Tinpon, completion: @escaping (Error?)->()) {
+        restAPITask(httpMethod: .POST, endPoint: .tinpons, httpBody: tinpon.toJSON()).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
+            if let error = task.error {
+                completion(APIError.serverError)
+                return
+            } else if let result = task.result {
+                if result.statusCode == 200 {
+                    completion(nil)
+                } else {
+                    completion(APIError.alreadyExisting)
+                }
+            }
+        }
+    }
+    static func save(tinpon: Tinpon) -> Promise<Void> {
+        return PromiseKit.wrap{ save(tinpon: tinpon, completion: $0) }
     }
 
 }

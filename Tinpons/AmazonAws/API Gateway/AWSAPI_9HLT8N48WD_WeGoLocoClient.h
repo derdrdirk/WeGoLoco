@@ -177,6 +177,15 @@ NS_ASSUME_NONNULL_BEGIN
  
  return type: AWSAPI_9HLT8N48WD_ResponseSchema *
  */
+- (AWSTask *)tinponsPost:( AWSAPI_9HLT8N48WD_RequestSchema *)body;
+
+/**
+ 
+ 
+ @param body 
+ 
+ return type: AWSAPI_9HLT8N48WD_ResponseSchema *
+ */
 - (AWSTask *)usersGet:( AWSAPI_9HLT8N48WD_RequestSchema *)body;
 
 /**

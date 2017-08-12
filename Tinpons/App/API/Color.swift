@@ -13,8 +13,8 @@ class Color : Hashable, Equatable {
     var spanishName: String!
     var color: UIColor!
     
-    static let spanishDictionary = ["Azul" : "Blue", "Negro" : "Black", "Rojo" : "Red"]
-    static let colorDictionary = ["Black" : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), "Blue" : #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1), "Red" : #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)]
+    static let spanishDictionary = ["azul" : "blue", "negro" : "black", "rojo" : "red"]
+    static let colorDictionary = ["black" : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), "blue" : #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1), "red" : #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)]
     
     init(spanishName: String) {
         self.spanishName = spanishName
