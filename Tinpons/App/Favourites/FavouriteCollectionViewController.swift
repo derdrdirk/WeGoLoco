@@ -30,8 +30,8 @@ class FavouriteCollectionViewController: UICollectionViewController, UICollectio
         // ResetUIProtocol
         didAppear = true
         
-        var collectionViewFlowLayout = UICollectionViewFlowLayout()
-        var myCollectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: collectionViewFlowLayout)
+        let collectionViewFlowLayout = UICollectionViewFlowLayout()
+        let myCollectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: collectionViewFlowLayout)
         // A flow layout works with the collection view’s delegate object to determine the size of items, headers, and footers in each section and grid.
         // That delegate object must conform to the UICollectionViewDelegateFlowLayout protocol.
         myCollectionView.delegate = self
@@ -116,7 +116,7 @@ class FavouriteCollectionViewController: UICollectionViewController, UICollectio
     }
     
     // MARK: UICollectionViewDelegateFlowLayout
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let width = self.view.bounds.size.width
         let height = width*4/3

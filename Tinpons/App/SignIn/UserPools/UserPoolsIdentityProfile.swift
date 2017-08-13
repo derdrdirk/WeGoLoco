@@ -21,11 +21,11 @@ class UserPoolsIdentityProfile : AWSIdentityProfile {
     /**
      The URL for profile image of a user.
      */
-    public var imageURL: URL?
+    open var imageURL: URL?
     /**
      The User Name of a user.
      */
-    public var userName: String?
+    open var userName: String?
     
     fileprivate var userPoolProfileAttributes : [String : Any]
     

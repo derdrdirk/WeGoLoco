@@ -47,7 +47,7 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
         loadingAnimationView = self.navigationController?.view
         
         emailTextField.becomeFirstResponder()
-        emailTextField.useUnderline(color: UIColor.lightGray)
+        emailTextField.useUnderline(UIColor.lightGray)
         
         // Validation
         validationRules.add(rule: emailRule)
@@ -67,17 +67,17 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
         
         switch validationResult {
         case .valid:
-            emailTextField.useUnderline(color: #colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1))
+            emailTextField.useUnderline(#colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1))
             guardEmail()
             registerButton.isEnabled = true
         case .invalid( _ ):
-            emailTextField.useUnderline(color: #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
+            emailTextField.useUnderline(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
             registerButton.isEnabled = false
 
         }
         
         if emailTextField.text == "" {
-            emailTextField.useUnderline(color: #colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1))
+            emailTextField.useUnderline(#colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1))
         }
     }
     
@@ -99,7 +99,7 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
     func checkIfEmailExist() {
         startLoadingAnimation()
         firstly {
-            UserAPI.isEmailAvailable(email: signInNavigationController.user.email!)
+            UserAPI.isEmailAvailable(signInNavigationController.user.email!)
         }.then { isEmailAvailable -> Void in
             print("email is available : \(isEmailAvailable)")
             if isEmailAvailable {
@@ -111,7 +111,7 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
                 DispatchQueue.main.async {
                     self.stopLoadingAnimation()
                     let message = Message(title: "Email existe ya.", backgroundColor: .red)
-                    self.emailTextField.useUnderline(color: #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
+                    self.emailTextField.useUnderline(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
                     self.registerButton.isEnabled = false
                     Whisper.show(whisper: message, to: self.navigationController!, action: .show)
                 }
@@ -122,7 +122,7 @@ class EmailViewController: UIViewController, LoadingAnimationProtocol{
     func onValidEmailEntered() {
         startLoadingAnimation()
         firstly {
-            UserAPI.update(user: self.signInNavigationController.user)
+            UserAPI.update(self.signInNavigationController.user)
         }.then { Void -> Void in
             DispatchQueue.main.async {
                 self.stopLoadingAnimation()

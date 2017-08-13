@@ -44,15 +44,15 @@ class UserPoolSignUpViewController: UIViewController {
         phoneNumberRow = FormTableCell(placeHolder: "Phone number", type: InputType.text)
         
         tableDelegate = FormTableDelegate()
-        tableDelegate?.add(cell: userNameRow!)
-        tableDelegate?.add(cell: passwordRow!)
-        tableDelegate?.add(cell: emailRow!)
-        tableDelegate?.add(cell: phoneNumberRow!)
+        tableDelegate?.add(userNameRow!)
+        tableDelegate?.add(passwordRow!)
+        tableDelegate?.add(emailRow!)
+        tableDelegate?.add(phoneNumberRow!)
         tableView?.delegate = tableDelegate
         tableView?.dataSource = tableDelegate
         tableView.reloadData()
         
-        UserPoolsUIHelper.setUpFormShadow(view: formView)
+        UserPoolsUIHelper.setUpFormShadow(formView)
         
         self.setUpBackground()
     }

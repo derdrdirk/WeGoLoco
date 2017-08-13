@@ -45,11 +45,11 @@ class DynamoDBUser: AWSDynamoDBObjectModel, AWSDynamoDBModeling {
     
     convenience init(new: Bool) {
         self.init()
-        getUserId(onComplete: { [weak self] in self?.userId = $0 })
+        getUserId({ [weak self] in self?.userId = $0 })
     }
 
     
-    public func getUserId(onComplete: @escaping (String) -> Void) {
+    open func getUserId(_ onComplete: @escaping (String) -> Void) {
         let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:8088e7da-a496-4ae3-818c-2b9025180888")
         let configuration = AWSServiceConfiguration(region: .EUWest1, credentialsProvider: credentialsProvider)
         AWSServiceManager.default().defaultServiceConfiguration = configuration

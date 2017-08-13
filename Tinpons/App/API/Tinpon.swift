@@ -121,7 +121,7 @@ class Tinpon: CustomStringConvertible {
         self.userId = userId
     }
     //                                                      color  : [  sizeVariation : [ [ size : "M" ] , [ quantity : 1000 ] ]
-    private func makeProductVariationsJSONCompatible() -> [ String : [ String : [ [ String : Any ] ] ] ] {
+    fileprivate func makeProductVariationsJSONCompatible() -> [ String : [ String : [ [ String : Any ] ] ] ] {
         // example: ["Red" : [["M" : 1000], ["XL" : 100]], "Black" :["S" : 500]]]
         var result = [ String : [ String : [ [ String : Any ] ] ] ]()
         for productVariation in self.productVariations {
@@ -137,7 +137,7 @@ class Tinpon: CustomStringConvertible {
         return result
     }
     
-    public func toJSON() -> String? {
+    open func toJSON() -> String? {
         let jsonObject: [String: Any] = ["name": self.name, "category_id" : self.category, "price" : self.price, "productVariations" : makeProductVariationsJSONCompatible(), "main_image" : "imageKey"]
 //        let jsonObject: [String: Any] = ["id": self.id, "email" : self.email, "birthdate" : birthdate?.iso8601, "gender" : gender, "categories" : Array(categories) ]
         do {

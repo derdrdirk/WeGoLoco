@@ -136,7 +136,7 @@ class TinponWrapper {
     // MARK : Helper
     
     func filterAlreadySwipedTinpons(tinpons: [DynamoDBTinpon]) -> [DynamoDBTinpon] {
-        var filteredTinpons: [DynamoDBTinpon] = []
+        let filteredTinpons: [DynamoDBTinpon] = []
         let context = AppDelegate.viewContext
         
 //        outerFor: for tinpon in tinpons {

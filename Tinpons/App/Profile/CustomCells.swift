@@ -30,10 +30,10 @@ public final class LocationRow : SelectorRow<PushSelectorCell<CLLocation>, MapVi
     }
 }
 
-public class MapViewController : UIViewController, TypedRowControllerType, MKMapViewDelegate {
+open class MapViewController : UIViewController, TypedRowControllerType, MKMapViewDelegate {
     
-    public var row: RowOf<CLLocation>!
-    public var onDismissCallback: ((UIViewController) -> ())?
+    open var row: RowOf<CLLocation>!
+    open var onDismissCallback: ((UIViewController) -> ())?
     
     lazy var mapView : MKMapView = { [unowned self] in
         let v = MKMapView(frame: self.view.bounds)
@@ -92,7 +92,7 @@ public class MapViewController : UIViewController, TypedRowControllerType, MKMap
         onDismissCallback = callback
     }
     
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         super.viewDidLoad()
         view.addSubview(mapView)
         
@@ -115,7 +115,7 @@ public class MapViewController : UIViewController, TypedRowControllerType, MKMap
         
     }
     
-    public override func viewWillAppear(_ animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
         let center = mapView.convert(mapView.centerCoordinate, toPointTo: pinView)
@@ -139,14 +139,14 @@ public class MapViewController : UIViewController, TypedRowControllerType, MKMap
         title = "\(latitude), \(longitude)"
     }
     
-    public func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+    open func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         ellipsisLayer.transform = CATransform3DMakeScale(0.5, 0.5, 1)
         UIView.animate(withDuration: 0.2, animations: { [weak self] in
             self?.pinView.center = CGPoint(x: self!.pinView.center.x, y: self!.pinView.center.y - 10)
         })
     }
     
-    public func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+    open func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         ellipsisLayer.transform = CATransform3DIdentity
         UIView.animate(withDuration: 0.2, animations: { [weak self] in
             self?.pinView.center = CGPoint(x: self!.pinView.center.x, y: self!.pinView.center.y + 10)

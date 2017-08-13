@@ -60,17 +60,17 @@ class GenderViewController: UIViewController, LoadingAnimationProtocol {
     }
     
     @IBAction func womanButtonTouched(_ sender: UIButton) {
-      genderTouched(isWoman: true)
+      genderTouched(true)
     }
 
     @IBAction func manButtonTouched(_ sender: UIButton) {
-        genderTouched(isWoman: false)
+        genderTouched(false)
     }
     
     @IBAction func continueButtonTouch(_ sender: UIButton) {
         startLoadingAnimation()
         firstly {
-            UserAPI.update(user: signInNavigationController.user)
+            UserAPI.update(signInNavigationController.user)
             }.then {
                 DispatchQueue.main.async {
                     self.stopLoadingAnimation()
@@ -79,7 +79,7 @@ class GenderViewController: UIViewController, LoadingAnimationProtocol {
         }
     }
     
-    func genderTouched(isWoman: Bool) {
+    func genderTouched(_ isWoman: Bool) {
         if isWoman {
             womanButton.isSelected = true
             manButton.isSelected = false

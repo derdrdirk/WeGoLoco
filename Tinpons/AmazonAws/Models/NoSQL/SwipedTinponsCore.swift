@@ -40,7 +40,7 @@ class SwipedTinponsCore: NSManagedObject {
         
     }
     
-    static func save(swipedTinpon swipedTinpon: SwipedTinpon) {
+    static func save(swipedTinpon: SwipedTinpon) {
         let context = AppDelegate.viewContext
         let swipedTinponCore = SwipedTinponsCore(context: context)
         swipedTinponCore.tinponId = swipedTinpon.tinponId

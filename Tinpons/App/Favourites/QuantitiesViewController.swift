@@ -21,8 +21,6 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     var tinpon: Tinpon!
-    var editingImageRow: ImageRow?
-    var editingColor: Color?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,14 +36,14 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
     
     // MARK: Sections
     
-    private func productSections() {
+    fileprivate func productSections() {
         for productVariation in tinpon.productVariations {
             let color = productVariation.key
-            form +++ colorSection(color: color)
+            form +++ colorSection(color)
         }
     }
     
-    private func colorSection(color: Color) -> Section {
+    fileprivate func colorSection(_ color: Color) -> Section {
         let section = MultivaluedSection(multivaluedOptions: [.Reorder, .Delete],
                                header: color.spanishName,
                                footer: "Swipe a la izquierda para borrar fillas.")
@@ -63,43 +61,55 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
             }
         }
         
-        section <<< recursiveImageRow(color: color)
+        section <<< recursiveImageRow(color)
         
         return section
     }
     
-    // MARK: Rows
-    func recursiveImageRow(color: Color) -> ImageRow {
+    // MARK: RecursiveImageRow
+    var editingImageRow: ImageRow?
+    func recursiveImageRow(_ color: Color) -> ImageRow {
         let imageRow = ImageRow() {
-            $0.title = "Imagen"
-            $0.sourceTypes = [.PhotoLibrary]
-            $0.clearAction = .yes(style: .default)
+            $0.title = "Añadir Imagen"
+            $0.sourceTypes = [.PhotoLibrary, .Camera]
+            $0.clearAction = .yes(style: UIAlertActionStyle.destructive)
             }.cellUpdate { [weak self] cell, row in
                 guard let strongSelf = self else { return }
-                if let image = row.value, strongSelf.editingImageRow == nil {
-                    row.sourceTypes = [.Camera]
-                    strongSelf.editingImageRow = row
-                    strongSelf.editingColor = color
-                    strongSelf.presentCropViewController(image: image)
+                
+                if row.title != "Imagen" {
+                    cell.textLabel?.textAlignment = .center
+                    cell.textLabel?.textColor = #colorLiteral(red: 0, green: 0.8166723847, blue: 0.9823040366, alpha: 1)
+                } else {
+                    cell.textLabel?.textAlignment = .left
+                    cell.textLabel?.textColor = #colorLiteral(red: 0, green: 0.03529411765, blue: 0.0862745098, alpha: 1)
                 }
-            }.onChange {
-                var productVariation = self.tinpon.productVariations[color]!
-                let rowIndex = $0.indexPath!.row
-                let imageIndex = rowIndex - productVariation.sizeVariations.count
-                if $0.value != nil {
+                
+                if let image = row.value, strongSelf.editingImageRow == nil {
+                    strongSelf.editingImageRow = row
+                    strongSelf.presentCropViewController(image)
+                }
+            }.onChange { [weak self] row in
+                guard let strongSelf = self else { return }
+                let rowIndex = row.indexPath!.row
+                if row.value == nil {
                     // delete row
-                    $0.section?.remove(at: rowIndex)
+                    row.section?.remove(at: rowIndex)
+                } else if row.title != "Imagen" {
+                    // add row
+                    row.title = "Imagen"
+                    row.section?.insert(strongSelf.recursiveImageRow(color), at: rowIndex+1)
                 }
         }
         
         return imageRow
     }
     
-    // MARK : Actions
     
+    // MARK : Actions
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
         if form.validate().isEmpty {
-            print("nice continue")
+            guardColorSizesQuantitiesAndImages()
+            TinponsAPI.save(tinpon)
         } else {
             let message = Message(title: "Faltan cuantidades.", backgroundColor: .red)
             Whisper.show(whisper: message, to: navigationController!, action: .show)
@@ -107,15 +117,38 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
     }
     
     
-    // MARK : Navigation
+    // MARK: guard Color, Sizes, Quantities and Images
+    fileprivate func guardColorSizesQuantitiesAndImages() {
+        tinpon.productVariations = [:]
+        for section in form.allSections {
+            let color = Color(spanishName: (section.header?.title)!)
+            var sizeVariations = [SizeVariation]()
+            for row in section {
+                if let intRow = row as? IntRow {
+                    let rowTitle = intRow.title!
+                    let sizeIndex = rowTitle.index(rowTitle.startIndex, offsetBy: 12)
+                    let size = rowTitle.substring(from: sizeIndex)
+                    let quantity = intRow.value!
+                    
+                    let sizeVariation = SizeVariation(size: size, quantity: quantity)
+                    sizeVariations.append(sizeVariation)
+                } else if let imageRow = row as? ImageRow {
+                    tinpon.productVariations[color]?.images.append(imageRow.value!)
+                }
+            }
+            
+            tinpon.productVariations[color]?.sizeVariations = sizeVariations
+        }
+    }
     
+    // MARK : Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("segue")
     }
 }
 
 extension QuantitiesViewController:  TOCropViewControllerDelegate {
-    func presentCropViewController(image: UIImage) {
+    func presentCropViewController(_ image: UIImage) {
         let image = image
         
         let cropViewController = TOCropViewController(image: image)
@@ -132,14 +165,14 @@ extension QuantitiesViewController:  TOCropViewControllerDelegate {
         })
     }
     
-    func cropViewController(_ cropViewController: TOCropViewController, didCropToImage image: UIImage, rect cropRect: CGRect, angle angle: NSInteger) {
+    func cropViewController(_ cropViewController: TOCropViewController, didCropToImage image: UIImage, rect cropRect: CGRect, angle: NSInteger) {
         dismiss(animated: false)
-        presentFilterViewController(image: image)
+        presentFilterViewController(image)
     }
 }
 
 extension QuantitiesViewController: SHViewControllerDelegate {
-    func presentFilterViewController(image: UIImage) {
+    func presentFilterViewController(_ image: UIImage) {
         let imageToBeFiltered = image
         let vc = SHViewController(image: imageToBeFiltered)
         vc.delegate = self
@@ -152,11 +185,7 @@ extension QuantitiesViewController: SHViewControllerDelegate {
         
     }
     
-    func shViewControllerImageDidFilter(image: UIImage) {
-        let color = editingColor!
-        let rowIndex = (editingImageRow?.indexPath?.row)!
-        editingImageRow?.section?.insert(recursiveImageRow(color: color), at: rowIndex+1)
-        
+    func shViewControllerImageDidFilter(_ image: UIImage) {
         editingImageRow?.value = image
         editingImageRow?.reload()
         editingImageRow = nil

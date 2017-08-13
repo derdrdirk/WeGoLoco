@@ -165,7 +165,7 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         firstly {
-            UserAPI.update(user: user)
+            UserAPI.update(user)
         }.then {
             DispatchQueue.main.async {
                 self.stopLoadingAnimation()

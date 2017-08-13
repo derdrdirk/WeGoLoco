@@ -46,7 +46,7 @@ class PasswordViewController: UIViewController, LoadingAnimationProtocol {
         loadingAnimationView = self.navigationController?.view
         
         passwordTextField.becomeFirstResponder()
-        passwordTextField.useUnderline(color: UIColor.lightGray)
+        passwordTextField.useUnderline(UIColor.lightGray)
         
         // Validation
         validationRules.add(rule: minLengthRule)
@@ -76,15 +76,15 @@ class PasswordViewController: UIViewController, LoadingAnimationProtocol {
         
         switch validationResult {
         case .valid:
-            passwordTextField.useUnderline(color: #colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1))
+            passwordTextField.useUnderline(#colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1))
             continueButton.isEnabled = true
         case .invalid( _ ):
-            passwordTextField.useUnderline(color: #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
+            passwordTextField.useUnderline(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
             continueButton.isEnabled = false
         }
         
         if passwordTextField.text == "" {
-            passwordTextField.useUnderline(color: #colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1))
+            passwordTextField.useUnderline(#colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1))
         }
     }
 

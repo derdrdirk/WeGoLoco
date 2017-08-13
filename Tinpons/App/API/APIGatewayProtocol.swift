@@ -26,7 +26,7 @@ protocol APIGatewayProtocol: class {}
 
 extension APIGatewayProtocol {
     
-    static func restAPITask(httpMethod: HttpdMethod, endPoint: APIEndPoint, queryStringParameters: [String:String] = [:], httpBody: String? = nil) -> AWSTask<AWSAPIGatewayResponse>  {
+    static func restAPITask(_ httpMethod: HttpdMethod, endPoint: APIEndPoint, queryStringParameters: [String:String] = [:], httpBody: String? = nil) -> AWSTask<AWSAPIGatewayResponse>  {
         
         let httpMethodName = httpMethod.rawValue
         let URLString = endPoint.rawValue

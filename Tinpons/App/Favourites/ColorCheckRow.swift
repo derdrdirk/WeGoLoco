@@ -17,7 +17,7 @@ public final class ColorCheckRow<T: Equatable>: Row<ColorCheckCell<T>>, Selectab
     }
 }
 
-public class ColorCheckCell<T: Equatable> : Cell<T>, CellType {
+open class ColorCheckCell<T: Equatable> : Cell<T>, CellType {
     
     required public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -30,7 +30,7 @@ public class ColorCheckCell<T: Equatable> : Cell<T>, CellType {
     var circleView = UIView(frame: CGRect(x: 0, y: 0, width: 30, height: 30))
     var circleColor: UIColor!
     
-    public override func setup() {
+    open override func setup() {
         super.setup()
         print("setup \(row.title)")
         accessoryType = .none
@@ -45,7 +45,7 @@ public class ColorCheckCell<T: Equatable> : Cell<T>, CellType {
         
     }
 
-    public override func update() {
+    open override func update() {
         super.update()
         print("update \(row.title)")
         print("row value \(row.value)")
@@ -57,7 +57,7 @@ public class ColorCheckCell<T: Equatable> : Cell<T>, CellType {
         }
     }
     
-    public override func didSelect() {
+    open override func didSelect() {
         row.select()
         row.deselect()
     }

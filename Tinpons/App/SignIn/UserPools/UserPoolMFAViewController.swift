@@ -42,11 +42,11 @@ class UserPoolMFAViewController: UIViewController {
     func setUp() {
         authenticationCodeRow = FormTableCell(placeHolder: "Authentication Code", type: InputType.text)
         tableDelegate = FormTableDelegate()
-        tableDelegate?.add(cell: authenticationCodeRow!)
+        tableDelegate?.add(authenticationCodeRow!)
         tableView?.delegate = tableDelegate
         tableView?.dataSource = tableDelegate
         tableView.reloadData()
-        UserPoolsUIHelper.setUpFormShadow(view: tableFormView)
+        UserPoolsUIHelper.setUpFormShadow(tableFormView)
         
         self.setUpBackground()
     }

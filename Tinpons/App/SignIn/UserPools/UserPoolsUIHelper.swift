@@ -17,7 +17,7 @@ import UIKit
 
 class UserPoolsUIHelper {
     // set up shadow around specified view
-    static func setUpFormShadow(view: UIView) {
+    static func setUpFormShadow(_ view: UIView) {
         view.layer.shadowColor = UIColor.black.cgColor
         view.layer.shadowOffset = CGSize.zero
         view.layer.shadowOpacity = 0.5

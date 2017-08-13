@@ -36,12 +36,12 @@ class UserPoolNewPasswordViewController: UIViewController {
         confirmationCodeRow = FormTableCell(placeHolder: "Confirmation Code", type: InputType.text)
         
         tableDelegate = FormTableDelegate()
-        tableDelegate?.add(cell: newPasswordRow!)
-        tableDelegate?.add(cell: confirmationCodeRow!)
+        tableDelegate?.add(newPasswordRow!)
+        tableDelegate?.add(confirmationCodeRow!)
         tableView?.delegate = tableDelegate
         tableView?.dataSource = tableDelegate
         tableView.reloadData()
-        UserPoolsUIHelper.setUpFormShadow(view: tableFormView)
+        UserPoolsUIHelper.setUpFormShadow(tableFormView)
         self.setUpBackground()
     }
     
@@ -70,7 +70,7 @@ class UserPoolNewPasswordViewController: UIViewController {
         _ = self.user?.confirmForgotPassword(confirmationCodeValue, password: (self.tableDelegate?.getValue(tableView, for: newPasswordRow!)!)!).continueWith(block: {[weak self] (task: AWSTask) -> AnyObject? in
             guard let strongSelf = self else { return nil }
             DispatchQueue.main.async(execute: { 
-                if let error = task.error as? NSError {
+                if let error = task.error as NSError? {
                     let alert = UIAlertController(title: error.userInfo["__type"] as? String,
                                                   message:error.userInfo["message"] as? String,
                                                   preferredStyle: .alert)

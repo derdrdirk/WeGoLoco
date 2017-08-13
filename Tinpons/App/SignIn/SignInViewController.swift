@@ -66,12 +66,12 @@ class SignInViewController : UIViewController {
         passwordRow = FormTableCell(placeHolder: "Contraseña", type: InputType.password)
         userNameRow = FormTableCell(placeHolder: "Email", type: InputType.text)
         tableDelegate = FormTableDelegate()
-        tableDelegate?.add(cell: userNameRow!)
-        tableDelegate?.add(cell: passwordRow!)
+        tableDelegate?.add(userNameRow!)
+        tableDelegate?.add(passwordRow!)
         tableView?.delegate = tableDelegate
         tableView?.dataSource = tableDelegate
         tableView.reloadData()
-        UserPoolsUIHelper.setUpFormShadow(view: tableFormView)
+        UserPoolsUIHelper.setUpFormShadow(tableFormView)
         self.setUpResponders()
     }
     
@@ -191,12 +191,12 @@ class SignInViewController : UIViewController {
                 
                 firstly {
                     // if email is already taken => get new Email, else registrationVCSerie
-                    UserAPI.isEmailAvailable(email: user.email!)
+                    UserAPI.isEmailAvailable(user.email!)
                     }.then { isEmailAvailable in
                         if !isEmailAvailable {
                             user.email = nil
                         }
-                        return UserAPI.save(user: user)
+                        return UserAPI.save(user)
                     }.then { () -> () in
                         self.signInNavigationController.user = user
                         self.signInNavigationController.setNecessaryViewController()
@@ -205,7 +205,7 @@ class SignInViewController : UIViewController {
 
             } else {
                 firstly {
-                    UserAPI.save(user: user)
+                    UserAPI.save(user)
                 }.then { () -> () in
                     self.signInNavigationController.user = user
                     self.signInNavigationController.setNecessaryViewController()

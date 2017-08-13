@@ -65,19 +65,19 @@ class CategoriesTableViewController: UITableViewController, LoadingAnimationProt
     }
     
     @IBAction func 👞SwitchTouched(_ sender: UISwitch) {
-        handleSwitch(sender: sender, switchValue: "👞")
+        handleSwitch(sender, switchValue: "👞")
     }
     
     @IBAction func 👖SwitchTouched(_ sender: UISwitch) {
-        handleSwitch(sender: sender, switchValue: "👖")
+        handleSwitch(sender, switchValue: "👖")
     }
     
     @IBAction func 👕SwitchTocuhed(_ sender: UISwitch) {
-        handleSwitch(sender: sender, switchValue: "👕")
+        handleSwitch(sender, switchValue: "👕")
     }
     
     
-    func handleSwitch(sender: UISwitch, switchValue: String) {
+    func handleSwitch(_ sender: UISwitch, switchValue: String) {
         if sender.isOn {
             categories.insert(switchValue)
         } else {
@@ -105,7 +105,7 @@ class CategoriesTableViewController: UITableViewController, LoadingAnimationProt
         if let myNavigationController = self.navigationController as? SignInNavigationController {
             startLoadingAnimation()
             firstly {
-                UserAPI.update(user: self.signInNavigationController.user)
+                UserAPI.update(self.signInNavigationController.user)
             }.then {
                 DispatchQueue.main.async {
                     self.stopLoadingAnimation()

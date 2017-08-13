@@ -11,8 +11,8 @@ import AWSAPIGateway
 import PromiseKit
 
 class TinponsAPI: APIGatewayProtocol {
-    static func getNotSwipedTinpons(onComplete: @escaping ([Tinpon]?) -> ()) {
-        restAPITask(httpMethod: .GET, endPoint: .notSwipedTinpons).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
+    static func getNotSwipedTinpons(_ onComplete: @escaping ([Tinpon]?) -> ()) {
+        restAPITask(.GET, endPoint: .notSwipedTinpons).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
             if let error = task.error {
                 print("Error occurred: \(error)")
                 // Handle error here
@@ -41,8 +41,8 @@ class TinponsAPI: APIGatewayProtocol {
         }
     }
     
-    static func getFavouriteTinpons(onComplete: @escaping ([Tinpon]?) -> ()) {
-        restAPITask(httpMethod: .GET, endPoint: .favouriteTinpons).continueWith{ (task: AWSTask<AWSAPIGatewayResponse>) -> () in
+    static func getFavouriteTinpons(_ onComplete: @escaping ([Tinpon]?) -> ()) {
+        restAPITask(.GET, endPoint: .favouriteTinpons).continueWith{ (task: AWSTask<AWSAPIGatewayResponse>) -> () in
             if let error = task.error {
                 print("Error occurred: \(error)")
                 // Handle error here
@@ -75,8 +75,8 @@ class TinponsAPI: APIGatewayProtocol {
     /**
      save Tinpon in RDS
      */
-    static func save(tinpon: Tinpon, completion: @escaping (Error?)->()) {
-        restAPITask(httpMethod: .POST, endPoint: .tinpons, httpBody: tinpon.toJSON()).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
+    static func save(_ tinpon: Tinpon, completion: @escaping (Error?)->()) {
+        restAPITask(.POST, endPoint: .tinpons, httpBody: tinpon.toJSON()).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
             if let error = task.error {
                 completion(APIError.serverError)
                 return
@@ -89,8 +89,8 @@ class TinponsAPI: APIGatewayProtocol {
             }
         }
     }
-    static func save(tinpon: Tinpon) -> Promise<Void> {
-        return PromiseKit.wrap{ save(tinpon: tinpon, completion: $0) }
+    static func save(_ tinpon: Tinpon) -> Promise<Void> {
+        return PromiseKit.wrap{ save(tinpon, completion: $0) }
     }
 
 }

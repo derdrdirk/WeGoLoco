@@ -42,7 +42,7 @@ final class ProductVariationCell: Cell<ProductVariation>, CellType, UIPickerView
     }
     
     // MARK: Setup Pickers
-    private func setupPickers() {
+    fileprivate func setupPickers() {
         sizePickerView.dataSource = self
         sizePickerView.delegate = self
         sizePickerView.showsSelectionIndicator = true

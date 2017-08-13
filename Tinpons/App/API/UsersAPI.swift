@@ -19,8 +19,8 @@ class UserAPI: APIGatewayProtocol {
     /**
      return user by cognitoId, if existing
     */
-    static func getSignedInUser(completion: @escaping (User?, Error?)->() ) {
-        restAPITask(httpMethod: .GET, endPoint: .users).continueWith(block: {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
+    static func getSignedInUser(_ completion: @escaping (User?, Error?)->() ) {
+        restAPITask(.GET, endPoint: .users).continueWith(block: {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
             if let error = task.error {
                 completion(nil, error)
             } else if let result = task.result {
@@ -43,8 +43,8 @@ class UserAPI: APIGatewayProtocol {
     /**
      save user in RDS
     */
-    static func save(user: User, completion: @escaping (Error?)->()) {
-        restAPITask(httpMethod: .POST, endPoint: .users, httpBody: user.toJSON()).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
+    static func save(_ user: User, completion: @escaping (Error?)->()) {
+        restAPITask(.POST, endPoint: .users, httpBody: user.toJSON()).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
             if let error = task.error {
                 completion(APIError.serverError)
                 return
@@ -57,15 +57,15 @@ class UserAPI: APIGatewayProtocol {
             }
         }
     }
-    static func save(user: User) -> Promise<Void> {
-        return PromiseKit.wrap{ save(user: user, completion: $0) }
+    static func save(_ user: User) -> Promise<Void> {
+        return PromiseKit.wrap{ save(user, completion: $0) }
     }
     
     /**
      update user in RDS
      */
-    static func update(user: User, completion: @escaping (Error?)->()) {
-        restAPITask(httpMethod: .PUT, endPoint: .users, httpBody: user.toJSON()).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
+    static func update(_ user: User, completion: @escaping (Error?)->()) {
+        restAPITask(.PUT, endPoint: .users, httpBody: user.toJSON()).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
             if let error = task.error {
                 completion(APIError.serverError)
                 return
@@ -79,8 +79,8 @@ class UserAPI: APIGatewayProtocol {
             }
         }
     }
-    static func update(user: User) -> Promise<Void> {
-        return PromiseKit.wrap{ update(user: user, completion: $0 ) }
+    static func update(_ user: User) -> Promise<Void> {
+        return PromiseKit.wrap{ update(user, completion: $0 ) }
     }
     
     
@@ -94,7 +94,7 @@ class UserAPI: APIGatewayProtocol {
                                                       options: .prettyPrinted)
             let json = String(data: jsonData, encoding: String.Encoding.utf8)
             
-            restAPITask(httpMethod: .POST, endPoint: .userEmailAvailable, httpBody: json).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
+            restAPITask(.POST, endPoint: .userEmailAvailable, httpBody: json).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
                 if let error = task.error {
                     completion(nil, error)
                     return
@@ -120,7 +120,7 @@ class UserAPI: APIGatewayProtocol {
         }
 
     }
-    static func isEmailAvailable(email: String) -> Promise<Bool> {
+    static func isEmailAvailable(_ email: String) -> Promise<Bool> {
         return PromiseKit.wrap { isEmailAvailable(email: email, completion: $0) }
     }
     
@@ -131,7 +131,7 @@ class UserAPI: APIGatewayProtocol {
                                                       options: .prettyPrinted)
             let json = String(data: jsonData, encoding: String.Encoding.utf8)
             
-            restAPITask(httpMethod: .POST, endPoint: .userEmailAvailable, httpBody: json).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
+            restAPITask(.POST, endPoint: .userEmailAvailable, httpBody: json).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
                 if let error = task.error {
                     print("UserAPI.isEmailAvailable Error occurred: \(error)")
                     // Handle error here

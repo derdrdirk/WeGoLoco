@@ -70,7 +70,7 @@ class ColorsAndSizesViewController: FormViewController, LoadingAnimationProtocol
                     let selectedColors = colorSection.selectedRows()
 
                     if selectedSizes.count > 0 && selectedColors.count > 0 {
-                        strongSelf.addSizesAndColorsToTinpon(sizes: selectedSizes, colors: selectedColors)
+                        strongSelf.addSizesAndColorsToTinpon(selectedSizes, colors: selectedColors)
                         strongSelf.performSegue(withIdentifier: "segueToQuantities", sender: self)
                     } else {
                         let message = Message(title: "Hay que seleccionar tamaños y colores.", backgroundColor: .red)
@@ -79,7 +79,7 @@ class ColorsAndSizesViewController: FormViewController, LoadingAnimationProtocol
         }
     }
     
-    private func addSizesAndColorsToTinpon(sizes: [ListCheckRow<String>], colors: [ListCheckRow<String>]) {
+    fileprivate func addSizesAndColorsToTinpon(_ sizes: [ListCheckRow<String>], colors: [ListCheckRow<String>]) {
         for colorRow in colors {
             let color = Color(spanishName: colorRow.selectableValue!)
             var sizeVariations = Array<SizeVariation>()

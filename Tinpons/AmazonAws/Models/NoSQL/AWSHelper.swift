@@ -9,7 +9,7 @@
 import Foundation
 import AWSDynamoDB
 
-func getUser(onCompletion: @escaping (DynamoDBUser) -> Void) {
+func getUser(_ onCompletion: @escaping (DynamoDBUser) -> Void) {
     let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:8088e7da-a496-4ae3-818c-2b9025180888")
     let configuration = AWSServiceConfiguration(region: .EUWest1, credentialsProvider: credentialsProvider)
     AWSServiceManager.default().defaultServiceConfiguration = configuration

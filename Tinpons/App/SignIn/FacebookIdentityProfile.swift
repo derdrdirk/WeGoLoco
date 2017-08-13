@@ -21,19 +21,19 @@ class FacebookIdentityProfile : AWSIdentityProfile {
     /**
      The URL for profile image of a user.
      */
-    public var imageURL: URL?
+    open var imageURL: URL?
     /**
      The User Name of a user.
      */
-    public var userName: String?
+    open var userName: String?
     /**
      The Email of a user.
      */
-    public var email: String?
+    open var email: String?
     /**
      The Email of a user.
      */
-    public var gender: String?
+    open var gender: String?
 
     fileprivate var facebookProfileAttributes : [String : Any]
     

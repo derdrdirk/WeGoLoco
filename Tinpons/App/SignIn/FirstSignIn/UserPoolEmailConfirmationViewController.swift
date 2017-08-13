@@ -28,7 +28,7 @@ class UserPoolEmailConfirmationViewController: EmailConfirmationViewController {
         startLoadingAnimation()
         print(signInNavigationController.user)
         firstly {
-            UserAPI.save(user: signInNavigationController.user)
+            UserAPI.save(signInNavigationController.user)
         }.then { Void -> Void in
             DispatchQueue.main.async {
                 self.stopLoadingAnimation()

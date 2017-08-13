@@ -60,7 +60,7 @@ class ManagerTableViewController: UITableViewController, LoadingAnimationProtoco
 //        }
     }
     
-    @IBAction func whisperThatTinponIsSaved(segue: UIStoryboardSegue) {
+    @IBAction func whisperThatTinponIsSaved(_ segue: UIStoryboardSegue) {
         let message = Message(title: "Tinpon saved.", backgroundColor: .green)
         // Show and hide a message after delay
         Whisper.show(whisper: message, to: navigationController!, action: .show)

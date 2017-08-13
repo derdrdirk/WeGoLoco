@@ -44,7 +44,7 @@ class EmailConfirmationViewController: UIViewController, LoadingAnimationProtoco
         self.loadingAnimationView = self.navigationController?.view
         
         confirmationCodeTextField.becomeFirstResponder()
-        confirmationCodeTextField.useUnderline(color: UIColor.lightGray)
+        confirmationCodeTextField.useUnderline(UIColor.lightGray)
         
         // Validation
         validationRules.add(rule: rangeLengthRule)
@@ -81,15 +81,15 @@ class EmailConfirmationViewController: UIViewController, LoadingAnimationProtoco
         
         switch validationResult {
         case .valid:
-            confirmationCodeTextField.useUnderline(color: #colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1))
+            confirmationCodeTextField.useUnderline(#colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1))
             continueButton.isEnabled = true
         case .invalid( _ ):
-            confirmationCodeTextField.useUnderline(color: #colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
+            confirmationCodeTextField.useUnderline(#colorLiteral(red: 1, green: 0.4932718873, blue: 0.4739984274, alpha: 1))
             continueButton.isEnabled = false
         }
         
         if confirmationCodeTextField.text == "" {
-            confirmationCodeTextField.useUnderline(color: #colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1))
+            confirmationCodeTextField.useUnderline(#colorLiteral(red: 0.9646058058, green: 0.9646058058, blue: 0.9646058058, alpha: 1))
         }
 
     }

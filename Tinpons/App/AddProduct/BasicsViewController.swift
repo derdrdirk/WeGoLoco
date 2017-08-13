@@ -147,7 +147,7 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
     }
     
     // MARK: guard Tinpon Basics
-    private func guardTinponBasics() {
+    fileprivate func guardTinponBasics() {
         tinpon.name = (form.rowBy(tag: "nameRow") as! TextRow).value
         tinpon.category = (form.rowBy(tag: "categoryRow") as! PushRow).value
         tinpon.price = (form.rowBy(tag: "priceRow") as! DecimalRow).value
@@ -173,7 +173,6 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
     
     // MARK: RecursiveImageRow
     var editingImageRow: ImageRow?
-    var editingColor: Color?
     
     func recursiveImageRow() -> ImageRow {
         let imageRow = ImageRow() {
@@ -193,7 +192,7 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
                 
                 if let image = row.value, strongSelf.editingImageRow == nil {
                     strongSelf.editingImageRow = row
-                    strongSelf.presentCropViewController(image: image)
+                    strongSelf.presentCropViewController(image)
                 }
             }.onChange { [weak self] row in
                 guard let strongSelf = self else { return }
@@ -224,7 +223,7 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
 
 
 extension BasicsViewController:  TOCropViewControllerDelegate {
-    func presentCropViewController(image: UIImage) {
+    func presentCropViewController(_ image: UIImage) {
         let image = image
         
         let cropViewController = TOCropViewController(image: image)
@@ -241,14 +240,14 @@ extension BasicsViewController:  TOCropViewControllerDelegate {
         })
     }
     
-    func cropViewController(_ cropViewController: TOCropViewController, didCropToImage image: UIImage, rect cropRect: CGRect, angle angle: NSInteger) {
+    func cropViewController(_ cropViewController: TOCropViewController, didCropToImage image: UIImage, rect cropRect: CGRect, angle: NSInteger) {
         dismiss(animated: false)
-        presentFilterViewController(image: image)
+        presentFilterViewController(image)
     }
 }
 
 extension BasicsViewController: SHViewControllerDelegate {
-    func presentFilterViewController(image: UIImage) {
+    func presentFilterViewController(_ image: UIImage) {
         let imageToBeFiltered = image
         let vc = SHViewController(image: imageToBeFiltered)
         vc.delegate = self
@@ -261,7 +260,7 @@ extension BasicsViewController: SHViewControllerDelegate {
         
     }
     
-    func shViewControllerImageDidFilter(image: UIImage) {
+    func shViewControllerImageDidFilter(_ image: UIImage) {
         editingImageRow?.value = image
         editingImageRow?.reload()
         editingImageRow = nil

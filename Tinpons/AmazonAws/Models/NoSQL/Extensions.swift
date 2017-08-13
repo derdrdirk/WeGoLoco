@@ -32,7 +32,7 @@ extension String {
 
 extension UITextField {
     
-    func useUnderline(color: UIColor) {
+    func useUnderline(_ color: UIColor) {
         let border = CALayer()
         let borderWidth = CGFloat(3.0)
         border.borderColor = color.cgColor
@@ -74,7 +74,7 @@ extension String {
 
 extension CALayer {
     
-    func addBorder(edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
+    func addBorder(_ edge: UIRectEdge, color: UIColor, thickness: CGFloat) {
         
         let border = CALayer()
         

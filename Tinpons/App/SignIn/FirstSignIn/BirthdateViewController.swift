@@ -66,7 +66,7 @@ class BirthdateViewController: UIViewController, LoadingAnimationProtocol {
     @IBAction func continueButtonTouch(_ sender: UIButton) {
         startLoadingAnimation()
         firstly {
-            UserAPI.update(user: signInNavigationController.user)
+            UserAPI.update(signInNavigationController.user)
         }.then {
             DispatchQueue.main.async {
                 self.stopLoadingAnimation()

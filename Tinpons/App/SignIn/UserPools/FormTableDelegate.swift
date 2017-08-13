@@ -41,7 +41,7 @@ class FormTableDelegate: NSObject {
      
      @param cell   the `UserPoolsCell` to be inserted into table as a row
      */
-    func add(cell: FormTableCell) {
+    func add(_ cell: FormTableCell) {
         self.cells?.append(cell)
     }
     
@@ -113,7 +113,7 @@ extension FormTableDelegate : UITableViewDataSource {
             cell.inputBox?.isSecureTextEntry = true
             let showButton = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 20))
             showButton.setTitle("Show", for: .normal)
-            showButton.addTarget(self, action: #selector(showPassword(button:)), for: .touchUpInside)
+            //showButton.addTarget(self, action: #selector(showPassword(button:)), for: .touchUpInside)
             cell.inputBox?.rightViewMode = .always
             cell.inputBox?.rightView = showButton
             showButton.titleLabel?.font = UIFont.systemFont(ofSize: 14.0)
@@ -126,7 +126,7 @@ extension FormTableDelegate : UITableViewDataSource {
         return cell
     }
     
-    @objc func showPassword(button: UIButton) {
+    @objc func showPassword(_ button: UIButton) {
         let textField = button.superview as! UITextField
         if (textField.isSecureTextEntry) {
             textField.isSecureTextEntry = false

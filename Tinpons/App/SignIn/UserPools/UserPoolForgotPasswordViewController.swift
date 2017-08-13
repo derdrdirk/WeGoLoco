@@ -68,11 +68,11 @@ class UserPoolForgotPasswordViewController: UIViewController {
     func setUp() {
         userNameRow = FormTableCell(placeHolder: "User Name", type: InputType.text)
         tableDelegate = FormTableDelegate()
-        tableDelegate?.add(cell: userNameRow!)
+        tableDelegate?.add(userNameRow!)
         tableView?.delegate = tableDelegate
         tableView?.dataSource = tableDelegate
         tableView.reloadData()
-        UserPoolsUIHelper.setUpFormShadow(view: tableFormView)
+        UserPoolsUIHelper.setUpFormShadow(tableFormView)
         
         self.setUpBackground()
     }

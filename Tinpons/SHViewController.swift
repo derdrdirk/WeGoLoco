@@ -9,12 +9,12 @@
 import UIKit
 
 public protocol SHViewControllerDelegate {
-    func shViewControllerImageDidFilter(image: UIImage)
+    func shViewControllerImageDidFilter(_ image: UIImage)
     func shViewControllerDidCancel()
 }
 
 open class SHViewController: UIViewController {
-    public var delegate: SHViewControllerDelegate?
+    open var delegate: SHViewControllerDelegate?
     fileprivate let filterNameList = [
         "No Filter",
         "CIPhotoEffectChrome",
@@ -64,7 +64,7 @@ open class SHViewController: UIViewController {
             self.view = view
             if let image = self.image {
                 imageView?.image = image
-                smallImage = resizeImage(image: image)
+                smallImage = resizeImage(image)
             }
         }
     }
@@ -86,7 +86,7 @@ open class SHViewController: UIViewController {
             applyFilter()
         }
         updateCellFont()
-        scrollCollectionViewToIndex(itemIndex: filterIndex)
+        scrollCollectionViewToIndex(filterIndex)
     }
 
     @IBAction func imageViewDidSwipeRight() {
@@ -101,18 +101,18 @@ open class SHViewController: UIViewController {
             imageView?.image = image
         }
         updateCellFont()
-        scrollCollectionViewToIndex(itemIndex: filterIndex)
+        scrollCollectionViewToIndex(filterIndex)
     }
 
     func applyFilter() {
         let filterName = filterNameList[filterIndex]
         if let image = self.image {
-            let filteredImage = createFilteredImage(filterName: filterName, image: image)
+            let filteredImage = createFilteredImage(filterName, image: image)
             imageView?.image = filteredImage
         }
     }
 
-    func createFilteredImage(filterName: String, image: UIImage) -> UIImage {
+    func createFilteredImage(_ filterName: String, image: UIImage) -> UIImage {
         // 1 - create source image
         let sourceImage = CIImage(image: image)
 
@@ -132,7 +132,7 @@ open class SHViewController: UIViewController {
         return filteredImage
     }
 
-    func resizeImage(image: UIImage) -> UIImage {
+    func resizeImage(_ image: UIImage) -> UIImage {
         let ratio: CGFloat = 0.3
         let resizedSize = CGSize(width: Int(image.size.width * ratio), height: Int(image.size.height * ratio))
         UIGraphicsBeginImageContext(resizedSize)
@@ -151,7 +151,7 @@ open class SHViewController: UIViewController {
 
     @IBAction func doneButtontapped() {
         if let delegate = self.delegate {
-            delegate.shViewControllerImageDidFilter(image: (imageView?.image)!)
+            delegate.shViewControllerImageDidFilter((imageView?.image)!)
         }
         dismiss(animated: true, completion: nil)
     }
@@ -163,7 +163,7 @@ extension  SHViewController: UICollectionViewDataSource, UICollectionViewDelegat
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SHCollectionViewCell
         var filteredImage = smallImage
         if indexPath.row != 0 {
-            filteredImage = createFilteredImage(filterName: filterNameList[indexPath.row], image: smallImage!)
+            filteredImage = createFilteredImage(filterNameList[indexPath.row], image: smallImage!)
         }
 
         cell.imageView.image = filteredImage
@@ -184,7 +184,7 @@ extension  SHViewController: UICollectionViewDataSource, UICollectionViewDelegat
             imageView?.image = image
         }
         updateCellFont()
-        scrollCollectionViewToIndex(itemIndex: indexPath.item)
+        scrollCollectionViewToIndex(indexPath.item)
     }
 
     func updateCellFont() {
@@ -210,7 +210,7 @@ extension  SHViewController: UICollectionViewDataSource, UICollectionViewDelegat
         }
     }
 
-    func scrollCollectionViewToIndex(itemIndex: Int) {
+    func scrollCollectionViewToIndex(_ itemIndex: Int) {
         let indexPath = IndexPath(item: itemIndex, section: 0)
         self.collectionView?.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }

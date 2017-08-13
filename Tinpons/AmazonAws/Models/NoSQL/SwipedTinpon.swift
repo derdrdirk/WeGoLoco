@@ -17,7 +17,7 @@ class SwipedTinpon {
     var tinponId: String?
     var favourite: NSNumber?
     
-    private func dynamoDBSwipedTinpon() -> DynamoDBSwipedTinpon {
+    fileprivate func dynamoDBSwipedTinpon() -> DynamoDBSwipedTinpon {
         let dynamoDBSwipedTinpon = DynamoDBSwipedTinpon()
         dynamoDBSwipedTinpon?.userId = userId
         dynamoDBSwipedTinpon?.swipedAt = swipedAt
@@ -27,7 +27,7 @@ class SwipedTinpon {
         return dynamoDBSwipedTinpon!
     }
     
-    static func castDynamoDBSwipedTinponToSwipedTinpon(dynamoDBSwipedTinpon: DynamoDBSwipedTinpon) -> SwipedTinpon {
+    static func castDynamoDBSwipedTinponToSwipedTinpon(_ dynamoDBSwipedTinpon: DynamoDBSwipedTinpon) -> SwipedTinpon {
         let swipedTinpon = SwipedTinpon()
         swipedTinpon.userId = dynamoDBSwipedTinpon.userId
         swipedTinpon.swipedAt = dynamoDBSwipedTinpon.swipedAt
@@ -68,7 +68,7 @@ class SwipedTinpon {
                     let dynamoDBSwipedTinpons = (paginatedOutput.items as? [DynamoDBSwipedTinpon])!
                     var swipedTinpons: [SwipedTinpon] = []
                     for dynamoDBSwipedTinpon in dynamoDBSwipedTinpons {
-                        swipedTinpons.append(SwipedTinpon.castDynamoDBSwipedTinponToSwipedTinpon(dynamoDBSwipedTinpon: dynamoDBSwipedTinpon))
+                        swipedTinpons.append(SwipedTinpon.castDynamoDBSwipedTinponToSwipedTinpon(dynamoDBSwipedTinpon))
                     }
                     
                     print("swipedTinpon count \(swipedTinpons.count)")
