@@ -214,7 +214,6 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guardTinponBasics()
-        print(tinpon.images.count)
         let colorsAndSizesViewController = segue.destination as! ColorsAndSizesViewController
         colorsAndSizesViewController.tinpon = self.tinpon
     }

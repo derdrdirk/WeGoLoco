@@ -11,6 +11,7 @@ import Eureka
 import Whisper
 import ImageRow
 import TOCropViewController
+import PromiseKit
 
 class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
     
@@ -109,7 +110,18 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
         if form.validate().isEmpty {
             guardColorSizesQuantitiesAndImages()
-            TinponsAPI.save(tinpon)
+            startLoadingAnimation()
+            firstly {
+                TinponsAPI.save(tinpon)
+            }.then {
+                print("tinpon saved")
+            }.catch { error in
+                print("error \(error)")
+            }.always {
+                DispatchQueue.main.async {
+                    self.stopLoadingAnimation()
+                }
+            }
         } else {
             let message = Message(title: "Faltan cuantidades.", backgroundColor: .red)
             Whisper.show(whisper: message, to: navigationController!, action: .show)
@@ -123,6 +135,7 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
         for section in form.allSections {
             let color = Color(spanishName: (section.header?.title)!)
             var sizeVariations = [SizeVariation]()
+            var images = [UIImage]()
             for row in section {
                 if let intRow = row as? IntRow {
                     let rowTitle = intRow.title!
@@ -132,12 +145,13 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
                     
                     let sizeVariation = SizeVariation(size: size, quantity: quantity)
                     sizeVariations.append(sizeVariation)
-                } else if let imageRow = row as? ImageRow {
-                    tinpon.productVariations[color]?.images.append(imageRow.value!)
+                } else if let image = (row as? ImageRow)?.value {
+                    images.append(image)
                 }
             }
             
-            tinpon.productVariations[color]?.sizeVariations = sizeVariations
+            let colorVariation = ColorVariation(sizeVariations: sizeVariations, images: images)
+            tinpon.productVariations[color] = colorVariation
         }
     }
     
