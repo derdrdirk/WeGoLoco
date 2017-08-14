@@ -24,14 +24,22 @@ class UserAPI: APIGatewayProtocol {
             if let error = task.error {
                 completion(nil, error)
             } else if let result = task.result {
-                let responseString = String(data: result.responseData!, encoding: .utf8)
-                
-                if let json = responseString?.toJSON {
-                    let user = try? User(json: json as! [String : Any])
-                    completion(user, nil)
-                } else {
-                    // User MOST PROBABLY does not exist
-                    completion(nil, APIError.nonExisting)
+                switch result.statusCode {
+                case 200:
+                    let responseString = String(data: result.responseData!, encoding: .utf8)
+                    
+                    if let json = responseString?.toJSON {
+                        let user = try? User(json: json as! [String : Any])
+                        completion(user, nil)
+                    } else {
+                        // User MOST PROBABLY does not exist
+                        completion(nil, APIError.nonExisting)
+                    }
+                case 403:
+                    print("ERROR - UserAPI.getsignedInUser: Access denied")
+                    completion(nil, APIError.forbidden)
+                default:
+                    completion(nil, APIError.unknown)
                 }
             }
         })

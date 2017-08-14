@@ -67,17 +67,17 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
     
     //MARK: Lifecycle
     override func viewWillAppear(_ animated: Bool) {
-        getCognitoID()
+//        getCognitoID()
         
         //TinponsAPI.getFavouriteTinpons(onComplete: {_ in })
         
         //TinponsAPI.getNotSwipedTinpons(onComplete: { _ in ()})
-        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:69141b86-f04c-48f0-9634-ed58c8f69d4e")
-        
-        let configuration = AWSServiceConfiguration(region: .EUWest1, credentialsProvider: credentialsProvider)
-        
-        AWSServiceManager.default().defaultServiceConfiguration = configuration
-        print("initialize swiper")
+//        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:0dfac2e7-dc9e-4146-a0b8-885e50a545e0")
+//        
+//        let configuration = AWSServiceConfiguration(region: .EUWest1, credentialsProvider: credentialsProvider)
+//        
+//        AWSServiceManager.default().defaultServiceConfiguration = configuration
+//        print("initialize swiper")
                 //        UserAPI.getSignedInUser{ user in
 //            print("Download User \(user?.toJSON())")
 //        }
@@ -108,9 +108,9 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
         presentSignInViewController()
 
         
-        tinponWrapper = TinponWrapper(swiperViewController: self)
+        //tinponWrapper = TinponWrapper(swiperViewController: self)
         
-        resetUI()
+        //resetUI()
         
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards

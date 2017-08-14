@@ -33,22 +33,6 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
     var colorTextFields = [UITextField]()
     var colorPicker = UIPickerView()
     
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        // test tinpon
-//        let tinpon = Tinpon(testing: true)
-//        firstly {
-//            TinponsAPI.save(tinpon: tinpon)
-//            }.then {
-//                print("tinpon uploaded")
-//            }.catch { error in
-//                print("some error \(error)")
-//        }
-
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -260,6 +244,14 @@ extension BasicsViewController: SHViewControllerDelegate {
     }
     
     func shViewControllerImageDidFilter(_ image: UIImage) {
+        // test
+        firstly {
+            TinponsAPI.uploadImage(image: image, name: UUID().uuidString+".png", path: "Tinpons/main/")
+        }.catch { error in
+            print("ERROR image upload: \(error)")
+        }
+
+        
         editingImageRow?.value = image
         editingImageRow?.reload()
         editingImageRow = nil

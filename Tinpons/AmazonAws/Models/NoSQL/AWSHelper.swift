@@ -17,7 +17,7 @@ func getUser(_ onCompletion: @escaping (DynamoDBUser) -> Void) {
     // Retrieve your Amazon Cognito ID
     credentialsProvider.getIdentityId().continueWith(block: { (task) -> AnyObject? in
         if (task.error != nil) {
-            print("Error: " + task.error!.localizedDescription)
+            print("Error AWSHelper: " + task.error!.localizedDescription)
         }
         else {
             // the task result will contain the identity id

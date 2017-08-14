@@ -374,9 +374,9 @@
 				D4512B421F189D42009B109C /* Favourites */,
 				B401C979550308D500000000 /* SignIn */,
 				D4FA2ECA1F0CE83A00B287FB /* Profile */,
-				B401C9794FB6A0BD00000000 /* SupportingFiles */,
 				B401C979583E47AD00000000 /* Utility */,
 				D410C5F01F24DA6A008D6C92 /* Api */,
+				B401C9794FB6A0BD00000000 /* SupportingFiles */,
 			);
 			name = App;
 			path = Tinpons/app;

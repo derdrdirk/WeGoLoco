@@ -140,6 +140,8 @@ class ProfileViewController: FormViewController, AuthenticationProtocol, ResetUI
                 self.presentingViewController?.dismiss(animated: true)
                 self.stopLoadingAnimation()
             }
+        }.catch { error in
+                print("Loading User error: \(error)")
         }
     }
     

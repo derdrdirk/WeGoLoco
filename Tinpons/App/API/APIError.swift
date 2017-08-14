@@ -12,4 +12,7 @@ enum APIError: Error {
     case serverError
     case nonExisting
     case alreadyExisting
+    case unknown
+    case forbidden
+    case cancelled
 }

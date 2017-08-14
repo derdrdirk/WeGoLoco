@@ -113,10 +113,10 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
             startLoadingAnimation()
             firstly {
                 TinponsAPI.save(tinpon)
-            }.then {
-                print("tinpon saved")
+            }.then { () -> () in
+                self.dismiss(animated: true)
             }.catch { error in
-                print("error \(error)")
+                print("QuantityVC error \(error)")
             }.always {
                 DispatchQueue.main.async {
                     self.stopLoadingAnimation()
