@@ -244,12 +244,13 @@ extension SwiperViewController: KolodaViewDataSource {
         switch direction {
         case .right:
             liked = true
-            saveSwipedTinpon(tinponId: (tinpons[index].tinponId)!, liked: liked)
+            //saveSwipedTinpon(tinponId: (tinpons[index].tinponId)!, liked: liked)
         case .left:
             liked = false
-            saveSwipedTinpon(tinponId: (tinpons[index].tinponId)!, liked: liked)
+            //saveSwipedTinpon(tinponId: (tinpons[index].tinponId)!, liked: liked)
         case .down:
-            favouriteTinpon(tinponId: (tinpons[index].tinponId)!)
+            ()
+            //favouriteTinpon(tinponId: (tinpons[index].tinponId)!)
         default: ()
         }
         

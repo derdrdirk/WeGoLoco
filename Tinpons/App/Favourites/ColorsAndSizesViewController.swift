@@ -87,7 +87,7 @@ class ColorsAndSizesViewController: FormViewController, LoadingAnimationProtocol
                 let sizeVariation = SizeVariation(size: sizeRow.selectableValue!, quantity: 0)
                 sizeVariations.append(sizeVariation)
             }
-            let colorVariation = ColorVariation(sizeVariations: sizeVariations, images: [UIImage]())
+            let colorVariation = ColorVariation(sizeVariations: sizeVariations, images: [TinponImage]())
             tinpon.productVariations[color] = colorVariation
         }
     }

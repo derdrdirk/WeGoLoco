@@ -113,14 +113,18 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
             startLoadingAnimation()
             firstly {
                 TinponsAPI.save(tinpon)
-            }.then { () -> () in
-                self.dismiss(animated: true)
+            }.then { tinponId -> () in
+                self.tinpon.id = tinponId
             }.catch { error in
                 print("QuantityVC error \(error)")
+            }.then {
+                return TinponsAPI.uploadMainImages(from: self.tinpon)
+                //self.dismiss(animated: true)
             }.always {
                 DispatchQueue.main.async {
                     self.stopLoadingAnimation()
                 }
+
             }
         } else {
             let message = Message(title: "Faltan cuantidades.", backgroundColor: .red)
@@ -128,14 +132,13 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
         }
     }
     
-    
     // MARK: guard Color, Sizes, Quantities and Images
     fileprivate func guardColorSizesQuantitiesAndImages() {
         tinpon.productVariations = [:]
         for section in form.allSections {
             let color = Color(spanishName: (section.header?.title)!)
             var sizeVariations = [SizeVariation]()
-            var images = [UIImage]()
+            var images = [TinponImage]()
             for row in section {
                 if let intRow = row as? IntRow {
                     let rowTitle = intRow.title!
@@ -146,7 +149,7 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
                     let sizeVariation = SizeVariation(size: size, quantity: quantity)
                     sizeVariations.append(sizeVariation)
                 } else if let image = (row as? ImageRow)?.value {
-                    images.append(image)
+                    images.append(TinponImage(image: image))
                 }
             }
             
@@ -156,9 +159,9 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
     }
     
     // MARK : Navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("segue")
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        print("segue")
+//    }
 }
 
 extension QuantitiesViewController:  TOCropViewControllerDelegate {

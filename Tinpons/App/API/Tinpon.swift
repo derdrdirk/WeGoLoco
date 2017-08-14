@@ -10,7 +10,7 @@ import Foundation
 
 struct ColorVariation {
     var sizeVariations = [SizeVariation]()
-    var images = [UIImage]()
+    var images = [TinponImage]()
     
     // Sequence Protocol
     //var iterattionsCount = 0
@@ -23,8 +23,17 @@ struct SizeVariation {
     var quantity: Int
 }
 
+struct TinponImage {
+    var image: UIImage
+    var id: String
+    init(image: UIImage) {
+        self.image = image
+        self.id = UUID().uuidString
+    }
+}
+
 class Tinpon: CustomStringConvertible {
-    var tinponId: String?
+    var id: Int?
     var active: Bool?
     var category: String?
     var createdAt: Date?
@@ -35,11 +44,11 @@ class Tinpon: CustomStringConvertible {
     var price: Double?
     var updatedAt: Date?
     var userId: String?
-    var images = [UIImage]()
+    var images = [TinponImage]()
     var productVariations = [Color : ColorVariation]()
     
     var description: String {
-        return "tinponId: \(tinponId ?? "nil")"
+        return "id: \(id ?? 0)"
     }
     
     init() {}
@@ -62,8 +71,8 @@ class Tinpon: CustomStringConvertible {
     }
     
     init(json: [String:Any]) throws {
-        guard let tinponId = json["tinponId"] as? String else {
-            throw SerializationError.missing("userId")
+        guard let id = json["tinponId"] as? Int else {
+            throw SerializationError.missing("tinponId")
         }
         
         guard let active = json["active"] as? Bool else {
@@ -108,7 +117,7 @@ class Tinpon: CustomStringConvertible {
         }
         
         
-        self.tinponId = tinponId
+        self.id = id
         self.active = active
         self.category = category
         self.createdAt = createdAt

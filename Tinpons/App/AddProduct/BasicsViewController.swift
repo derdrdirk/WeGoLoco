@@ -138,7 +138,10 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
 
         for row in form.allRows {
             if let image = (row as? ImageRow)?.value {
-                tinpon.images.append(image)
+                let tinponImage = TinponImage(image: image)
+                print(tinponImage)
+                tinpon.images.append(tinponImage)
+                
             }
         }
     }
@@ -244,15 +247,8 @@ extension BasicsViewController: SHViewControllerDelegate {
     }
     
     func shViewControllerImageDidFilter(_ image: UIImage) {
-        // test
-        firstly {
-            TinponsAPI.uploadImage(image: image, name: UUID().uuidString+".png", path: "Tinpons/main/")
-        }.catch { error in
-            print("ERROR image upload: \(error)")
-        }
-
-        
         editingImageRow?.value = image
+        
         editingImageRow?.reload()
         editingImageRow = nil
     }

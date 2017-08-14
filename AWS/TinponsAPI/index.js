@@ -1,7 +1,7 @@
 'use strict';
 var mysql = require('promise-mysql');
 
-var connection, tinpon, productVariations;
+var connection, tinpon, productVariations, tinponId;
 let host = "wegoloco-cluster.cluster-cb5jwvcwolur.eu-west-1.rds.amazonaws.com";
 let user = "admin";
 let password = "1269Y5$ST50j";
@@ -115,7 +115,7 @@ exports.handler = (event, context, callback) =>  {
               return query;
           }).then( function(result) {
             // insert product Variations
-            let insertId = result.insertId;
+            tinponId = result.insertId;
 
             var values = "";
             for (var color in productVariations) {
@@ -123,7 +123,7 @@ exports.handler = (event, context, callback) =>  {
                 let size = sizeVariation.size
                 let quantity = sizeVariation.quantity
 
-                values = values.concat("('"+insertId+"', '"+color+"', '"+size+"', '"+quantity+"'),");
+                values = values.concat("('"+tinponId+"', '"+color+"', '"+size+"', '"+quantity+"'),");
               }
             }
 
@@ -141,8 +141,12 @@ exports.handler = (event, context, callback) =>  {
 
 
           }).then(function(result) {
+
+            var jsonResponse = {}
+            jsonResponse.tinponId = tinponId;
+
             connection.end();
-            respond(context, 200, "Success: Created Tinpon");
+            respond(context, 200, JSON.stringify(jsonResponse));
           });
           // .then(function(rows) {
           //   if (rows.length > 0) {
