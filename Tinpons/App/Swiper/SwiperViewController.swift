@@ -12,10 +12,10 @@ import pop
 import AWSMobileHubHelper
 import AWSDynamoDB
 import AWSS3
-
 import AWSAPIGateway
 import AWSCognitoUserPoolsSignIn
 import AWSCognitoIdentityProvider
+import PromiseKit
 
 
 private let numberOfCards: Int = 5
@@ -33,7 +33,7 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
     // MARK: ResetUIProtocol
     var didAppear: Bool = false
     func resetUI() {
-        TinponsAPI.getNotSwipedTinpons{ [weak self] (tinpons) in
+        TinponsAPI.getNotSwipedTinpons({ [weak self] (tinpons) in
             guard let strongSelf = self else { return }
             if let tinpons = tinpons {
                 DispatchQueue.main.async {
@@ -51,7 +51,7 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
                     strongSelf.outOfTinponsStack.isHidden = true
                 }
             }
-        }
+        })
     }
     
     
@@ -67,6 +67,15 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
     
     //MARK: Lifecycle
     override func viewWillAppear(_ animated: Bool) {
+        firstly {
+            TinponsAPI.getNotSwipedTinpons()
+        }.then { tinpons in
+            print("tinpons received")
+        }.catch { error in
+            print("not swiped tinpons error : \(error)")
+        }
+        
+        
 //        getCognitoID()
         
         //TinponsAPI.getFavouriteTinpons(onComplete: {_ in })
@@ -256,7 +265,7 @@ extension SwiperViewController: KolodaViewDataSource {
         
         // if less than 10 tinpons load next Tinpon
         if tinpons.count - koloda.currentCardIndex < 5 {
-            TinponsAPI.getNotSwipedTinpons{ [weak self] (tinpons) in
+            TinponsAPI.getNotSwipedTinpons({ [weak self] (tinpons) in
                 guard let strongSelf = self else { return }
                 
                 if let tinpons = tinpons {
@@ -265,7 +274,7 @@ extension SwiperViewController: KolodaViewDataSource {
                         strongSelf.kolodaView.reloadData()
                     }
                 }
-            }
+            })
         }
     }
 }

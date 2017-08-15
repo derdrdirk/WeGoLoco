@@ -72,6 +72,47 @@ class TinponsAPI: APIGatewayProtocol {
         }
     }
     
+    
+    /**
+     get Tinpon from RDS
+     */
+    static func getNotSwipedTinpons(completion: @escaping ([Tinpon]?, Error?) -> ()) {
+        restAPITask(.GET, endPoint: .swipedTinpons).continueWith { (task: AWSTask<AWSAPIGatewayResponse>) -> () in
+            if let error = task.error {
+                completion(nil, APIError.serverError)
+                return
+            } else if let result = task.result {
+                switch result.statusCode {
+                case 200:
+                    let responseString = String(data: result.responseData!, encoding: .utf8)
+                    let json = responseString?.toJSON
+                    var tinpons = Array<Tinpon>()
+                    if let tinponDictionary = json as? [Any] {
+                        for tinponJson in tinponDictionary {
+                            do {
+                                let tinpon = try Tinpon(json: tinponJson as! [String : Any])
+                                tinpons.append(tinpon)
+                            } catch {
+                                print("TinponAPI error: \(error)")
+                            }
+                        }
+                    }
+
+                    completion(nil, nil)
+                case 502:
+                    completion(nil, APIError.serverError)
+                default:
+                    completion(nil, APIError.unknown)
+                }
+
+            }
+            
+        }
+    }
+    static func getNotSwipedTinpons() -> Promise<[Tinpon]> {
+        return PromiseKit.wrap { getNotSwipedTinpons(completion: $0) }
+    }
+    
     /**
      save Tinpon in RDS
      */

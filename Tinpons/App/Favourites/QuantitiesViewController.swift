@@ -117,9 +117,9 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
                 self.tinpon.id = tinponId
             }.catch { error in
                 print("QuantityVC error \(error)")
-            }.then {
+            }.then { () -> Any in 
                 return TinponsAPI.uploadMainImages(from: self.tinpon)
-                //self.dismiss(animated: true)
+                self.dismiss(animated: true)
             }.always {
                 DispatchQueue.main.async {
                     self.stopLoadingAnimation()
