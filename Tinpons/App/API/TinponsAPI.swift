@@ -103,7 +103,7 @@ class TinponsAPI: APIGatewayProtocol {
     */
     static func uploadMainImages(from tinpon: Tinpon, completion: @escaping (Error?)->()) {
         loopThroughMainImages(for: tinpon) { tinponImage, i in
-            let imagePath = "Tinpons/\(tinpon.id!)/main/\(i)_"
+            let imagePath = "Tinpons/\(tinpon.id!)/main/\(i)"
             uploadImage(tinponImage: tinponImage, path: imagePath) { error in
                 completion(error)
             }
@@ -155,9 +155,11 @@ class TinponsAPI: APIGatewayProtocol {
                 }
                 return nil
             }
-            
-            let uploadOutput = task.result
-            print("Upload complete for: \(uploadRequest?.key ?? "")")
+
+            // SUCCESS: Image uploaded
+            // save ImageId to RDS
+//            let uploadOutput = task.result
+//            print("Upload complete for: \(uploadRequest?.key ?? "")")
             completion(nil)
             return nil
         })

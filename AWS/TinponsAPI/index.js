@@ -7,7 +7,7 @@ let user = "admin";
 let password = "1269Y5$ST50j";
 let database = 'wegoloco';
 let charset = 'utf8mb4';
-
+// git test
 function respond(context, statusCode, body) {
   let response = {
       statusCode: statusCode,
