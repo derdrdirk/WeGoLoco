@@ -46,7 +46,7 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, LoadingAni
         super.viewDidLoad()
         
         //LoadingAnimationProtocol
-        loadingAnimationView = navigationController?.view
+        loadingAnimationView = view
         
         // AuthenticationProtocol
         authenticationNavigationController = navigationController

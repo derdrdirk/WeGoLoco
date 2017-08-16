@@ -12,36 +12,6 @@ import PromiseKit
 import AWSS3
 
 class TinponsAPI: APIGatewayProtocol {
-    static func getFavouriteTinpons(_ onComplete: @escaping ([Tinpon]?) -> ()) {
-        restAPITask(.GET, endPoint: .favouriteTinpons).continueWith{ (task: AWSTask<AWSAPIGatewayResponse>) -> () in
-            if let error = task.error {
-                print("Error occurred: \(error)")
-                // Handle error here
-                return
-            } else if let result = task.result {
-                let responseString = String(data: result.responseData!, encoding: .utf8)
-                if let json = responseString?.toJSON {
-                    var tinpons = Array<Tinpon>()
-                    if let tinponDictionary = json as? [Any] {
-                        for tinponJson in tinponDictionary {
-                            do {
-                                let tinpon = try Tinpon(json: tinponJson as! [String : Any])
-                                tinpons.append(tinpon)
-                            } catch {
-                                print("TinponAPI error: \(error)")
-                            }
-                        }
-                    }
-                    
-                    onComplete(tinpons)
-                } else {
-                    // Tinpons MOST PROBABLY do not exist
-                    onComplete(nil)
-                }
-            }
-        }
-    }
-    
     // MARK: GET Not Swiped Tinpons
     static public func getNotSwipedTinpons(completion: @escaping ([Tinpon]?, Error?)->()) {
         var tmpTinpons = [Tinpon]()
@@ -329,5 +299,44 @@ class TinponsAPI: APIGatewayProtocol {
     }
     static func saveSwipe(for tinpon: Tinpon, liked: Int) -> Promise<Void> {
         return PromiseKit.wrap { saveSwipe(for: tinpon, liked: liked, completion: $0) }
+    }
+    
+    // MARK: - Favourite
+    static func getFavouriteTinponsFromRDS(completion: @escaping ([Tinpon]?, Error?)->() ) {
+        restAPITask(.GET, endPoint: .favouriteTinpons).continueWith { task -> () in
+            if let error = task.error {
+                completion(nil, error)
+            } else if let result = task.result {
+                switch result.statusCode {
+                case 200:
+                    print("SUCCESS - TinponsAPI.getFavouriteTinponsFromRDS")
+                    let tinpons = taskToTinpons(task: task)
+                    completion(tinpons, nil)
+                default:
+                    print("Error - TinponsAPI.saveSwipe : \(result.statusCode)")
+                    completion(nil, APIError.serverError)
+                }
+            }
+        }
+    }
+    static func getFavouriteTinponsFromRDS() -> Promise<[Tinpon]> {
+        return PromiseKit.wrap { getFavouriteTinponsFromRDS(completion: $0) }
+    }
+    
+    
+    
+    // MARK: - Helper
+    
+    fileprivate static func taskToTinpons(task: AWSTask<AWSAPIGatewayResponse>) -> [Tinpon] {
+        let result = task.result!
+        var tmpTinpons = [Tinpon]()
+        let responseString = String(data: result.responseData!, encoding: .utf8)
+        let json = responseString?.toJSON
+        let tinponDictionary = json as! [Any]
+        for tinponJson in tinponDictionary {
+            let tinpon = try! Tinpon(json: tinponJson as! [String : Any])
+            tmpTinpons.append(tinpon)
+        }
+        return tmpTinpons
     }
 }

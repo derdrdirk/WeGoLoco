@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import IGListKit
 
 struct ColorVariation {
     var sizeVariations = [SizeVariation]()
@@ -55,6 +56,7 @@ class Tinpon: CustomStringConvertible {
     
     init(testing: Bool) {
         if testing {
+            self.id = 1
             self.name = "Name"
             self.category = "👕"
             self.price = 49.99
@@ -157,5 +159,16 @@ class Tinpon: CustomStringConvertible {
             print("User: error converting to json: \(error)")
             return nil
         }
+    }
+}
+
+extension Tinpon: ListDiffable {
+    func diffIdentifier() -> NSObjectProtocol {
+        return NSNumber(integerLiteral: id!)
+    }
+    
+    func isEqual(toDiffableObject object: ListDiffable?) -> Bool {
+        guard let object = object as? Tinpon else { return false }
+        return self.name == object.name
     }
 }

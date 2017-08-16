@@ -11,6 +11,11 @@
 		D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40308451F0FCBDE00BF1BD5 /* TinponOld.swift */; };
 		D40893EF1F442C45007479DA /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40893EE1F442C45007479DA /* Alamofire.framework */; };
 		D40893F01F442C45007479DA /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D40893EE1F442C45007479DA /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D40893F21F4458ED007479DA /* IGListKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40893F11F4458ED007479DA /* IGListKit.framework */; };
+		D40893F31F4458ED007479DA /* IGListKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D40893F11F4458ED007479DA /* IGListKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D40893F51F446305007479DA /* FavouriteTinponSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40893F41F446305007479DA /* FavouriteTinponSectionController.swift */; };
+		D40893FC1F448636007479DA /* FavouriteTinponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40893F81F4469A6007479DA /* FavouriteTinponCell.swift */; };
+		D40893FE1F4486AB007479DA /* FavouriteTinponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40893F91F4469A6007479DA /* FavouriteTinponCell.xib */; };
 		D40D97521F3CCCC600B246D0 /* ColorsAndSizesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97511F3CCCC600B246D0 /* ColorsAndSizesViewController.swift */; };
 		D40D97551F3CE61200B246D0 /* QuantitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97541F3CE61200B246D0 /* QuantitiesViewController.swift */; };
 		D40D97571F3CEACF00B246D0 /* ColorCheckRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97561F3CEACF00B246D0 /* ColorCheckRow.swift */; };
@@ -87,8 +92,7 @@
 		D4DA42481F0E13CD00A1C69E /* SwiftIconFont.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D4DA42451F0E123100A1C69E /* SwiftIconFont.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D4DA424B1F0E2C4200A1C69E /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D4DA424A1F0E2C4200A1C69E /* MapKit.framework */; };
 		D4DA424D1F0E2CFB00A1C69E /* CustomCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DA424C1F0E2CFB00A1C69E /* CustomCells.swift */; };
-		D4DAE9721F1C9B20000C447E /* FavouriteCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DAE9711F1C9B20000C447E /* FavouriteCollectionViewCell.swift */; };
-		D4DAE9741F1C9B4A000C447E /* FavouriteCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DAE9731F1C9B4A000C447E /* FavouriteCollectionViewController.swift */; };
+		D4DAE9741F1C9B4A000C447E /* FavouriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DAE9731F1C9B4A000C447E /* FavouriteViewController.swift */; };
 		D4DC434E1F1E3A2000BC1283 /* UserWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC434D1F1E3A2000BC1283 /* UserWrapper.swift */; };
 		D4DC43501F1E448200BC1283 /* TinponWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4DC434F1F1E448200BC1283 /* TinponWrapper.swift */; };
 		D4E258211EEC1A6400B2B986 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E2581F1EEC1A6400B2B986 /* CustomOverlayView.swift */; };
@@ -170,6 +174,7 @@
 				D4DA42481F0E13CD00A1C69E /* SwiftIconFont.framework in Embed Frameworks */,
 				D42DC6BC1F1BF9800087EB4F /* Whisper.framework in Embed Frameworks */,
 				D47D705F1F36F8C5003E0708 /* PromiseKit.framework in Embed Frameworks */,
+				D40893F31F4458ED007479DA /* IGListKit.framework in Embed Frameworks */,
 				E7A30F046317E39C00000000 /* AWSS3.framework in Embed Frameworks */,
 				D40EA7191F2A461300A44735 /* IQKeyboardManagerSwift.framework in Embed Frameworks */,
 			);
@@ -230,6 +235,10 @@
 		D4025B421F3DD03600436442 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Tinpons/App/API/Color.swift; sourceTree = SOURCE_ROOT; };
 		D40308451F0FCBDE00BF1BD5 /* TinponOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponOld.swift; path = Tinpons/AmazonAws/Models/NoSQL/TinponOld.swift; sourceTree = SOURCE_ROOT; };
 		D40893EE1F442C45007479DA /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
+		D40893F11F4458ED007479DA /* IGListKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IGListKit.framework; path = Carthage/Build/iOS/IGListKit.framework; sourceTree = "<group>"; };
+		D40893F41F446305007479DA /* FavouriteTinponSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouriteTinponSectionController.swift; path = Tinpons/App/Favourites/FavouriteTinponSectionController.swift; sourceTree = SOURCE_ROOT; };
+		D40893F81F4469A6007479DA /* FavouriteTinponCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouriteTinponCell.swift; path = Tinpons/App/Favourites/FavouriteTinponCell.swift; sourceTree = SOURCE_ROOT; };
+		D40893F91F4469A6007479DA /* FavouriteTinponCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FavouriteTinponCell.xib; path = Tinpons/App/Favourites/FavouriteTinponCell.xib; sourceTree = SOURCE_ROOT; };
 		D40D97511F3CCCC600B246D0 /* ColorsAndSizesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorsAndSizesViewController.swift; path = Tinpons/App/Favourites/ColorsAndSizesViewController.swift; sourceTree = SOURCE_ROOT; };
 		D40D97541F3CE61200B246D0 /* QuantitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuantitiesViewController.swift; path = Tinpons/App/Favourites/QuantitiesViewController.swift; sourceTree = SOURCE_ROOT; };
 		D40D97561F3CEACF00B246D0 /* ColorCheckRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorCheckRow.swift; path = Tinpons/App/Favourites/ColorCheckRow.swift; sourceTree = SOURCE_ROOT; };
@@ -303,8 +312,7 @@
 		D4DA42451F0E123100A1C69E /* SwiftIconFont.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftIconFont.framework; path = Carthage/Build/iOS/SwiftIconFont.framework; sourceTree = "<group>"; };
 		D4DA424A1F0E2C4200A1C69E /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		D4DA424C1F0E2CFB00A1C69E /* CustomCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomCells.swift; path = Tinpons/App/Profile/CustomCells.swift; sourceTree = SOURCE_ROOT; };
-		D4DAE9711F1C9B20000C447E /* FavouriteCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouriteCollectionViewCell.swift; path = Tinpons/App/Favourites/FavouriteCollectionViewCell.swift; sourceTree = SOURCE_ROOT; };
-		D4DAE9731F1C9B4A000C447E /* FavouriteCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouriteCollectionViewController.swift; path = Tinpons/App/Favourites/FavouriteCollectionViewController.swift; sourceTree = SOURCE_ROOT; };
+		D4DAE9731F1C9B4A000C447E /* FavouriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouriteViewController.swift; path = Tinpons/App/Favourites/FavouriteViewController.swift; sourceTree = SOURCE_ROOT; };
 		D4DC434D1F1E3A2000BC1283 /* UserWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserWrapper.swift; path = Tinpons/AmazonAws/Models/NoSQL/UserWrapper.swift; sourceTree = SOURCE_ROOT; };
 		D4DC434F1F1E448200BC1283 /* TinponWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponWrapper.swift; path = Tinpons/AmazonAws/Models/NoSQL/TinponWrapper.swift; sourceTree = SOURCE_ROOT; };
 		D4E2581F1EEC1A6400B2B986 /* CustomOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomOverlayView.swift; path = Tinpons/App/Swiper/CustomOverlayView.swift; sourceTree = SOURCE_ROOT; };
@@ -357,6 +365,7 @@
 				D480D0541EEBEEF300B4193A /* pop.framework in Frameworks */,
 				E7A30F04C6AE9E9200000000 /* SafariServices.framework in Frameworks */,
 				D47F96E81EED8D0000B9FCE3 /* Eureka.framework in Frameworks */,
+				D40893F21F4458ED007479DA /* IGListKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -390,6 +399,8 @@
 		B401C9792ED981A800000000 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D40893F11F4458ED007479DA /* IGListKit.framework */,
+				D40893EE1F442C45007479DA /* Alamofire.framework */,
 				D42994461F3F5DEA0031B280 /* TOCropViewController.framework */,
 				D4A69BA21F3B2CAD00037002 /* CoreActionSheetPicker.framework */,
 				D47D705D1F36F8C5003E0708 /* PromiseKit.framework */,
@@ -446,7 +457,6 @@
 		B401C9793DAC23B500000000 /* mainGroup */ = {
 			isa = PBXGroup;
 			children = (
-				D40893EE1F442C45007479DA /* Alamofire.framework */,
 				D4CA25BC1F279879007AF347 /* Assets */,
 				B401C9792ED981A800000000 /* Frameworks */,
 				B401C9793F3D745900000000 /* WeGoLoco */,
@@ -659,8 +669,10 @@
 		D4512B421F189D42009B109C /* Favourites */ = {
 			isa = PBXGroup;
 			children = (
-				D4DAE9711F1C9B20000C447E /* FavouriteCollectionViewCell.swift */,
-				D4DAE9731F1C9B4A000C447E /* FavouriteCollectionViewController.swift */,
+				D4DAE9731F1C9B4A000C447E /* FavouriteViewController.swift */,
+				D40893F41F446305007479DA /* FavouriteTinponSectionController.swift */,
+				D40893F81F4469A6007479DA /* FavouriteTinponCell.swift */,
+				D40893F91F4469A6007479DA /* FavouriteTinponCell.xib */,
 			);
 			name = Favourites;
 			path = Tinpons/App/Favourites;
@@ -774,6 +786,7 @@
 				D42994571F3F650A0031B280 /* Media.xcassets in Resources */,
 				D423ABA81F3B079300A6FE2A /* ProductVariationCell.xib in Resources */,
 				E7A30F04490C0AB000000000 /* Images.xcassets in Resources */,
+				D40893FE1F4486AB007479DA /* FavouriteTinponCell.xib in Resources */,
 				E7A30F0489AA356400000000 /* UserPools.storyboard in Resources */,
 				E7A30F04274F6B6700000000 /* AWSFacebookSignInResources.bundle in Resources */,
 				E7A30F04D987431800000000 /* Main.storyboard in Resources */,
@@ -826,7 +839,6 @@
 				D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */,
 				D4AAB5A71F305A0900050E02 /* TinponsAPI.swift in Sources */,
 				D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */,
-				D4DAE9721F1C9B20000C447E /* FavouriteCollectionViewCell.swift in Sources */,
 				D4EEF65A1F2F9F8700297A5E /* Tinpon.swift in Sources */,
 				D40D97551F3CE61200B246D0 /* QuantitiesViewController.swift in Sources */,
 				E7A30F042B278B4700000000 /* UserPoolSignUpConfirmationViewController.swift in Sources */,
@@ -840,7 +852,7 @@
 				D4306C811F0E6BEC0073A11E /* Stores.swift in Sources */,
 				D40D97571F3CEACF00B246D0 /* ColorCheckRow.swift in Sources */,
 				D4025B431F3DD03600436442 /* Color.swift in Sources */,
-				D4DAE9741F1C9B4A000C447E /* FavouriteCollectionViewController.swift in Sources */,
+				D4DAE9741F1C9B4A000C447E /* FavouriteViewController.swift in Sources */,
 				D41EB26A1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m in Sources */,
 				E7A30F043DD4F57200000000 /* FormTableCell.swift in Sources */,
 				D42994511F3F643A0031B280 /* SHViewController.swift in Sources */,
@@ -860,11 +872,13 @@
 				D4FC90E31F163328002A6F9E /* SwipedTinpon.swift in Sources */,
 				D4FA2ED21F0D10FD00B287FB /* DynamoDBUser.swift in Sources */,
 				E7A30F044B6ABE3800000000 /* UserPoolSignUpViewController.swift in Sources */,
+				D40893F51F446305007479DA /* FavouriteTinponSectionController.swift in Sources */,
 				D4306C831F0E73780073A11E /* AWSHelper.swift in Sources */,
 				E7A30F049A8F6DAE00000000 /* SignInViewController.swift in Sources */,
 				E7A30F048DE0B1CD00000000 /* DynamoDBTinpon.swift in Sources */,
 				D4B95B961F1E84180078289F /* Extensions.swift in Sources */,
 				D4DC434E1F1E3A2000BC1283 /* UserWrapper.swift in Sources */,
+				D40893FC1F448636007479DA /* FavouriteTinponCell.swift in Sources */,
 				D443C0FA1EEC728100FD148F /* BasicsViewController.swift in Sources */,
 				E7A30F04023CE26000000000 /* FacebookIdentityProfile.swift in Sources */,
 				D41A5D5E1F39959D00D1191C /* UserPoolPasswordViewController.swift in Sources */,

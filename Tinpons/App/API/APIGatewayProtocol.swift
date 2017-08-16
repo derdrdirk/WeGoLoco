@@ -20,8 +20,7 @@ enum APIEndPoint:String {
     case tinpons = "/tinpons"
     case swipedTinpons = "/tinpons/swiped"
     case tinponImages = "/tinpons/images"
-    case notSwipedTinpons = "/tinpons/notSwiped"
-    case favouriteTinpons = "/tinpons/favourite"
+    case favouriteTinpons = "/tinpons/favourites"
 }
 
 protocol APIGatewayProtocol: class {}
