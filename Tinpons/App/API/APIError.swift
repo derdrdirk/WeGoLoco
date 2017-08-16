@@ -15,4 +15,5 @@ enum APIError: Error {
     case unknown
     case forbidden
     case cancelled
+    case clientError
 }

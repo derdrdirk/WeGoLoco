@@ -138,9 +138,7 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
 
         for row in form.allRows {
             if let image = (row as? ImageRow)?.value {
-                let tinponImage = TinponImage(image: image)
-                print(tinponImage)
-                tinpon.images.append(tinponImage)
+                tinpon.images.append(image)
                 
             }
         }
@@ -200,6 +198,7 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
     
     // MARK: Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        tinpon = Tinpon()
         guardTinponBasics()
         let colorsAndSizesViewController = segue.destination as! ColorsAndSizesViewController
         colorsAndSizesViewController.tinpon = self.tinpon

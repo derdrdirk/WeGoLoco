@@ -101,7 +101,7 @@ exports.handler = (event, context, callback) =>  {
           connection = conn;
             //const person_id = 'eu-west-1:b1630ba6-92ac-4d29-8338-eb04b24eb3b4';
             const person_id = cognitoIdentityId;
-            var query = connection.query("SELECT * FROM tinpon WHERE NOT EXISTS (SELECT * FROM swiped_tinpon WHERE swiped_tinpon.person_id = '"+person_id+"' AND swiped_tinpon.tinpon_id = tinpon.id);");
+            var query = connection.query("SELECT * FROM tinpon WHERE NOT EXISTS (SELECT * FROM tinpon_swiped WHERE tinpon_swiped.person_id = '"+person_id+"' AND tinpon_swiped.tinpon_id = tinpon.id) LIMIT 10;");
           return query;
         })
         .then( function(rows) {
@@ -109,6 +109,26 @@ exports.handler = (event, context, callback) =>  {
         })
       break;
       case "POST":
+        console.log(requestBody);
+
+        var swipedTinpon = JSON.parse(requestBody);
+        swipedTinpon["person_id"] = cognitoIdentityId
+
+        mysql.createConnection({
+            host: host,
+            user: user,
+            password: password,
+            database: database,
+            charset: charset
+        }).then(function(conn){
+          connection = conn
+
+          var query = connection.query("INSERT INTO tinpon_swiped SET ?", swipedTinpon);
+        }).then( function(result) {
+          respond(context, 200, "SUCCESS: saved swipe");
+        }).catch( function(error) {
+          respond(context, 500, error );
+        });
         break;
       default :
         respond(context, 500, "Not a valid HTTP Mehthd called : ", httpMethod);

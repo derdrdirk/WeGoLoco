@@ -20,9 +20,9 @@
 #import <AWSCore/AWSSignature.h>
 #import <AWSCore/AWSSynchronizedMutableDictionary.h>
 
-#import "AWSAPI_9HLT8N48WD_RequestSchema.h"
 #import "AWSAPI_9HLT8N48WD_ResponseSchema.h"
 #import "AWSAPI_9HLT8N48WD_Empty.h"
+#import "AWSAPI_9HLT8N48WD_RequestSchema.h"
 
 @interface AWSAPIGatewayClient()
 
@@ -150,7 +150,29 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     return self;
 }
 
-- (AWSTask *)tinponsPost:(AWSAPI_9HLT8N48WD_RequestSchema *)body {
+- (AWSTask *)tinponsGet {
+    NSDictionary *headerParameters = @{
+                                       @"Content-Type": @"application/json",
+                                       @"Accept": @"application/json",
+                                       
+                                       };
+    NSDictionary *queryParameters = @{
+                                      
+                                      };
+    NSDictionary *pathParameters = @{
+                                     
+                                     };
+    
+    return [self invokeHTTPRequest:@"GET"
+                         URLString:@"/tinpons"
+                    pathParameters:pathParameters
+                   queryParameters:queryParameters
+                  headerParameters:headerParameters
+                              body:nil
+                     responseClass:[AWSAPI_9HLT8N48WD_ResponseSchema class]];
+}
+
+- (AWSTask *)tinponsPost {
     NSDictionary *headerParameters = @{
                                        @"Content-Type": @"application/json",
                                        @"Accept": @"application/json",
@@ -165,6 +187,50 @@ static AWSSynchronizedMutableDictionary *_serviceClients = nil;
     
     return [self invokeHTTPRequest:@"POST"
                          URLString:@"/tinpons"
+                    pathParameters:pathParameters
+                   queryParameters:queryParameters
+                  headerParameters:headerParameters
+                              body:nil
+                     responseClass:[AWSAPI_9HLT8N48WD_Empty class]];
+}
+
+- (AWSTask *)tinponsImagesGet:(AWSAPI_9HLT8N48WD_RequestSchema *)body {
+    NSDictionary *headerParameters = @{
+                                       @"Content-Type": @"application/json",
+                                       @"Accept": @"application/json",
+                                       
+                                       };
+    NSDictionary *queryParameters = @{
+                                      
+                                      };
+    NSDictionary *pathParameters = @{
+                                     
+                                     };
+    
+    return [self invokeHTTPRequest:@"GET"
+                         URLString:@"/tinpons/images"
+                    pathParameters:pathParameters
+                   queryParameters:queryParameters
+                  headerParameters:headerParameters
+                              body:body
+                     responseClass:[AWSAPI_9HLT8N48WD_ResponseSchema class]];
+}
+
+- (AWSTask *)tinponsSwipedGet:(AWSAPI_9HLT8N48WD_RequestSchema *)body {
+    NSDictionary *headerParameters = @{
+                                       @"Content-Type": @"application/json",
+                                       @"Accept": @"application/json",
+                                       
+                                       };
+    NSDictionary *queryParameters = @{
+                                      
+                                      };
+    NSDictionary *pathParameters = @{
+                                     
+                                     };
+    
+    return [self invokeHTTPRequest:@"GET"
+                         URLString:@"/tinpons/swiped"
                     pathParameters:pathParameters
                    queryParameters:queryParameters
                   headerParameters:headerParameters

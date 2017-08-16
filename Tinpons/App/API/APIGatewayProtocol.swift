@@ -19,6 +19,7 @@ enum APIEndPoint:String {
     case userEmailAvailable = "/users/is-email-available"
     case tinpons = "/tinpons"
     case swipedTinpons = "/tinpons/swiped"
+    case tinponImages = "/tinpons/images"
     case notSwipedTinpons = "/tinpons/notSwiped"
     case favouriteTinpons = "/tinpons/favourite"
 }

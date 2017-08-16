@@ -67,15 +67,6 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
     
     //MARK: Lifecycle
     override func viewWillAppear(_ animated: Bool) {
-        firstly {
-            TinponsAPI.getNotSwipedTinpons()
-        }.then { tinpons in
-            print("tinpons received")
-        }.catch { error in
-            print("not swiped tinpons error : \(error)")
-        }
-        
-        
 //        getCognitoID()
         
         //TinponsAPI.getFavouriteTinpons(onComplete: {_ in })
@@ -117,7 +108,8 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
         presentSignInViewController()
 
         
-        //tinponWrapper = TinponWrapper(swiperViewController: self)
+        // load Tinpons
+        loadTinpons()
         
         //resetUI()
         
@@ -163,6 +155,26 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
             }
             return task
         })
+    }
+    
+    func loadTinpons() {
+        firstly {
+            TinponsAPI.getNotSwipedTinpons()
+            }.then { tinpons -> () in
+                var getSwiperImagePromises = [Promise<UIImage>]()
+                for tinpon in tinpons {
+                    self.tinpons.append(tinpon)
+                    getSwiperImagePromises.append(TinponsAPI.getSwiperImage(for: tinpon))
+                }
+                when(fulfilled: getSwiperImagePromises).then { images -> () in
+                    for index in 0..<tinpons.count {
+                        tinpons[index].images.append(images[index])
+                    }
+                    self.kolodaView.reloadData()
+                }
+            }.catch { error in
+                print("SwiperVC.loadTinpons : not swiped tinpons error : \(error)")
+        }
     }
     
     // MARK: swipe DynamoDB
@@ -249,17 +261,17 @@ extension SwiperViewController: KolodaViewDataSource {
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
         // save swipedTinpon
-        var liked = false
+        var liked = 0
         switch direction {
         case .right:
-            liked = true
-            //saveSwipedTinpon(tinponId: (tinpons[index].tinponId)!, liked: liked)
+            liked = 1
+            TinponsAPI.saveSwipe(for: tinpons[index], liked: liked)
         case .left:
-            liked = false
-            //saveSwipedTinpon(tinponId: (tinpons[index].tinponId)!, liked: liked)
+            liked = 0
+            TinponsAPI.saveSwipe(for: tinpons[index], liked: liked)
         case .down:
-            ()
-            //favouriteTinpon(tinponId: (tinpons[index].tinponId)!)
+            liked = 3
+            TinponsAPI.saveSwipe(for: tinpons[index], liked: liked)
         default: ()
         }
         

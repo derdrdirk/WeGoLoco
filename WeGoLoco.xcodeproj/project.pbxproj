@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		D4025B431F3DD03600436442 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4025B421F3DD03600436442 /* Color.swift */; };
 		D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40308451F0FCBDE00BF1BD5 /* TinponOld.swift */; };
+		D40893EF1F442C45007479DA /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40893EE1F442C45007479DA /* Alamofire.framework */; };
+		D40893F01F442C45007479DA /* Alamofire.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D40893EE1F442C45007479DA /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D40D97521F3CCCC600B246D0 /* ColorsAndSizesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97511F3CCCC600B246D0 /* ColorsAndSizesViewController.swift */; };
 		D40D97551F3CE61200B246D0 /* QuantitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97541F3CE61200B246D0 /* QuantitiesViewController.swift */; };
 		D40D97571F3CEACF00B246D0 /* ColorCheckRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97561F3CEACF00B246D0 /* ColorCheckRow.swift */; };
@@ -157,6 +159,7 @@
 				D47F96E91EED8D0000B9FCE3 /* Eureka.framework in Embed Frameworks */,
 				D47F96F11EED938400B9FCE3 /* ImageRow.framework in Embed Frameworks */,
 				D480D0591EEBEF7200B4193A /* Koloda.framework in Embed Frameworks */,
+				D40893F01F442C45007479DA /* Alamofire.framework in Embed Frameworks */,
 				E7A30F040024501400000000 /* AWSDynamoDB.framework in Embed Frameworks */,
 				D410C5D61F238242008D6C92 /* AWSCore.framework in Embed Frameworks */,
 				D452206B1F2C924C00D01C43 /* Validator.framework in Embed Frameworks */,
@@ -226,6 +229,7 @@
 		1DD70E29FF24C27A00000000 /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSMobileHubHelper.framework; path = Tinpons/AmazonAws/AWSMobileHubHelper.framework; sourceTree = "<group>"; };
 		D4025B421F3DD03600436442 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Tinpons/App/API/Color.swift; sourceTree = SOURCE_ROOT; };
 		D40308451F0FCBDE00BF1BD5 /* TinponOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponOld.swift; path = Tinpons/AmazonAws/Models/NoSQL/TinponOld.swift; sourceTree = SOURCE_ROOT; };
+		D40893EE1F442C45007479DA /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
 		D40D97511F3CCCC600B246D0 /* ColorsAndSizesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorsAndSizesViewController.swift; path = Tinpons/App/Favourites/ColorsAndSizesViewController.swift; sourceTree = SOURCE_ROOT; };
 		D40D97541F3CE61200B246D0 /* QuantitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuantitiesViewController.swift; path = Tinpons/App/Favourites/QuantitiesViewController.swift; sourceTree = SOURCE_ROOT; };
 		D40D97561F3CEACF00B246D0 /* ColorCheckRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorCheckRow.swift; path = Tinpons/App/Favourites/ColorCheckRow.swift; sourceTree = SOURCE_ROOT; };
@@ -340,6 +344,7 @@
 				D40EA7181F2A461300A44735 /* IQKeyboardManagerSwift.framework in Frameworks */,
 				D4DA42471F0E13CD00A1C69E /* SwiftIconFont.framework in Frameworks */,
 				E7A30F045D6A367800000000 /* Security.framework in Frameworks */,
+				D40893EF1F442C45007479DA /* Alamofire.framework in Frameworks */,
 				D410C5D81F23828A008D6C92 /* AWSCognitoIdentityProvider.framework in Frameworks */,
 				E7A30F048D6E5D3400000000 /* CFNetwork.framework in Frameworks */,
 				E7A30F041123764F00000000 /* libz.tbd in Frameworks */,
@@ -385,6 +390,7 @@
 		B401C9792ED981A800000000 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D42994461F3F5DEA0031B280 /* TOCropViewController.framework */,
 				D4A69BA21F3B2CAD00037002 /* CoreActionSheetPicker.framework */,
 				D47D705D1F36F8C5003E0708 /* PromiseKit.framework */,
 				D47D705A1F36F326003E0708 /* BoltsSwift.framework */,
@@ -440,7 +446,7 @@
 		B401C9793DAC23B500000000 /* mainGroup */ = {
 			isa = PBXGroup;
 			children = (
-				D42994461F3F5DEA0031B280 /* TOCropViewController.framework */,
+				D40893EE1F442C45007479DA /* Alamofire.framework */,
 				D4CA25BC1F279879007AF347 /* Assets */,
 				B401C9792ED981A800000000 /* Frameworks */,
 				B401C9793F3D745900000000 /* WeGoLoco */,

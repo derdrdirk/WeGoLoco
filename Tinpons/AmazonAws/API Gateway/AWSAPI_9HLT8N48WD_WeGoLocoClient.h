@@ -17,9 +17,9 @@
 #import <Foundation/Foundation.h>
 #import <AWSAPIGateway/AWSAPIGateway.h>
 
-#import "AWSAPI_9HLT8N48WD_RequestSchema.h"
 #import "AWSAPI_9HLT8N48WD_ResponseSchema.h"
 #import "AWSAPI_9HLT8N48WD_Empty.h"
+#import "AWSAPI_9HLT8N48WD_RequestSchema.h"
 
 
 NS_ASSUME_NONNULL_BEGIN
@@ -173,11 +173,36 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  
  
+ 
+ return type: AWSAPI_9HLT8N48WD_ResponseSchema *
+ */
+- (AWSTask *)tinponsGet;
+
+/**
+ 
+ 
+ 
+ return type: AWSAPI_9HLT8N48WD_Empty *
+ */
+- (AWSTask *)tinponsPost;
+
+/**
+ 
+ 
  @param body 
  
  return type: AWSAPI_9HLT8N48WD_ResponseSchema *
  */
-- (AWSTask *)tinponsPost:( AWSAPI_9HLT8N48WD_RequestSchema *)body;
+- (AWSTask *)tinponsImagesGet:( AWSAPI_9HLT8N48WD_RequestSchema *)body;
+
+/**
+ 
+ 
+ @param body 
+ 
+ return type: AWSAPI_9HLT8N48WD_ResponseSchema *
+ */
+- (AWSTask *)tinponsSwipedGet:( AWSAPI_9HLT8N48WD_RequestSchema *)body;
 
 /**
  

@@ -44,7 +44,7 @@ class Tinpon: CustomStringConvertible {
     var price: Double?
     var updatedAt: Date?
     var userId: String?
-    var images = [TinponImage]()
+    var images = [UIImage]()
     var productVariations = [Color : ColorVariation]()
     
     var description: String {
@@ -71,34 +71,34 @@ class Tinpon: CustomStringConvertible {
     }
     
     init(json: [String:Any]) throws {
-        guard let id = json["tinponId"] as? Int else {
+        guard let id = json["id"] as? Int else {
             throw SerializationError.missing("tinponId")
         }
         
-        guard let active = json["active"] as? Bool else {
-            throw SerializationError.missing("active")
-        }
+//        guard let active = json["active"] as? Bool else {
+//            throw SerializationError.missing("active")
+//        }
         
-        guard let category = json["category"] as? String else {
+        guard let category_id = json["category_id"] as? String else {
             throw SerializationError.missing("category")
         }
         
-        guard let createdAt = (json["createdAt"] as? String)?.dateFromISO8601 else {
+        guard let createdAt = (json["created_at"] as? String)?.dateFromISO8601 else {
             throw SerializationError.missing("createdAt")
         }
         
-        guard let imgUrl = json["imgUrl"] as? String else {
-            throw SerializationError.missing("imgUrl")
-        }
-        
-        guard let latitude = json["latitude"] as? Double else {
-            throw SerializationError.missing("latitude")
-        }
-
-        
-        guard let longitude = json["longitude"] as? Double else {
-            throw SerializationError.missing("longitude")
-        }
+//        guard let imgUrl = json["imgUrl"] as? String else {
+//            throw SerializationError.missing("imgUrl")
+//        }
+//        
+//        guard let latitude = json["latitude"] as? Double else {
+//            throw SerializationError.missing("latitude")
+//        }
+//
+//        
+//        guard let longitude = json["longitude"] as? Double else {
+//            throw SerializationError.missing("longitude")
+//        }
         
         guard let name = json["name"] as? String else {
             throw SerializationError.missing("name")
@@ -108,26 +108,26 @@ class Tinpon: CustomStringConvertible {
             throw SerializationError.missing("price")
         }
         
-        guard let updatedAt = (json["updatedAt"] as? String)?.dateFromISO8601 else {
+        guard let updatedAt = (json["updated_at"] as? String)?.dateFromISO8601 else {
             throw SerializationError.missing("updatedAt")
         }
         
-        guard let userId = json["userId"] as? String else {
-            throw SerializationError.missing("userId")
-        }
+//        guard let userId = json["userId"] as? String else {
+//            throw SerializationError.missing("userId")
+//        }
         
         
         self.id = id
-        self.active = active
-        self.category = category
+//        self.active = active
+        self.category = category_id
         self.createdAt = createdAt
-        self.imgUrl = imgUrl
-        self.latitude = latitude
-        self.longitude = longitude
+//        self.imgUrl = imgUrl
+//        self.latitude = latitude
+//        self.longitude = longitude
         self.name = name
         self.price = price
         self.updatedAt = updatedAt
-        self.userId = userId
+//        self.userId = userId
     }
     //                                                      color  : [  sizeVariation : [ [ size : "M" ] , [ quantity : 1000 ] ]
     fileprivate func makeProductVariationsJSONCompatible() -> [ String : [ String : [ [ String : Any ] ] ] ] {

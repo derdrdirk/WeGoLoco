@@ -93,12 +93,13 @@ class TinponsAPI: APIGatewayProtocol {
                                 let tinpon = try Tinpon(json: tinponJson as! [String : Any])
                                 tinpons.append(tinpon)
                             } catch {
-                                print("TinponAPI error: \(error)")
+                                print("TinponsAPI.getNotSwipedTinpons error: \(error)")
+                                completion(nil, APIError.unknown)
                             }
                         }
                     }
 
-                    completion(nil, nil)
+                    completion(tinpons, nil)
                 case 502:
                     completion(nil, APIError.serverError)
                 default:
@@ -106,11 +107,93 @@ class TinponsAPI: APIGatewayProtocol {
                 }
 
             }
-            
         }
     }
     static func getNotSwipedTinpons() -> Promise<[Tinpon]> {
         return PromiseKit.wrap { getNotSwipedTinpons(completion: $0) }
+    }
+    
+    static func getSwiperImage(for tinpon: Tinpon, completion: @escaping (UIImage?, Error?) -> ()) {
+        let transferManager = AWSS3TransferManager.default()
+        
+        
+        let swiperImageKey = "Tinpons/\(tinpon.id!)/main/1.png"
+        let downloadingFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("\(tinpon.id!)+.png")
+        
+        let downloadRequest = AWSS3TransferManagerDownloadRequest()!
+        
+        downloadRequest.bucket = "wegoloco"
+        downloadRequest.key = swiperImageKey
+        downloadRequest.downloadingFileURL = downloadingFileURL
+        
+        transferManager.download(downloadRequest).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
+            
+            if let error = task.error as? NSError {
+                if error.domain == AWSS3TransferManagerErrorDomain, let code = AWSS3TransferManagerErrorType(rawValue: error.code) {
+                    switch code {
+                    case .cancelled, .paused:
+                        completion(nil, APIError.cancelled)
+                        break
+                    default:
+                        print("Error downloading: \(downloadRequest.key) Error: \(error)")
+                        completion(nil, APIError.serverError)
+                    }
+                } else {
+                    print("Error downloading: \(downloadRequest.key) Error: \(error)")
+                    completion(nil, APIError.serverError)
+                }
+                return nil
+            }
+            print("Download complete for: \(downloadRequest.key)")
+            let downloadOutput = task.result
+            completion(UIImage(contentsOfFile: downloadingFileURL.path), nil)
+            return nil
+        })
+    }
+    static func getSwiperImage(for tinpon: Tinpon) -> Promise<UIImage> {
+        return PromiseKit.wrap { getSwiperImage(for: tinpon, completion: $0) }
+    }
+    
+    
+    static func getMainImages(for tinpon: Tinpon, completion: @escaping ([String]?, Error?) -> ()) {
+        restAPITask(.GET, endPoint: .tinponImages, queryStringParameters: ["tinpon_id": "\(tinpon.id!)"]).continueWith { task -> () in
+            if let error = task.error {
+                completion(nil, APIError.serverError)
+                return
+            } else if let result = task.result {
+                switch result.statusCode {
+                case 200:
+                    let responseString = String(data: result.responseData!, encoding: .utf8)
+                    let json = responseString?.toJSON
+                    var imageS3Keys = Array<String>()
+                    if let imageDictionary = json as? [Any] {
+                        for imageJson in imageDictionary {
+                            imageS3Keys.append((imageJson as! [String: Any])["image"] as! String)
+                        }
+                    }
+                    
+                    completion(imageS3Keys, nil)
+                case 502:
+                    completion(nil, APIError.serverError)
+                default:
+                    completion(nil, APIError.unknown)
+                }
+                
+            }
+        }
+        
+//        let transferManager = AWSS3TransferManager.default()
+//        
+//        let downloadingFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(tinpon.name!)
+//        
+//        let downloadRequest = AWSS3TransferManagerDownloadRequest()
+//        
+//        downloadRequest?.bucket = "myBucket"
+//        downloadRequest?.key = "myImage.jpg"
+//        downloadRequest?.downloadingFileURL = downloadingFileURL
+    }
+    static func getMainImages(for tinpon: Tinpon) -> Promise<[String]> {
+        return PromiseKit.wrap { getMainImages(for: tinpon, completion: $0) }
     }
     
     /**
@@ -143,9 +226,9 @@ class TinponsAPI: APIGatewayProtocol {
     upload Image
     */
     static func uploadMainImages(from tinpon: Tinpon, completion: @escaping (Error?)->()) {
-        loopThroughMainImages(for: tinpon) { tinponImage, i in
+        loopThroughMainImages(for: tinpon) { image, i in
             let imagePath = "Tinpons/\(tinpon.id!)/main/\(i)"
-            uploadImage(tinponImage: tinponImage, path: imagePath) { error in
+            uploadImage(image: image, path: imagePath) { error in
                 completion(error)
             }
         }
@@ -154,14 +237,14 @@ class TinponsAPI: APIGatewayProtocol {
         return PromiseKit.wrap { uploadMainImages(from: tinpon, completion: $0) }
     }
     
-    static func uploadImage(tinponImage: TinponImage, path: String, completion: @escaping (Error?)->()) {
+    static func uploadImage(image: UIImage, path: String, completion: @escaping (Error?)->()) {
         
         // upload S3 image
-        let imageData: NSData = UIImagePNGRepresentation(tinponImage.image)! as NSData
+        let imageData: NSData = UIImagePNGRepresentation(image)! as NSData
         let transferManager = AWSS3TransferManager.default()
         
         let fileManager = FileManager.default
-        let filePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(tinponImage.id)
+        let filePath = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent(UUID().uuidString)
         fileManager.createFile(atPath: filePath as String, contents: imageData as Data, attributes: nil)
         let fileUrl = NSURL(fileURLWithPath: filePath)
         
@@ -205,15 +288,49 @@ class TinponsAPI: APIGatewayProtocol {
             return nil
         })
     }
-    static func uploadImage(tinponImage: TinponImage, path: String) -> Promise<Void> {
-        return PromiseKit.wrap{ uploadImage(tinponImage: tinponImage, path: path, completion: $0) }
+    static func uploadImage(image: UIImage, path: String) -> Promise<Void> {
+        return PromiseKit.wrap{ uploadImage(image: image, path: path, completion: $0) }
     }
     
-    private static func loopThroughMainImages(for tinpon: Tinpon, handle: (TinponImage, Int) -> () ) {
+    private static func loopThroughMainImages(for tinpon: Tinpon, handle: (UIImage, Int) -> () ) {
         var i = 0
-        for tinponImage in tinpon.images {
+        for image in tinpon.images {
             i += 1
-            handle(tinponImage, i)
+            handle(image, i)
         }
+    }
+    
+    // MARK: Swipe Tinpon
+    /**
+     Save Swipe
+     */
+    static func saveSwipe(for tinpon: Tinpon, liked: Int, completion: @escaping (Error?)->()) {
+        var jsonObject = ["tinpon_id" : tinpon.id, "liked": liked]
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: jsonObject,
+                                                      options: .prettyPrinted)
+            let jsonString = String(data: jsonData, encoding: String.Encoding.utf8)
+            restAPITask(.POST, endPoint: .swipedTinpons, httpBody: jsonString).continueWith { task -> () in
+                if let error = task.error {
+                    print("ERROR - TinponsAPI.saveSwipe: \(error)")
+                    completion(APIError.serverError)
+                } else if let result = task.result {
+                    switch result.statusCode {
+                    case 200:
+                        print("SUCCESS - TinponsAPI.saveSwipe : swiped tinpon saved")
+                        completion(nil)
+                    default:
+                        print("Error - TinponsAPI.saveSwipe : \(result.statusCode)")
+                        completion(APIError.serverError)
+                    }
+                }
+            }
+        } catch let error {
+            print("SwipedTinpon: error converting to json: \(error)")
+            completion(APIError.clientError)
+        }
+    }
+    static func saveSwipe(for tinpon: Tinpon, liked: Int) -> Promise<Void> {
+        return PromiseKit.wrap { saveSwipe(for: tinpon, liked: liked, completion: $0) }
     }
 }

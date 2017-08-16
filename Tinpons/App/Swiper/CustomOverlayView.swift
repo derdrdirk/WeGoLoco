@@ -20,8 +20,9 @@ class CustomOverlayView: OverlayView {
         didSet {
             title.text = tinpon?.name
             priceLabel.text = (tinpon?.category)!+" | "+String(describing: (tinpon?.price)!)+" €"
-            let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+(tinpon?.imgUrl)!
-            image.imageFromServerURL(urlString: resizedImageUrl)
+            //let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+(tinpon?.imgUrl)!
+            //image.imageFromServerURL(urlString: resizedImageUrl)
+            image.image = tinpon?.images[0]
         }
     }
     
