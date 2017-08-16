@@ -49,17 +49,17 @@
                                 <rect key="frame" x="16" y="56" width="343" height="554"/>
                                 <subviews>
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dJB-iD-02l" userLabel="outOfTinpons Stack">
-                                        <rect key="frame" x="26" y="246" width="290" height="63.5"/>
+                                        <rect key="frame" x="49.5" y="246" width="243" height="63.5"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No More WeGoLoco 😭 " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsb-lN-R7k">
-                                                <rect key="frame" x="0.0" y="0.0" width="290" height="33.5"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ya has visto todo 😭" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zsb-lN-R7k">
+                                                <rect key="frame" x="0.0" y="0.0" width="243" height="33.5"/>
                                                 <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o2v-x2-sVS">
-                                                <rect key="frame" x="113.5" y="33.5" width="63" height="30"/>
-                                                <state key="normal" title="Try again"/>
+                                                <rect key="frame" x="65" y="33.5" width="113" height="30"/>
+                                                <state key="normal" title="Intentar otra vez"/>
                                                 <connections>
                                                     <action selector="tryAgain:" destination="gfq-04-FT2" eventType="touchUpInside" id="Hfy-YV-wf7"/>
                                                 </connections>
@@ -100,7 +100,7 @@
             <objects>
                 <navigationController id="ddS-sC-jhU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="ebJ-m8-Ril"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jd7-Ed-EQj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jd7-Ed-EQj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -117,7 +117,7 @@
             <objects>
                 <navigationController id="LfB-L5-P3L" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="Cbp-Nx-JGf"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OXR-Cz-A2X">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OXR-Cz-A2X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.77647058820000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -167,7 +167,7 @@
         <scene sceneID="36f-YR-cYy">
             <objects>
                 <navigationController id="p8H-ep-t55" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wDa-sv-Kwb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wDa-sv-Kwb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.77647058820000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -279,7 +279,7 @@
             <objects>
                 <navigationController id="Kpi-Xm-XQ0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="aBK-0P-8I7"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iHk-9t-19I">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iHk-9t-19I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.035294117649999998" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -301,7 +301,7 @@
             <objects>
                 <navigationController id="o7V-gW-8HN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="hcs-Nb-vM5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WUr-7k-hFm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WUr-7k-hFm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.77647058820000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -433,7 +433,7 @@
             <objects>
                 <navigationController id="wzu-Na-rKZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="Mq1-Rf-Fpz"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iG6-3H-mA5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iG6-3H-mA5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">
@@ -471,7 +471,7 @@
         <scene sceneID="Pes-tX-gnk">
             <objects>
                 <collectionViewController id="5EV-VG-RIe" customClass="FavouriteCollectionViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
-                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" id="lOV-TQ-cSZ">
+                    <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="lOV-TQ-cSZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

@@ -102,9 +102,11 @@ exports.handler = (event, context, callback) =>  {
             //const person_id = 'eu-west-1:b1630ba6-92ac-4d29-8338-eb04b24eb3b4';
             const person_id = cognitoIdentityId;
             var query = connection.query("SELECT * FROM tinpon WHERE NOT EXISTS (SELECT * FROM tinpon_swiped WHERE tinpon_swiped.person_id = '"+person_id+"' AND tinpon_swiped.tinpon_id = tinpon.id) LIMIT 10;");
+            // could exclude ids like : AND ID NOT IN ('1', '2', '3', '4', '5', '6', '7', '8', '9', '10')
           return query;
         })
         .then( function(rows) {
+          connection.end()
           respond(context, 200, JSON.stringify(rows));
         })
       break;
@@ -125,6 +127,7 @@ exports.handler = (event, context, callback) =>  {
 
           var query = connection.query("INSERT INTO tinpon_swiped SET ?", swipedTinpon);
         }).then( function(result) {
+          connection.end()
           respond(context, 200, "SUCCESS: saved swipe");
         }).catch( function(error) {
           respond(context, 500, error );

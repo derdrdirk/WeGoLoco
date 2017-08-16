@@ -25,7 +25,6 @@ protocol ResetUIProtocol {
 protocol AuthenticationProtocol: class {
     var authenticationProtocolTabBarController: UITabBarController! { get set }
     var authenticationNavigationController: UINavigationController! { get set }
-    func resetUI()
 }
 
 extension AuthenticationProtocol {

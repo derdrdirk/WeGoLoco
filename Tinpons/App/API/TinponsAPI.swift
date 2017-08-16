@@ -12,36 +12,6 @@ import PromiseKit
 import AWSS3
 
 class TinponsAPI: APIGatewayProtocol {
-    static func getNotSwipedTinpons(_ onComplete: @escaping ([Tinpon]?) -> ()) {
-        restAPITask(.GET, endPoint: .notSwipedTinpons).continueWith {  (task: AWSTask<AWSAPIGatewayResponse>) -> () in
-            if let error = task.error {
-                print("Error occurred: \(error)")
-                // Handle error here
-                return
-            } else if let result = task.result {
-                let responseString = String(data: result.responseData!, encoding: .utf8)
-                if let json = responseString?.toJSON {
-                    var tinpons = Array<Tinpon>()
-                    if let tinponDictionary = json as? [Any] {
-                        for tinponJson in tinponDictionary {
-                            do {
-                                let tinpon = try Tinpon(json: tinponJson as! [String : Any])
-                                tinpons.append(tinpon)
-                            } catch {
-                                print("TinponAPI error: \(error)")
-                            }
-                        }
-                    }
-                    
-                    onComplete(tinpons)
-                } else {
-                    // Tinpons MOST PROBABLY do not exist
-                    onComplete(nil)
-                }
-            }
-        }
-    }
-    
     static func getFavouriteTinpons(_ onComplete: @escaping ([Tinpon]?) -> ()) {
         restAPITask(.GET, endPoint: .favouriteTinpons).continueWith{ (task: AWSTask<AWSAPIGatewayResponse>) -> () in
             if let error = task.error {
@@ -72,11 +42,35 @@ class TinponsAPI: APIGatewayProtocol {
         }
     }
     
+    // MARK: GET Not Swiped Tinpons
+    static public func getNotSwipedTinpons(completion: @escaping ([Tinpon]?, Error?)->()) {
+        var tmpTinpons = [Tinpon]()
+        firstly {
+            TinponsAPI.getNotSwipedTinponsFromRDS()
+        }.then { tinpons -> () in
+            var getSwiperImagePromises = [Promise<UIImage>]()
+            for tinpon in tinpons {
+                tmpTinpons.append(tinpon)
+                getSwiperImagePromises.append(TinponsAPI.getSwiperImage(for: tinpon))
+            }
+            when(fulfilled: getSwiperImagePromises).then { images -> () in
+                for index in 0..<tinpons.count {
+                    tmpTinpons[index].images.append(images[index])
+                }
+                completion(tmpTinpons, nil)
+            }
+        }.catch { error in
+            completion(nil, error)
+        }
+    }
+    static func getNotSwipedTinpons() -> Promise<[Tinpon]> {
+        return PromiseKit.wrap { getNotSwipedTinpons(completion: $0) }
+    }
     
     /**
-     get Tinpon from RDS
+     gets not swiped tinpons from RDS
      */
-    static func getNotSwipedTinpons(completion: @escaping ([Tinpon]?, Error?) -> ()) {
+    static private func getNotSwipedTinponsFromRDS(completion: @escaping ([Tinpon]?, Error?) -> ()) {
         restAPITask(.GET, endPoint: .swipedTinpons).continueWith { (task: AWSTask<AWSAPIGatewayResponse>) -> () in
             if let error = task.error {
                 completion(nil, APIError.serverError)
@@ -109,11 +103,14 @@ class TinponsAPI: APIGatewayProtocol {
             }
         }
     }
-    static func getNotSwipedTinpons() -> Promise<[Tinpon]> {
-        return PromiseKit.wrap { getNotSwipedTinpons(completion: $0) }
+    static func getNotSwipedTinponsFromRDS() -> Promise<[Tinpon]> {
+        return PromiseKit.wrap { getNotSwipedTinponsFromRDS(completion: $0) }
     }
     
-    static func getSwiperImage(for tinpon: Tinpon, completion: @escaping (UIImage?, Error?) -> ()) {
+    /**
+     gets swiper image for tinpon
+     */
+    static private func getSwiperImage(for tinpon: Tinpon, completion: @escaping (UIImage?, Error?) -> ()) {
         let transferManager = AWSS3TransferManager.default()
         
         
@@ -150,51 +147,51 @@ class TinponsAPI: APIGatewayProtocol {
             return nil
         })
     }
-    static func getSwiperImage(for tinpon: Tinpon) -> Promise<UIImage> {
+    static private func getSwiperImage(for tinpon: Tinpon) -> Promise<UIImage> {
         return PromiseKit.wrap { getSwiperImage(for: tinpon, completion: $0) }
     }
     
     
-    static func getMainImages(for tinpon: Tinpon, completion: @escaping ([String]?, Error?) -> ()) {
-        restAPITask(.GET, endPoint: .tinponImages, queryStringParameters: ["tinpon_id": "\(tinpon.id!)"]).continueWith { task -> () in
-            if let error = task.error {
-                completion(nil, APIError.serverError)
-                return
-            } else if let result = task.result {
-                switch result.statusCode {
-                case 200:
-                    let responseString = String(data: result.responseData!, encoding: .utf8)
-                    let json = responseString?.toJSON
-                    var imageS3Keys = Array<String>()
-                    if let imageDictionary = json as? [Any] {
-                        for imageJson in imageDictionary {
-                            imageS3Keys.append((imageJson as! [String: Any])["image"] as! String)
-                        }
-                    }
-                    
-                    completion(imageS3Keys, nil)
-                case 502:
-                    completion(nil, APIError.serverError)
-                default:
-                    completion(nil, APIError.unknown)
-                }
-                
-            }
-        }
-        
-//        let transferManager = AWSS3TransferManager.default()
+//    static func getMainImages(for tinpon: Tinpon, completion: @escaping ([String]?, Error?) -> ()) {
+//        restAPITask(.GET, endPoint: .tinponImages, queryStringParameters: ["tinpon_id": "\(tinpon.id!)"]).continueWith { task -> () in
+//            if let error = task.error {
+//                completion(nil, APIError.serverError)
+//                return
+//            } else if let result = task.result {
+//                switch result.statusCode {
+//                case 200:
+//                    let responseString = String(data: result.responseData!, encoding: .utf8)
+//                    let json = responseString?.toJSON
+//                    var imageS3Keys = Array<String>()
+//                    if let imageDictionary = json as? [Any] {
+//                        for imageJson in imageDictionary {
+//                            imageS3Keys.append((imageJson as! [String: Any])["image"] as! String)
+//                        }
+//                    }
+//                    
+//                    completion(imageS3Keys, nil)
+//                case 502:
+//                    completion(nil, APIError.serverError)
+//                default:
+//                    completion(nil, APIError.unknown)
+//                }
+//                
+//            }
+//        }
 //        
-//        let downloadingFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(tinpon.name!)
-//        
-//        let downloadRequest = AWSS3TransferManagerDownloadRequest()
-//        
-//        downloadRequest?.bucket = "myBucket"
-//        downloadRequest?.key = "myImage.jpg"
-//        downloadRequest?.downloadingFileURL = downloadingFileURL
-    }
-    static func getMainImages(for tinpon: Tinpon) -> Promise<[String]> {
-        return PromiseKit.wrap { getMainImages(for: tinpon, completion: $0) }
-    }
+////        let transferManager = AWSS3TransferManager.default()
+////        
+////        let downloadingFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(tinpon.name!)
+////        
+////        let downloadRequest = AWSS3TransferManagerDownloadRequest()
+////        
+////        downloadRequest?.bucket = "myBucket"
+////        downloadRequest?.key = "myImage.jpg"
+////        downloadRequest?.downloadingFileURL = downloadingFileURL
+//    }
+//    static func getMainImages(for tinpon: Tinpon) -> Promise<[String]> {
+//        return PromiseKit.wrap { getMainImages(for: tinpon, completion: $0) }
+//    }
     
     /**
      save Tinpon in RDS

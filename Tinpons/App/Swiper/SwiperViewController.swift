@@ -24,83 +24,29 @@ private let frameAnimationSpringSpeed: CGFloat = 16
 private let kolodaCountOfVisibleCards = 2
 private let kolodaAlphaValueSemiTransparent: CGFloat = 0.1
 
-class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIProtocol {
+class SwiperViewController: UIViewController, AuthenticationProtocol, LoadingAnimationProtocol {
+    // MARK: LoadingAnimationProtocol
+    var loadingAnimationView: UIView!
+    var loadingAnimationOverlay: UIView!
+    var loadingAnimationIndicator: UIActivityIndicatorView!
+
     
     // MARK: AuthenticationProtocol
     var authenticationNavigationController: UINavigationController!
     var authenticationProtocolTabBarController: UITabBarController!
     
-    // MARK: ResetUIProtocol
-    var didAppear: Bool = false
-    func resetUI() {
-        TinponsAPI.getNotSwipedTinpons({ [weak self] (tinpons) in
-            guard let strongSelf = self else { return }
-            if let tinpons = tinpons {
-                DispatchQueue.main.async {
-                    strongSelf.outOfTinponsStack.isHidden = false
-                }
-                
-                strongSelf.tinpons.append(contentsOf: tinpons)
-                DispatchQueue.main.async {
-                    (strongSelf.tinpons.count > 0) ? strongSelf.outOfTinponsStack.isHidden = true : ()
-                    strongSelf.kolodaView.resetCurrentCardIndex()
-                    strongSelf.kolodaView.reloadData()
-                }
-            } else {
-                DispatchQueue.main.async {
-                    strongSelf.outOfTinponsStack.isHidden = true
-                }
-            }
-        })
-    }
-    
-    
+    // Outlets
     @IBOutlet weak var kolodaView: CustomKolodaView!
     @IBOutlet weak var outOfTinponsStack: UIStackView!
     
-    var tinponWrapper: TinponWrapper!
-    var userWrapper = UserWrapper()
-    
-    var userId: String?
     var tinpons : [Tinpon] = []
-    var lastEvaluatedKey : [String: AWSDynamoDBAttributeValue]?
     
     //MARK: Lifecycle
-    override func viewWillAppear(_ animated: Bool) {
-//        getCognitoID()
-        
-        //TinponsAPI.getFavouriteTinpons(onComplete: {_ in })
-        
-        //TinponsAPI.getNotSwipedTinpons(onComplete: { _ in ()})
-//        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:0dfac2e7-dc9e-4146-a0b8-885e50a545e0")
-//        
-//        let configuration = AWSServiceConfiguration(region: .EUWest1, credentialsProvider: credentialsProvider)
-//        
-//        AWSServiceManager.default().defaultServiceConfiguration = configuration
-//        print("initialize swiper")
-                //        UserAPI.getSignedInUser{ user in
-//            print("Download User \(user?.toJSON())")
-//        }
-        
-//        var user = User()
-//        user.birthdate = Date()
-//        print(user.toJSON()!)
-//        UserAPI.save(preparedObject: user, onCompletionClosure: { print("saved") })
-//        UserAPI.update(preparedObject: user, onCompletionClosure: { print("updated") })
-        
-        
-//        let firstSignInStoryboard = UIStoryboard(name: "FirstSignIn", bundle: nil)
-//        let firstSignInController: EmailViewController = firstSignInStoryboard.instantiateViewController(withIdentifier: "EmailViewController") as! EmailViewController
-//        let navController: FirstSignInNavigationController = firstSignInStoryboard.instantiateViewController(withIdentifier: "FirstSignInNavigationController") as! FirstSignInNavigationController
-//        extensionNavigationController.present(navController, animated: true, completion: nil)
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // ResetUIProtocol
-        didAppear = true
+        //LoadingAnimationProtocol
+        loadingAnimationView = navigationController?.view
         
         // AuthenticationProtocol
         authenticationNavigationController = navigationController
@@ -110,8 +56,6 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
         
         // load Tinpons
         loadTinpons()
-        
-        //resetUI()
         
         kolodaView.alphaValueSemiTransparent = kolodaAlphaValueSemiTransparent
         kolodaView.countOfVisibleCards = kolodaCountOfVisibleCards
@@ -124,11 +68,10 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
     
     //MARK: IBActions
     @IBAction func tryAgain(_ sender: UIButton) {
-        resetUI()
+        loadTinpons()
     }
     @IBAction func leftButtonTapped(_ sender: Any) {
-        kolodaView.swipe(.down)
-        //kolodaView?.swipe(.left)
+        kolodaView?.swipe(.left)
     }
     @IBAction func rightButtonTapped(_ sender: UIButton) {
         kolodaView?.swipe(.right)
@@ -137,69 +80,59 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, ResetUIPro
         kolodaView?.revertAction()
     }
     
-    // MARK: get Cognito ID
-    func getCognitoID() {
-        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: .EUWest1, identityPoolId: "eu-west-1:8088e7da-a496-4ae3-818c-2b9025180888")
-        let configuration = AWSServiceConfiguration(region: .EUWest1, credentialsProvider: credentialsProvider)
-        AWSServiceManager.default().defaultServiceConfiguration = configuration
-                
-        // Retrieve your Amazon Cognito ID
-        credentialsProvider.getIdentityId().continueWith(block: { [weak self] (task) -> AnyObject? in
-            if (task.error != nil) {
-                print("Error: " + task.error!.localizedDescription)
-            }
-            else {
-                // the task result will contain the identity id
-                let cognitoId = task.result!
-                self?.userId = cognitoId as String
-            }
-            return task
-        })
+    // MARK: Helpers
+    fileprivate func resetUI() {
+        tinpons = [Tinpon]()
+        kolodaView.reloadData()
     }
     
-    func loadTinpons() {
+    fileprivate func isAlreadyDownloaded(tinpon: Tinpon) -> Bool {
+        for swiperTinpon in tinpons {
+            if swiperTinpon.id == tinpon.id {
+                return true
+            }
+        }
+        return false
+    }
+    
+    fileprivate func loadTinpons() {
+        resetUI()
+        startLoadingAnimation()
         firstly {
             TinponsAPI.getNotSwipedTinpons()
-            }.then { tinpons -> () in
-                var getSwiperImagePromises = [Promise<UIImage>]()
-                for tinpon in tinpons {
-                    self.tinpons.append(tinpon)
-                    getSwiperImagePromises.append(TinponsAPI.getSwiperImage(for: tinpon))
-                }
-                when(fulfilled: getSwiperImagePromises).then { images -> () in
-                    for index in 0..<tinpons.count {
-                        tinpons[index].images.append(images[index])
-                    }
-                    self.kolodaView.reloadData()
-                }
+            }.then { tinpons->() in
+                self.tinpons.append(contentsOf: tinpons)
+                self.kolodaView.reloadData()
+                self.showoutOfTinponsIfNecessary()
+                self.stopLoadingAnimation()
             }.catch { error in
                 print("SwiperVC.loadTinpons : not swiped tinpons error : \(error)")
         }
     }
     
-    // MARK: swipe DynamoDB
-    func saveSwipedTinpon(tinponId: String, liked: Bool) {
-        let swipedTinpon = SwipedTinpon()
-        swipedTinpon.userId = userId
-        swipedTinpon.like = NSNumber(value: liked)
-        swipedTinpon.tinponId = tinponId
-        swipedTinpon.swipedAt = Date().iso8601.dateFromISO8601?.iso8601 // "2017-03-22T13:22:13.933Z"
-        
-        swipedTinpon.save()
-        SwipedTinponsCore.save(swipedTinpon: swipedTinpon)
+    // additionally filters out already existing tinpons
+    fileprivate func loadMoreTinpons() {
+        firstly {
+            TinponsAPI.getNotSwipedTinpons()
+        }.then { tinpons -> () in
+            for tinpon in tinpons {
+                if !self.isAlreadyDownloaded(tinpon: tinpon) {
+                    self.tinpons.append(tinpon)
+                }
+            }
+            self.kolodaView.reloadData()
+        }
     }
     
-    func favouriteTinpon(tinponId: String) {        
-        let swipedTinpon = SwipedTinpon()
-        swipedTinpon.userId = userId
-        swipedTinpon.like = NSNumber(value: true)
-        swipedTinpon.tinponId = tinponId
-        swipedTinpon.swipedAt = Date().iso8601.dateFromISO8601?.iso8601 // "2017-03-22T13:22:13.933Z"
-        swipedTinpon.favourite = NSNumber(value: 1)
-        
-        swipedTinpon.save()
-        SwipedTinponsCore.save(swipedTinpon: swipedTinpon)
+    fileprivate func showoutOfTinponsIfNecessary() {
+        if tinpons.count - kolodaView.currentCardIndex == 0 {
+            outOfTinponsStack.isHidden = false
+        } else {
+            outOfTinponsStack.isHidden = true
+        }
     }
+    
+    
 }
 
 //MARK: KolodaViewDelegate
@@ -260,6 +193,9 @@ extension SwiperViewController: KolodaViewDataSource {
     }
     
     func koloda(_ koloda: KolodaView, didSwipeCardAt index: Int, in direction: SwipeResultDirection) {
+        // free up some memory
+        tinpons[index].images.removeAll()
+        
         // save swipedTinpon
         var liked = 0
         switch direction {
@@ -275,36 +211,10 @@ extension SwiperViewController: KolodaViewDataSource {
         default: ()
         }
         
-        // if less than 10 tinpons load next Tinpon
+        // if less than 5 tinpons load next Tinpon
         if tinpons.count - koloda.currentCardIndex < 5 {
-            TinponsAPI.getNotSwipedTinpons({ [weak self] (tinpons) in
-                guard let strongSelf = self else { return }
-                
-                if let tinpons = tinpons {
-                    strongSelf.tinpons.append(contentsOf: tinpons)
-                    DispatchQueue.main.async {
-                        strongSelf.kolodaView.reloadData()
-                    }
-                }
-            })
+            self.loadMoreTinpons()
         }
     }
 }
-
-extension UIImageView {
-    public func imageFromServerURL(urlString: String) {
-        
-        URLSession.shared.dataTask(with: NSURL(string: urlString)! as URL, completionHandler: { (data, response, error) -> Void in
-            
-            if error != nil {
-                print(error.debugDescription)
-                return
-            }
-            DispatchQueue.main.async(execute: { () -> Void in
-                let image = UIImage(data: data!)
-                self.image = image
-            })
-            
-        }).resume()
-    }}
 

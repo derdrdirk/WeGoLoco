@@ -26,7 +26,7 @@ class ManagerTableViewCell: UITableViewCell {
         if let tinpon = tinpon {
             nameLabel.text = tinpon.name
             let resizedImageUrl = "http://tinpons-userfiles-mobilehub-1827971537.s3-website-eu-west-1.amazonaws.com/300x400/"+tinpon.imgUrl!
-            tinponImage.imageFromServerURL(urlString: resizedImageUrl)
+            //tinponImage.imageFromServerURL(urlString: resizedImageUrl)
             activationSwitch.isOn = tinpon.active == true
             createdAtLabel.text = tinpon.createdAt?.dateFromISO8601?.DDMMyyyy
             descriptionLabel.text = tinpon.category!+" | "+(tinpon.price?.stringValue)!+" €"
