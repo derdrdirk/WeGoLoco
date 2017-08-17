@@ -80,6 +80,13 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, LoadingAni
         kolodaView?.revertAction()
     }
     
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let tinponDetailVC = segue.destination as? TinponDetailViewController {
+            tinponDetailVC.tinpon = self.tinpons[kolodaView.currentCardIndex]
+        }
+    }
+    
     // MARK: Helpers
     fileprivate func resetUI() {
         tinpons = [Tinpon]()
@@ -148,7 +155,7 @@ extension SwiperViewController: KolodaViewDelegate {
     }
     
     func koloda(_ koloda: KolodaView, didSelectCardAt index: Int) {
-        //UIApplication.shared.openURL(URL(string: "https://yalantis.com/")!)
+        performSegue(withIdentifier: "segueToTinponDetailViewController", sender: self)
     }
     
     func kolodaShouldApplyAppearAnimation(_ koloda: KolodaView) -> Bool {

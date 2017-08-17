@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D40102F21F45752000FB99AE /* FSPagerView.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D40102F11F45752000FB99AE /* FSPagerView.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D40102F41F45767E00FB99AE /* TinponDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40102F31F45767E00FB99AE /* TinponDetailViewController.swift */; };
 		D4025B431F3DD03600436442 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4025B421F3DD03600436442 /* Color.swift */; };
 		D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40308451F0FCBDE00BF1BD5 /* TinponOld.swift */; };
 		D40893EF1F442C45007479DA /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D40893EE1F442C45007479DA /* Alamofire.framework */; };
@@ -159,6 +161,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				D40102F21F45752000FB99AE /* FSPagerView.framework in Embed Frameworks */,
 				D42994481F3F5DEA0031B280 /* TOCropViewController.framework in Embed Frameworks */,
 				D47F96E91EED8D0000B9FCE3 /* Eureka.framework in Embed Frameworks */,
 				D47F96F11EED938400B9FCE3 /* ImageRow.framework in Embed Frameworks */,
@@ -232,6 +235,8 @@
 		1DD70E29F74071EF00000000 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SignInViewController.swift; path = Tinpons/App/SignIn/SignInViewController.swift; sourceTree = SOURCE_ROOT; };
 		1DD70E29F77E3E0700000000 /* AWSS3.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSS3.framework; path = Tinpons/Sdk/Aws/AWSS3.framework; sourceTree = "<group>"; };
 		1DD70E29FF24C27A00000000 /* AWSMobileHubHelper.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSMobileHubHelper.framework; path = Tinpons/AmazonAws/AWSMobileHubHelper.framework; sourceTree = "<group>"; };
+		D40102F11F45752000FB99AE /* FSPagerView.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FSPagerView.framework; path = Carthage/Build/iOS/FSPagerView.framework; sourceTree = "<group>"; };
+		D40102F31F45767E00FB99AE /* TinponDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponDetailViewController.swift; path = Tinpons/App/Swiper/TinponDetailViewController.swift; sourceTree = SOURCE_ROOT; };
 		D4025B421F3DD03600436442 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Color.swift; path = Tinpons/App/API/Color.swift; sourceTree = SOURCE_ROOT; };
 		D40308451F0FCBDE00BF1BD5 /* TinponOld.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponOld.swift; path = Tinpons/AmazonAws/Models/NoSQL/TinponOld.swift; sourceTree = SOURCE_ROOT; };
 		D40893EE1F442C45007479DA /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/iOS/Alamofire.framework; sourceTree = "<group>"; };
@@ -457,6 +462,7 @@
 		B401C9793DAC23B500000000 /* mainGroup */ = {
 			isa = PBXGroup;
 			children = (
+				D40102F11F45752000FB99AE /* FSPagerView.framework */,
 				D4CA25BC1F279879007AF347 /* Assets */,
 				B401C9792ED981A800000000 /* Frameworks */,
 				B401C9793F3D745900000000 /* WeGoLoco */,
@@ -568,6 +574,14 @@
 			);
 			name = Models;
 			path = Tinpons/amazonaws/models;
+			sourceTree = "<group>";
+		};
+		D40102F51F4577BC00FB99AE /* Detail View */ = {
+			isa = PBXGroup;
+			children = (
+				D40102F31F45767E00FB99AE /* TinponDetailViewController.swift */,
+			);
+			name = "Detail View";
 			sourceTree = "<group>";
 		};
 		D40D97531F3CCCFB00B246D0 /* Add Product */ = {
@@ -686,6 +700,7 @@
 				D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */,
 				D443C0F51EEC699D00FD148F /* SwiperViewController.swift */,
 				D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */,
+				D40102F51F4577BC00FB99AE /* Detail View */,
 			);
 			name = Swiper;
 			path = Tinpons/App/Swiper;
@@ -885,6 +900,7 @@
 				E7A30F04C2DDB4B200000000 /* SignInViewControllerExtensions.swift in Sources */,
 				E7A30F0460A2A9A000000000 /* UserPoolsUIHelper.swift in Sources */,
 				D4D2712A1F12ACD2003A7287 /* TinponsModel.xcdatamodeld in Sources */,
+				D40102F41F45767E00FB99AE /* TinponDetailViewController.swift in Sources */,
 				D4E258241EEC625400B2B986 /* CustomKolodaView.swift in Sources */,
 				D4FA2ECC1F0CE85B00B287FB /* ProfileViewController.swift in Sources */,
 				D430CC8D1F2B2B1A00174E5C /* BirthdateViewController.swift in Sources */,

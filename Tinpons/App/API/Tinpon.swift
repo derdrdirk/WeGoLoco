@@ -48,8 +48,10 @@ class Tinpon: CustomStringConvertible {
     var images = [UIImage]()
     var productVariations = [Color : ColorVariation]()
     
+    var mainImageCount: Int?
+    
     var description: String {
-        return "id: \(id ?? 0)"
+        return "id: \(id ?? 0)\n name: \(self.name ?? "")"
     }
     
     init() {}
@@ -76,60 +78,31 @@ class Tinpon: CustomStringConvertible {
         guard let id = json["id"] as? Int else {
             throw SerializationError.missing("tinponId")
         }
-        
-//        guard let active = json["active"] as? Bool else {
-//            throw SerializationError.missing("active")
-//        }
-        
         guard let category_id = json["category_id"] as? String else {
             throw SerializationError.missing("category")
         }
-        
         guard let createdAt = (json["created_at"] as? String)?.dateFromISO8601 else {
             throw SerializationError.missing("createdAt")
         }
-        
-//        guard let imgUrl = json["imgUrl"] as? String else {
-//            throw SerializationError.missing("imgUrl")
-//        }
-//        
-//        guard let latitude = json["latitude"] as? Double else {
-//            throw SerializationError.missing("latitude")
-//        }
-//
-//        
-//        guard let longitude = json["longitude"] as? Double else {
-//            throw SerializationError.missing("longitude")
-//        }
-        
         guard let name = json["name"] as? String else {
             throw SerializationError.missing("name")
         }
-        
         guard let price = json["price"] as? Double else {
             throw SerializationError.missing("price")
         }
-        
         guard let updatedAt = (json["updated_at"] as? String)?.dateFromISO8601 else {
             throw SerializationError.missing("updatedAt")
         }
-        
-//        guard let userId = json["userId"] as? String else {
-//            throw SerializationError.missing("userId")
-//        }
-        
-        
+        if let mainImageCount = json["mainImageCount"] as? Int {
+            self.mainImageCount = mainImageCount
+        }
+
         self.id = id
-//        self.active = active
         self.category = category_id
         self.createdAt = createdAt
-//        self.imgUrl = imgUrl
-//        self.latitude = latitude
-//        self.longitude = longitude
         self.name = name
         self.price = price
         self.updatedAt = updatedAt
-//        self.userId = userId
     }
     //                                                      color  : [  sizeVariation : [ [ size : "M" ] , [ quantity : 1000 ] ]
     fileprivate func makeProductVariationsJSONCompatible() -> [ String : [ String : [ [ String : Any ] ] ] ] {

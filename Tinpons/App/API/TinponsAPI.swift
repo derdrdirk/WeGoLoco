@@ -12,6 +12,61 @@ import PromiseKit
 import AWSS3
 
 class TinponsAPI: APIGatewayProtocol {
+    // MARK: - TinponDetail    
+    static func getTinpon(fromId tinponId: Int, completion: @escaping (Tinpon?, Error?)->() ) {
+        restAPITask(.GET, endPoint: .tinpons, queryStringParameters: ["tinponId":"\(tinponId)"]).continueWith { task -> () in
+            if let error = task.error {
+                print("TinponsAPI.getTinpon \(error)")
+                completion(nil, error)
+            } else if let error = statusCodeValidation(statusCode: task.result!.statusCode) {
+                print("TinponsAPI.getTinpon \(error)")
+                completion(nil, error)
+            } else {
+                let tinpon = taskToTinpon(task: task)
+                print(tinpon)
+                completion(tinpon, nil)
+            }
+        }
+    }
+    static func getTinpon(fromId tinponId: Int) -> Promise<Tinpon> {
+        return PromiseKit.wrap { getTinpon(fromId: tinponId, completion: $0) }
+    }
+    
+    static func getImage(fromS3Key s3Key: String, completion: @escaping (UIImage?, Error?)->()) {
+        let transferManager = AWSS3TransferManager.default()
+        let downloadingFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString)
+        let downloadRequest = AWSS3TransferManagerDownloadRequest()!
+        downloadRequest.bucket = "wegoloco"
+        downloadRequest.key = s3Key
+        downloadRequest.downloadingFileURL = downloadingFileURL
+        transferManager.download(downloadRequest).continueWith(executor: AWSExecutor.mainThread(), block: { (task:AWSTask<AnyObject>) -> Any? in
+            if let error = task.error as? NSError {
+                if error.domain == AWSS3TransferManagerErrorDomain, let code = AWSS3TransferManagerErrorType(rawValue: error.code) {
+                    switch code {
+                    case .cancelled, .paused:
+                        completion(nil, APIError.cancelled)
+                        break
+                    default:
+                        print("Error downloading: \(downloadRequest.key) Error: \(error)")
+                        completion(nil, APIError.serverError)
+                    }
+                } else {
+                    print("Error downloading: \(downloadRequest.key) Error: \(error)")
+                    completion(nil, APIError.serverError)
+                }
+                return nil
+            }
+            print("Download complete for: \(downloadRequest.key)")
+            let downloadOutput = task.result
+            completion(UIImage(contentsOfFile: downloadingFileURL.path), nil)
+            return nil
+        })
+    }
+    static func getImage(fromS3Key s3Key: String) -> Promise<UIImage> {
+        return PromiseKit.wrap { getImage(fromS3Key: s3Key, completion: $0 ) }
+    }
+    
+    
     // MARK: GET Not Swiped Tinpons
     static public func getNotSwipedTinpons(completion: @escaping ([Tinpon]?, Error?)->()) {
         var tmpTinpons = [Tinpon]()
@@ -121,47 +176,6 @@ class TinponsAPI: APIGatewayProtocol {
         return PromiseKit.wrap { getSwiperImage(for: tinpon, completion: $0) }
     }
     
-    
-//    static func getMainImages(for tinpon: Tinpon, completion: @escaping ([String]?, Error?) -> ()) {
-//        restAPITask(.GET, endPoint: .tinponImages, queryStringParameters: ["tinpon_id": "\(tinpon.id!)"]).continueWith { task -> () in
-//            if let error = task.error {
-//                completion(nil, APIError.serverError)
-//                return
-//            } else if let result = task.result {
-//                switch result.statusCode {
-//                case 200:
-//                    let responseString = String(data: result.responseData!, encoding: .utf8)
-//                    let json = responseString?.toJSON
-//                    var imageS3Keys = Array<String>()
-//                    if let imageDictionary = json as? [Any] {
-//                        for imageJson in imageDictionary {
-//                            imageS3Keys.append((imageJson as! [String: Any])["image"] as! String)
-//                        }
-//                    }
-//                    
-//                    completion(imageS3Keys, nil)
-//                case 502:
-//                    completion(nil, APIError.serverError)
-//                default:
-//                    completion(nil, APIError.unknown)
-//                }
-//                
-//            }
-//        }
-//        
-////        let transferManager = AWSS3TransferManager.default()
-////        
-////        let downloadingFileURL = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(tinpon.name!)
-////        
-////        let downloadRequest = AWSS3TransferManagerDownloadRequest()
-////        
-////        downloadRequest?.bucket = "myBucket"
-////        downloadRequest?.key = "myImage.jpg"
-////        downloadRequest?.downloadingFileURL = downloadingFileURL
-//    }
-//    static func getMainImages(for tinpon: Tinpon) -> Promise<[String]> {
-//        return PromiseKit.wrap { getMainImages(for: tinpon, completion: $0) }
-//    }
     
     /**
      save Tinpon in RDS
@@ -326,6 +340,21 @@ class TinponsAPI: APIGatewayProtocol {
     
     
     // MARK: - Helper
+    fileprivate static func statusCodeValidation(statusCode: Int) -> Error? {
+        switch statusCode {
+        case 200..<300: return nil
+        case 400..<500: return APIError.forbidden
+        case 500..<600: return APIError.serverError
+        default: return APIError.unknown
+        }
+    }
+    
+    fileprivate static func taskToTinpon(task: AWSTask<AWSAPIGatewayResponse>) -> Tinpon {
+        let result = task.result!
+        let responseString = String(data: result.responseData!, encoding: .utf8)
+        let json = responseString?.toJSON
+        return try! Tinpon(json: json as! [String: Any])
+    }
     
     fileprivate static func taskToTinpons(task: AWSTask<AWSAPIGatewayResponse>) -> [Tinpon] {
         let result = task.result!

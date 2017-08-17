@@ -89,17 +89,62 @@
                     <connections>
                         <outlet property="kolodaView" destination="9LJ-Ha-R53" id="CHB-fs-hlm"/>
                         <outlet property="outOfTinponsStack" destination="dJB-iD-02l" id="cNk-Ob-IjF"/>
+                        <segue destination="nL9-b5-3Pr" kind="show" identifier="segueToTinponDetailViewController" id="icN-7c-SU4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HKV-kl-Ne2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2432.8000000000002" y="517.6911544227886"/>
         </scene>
+        <!--Tinpon Detail View Controller-->
+        <scene sceneID="gfE-UU-F9O">
+            <objects>
+                <viewController id="nL9-b5-3Pr" customClass="TinponDetailViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FwG-DB-aa6"/>
+                        <viewControllerLayoutGuide type="bottom" id="tPW-Dl-tUK"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="YU6-7c-Uoc">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3gz-JZ-Gi9" customClass="FSPagerView" customModule="FSPagerView">
+                                <rect key="frame" x="0.0" y="64" width="375" height="375"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2b0-zk-kRa" customClass="FSPageControl" customModule="FSPagerView">
+                                <rect key="frame" x="0.0" y="447" width="375" height="24"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3gz-JZ-Gi9" firstAttribute="leading" secondItem="YU6-7c-Uoc" secondAttribute="leading" id="7hC-5C-jRf"/>
+                            <constraint firstItem="2b0-zk-kRa" firstAttribute="trailing" secondItem="3gz-JZ-Gi9" secondAttribute="trailing" id="Fbn-i0-RYV"/>
+                            <constraint firstAttribute="trailing" secondItem="3gz-JZ-Gi9" secondAttribute="trailing" id="Tax-tw-d1M"/>
+                            <constraint firstItem="3gz-JZ-Gi9" firstAttribute="top" secondItem="FwG-DB-aa6" secondAttribute="bottom" id="Z2Y-wi-ahk"/>
+                            <constraint firstItem="tPW-Dl-tUK" firstAttribute="top" secondItem="3gz-JZ-Gi9" secondAttribute="bottom" constant="179" id="gM5-yB-XF1"/>
+                            <constraint firstItem="tPW-Dl-tUK" firstAttribute="top" secondItem="2b0-zk-kRa" secondAttribute="bottom" constant="147" id="lJW-sR-iTa"/>
+                            <constraint firstItem="2b0-zk-kRa" firstAttribute="top" secondItem="3gz-JZ-Gi9" secondAttribute="bottom" constant="8" symbolic="YES" id="udY-X9-zfK"/>
+                            <constraint firstItem="2b0-zk-kRa" firstAttribute="leading" secondItem="3gz-JZ-Gi9" secondAttribute="leading" id="y4E-wr-o4a"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="pageControl" destination="2b0-zk-kRa" id="F9v-XW-ejl"/>
+                        <outlet property="pagerView" destination="3gz-JZ-Gi9" id="t2p-Ox-XRS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ckO-0L-OLP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3144.8000000000002" y="517.6911544227886"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="acH-Tt-eao">
             <objects>
                 <navigationController id="ddS-sC-jhU" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="mi-favourite" id="ebJ-m8-Ril"/>
+                    <tabBarItem key="tabBarItem" title="" image="mi-favourite" id="ebJ-m8-Ril">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jd7-Ed-EQj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -125,7 +170,7 @@
                         <viewControllerLayoutGuide type="top" id="Hz2-zQ-C4u"/>
                         <viewControllerLayoutGuide type="bottom" id="45K-0q-DGL"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="8oP-Wm-PHZ">
+                    <view key="view" contentMode="scaleToFill" id="8oP-Wm-PHZ">
                         <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -213,7 +258,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15V-f1-pXb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3114" y="1979"/>
+            <point key="canvasLocation" x="3113" y="1979"/>
         </scene>
         <!--Basicos-->
         <scene sceneID="gwK-Kj-gQz">
@@ -363,7 +408,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="120"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="pIy-ak-5JN" id="40z-b7-c5r">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="119.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="c32-O0-zsf">

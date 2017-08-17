@@ -2,7 +2,7 @@
   "commitish" : "4.3.2",
   "iOS" : [
     {
-      "hash" : "cdd273909f6cdeaaaab70c99cb7c600d42a8f1dadcbbe259188a799a9b5dfa72",
+      "hash" : "02d69c1e8ea8bb6ee811ddaa2f791e128c14be4a46c5235721f69f5cd0698af6",
       "name" : "PromiseKit"
     }
   ]

@@ -16,8 +16,12 @@ import UIKit
 import IGListKit
 import PromiseKit
 
-final class FavouriteViewController: UIViewController, ListAdapterDataSource {
+final class FavouriteViewController: UIViewController, ListAdapterDataSource, LoadingAnimationProtocol {
+    // MARK: LoadingAnimationProtocol
+    var loadingAnimationView: UIView!
+    var loadingAnimationOverlay: UIView!
     
+    var loadingAnimationIndicator: UIActivityIndicatorView!
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self)
     }()
@@ -38,6 +42,9 @@ final class FavouriteViewController: UIViewController, ListAdapterDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // LoadingAnimationProtocol
+        loadingAnimationView = self.view
+        
         loadTinpons()
         
         collectionView.backgroundColor = UIColor(white: 0.9, alpha: 1)
@@ -52,11 +59,13 @@ final class FavouriteViewController: UIViewController, ListAdapterDataSource {
     }
     
     private func loadTinpons() {
+        startLoadingAnimation()
         firstly {
             TinponsAPI.getFavouriteTinponsFromRDS()
         }.then { tinpons -> () in
             self.tinpons = tinpons
             self.adapter.performUpdates(animated: true, completion: nil)
+            self.stopLoadingAnimation()
         }
     }
     
@@ -76,3 +85,4 @@ final class FavouriteViewController: UIViewController, ListAdapterDataSource {
         return emptyLabel
     }
 }
+

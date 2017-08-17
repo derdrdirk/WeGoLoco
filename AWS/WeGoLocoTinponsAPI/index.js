@@ -101,12 +101,14 @@ exports.handler = (event, context, callback) =>  {
           })
           .then( function(conn) {
             connection = conn;
+            const tinponId = queryStringParams.tinponId;
 
-            var query = connection.query("SELECT * FROM tinpon");
+            var query = connection.query("SELECT tinpon.id, tinpon.name, tinpon.category_id, tinpon.price, tinpon.updated_at, tinpon.created_at, Count(*) as mainImageCount FROM tinpon LEFT JOIN tinpon_image ON tinpon.id = tinpon_image.tinpon_id WHERE tinpon.id = '"+tinponId+"';");
             return query;
           })
-          .then( function(rows) {
-            respond(context, 200, JSON.stringify(rows));
+          .then( function(result) {
+            connection.end()
+            respond(context, 200, JSON.stringify(result[0]));
           })
         break;
         case "POST":
