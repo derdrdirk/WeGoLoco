@@ -64,23 +64,70 @@ class ColorsAndSizesViewController: FormViewController, LoadingAnimationProtocol
                     buttonCell.tintColor = #colorLiteral(red: 0, green: 0.8166723847, blue: 0.9823040366, alpha: 1)
                 }.onCellSelection{[weak self] buttonCell, row in
                     guard let strongSelf = self else { return }
-                    
-                    let sizeSection = strongSelf.form.sectionBy(tag: "sizeSection") as! SelectableSection<ListCheckRow<String>>
-                    let selectedSizes = sizeSection.selectedRows()
-                    let colorSection = strongSelf.form.sectionBy(tag: "colorSection") as! SelectableSection<ListCheckRow<String>>
-                    let selectedColors = colorSection.selectedRows()
-
-                    if selectedSizes.count > 0 && selectedColors.count > 0 {
-                        strongSelf.addSizesAndColorsToTinpon(selectedSizes, colors: selectedColors)
-                        strongSelf.performSegue(withIdentifier: "segueToQuantities", sender: self)
-                    } else {
-                        let message = Message(title: "Hay que seleccionar tamaños y colores.", backgroundColor: .red)
-                        Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)
+                    if strongSelf.isValidColor() && strongSelf.isValidSize() {
+//                        strongSelf.addSizesAndColorsToTinpon(selectedSizes, colors: selectedColors)
+//                        strongSelf.performSegue(withIdentifier: "segueToQuantities", sender: self)
+                        print("segue")
                     }
         }
     }
     
-    fileprivate func addSizesAndColorsToTinpon(_ sizes: [ListCheckRow<String>], colors: [ListCheckRow<String>]) {
+    
+    // MARK: - Helper
+    private func validateSizes() {
+
+    }
+    
+    private func isValidSize() -> Bool {
+        let colorSection = form.sectionBy(tag: "colorSection")! as! SelectableSection<ListCheckRow<String>>
+        if colorSection.selectedRows().count > 0 {
+            return true
+        } else {
+            let message = Message(title: "Hay que seleccionar un color.", backgroundColor: .red)
+            Whisper.show(whisper: message, to: navigationController!, action: .show)
+            return false
+        }
+    }
+    
+    private func isValidColor() -> Bool {
+        let section = form.sectionBy(tag: "sizeSection")
+        switch tinpon.category! {
+        case "👕":
+            let sizeSection = section as! SelectableSection<ListCheckRow<String>>
+            if sizeSection.selectedRows().count > 0 {
+                return true
+            } else {
+                let message = Message(title: "Hay que seleccionar un tamaño.", backgroundColor: .red)
+                Whisper.show(whisper: message, to: navigationController!, action: .show)
+                return false
+            }
+        case "👖":
+            for row in section! {
+                let multipleSelectorRow = row as! MultipleSelectorRow<Int>
+                if multipleSelectorRow.value != nil && !multipleSelectorRow.value!.isEmpty {
+                    return true
+                }
+            }
+            // "else"
+            let message = Message(title: "Hay que seleccionar un tamaño.", backgroundColor: .red)
+            Whisper.show(whisper: message, to: navigationController!, action: .show)
+            return false
+        case "👞":
+            let sizeSection = section as! SelectableSection<ListCheckRow<Int>>
+            if sizeSection.selectedRows().count > 0 {
+                return true
+            } else {
+                let message = Message(title: "Hay que seleccionar un tamaño.", backgroundColor: .red)
+                Whisper.show(whisper: message, to: navigationController!, action: .show)
+                return false
+            }
+        default :
+            return false
+        }
+    }
+
+    
+    private func addSizesAndColorsToTinpon(_ sizes: [ListCheckRow<String>], colors: [ListCheckRow<String>]) {
         for colorRow in colors {
             let color = Color(spanishName: colorRow.selectableValue!)
             var sizeVariations = Array<SizeVariation>()
@@ -93,7 +140,6 @@ class ColorsAndSizesViewController: FormViewController, LoadingAnimationProtocol
         }
     }
     
-    // MARK: - Helper
     private func sizeSection(category: String) {
         switch category {
         case "👕":
@@ -108,7 +154,7 @@ class ColorsAndSizesViewController: FormViewController, LoadingAnimationProtocol
             }
         case "👖":
             let sizes = Sizes.dictionary[category] as! [String : [Int]]
-            form +++ Section("\(category) Tamaños")
+            form +++ Section("\(category) Tamaños") { $0.tag = "sizeSection" }
             for size in sizes["width"]! {
                 form.last! <<< MultipleSelectorRow<Int>() {
                     $0.title = "\(size) x "
