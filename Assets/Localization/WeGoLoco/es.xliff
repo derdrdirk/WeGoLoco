@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="Tinpons/App/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="es">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
+    </header>
+    <body>
+      <trans-unit id="8gs-cq-S64.title">
+        <source>Basics</source>
+        <target>Basicos</target>
+        <note>Class = "UINavigationItem"; title = "Basics"; ObjectID = "8gs-cq-S64";</note>
+      </trans-unit>
+      <trans-unit id="K5V-om-FE5.title">
+        <source>TinponName</source>
+        <target>TinponName</target>
+        <note>Class = "UINavigationItem"; title = "TinponName"; ObjectID = "K5V-om-FE5";</note>
+      </trans-unit>
+      <trans-unit id="Kx5-Fi-VvY.title">
+        <source>Color and Sizes</source>
+        <target>Colores y Tamaños</target>
+        <note>Class = "UINavigationItem"; title = "Color and Sizes"; ObjectID = "Kx5-Fi-VvY";</note>
+      </trans-unit>
+      <trans-unit id="YNZ-Uy-RIy.text">
+        <source>Name</source>
+        <target>Name</target>
+        <note>Class = "UILabel"; text = "Name"; ObjectID = "YNZ-Uy-RIy";</note>
+      </trans-unit>
+      <trans-unit id="Zsb-lN-R7k.text">
+        <source>Ya has visto todo 😭</source>
+        <target>Ya has visto todo 😭</target>
+        <note>Class = "UILabel"; text = "Ya has visto todo 😭"; ObjectID = "Zsb-lN-R7k";</note>
+      </trans-unit>
+      <trans-unit id="bQC-jh-fc4.title">
+        <source>Manager</source>
+        <target>Manager</target>
+        <note>Class = "UINavigationItem"; title = "Manager"; ObjectID = "bQC-jh-fc4";</note>
+      </trans-unit>
+      <trans-unit id="boL-W3-Bvu.text">
+        <source>Price</source>
+        <target>Price</target>
+        <note>Class = "UILabel"; text = "Price"; ObjectID = "boL-W3-Bvu";</note>
+      </trans-unit>
+      <trans-unit id="eOV-bu-7Ae.title">
+        <source>WeGoLoco</source>
+        <target>WeGoLoco</target>
+        <note>Class = "UINavigationItem"; title = "WeGoLoco"; ObjectID = "eOV-bu-7Ae";</note>
+      </trans-unit>
+      <trans-unit id="f1P-0o-4R1.title">
+        <source>Profile</source>
+        <target>Profile</target>
+        <note>Class = "UINavigationItem"; title = "Profile"; ObjectID = "f1P-0o-4R1";</note>
+      </trans-unit>
+      <trans-unit id="iOI-K6-paM.title">
+        <source>Quantities</source>
+        <target>Cuantidades</target>
+        <note>Class = "UINavigationItem"; title = "Quantities"; ObjectID = "iOI-K6-paM";</note>
+      </trans-unit>
+      <trans-unit id="if6-lG-ke3.text">
+        <source>Name</source>
+        <target>Name</target>
+        <note>Class = "UILabel"; text = "Name"; ObjectID = "if6-lG-ke3";</note>
+      </trans-unit>
+      <trans-unit id="kcj-cD-fSr.text">
+        <source>Category+Price</source>
+        <target>Category+Price</target>
+        <note>Class = "UILabel"; text = "Category+Price"; ObjectID = "kcj-cD-fSr";</note>
+      </trans-unit>
+      <trans-unit id="keu-zp-Ez7.title">
+        <source>WeGoLoco</source>
+        <target>WeGoLoco</target>
+        <note>Class = "UINavigationItem"; title = "WeGoLoco"; ObjectID = "keu-zp-Ez7";</note>
+      </trans-unit>
+      <trans-unit id="mZK-le-xrS.text">
+        <source>Creation Date</source>
+        <target>Creation Date</target>
+        <note>Class = "UILabel"; text = "Creation Date"; ObjectID = "mZK-le-xrS";</note>
+      </trans-unit>
+      <trans-unit id="o2v-x2-sVS.normalTitle">
+        <source>Intentar otra vez</source>
+        <target>Intentar otra vez</target>
+        <note>Class = "UIButton"; normalTitle = "Intentar otra vez"; ObjectID = "o2v-x2-sVS";</note>
+      </trans-unit>
+      <trans-unit id="u4m-aT-a3W.title">
+        <source>Favoritos</source>
+        <target>Favoritos</target>
+        <note>Class = "UINavigationItem"; title = "Favoritos"; ObjectID = "u4m-aT-a3W";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="Tinpons/App/SupportingFiles/Info.plist" source-language="en" datatype="plaintext" target-language="es">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="Tinpons/App/SupportingFiles/Localizable.strings" source-language="en" datatype="plaintext" target-language="es">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="8.3.3" build-num="8E3004b"/>
+    </header>
+    <body>
+      <trans-unit id="(loginProviderName) failed to sign in w/ error: (error)">
+        <source>(loginProviderName) failed to sign in w/ error: (error)</source>
+        <note>Sign-in message structure for sign-in failure.</note>
+      </trans-unit>
+      <trans-unit id="Ok">
+        <source>Ok</source>
+        <note>Label to cancel sign-in failure.</note>
+      </trans-unit>
+      <trans-unit id="Sign-in Provider Sign-In Error">
+        <source>Sign-in Provider Sign-In Error</source>
+        <note>Sign-in error for sign-in failure.</note>
+      </trans-unit>
+      <trans-unit id="localize me please">
+        <source>localize me please</source>
+        <note>Localize me label in the main scene</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

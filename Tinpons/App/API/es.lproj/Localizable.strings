@@ -1,0 +1,9 @@
+/* Sign-in message structure for sign-in failure. */
+"(loginProviderName) failed to sign in w/ error: (error)" = "";
+
+/* Label to cancel sign-in failure. */
+"Ok" = "";
+
+/* Sign-in error for sign-in failure. */
+"Sign-in Provider Sign-In Error" = "";
+

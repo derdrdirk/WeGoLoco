@@ -41,6 +41,7 @@
 		D41A5D5E1F39959D00D1191C /* UserPoolPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A5D5D1F39959D00D1191C /* UserPoolPasswordViewController.swift */; };
 		D41A5D601F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A5D5F1F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift */; };
 		D41B112E1F46AD55007DAF6E /* Sizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B112D1F46AD55007DAF6E /* Sizes.swift */; };
+		D41B11321F473CD3007DAF6E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B11311F473CD3007DAF6E /* Categories.swift */; };
 		D41EB2681F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2611F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m */; };
 		D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2631F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m */; };
 		D41EB26A1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2651F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m */; };
@@ -85,6 +86,8 @@
 		D480D0551EEBEEF300B4193A /* pop.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0531EEBEEF300B4193A /* pop.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D480D0581EEBEF7200B4193A /* Koloda.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0561EEBEF3500B4193A /* Koloda.framework */; };
 		D480D0591EEBEF7200B4193A /* Koloda.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0561EEBEF3500B4193A /* Koloda.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D48B7C061F47869000B1F84F /* CategorySectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48B7C051F47869000B1F84F /* CategorySectionController.swift */; };
+		D48B7C081F47885A00B1F84F /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48B7C071F47885A00B1F84F /* CategoryCell.swift */; };
 		D4A69BA01F3B13A900037002 /* ProductVariationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A69B9F1F3B13A900037002 /* ProductVariationRow.swift */; };
 		D4AAB5A71F305A0900050E02 /* TinponsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */; };
 		D4B7D1FE1F28C442008F3AE1 /* RemachineScript.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4B7D1FD1F28C442008F3AE1 /* RemachineScript.ttf */; };
@@ -101,6 +104,10 @@
 		D4E258211EEC1A6400B2B986 /* CustomOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E2581F1EEC1A6400B2B986 /* CustomOverlayView.swift */; };
 		D4E258221EEC1A6400B2B986 /* CustomOverlayView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */; };
 		D4E258241EEC625400B2B986 /* CustomKolodaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E258231EEC625400B2B986 /* CustomKolodaView.swift */; };
+		D4EA39AC1F47414900B6E6A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4EA39AE1F47414900B6E6A6 /* Main.storyboard */; };
+		D4EA39B21F47447E00B6E6A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4EA39B41F47447E00B6E6A6 /* Localizable.strings */; };
+		D4EA39BE1F47555100B6E6A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4EA39C01F47555100B6E6A6 /* InfoPlist.strings */; };
+		D4EA39C41F4783CD00B6E6A6 /* CategorySelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA39C31F4783CD00B6E6A6 /* CategorySelectorViewController.swift */; };
 		D4EEF65A1F2F9F8700297A5E /* Tinpon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEF6591F2F9F8700297A5E /* Tinpon.swift */; };
 		D4FA2EC91F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA2EC81F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift */; };
 		D4FA2ECC1F0CE85B00B287FB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA2ECB1F0CE85B00B287FB /* ProfileViewController.swift */; };
@@ -149,7 +156,6 @@
 		E7A30F04C2DDB4B200000000 /* SignInViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E292F06ACDE00000000 /* SignInViewControllerExtensions.swift */; };
 		E7A30F04C6AE9E9200000000 /* SafariServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E292E74B0A400000000 /* SafariServices.framework */; };
 		E7A30F04D8A4937D00000000 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E292FF4A7CA00000000 /* Foundation.framework */; };
-		E7A30F04D987431800000000 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1DD70E29001F5DDA00000000 /* Main.storyboard */; };
 		E7A30F04DDC5AA4700000000 /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29A937017200000000 /* AVKit.framework */; };
 		E7A30F04F1E5184200000000 /* AWSFacebookSignIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E2906D374E400000000 /* AWSFacebookSignIn.framework */; };
 		E7A30F04FE04727700000000 /* TableInputCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD70E29C459CAC000000000 /* TableInputCell.swift */; };
@@ -188,7 +194,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		1DD70E29001F5DDA00000000 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Tinpons/App/Main.storyboard; sourceTree = SOURCE_ROOT; };
 		1DD70E290654A9EC00000000 /* UserPoolMFAViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserPoolMFAViewController.swift; path = Tinpons/App/SignIn/UserPools/UserPoolMFAViewController.swift; sourceTree = SOURCE_ROOT; };
 		1DD70E2906D374E400000000 /* AWSFacebookSignIn.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AWSFacebookSignIn.framework; path = Tinpons/AmazonAws/AWSFacebookSignIn.framework; sourceTree = "<group>"; };
 		1DD70E29098E246A00000000 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -264,6 +269,7 @@
 		D41A5D5D1F39959D00D1191C /* UserPoolPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPoolPasswordViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/UserPoolPasswordViewController.swift; sourceTree = SOURCE_ROOT; };
 		D41A5D5F1F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPoolEmailConfirmationViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/UserPoolEmailConfirmationViewController.swift; sourceTree = SOURCE_ROOT; };
 		D41B112D1F46AD55007DAF6E /* Sizes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sizes.swift; path = Tinpons/App/API/Sizes.swift; sourceTree = SOURCE_ROOT; };
+		D41B11311F473CD3007DAF6E /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Categories.swift; path = Tinpons/App/API/Categories.swift; sourceTree = SOURCE_ROOT; };
 		D41EB2601F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_9HLT8N48WD_Empty.h; sourceTree = "<group>"; };
 		D41EB2611F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_9HLT8N48WD_Empty.m; sourceTree = "<group>"; };
 		D41EB2621F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_9HLT8N48WD_RequestSchema.h; sourceTree = "<group>"; };
@@ -309,6 +315,8 @@
 		D47F96EF1EED938400B9FCE3 /* ImageRow.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageRow.framework; path = Carthage/Build/iOS/ImageRow.framework; sourceTree = "<group>"; };
 		D480D0531EEBEEF300B4193A /* pop.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = pop.framework; path = Carthage/Build/iOS/pop.framework; sourceTree = "<group>"; };
 		D480D0561EEBEF3500B4193A /* Koloda.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Koloda.framework; path = Carthage/Build/iOS/Koloda.framework; sourceTree = "<group>"; };
+		D48B7C051F47869000B1F84F /* CategorySectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategorySectionController.swift; path = "Tinpons/App/Special Controller/CategorySectionController.swift"; sourceTree = SOURCE_ROOT; };
+		D48B7C071F47885A00B1F84F /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCell.swift; path = "Tinpons/App/Special Controller/CategoryCell.swift"; sourceTree = SOURCE_ROOT; };
 		D4A69B9F1F3B13A900037002 /* ProductVariationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductVariationRow.swift; path = Tinpons/App/Favourites/ProductVariationRow.swift; sourceTree = SOURCE_ROOT; };
 		D4A69BA21F3B2CAD00037002 /* CoreActionSheetPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreActionSheetPicker.framework; path = Carthage/Build/iOS/CoreActionSheetPicker.framework; sourceTree = "<group>"; };
 		D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponsAPI.swift; path = Tinpons/App/API/TinponsAPI.swift; sourceTree = SOURCE_ROOT; };
@@ -325,6 +333,13 @@
 		D4E2581F1EEC1A6400B2B986 /* CustomOverlayView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomOverlayView.swift; path = Tinpons/App/Swiper/CustomOverlayView.swift; sourceTree = SOURCE_ROOT; };
 		D4E258201EEC1A6400B2B986 /* CustomOverlayView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CustomOverlayView.xib; path = Tinpons/App/Swiper/CustomOverlayView.xib; sourceTree = SOURCE_ROOT; };
 		D4E258231EEC625400B2B986 /* CustomKolodaView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CustomKolodaView.swift; path = Tinpons/App/Swiper/CustomKolodaView.swift; sourceTree = SOURCE_ROOT; };
+		D4EA39B31F47447E00B6E6A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4EA39B61F47448900B6E6A6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		D4EA39B71F4744A300B6E6A6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D4EA39BB1F4745CF00B6E6A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
+		D4EA39BF1F47555100B6E6A6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D4EA39C21F47573400B6E6A6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
+		D4EA39C31F4783CD00B6E6A6 /* CategorySelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategorySelectorViewController.swift; path = "Tinpons/App/Special Controller/CategorySelectorViewController.swift"; sourceTree = SOURCE_ROOT; };
 		D4EEF6591F2F9F8700297A5E /* Tinpon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tinpon.swift; path = Tinpons/App/API/Tinpon.swift; sourceTree = SOURCE_ROOT; };
 		D4FA2EC81F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamoDBSwipedTinpon.swift; path = Tinpons/AmazonAws/Models/NoSQL/DynamoDBSwipedTinpon.swift; sourceTree = SOURCE_ROOT; };
 		D4FA2ECB1F0CE85B00B287FB /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Tinpons/App/Profile/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -386,7 +401,7 @@
 				1DD70E29E394D56000000000 /* AppDelegate.swift */,
 				1DD70E292554733E00000000 /* Images.xcassets */,
 				1DD70E29A8F4FCAE00000000 /* Launch Screen.storyboard */,
-				1DD70E29001F5DDA00000000 /* Main.storyboard */,
+				D4EA39AE1F47414900B6E6A6 /* Main.storyboard */,
 				D4B7D1FF1F28C71A008F3AE1 /* MainTabBarController.swift */,
 				1DD70E2927114D4C00000000 /* AuthenticationProtocol.swift */,
 				D417F0901F1F81E700D803E0 /* LoadingAnimationProtocol.swift */,
@@ -397,7 +412,9 @@
 				D4FA2ECA1F0CE83A00B287FB /* Profile */,
 				B401C979583E47AD00000000 /* Utility */,
 				D410C5F01F24DA6A008D6C92 /* Api */,
+				D4EA39C51F4783D100B6E6A6 /* Special Controller */,
 				B401C9794FB6A0BD00000000 /* SupportingFiles */,
+				D4EA39B41F47447E00B6E6A6 /* Localizable.strings */,
 			);
 			name = App;
 			path = Tinpons/app;
@@ -406,6 +423,7 @@
 		B401C9792ED981A800000000 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D40102F11F45752000FB99AE /* FSPagerView.framework */,
 				D40893F11F4458ED007479DA /* IGListKit.framework */,
 				D40893EE1F442C45007479DA /* Alamofire.framework */,
 				D42994461F3F5DEA0031B280 /* TOCropViewController.framework */,
@@ -464,7 +482,6 @@
 		B401C9793DAC23B500000000 /* mainGroup */ = {
 			isa = PBXGroup;
 			children = (
-				D40102F11F45752000FB99AE /* FSPagerView.framework */,
 				D4CA25BC1F279879007AF347 /* Assets */,
 				B401C9792ED981A800000000 /* Frameworks */,
 				B401C9793F3D745900000000 /* WeGoLoco */,
@@ -489,6 +506,7 @@
 		B401C9794FB6A0BD00000000 /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				D4EA39C01F47555100B6E6A6 /* InfoPlist.strings */,
 				1DD70E29687DA31D00000000 /* Info.plist */,
 			);
 			name = SupportingFiles;
@@ -642,6 +660,7 @@
 				D410C5F11F24E443008D6C92 /* UsersAPI.swift */,
 				D4EEF6591F2F9F8700297A5E /* Tinpon.swift */,
 				D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */,
+				D41B11311F473CD3007DAF6E /* Categories.swift */,
 				D4025B421F3DD03600436442 /* Color.swift */,
 				D41B112D1F46AD55007DAF6E /* Sizes.swift */,
 				D47D70601F37045B003E0708 /* APIError.swift */,
@@ -719,6 +738,17 @@
 			name = Assets;
 			sourceTree = "<group>";
 		};
+		D4EA39C51F4783D100B6E6A6 /* Special Controller */ = {
+			isa = PBXGroup;
+			children = (
+				D4EA39C31F4783CD00B6E6A6 /* CategorySelectorViewController.swift */,
+				D48B7C051F47869000B1F84F /* CategorySectionController.swift */,
+				D48B7C071F47885A00B1F84F /* CategoryCell.swift */,
+			);
+			name = "Special Controller";
+			path = "Tinpons/App/Special Controller";
+			sourceTree = "<group>";
+		};
 		D4FA2ECA1F0CE83A00B287FB /* Profile */ = {
 			isa = PBXGroup;
 			children = (
@@ -775,6 +805,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = B401C9793DAC23B500000000 /* mainGroup */;
 			productRefGroup = B401C9792EF2543B00000000 /* Products */;
@@ -801,13 +832,15 @@
 				D4E258221EEC1A6400B2B986 /* CustomOverlayView.xib in Resources */,
 				D40EA7161F2A40CB00A44735 /* proxima-nova-soft-regular.ttf in Resources */,
 				D40D975B1F3CEBD200B246D0 /* ColorCell.xib in Resources */,
+				D4EA39BE1F47555100B6E6A6 /* InfoPlist.strings in Resources */,
 				D42994571F3F650A0031B280 /* Media.xcassets in Resources */,
 				D423ABA81F3B079300A6FE2A /* ProductVariationCell.xib in Resources */,
 				E7A30F04490C0AB000000000 /* Images.xcassets in Resources */,
+				D4EA39B21F47447E00B6E6A6 /* Localizable.strings in Resources */,
 				D40893FE1F4486AB007479DA /* FavouriteTinponCell.xib in Resources */,
 				E7A30F0489AA356400000000 /* UserPools.storyboard in Resources */,
 				E7A30F04274F6B6700000000 /* AWSFacebookSignInResources.bundle in Resources */,
-				E7A30F04D987431800000000 /* Main.storyboard in Resources */,
+				D4EA39AC1F47414900B6E6A6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -852,12 +885,15 @@
 				E7A30F049A3B079A00000000 /* UserPoolNewPasswordViewController.swift in Sources */,
 				D41EB26E1F338758003842E4 /* PasswordViewController.swift in Sources */,
 				D4DA424D1F0E2CFB00A1C69E /* CustomCells.swift in Sources */,
+				D48B7C081F47885A00B1F84F /* CategoryCell.swift in Sources */,
 				D430CC8B1F2B2AF200174E5C /* EmailViewController.swift in Sources */,
 				D41A5D5B1F39916F00D1191C /* UserPoolEmailViewController.swift in Sources */,
 				D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */,
 				D4AAB5A71F305A0900050E02 /* TinponsAPI.swift in Sources */,
+				D41B11321F473CD3007DAF6E /* Categories.swift in Sources */,
 				D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */,
 				D4EEF65A1F2F9F8700297A5E /* Tinpon.swift in Sources */,
+				D4EA39C41F4783CD00B6E6A6 /* CategorySelectorViewController.swift in Sources */,
 				D40D97551F3CE61200B246D0 /* QuantitiesViewController.swift in Sources */,
 				E7A30F042B278B4700000000 /* UserPoolSignUpConfirmationViewController.swift in Sources */,
 				E7A30F04C071CC9E00000000 /* UserPoolMFAViewController.swift in Sources */,
@@ -874,6 +910,7 @@
 				D41EB26A1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m in Sources */,
 				E7A30F043DD4F57200000000 /* FormTableCell.swift in Sources */,
 				D42994511F3F643A0031B280 /* SHViewController.swift in Sources */,
+				D48B7C061F47869000B1F84F /* CategorySectionController.swift in Sources */,
 				D4FA2EC91F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift in Sources */,
 				E7A30F04FE04727700000000 /* TableInputCell.swift in Sources */,
 				D47D70611F37045B003E0708 /* APIError.swift in Sources */,
@@ -927,11 +964,45 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXVariantGroup section */
+		D4EA39AE1F47414900B6E6A6 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4EA39B71F4744A300B6E6A6 /* Base */,
+				D4EA39BB1F4745CF00B6E6A6 /* en */,
+				D4EA39C21F47573400B6E6A6 /* es */,
+			);
+			name = Main.storyboard;
+			path = Tinpons/App;
+			sourceTree = SOURCE_ROOT;
+		};
+		D4EA39B41F47447E00B6E6A6 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4EA39B31F47447E00B6E6A6 /* Base */,
+				D4EA39B61F47448900B6E6A6 /* es */,
+			);
+			name = Localizable.strings;
+			path = Tinpons/App/API;
+			sourceTree = SOURCE_ROOT;
+		};
+		D4EA39C01F47555100B6E6A6 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D4EA39BF1F47555100B6E6A6 /* es */,
+			);
+			name = InfoPlist.strings;
+			path = Tinpons/App/SupportingFiles;
+			sourceTree = SOURCE_ROOT;
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		49524373386D956C00000000 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1005,6 +1076,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;

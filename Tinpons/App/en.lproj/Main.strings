@@ -1,0 +1,48 @@
+
+/* Class = "UINavigationItem"; title = "Basics"; ObjectID = "8gs-cq-S64"; */
+"8gs-cq-S64.title" = "Basics";
+
+/* Class = "UINavigationItem"; title = "TinponName"; ObjectID = "K5V-om-FE5"; */
+"K5V-om-FE5.title" = "TinponName";
+
+/* Class = "UINavigationItem"; title = "Color and Sizes"; ObjectID = "Kx5-Fi-VvY"; */
+"Kx5-Fi-VvY.title" = "Color and Sizes";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "YNZ-Uy-RIy"; */
+"YNZ-Uy-RIy.text" = "Name";
+
+/* Class = "UILabel"; text = "Ya has visto todo 😭"; ObjectID = "Zsb-lN-R7k"; */
+"Zsb-lN-R7k.text" = "Ya has visto todo 😭";
+
+/* Class = "UINavigationItem"; title = "Manager"; ObjectID = "bQC-jh-fc4"; */
+"bQC-jh-fc4.title" = "Manager";
+
+/* Class = "UILabel"; text = "Price"; ObjectID = "boL-W3-Bvu"; */
+"boL-W3-Bvu.text" = "Price";
+
+/* Class = "UINavigationItem"; title = "WeGoLoco"; ObjectID = "eOV-bu-7Ae"; */
+"eOV-bu-7Ae.title" = "WeGoLoco";
+
+/* Class = "UINavigationItem"; title = "Profile"; ObjectID = "f1P-0o-4R1"; */
+"f1P-0o-4R1.title" = "Profile";
+
+/* Class = "UINavigationItem"; title = "Quantities"; ObjectID = "iOI-K6-paM"; */
+"iOI-K6-paM.title" = "Quantities";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "if6-lG-ke3"; */
+"if6-lG-ke3.text" = "Name";
+
+/* Class = "UILabel"; text = "Category+Price"; ObjectID = "kcj-cD-fSr"; */
+"kcj-cD-fSr.text" = "Category+Price";
+
+/* Class = "UINavigationItem"; title = "WeGoLoco"; ObjectID = "keu-zp-Ez7"; */
+"keu-zp-Ez7.title" = "WeGoLoco";
+
+/* Class = "UILabel"; text = "Creation Date"; ObjectID = "mZK-le-xrS"; */
+"mZK-le-xrS.text" = "Creation Date";
+
+/* Class = "UIButton"; normalTitle = "Intentar otra vez"; ObjectID = "o2v-x2-sVS"; */
+"o2v-x2-sVS.normalTitle" = "Intentar otra vez";
+
+/* Class = "UINavigationItem"; title = "Favoritos"; ObjectID = "u4m-aT-a3W"; */
+"u4m-aT-a3W.title" = "Favoritos";

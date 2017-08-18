@@ -77,12 +77,42 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
             }.onChange{ [unowned self] in
                 self.tinpon.name = $0.value
             }
+            <<< SegmentedRow<String>() {
+                $0.title = "Sexo"
+                $0.tag = "Gender"
+                $0.options = ["👱", "👩"]
+                $0.value = "👱"
+                }.cellSetup { segmentedCell, segmentedRow in
+                    segmentedCell.tintColor = #colorLiteral(red: 0, green: 0.8166723847, blue: 0.9823040366, alpha: 1)
+                }.onChange { row in
+                    let categoryRow = self.form.rowBy(tag: "categoryRow") as! MultipleSelectorRow<String>
+                    categoryRow.options = ["jo", "no"]
+                    categoryRow.reload()
+                    
+            }
+            <<< MultipleSelectorRow<String>() {
+                $0.title = "Category"
+                $0.options = ["💁🏻", "🍐", "👦🏼", "🐗", "🐼", "🐻"]
+                $0.value = []
+                $0.tag = "categoryRow"
+                }
+                .onPresent { from, to in
+                    to.sectionKeyForValue = { option in
+                        switch option {
+                        case "💁🏻", "👦🏼": return "People"
+                        case "🐗", "🐼", "🐻": return "Animals"
+                        case "🍐": return "Food"
+                        default: return ""
+                        }
+                    }
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(BasicsViewController.multipleSelectorDone(_:)))
+            }
             <<< PushRow<String>() {
                 $0.title = "Categoría"
                 $0.options = ["👕", "👖", "👞", "👜", "🕶"]
                 $0.value = "👕"
                 $0.selectorTitle = "Choose an Emoji!"
-                $0.tag = "categoryRow"
+                //$0.tag = "categoryRow"
             }.cellSetup{ [unowned self] in
                 self.tinpon.category = $1.value
             }.onPresent { from, to in
@@ -234,6 +264,10 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
             }
         }
         return i
+    }
+    
+    @objc private func multipleSelectorDone(_ item:UIBarButtonItem) {
+        _ = navigationController?.popViewController(animated: true)
     }
 }
 
