@@ -23,6 +23,8 @@ class TinponDetailViewController: UIViewController, FSPagerViewDataSource, FSPag
             self.pagerView.register(FSPagerViewCell.self, forCellWithReuseIdentifier: "cell")
         }
     }
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
     
     @IBOutlet weak var pageControl: FSPageControl! {
         didSet {
@@ -41,16 +43,17 @@ class TinponDetailViewController: UIViewController, FSPagerViewDataSource, FSPag
         // LoadingAnimationProtocoll
         loadingAnimationView = self.view
         
-        loadTinpon(tinponId: tinpon.id!)
+        updateDataSource()
         
         pagerView.delegate = self
         pagerView.dataSource = self
     }
     
-    private func loadTinpon(tinponId: Int) {
+    @objc private func updateDataSource() {
+        print("jooo loading")
         startLoadingAnimation()
         firstly {
-            TinponsAPI.getTinpon(fromId: tinponId)
+            TinponsAPI.getTinpon(fromId: tinpon.id!)
         }.then { tinpon -> () in
             var imagePromises = [Promise<UIImage>]()
             for index in 1...tinpon.mainImageCount! {
@@ -66,10 +69,17 @@ class TinponDetailViewController: UIViewController, FSPagerViewDataSource, FSPag
                     self.tinpon = tinpon
                     self.pagerView.reloadData()
                     self.pageControl.numberOfPages = tinpon.images.count
+                    self.loadUI()
                     self.stopLoadingAnimation()
                 }
             }
         }
+    }
+    
+    private func loadUI() {
+        title = tinpon.name
+        nameLabel.text = tinpon.name
+        priceLabel.text = "\(tinpon.price!) €"
     }
     
     // MARK: - FSPagerView DataSource

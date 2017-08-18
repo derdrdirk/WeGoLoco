@@ -67,12 +67,13 @@ class TinponsAPI: APIGatewayProtocol {
     }
     
     
-    // MARK: GET Not Swiped Tinpons
+    // MARK: Swiper
     static public func getNotSwipedTinpons(completion: @escaping ([Tinpon]?, Error?)->()) {
         var tmpTinpons = [Tinpon]()
         firstly {
             TinponsAPI.getNotSwipedTinponsFromRDS()
         }.then { tinpons -> () in
+            print("get not swied calllleed")
             var getSwiperImagePromises = [Promise<UIImage>]()
             for tinpon in tinpons {
                 tmpTinpons.append(tinpon)
@@ -316,7 +317,33 @@ class TinponsAPI: APIGatewayProtocol {
     }
     
     // MARK: - Favourite
-    static func getFavouriteTinponsFromRDS(completion: @escaping ([Tinpon]?, Error?)->() ) {
+    static private func getFavouriteTinponsWithMainImage(completion: @escaping ([Tinpon]?, Error?)->()) {
+        var tmpTinpons = [Tinpon]()
+        firstly {
+            getFavouriteTinponsFromRDS()
+        }.then { tinpons -> () in
+            print("finished getFavouriteTinponsFromRDS")
+            var imagePromises = [Promise<UIImage>]()
+            for tinpon in tinpons {
+                tmpTinpons.append(tinpon)
+                let s3Key = "Tinpons/\(tinpon.id!)/main/1.png"
+                imagePromises.append(getImage(fromS3Key: s3Key))
+            }
+            when(fulfilled: imagePromises).then { images -> () in
+                for index in 0..<tmpTinpons.count {
+                    tmpTinpons[index].images.append(images[index])
+                    print("image \(images[index])")
+                }
+                print("tmpTinpons \(tmpTinpons.count)")
+                completion(tmpTinpons, nil)
+            }
+        }
+    }
+    static public func getFavouriteTinponsWithMainImage() -> Promise<[Tinpon]> {
+        return PromiseKit.wrap { getFavouriteTinponsWithMainImage(completion: $0) }
+    }
+    
+    static private func getFavouriteTinponsFromRDS(completion: @escaping ([Tinpon]?, Error?)->() ) {
         restAPITask(.GET, endPoint: .favouriteTinpons).continueWith { task -> () in
             if let error = task.error {
                 completion(nil, error)
@@ -333,7 +360,7 @@ class TinponsAPI: APIGatewayProtocol {
             }
         }
     }
-    static func getFavouriteTinponsFromRDS() -> Promise<[Tinpon]> {
+    static private func getFavouriteTinponsFromRDS() -> Promise<[Tinpon]> {
         return PromiseKit.wrap { getFavouriteTinponsFromRDS(completion: $0) }
     }
     

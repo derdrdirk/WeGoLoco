@@ -17,10 +17,12 @@ import UIKit
 final class FavouriteTinponCell: UICollectionViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var mainImageView: UIImageView!
     
     var tinpon: Tinpon! {
         didSet {
             nameLabel.text = tinpon.name
+            mainImageView.image = tinpon.images[0]
         }
     }
     

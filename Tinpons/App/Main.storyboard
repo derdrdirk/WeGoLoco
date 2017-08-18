@@ -45,8 +45,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="618"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9LJ-Ha-R53" customClass="CustomKolodaView" customModule="WeGoLoco" customModuleProvider="target">
-                                <rect key="frame" x="16" y="56" width="343" height="554"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9LJ-Ha-R53" customClass="CustomKolodaView" customModule="WeGoLoco" customModuleProvider="target">
+                                <rect key="frame" x="16" y="79" width="343" height="539"/>
                                 <subviews>
                                     <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="dJB-iD-02l" userLabel="outOfTinpons Stack">
                                         <rect key="frame" x="49.5" y="246" width="243" height="63.5"/>
@@ -78,7 +78,7 @@
                         <constraints>
                             <constraint firstItem="9LJ-Ha-R53" firstAttribute="leading" secondItem="4kG-LK-x3N" secondAttribute="leadingMargin" id="0mc-Kh-Q3W"/>
                             <constraint firstItem="9LJ-Ha-R53" firstAttribute="bottom" secondItem="kCt-oL-c4I" secondAttribute="top" id="0y1-xh-RJL"/>
-                            <constraint firstItem="9LJ-Ha-R53" firstAttribute="top" secondItem="X32-br-pVi" secondAttribute="bottom" id="NWl-Ea-AEt"/>
+                            <constraint firstItem="9LJ-Ha-R53" firstAttribute="top" secondItem="X32-br-pVi" secondAttribute="bottom" constant="15" id="NWl-Ea-AEt"/>
                             <constraint firstItem="9LJ-Ha-R53" firstAttribute="trailing" secondItem="4kG-LK-x3N" secondAttribute="trailingMargin" id="gvf-p8-Rul"/>
                         </constraints>
                     </view>
@@ -96,7 +96,7 @@
             </objects>
             <point key="canvasLocation" x="2432.8000000000002" y="517.6911544227886"/>
         </scene>
-        <!--Tinpon Detail View Controller-->
+        <!--TinponName-->
         <scene sceneID="gfE-UU-F9O">
             <objects>
                 <viewController id="nL9-b5-3Pr" customClass="TinponDetailViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
@@ -116,22 +116,45 @@
                                 <rect key="frame" x="0.0" y="447" width="375" height="24"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="pZS-8s-p9G">
+                                <rect key="frame" x="16" y="471" width="343" height="56"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="if6-lG-ke3">
+                                        <rect key="frame" x="0.0" y="0.0" width="343" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="boL-W3-Bvu">
+                                        <rect key="frame" x="0.0" y="35.5" width="343" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="pZS-8s-p9G" secondAttribute="trailing" id="0zl-CS-PAn"/>
                             <constraint firstItem="3gz-JZ-Gi9" firstAttribute="leading" secondItem="YU6-7c-Uoc" secondAttribute="leading" id="7hC-5C-jRf"/>
+                            <constraint firstItem="pZS-8s-p9G" firstAttribute="leading" secondItem="YU6-7c-Uoc" secondAttribute="leadingMargin" id="9Wm-wa-743"/>
                             <constraint firstItem="2b0-zk-kRa" firstAttribute="trailing" secondItem="3gz-JZ-Gi9" secondAttribute="trailing" id="Fbn-i0-RYV"/>
                             <constraint firstAttribute="trailing" secondItem="3gz-JZ-Gi9" secondAttribute="trailing" id="Tax-tw-d1M"/>
                             <constraint firstItem="3gz-JZ-Gi9" firstAttribute="top" secondItem="FwG-DB-aa6" secondAttribute="bottom" id="Z2Y-wi-ahk"/>
                             <constraint firstItem="tPW-Dl-tUK" firstAttribute="top" secondItem="3gz-JZ-Gi9" secondAttribute="bottom" constant="179" id="gM5-yB-XF1"/>
                             <constraint firstItem="tPW-Dl-tUK" firstAttribute="top" secondItem="2b0-zk-kRa" secondAttribute="bottom" constant="147" id="lJW-sR-iTa"/>
+                            <constraint firstItem="pZS-8s-p9G" firstAttribute="top" secondItem="2b0-zk-kRa" secondAttribute="bottom" id="nbo-38-7Du"/>
                             <constraint firstItem="2b0-zk-kRa" firstAttribute="top" secondItem="3gz-JZ-Gi9" secondAttribute="bottom" constant="8" symbolic="YES" id="udY-X9-zfK"/>
                             <constraint firstItem="2b0-zk-kRa" firstAttribute="leading" secondItem="3gz-JZ-Gi9" secondAttribute="leading" id="y4E-wr-o4a"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="TinponName" id="K5V-om-FE5"/>
                     <connections>
+                        <outlet property="nameLabel" destination="if6-lG-ke3" id="J5C-ut-S6O"/>
                         <outlet property="pageControl" destination="2b0-zk-kRa" id="F9v-XW-ejl"/>
                         <outlet property="pagerView" destination="3gz-JZ-Gi9" id="t2p-Ox-XRS"/>
+                        <outlet property="priceLabel" destination="boL-W3-Bvu" id="MQD-qJ-CoA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ckO-0L-OLP" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -181,7 +204,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <navigationItem key="navigationItem" title="Favoritos" id="u4m-aT-a3W"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="82b-hj-wt5" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -358,6 +381,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iHk-9t-19I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.0" green="0.77647058820000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="barTintColor" red="0.0" green="0.035294117649999998" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" name="RemachineScriptPersonalUse" family="Remachine Script Personal Use" pointSize="40"/>

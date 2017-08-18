@@ -28,15 +28,7 @@ class ColorsAndSizesViewController: FormViewController, LoadingAnimationProtocol
         tableView.isEditing = false
         
         // Sizes
-        form +++ SelectableSection<ListCheckRow<String>>("Tamaños", selectionType: .multipleSelection) { $0.tag = "sizeSection" }
-        let sizes = ["XS", "S", "M", "L", "XL", "XXL"]
-        for option in sizes {
-            form.last! <<< ListCheckRow<String>(option){ listRow in
-                listRow.title = option
-                listRow.selectableValue = option
-                listRow.value = nil
-            }
-        }
+        sizeSection(category: tinpon.category!)
         
         // Colors
         form +++ SelectableSection<ListCheckRow<String>>("Colores", selectionType: .multipleSelection) { $0.tag = "colorSection" }
@@ -92,7 +84,50 @@ class ColorsAndSizesViewController: FormViewController, LoadingAnimationProtocol
         }
     }
     
-    // MARK: Navigation
+    // MARK: - Helper
+    private func sizeSection(category: String) {
+        switch category {
+        case "👕":
+            let sizes = Sizes.dictionary[category] as! [String]
+            form +++ SelectableSection<ListCheckRow<String>>("\(category) Tamaños", selectionType: .multipleSelection) { $0.tag = "sizeSection" }
+            for option in sizes {
+                form.last! <<< ListCheckRow<String>(option){ listRow in
+                    listRow.title = option
+                    listRow.selectableValue = option
+                    listRow.value = nil
+                }
+            }
+        case "👖":
+            let sizes = Sizes.dictionary[category] as! [String : [Int]]
+            form +++ Section("\(category) Tamaños")
+            for size in sizes["width"]! {
+                form.last! <<< MultipleSelectorRow<Int>() {
+                    $0.title = "\(size) x "
+                    $0.options = sizes["length"]!
+                    }
+                    .onPresent { from, to in
+                        to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(ColorsAndSizesViewController.multipleSelectorDone(_:)))
+                }
+            }
+        case "👞":
+            let sizes = Sizes.dictionary[category] as! [Int]
+            form +++ SelectableSection<ListCheckRow<Int>>("\(category) Tamaños", selectionType: .multipleSelection) { $0.tag = "sizeSection" }
+            for option in sizes {
+                form.last! <<< ListCheckRow<Int>{ listRow in
+                    listRow.title = "\(option)"
+                    listRow.selectableValue = option
+                    listRow.value = nil
+                }
+            }
+        default: ()
+        }
+    }
+    
+    func multipleSelectorDone(_ item:UIBarButtonItem) {
+        _ = navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let quantitiesViewController = segue.destination as! QuantitiesViewController

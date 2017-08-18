@@ -45,6 +45,9 @@ class SwiperViewController: UIViewController, AuthenticationProtocol, LoadingAni
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
+        print(Sizes.dictionary["👕"])
+        
         //LoadingAnimationProtocol
         loadingAnimationView = view
         

@@ -20,12 +20,11 @@ final class FavouriteViewController: UIViewController, ListAdapterDataSource, Lo
     // MARK: LoadingAnimationProtocol
     var loadingAnimationView: UIView!
     var loadingAnimationOverlay: UIView!
-    
     var loadingAnimationIndicator: UIActivityIndicatorView!
+    
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self)
     }()
-    
     let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     let emptyLabel: UILabel = {
@@ -39,13 +38,15 @@ final class FavouriteViewController: UIViewController, ListAdapterDataSource, Lo
     
     var tinpons = [Tinpon]()
     
+    override func viewWillAppear(_ animated: Bool) {
+        updateDataSource()
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // LoadingAnimationProtocol
         loadingAnimationView = self.view
-        
-        loadTinpons()
         
         collectionView.backgroundColor = UIColor(white: 0.9, alpha: 1)
         view.addSubview(collectionView)
@@ -58,11 +59,12 @@ final class FavouriteViewController: UIViewController, ListAdapterDataSource, Lo
         collectionView.frame = view.bounds
     }
     
-    private func loadTinpons() {
+    private func updateDataSource() {
         startLoadingAnimation()
         firstly {
-            TinponsAPI.getFavouriteTinponsFromRDS()
+            TinponsAPI.getFavouriteTinponsWithMainImage()
         }.then { tinpons -> () in
+            print("images \(tinpons[0].images.count)")
             self.tinpons = tinpons
             self.adapter.performUpdates(animated: true, completion: nil)
             self.stopLoadingAnimation()

@@ -99,10 +99,14 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
             }
             <<< DecimalRow() {
                 $0.title = "Precio"
-                $0.value = 5
                 $0.formatter = DecimalFormatter()
                 $0.useFormatterDuringInput = true
+                $0.add(rule: RuleRequired())
                 $0.tag = "priceRow"
+                }.cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
                 }.cellSetup { [unowned self] cell, row  in
                     cell.textField.keyboardType = .numberPad
                     self.tinpon.price = row.value
@@ -120,12 +124,8 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
                     buttonCell.tintColor = #colorLiteral(red: 0, green: 0.8166723847, blue: 0.9823040366, alpha: 1)
                 }.onCellSelection{[weak self] buttonCell, row in
                     guard let strongSelf = self else { return }
-                    
-                    if strongSelf.form.validate().isEmpty {
+                    if strongSelf.validateForm() {
                         strongSelf.performSegue(withIdentifier: "segueToColorsAndSizes", sender: self)
-                    } else {
-                        let message = Message(title: "El formulario no es valido.", backgroundColor: .red)
-                        Whisper.show(whisper: message, to: strongSelf.navigationController!, action: .show)
                     }
         }
     }
@@ -196,12 +196,44 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
     }
     
     
-    // MARK: Navigation
+    // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         tinpon = Tinpon()
         guardTinponBasics()
         let colorsAndSizesViewController = segue.destination as! ColorsAndSizesViewController
         colorsAndSizesViewController.tinpon = self.tinpon
+    }
+    
+    // MARK: - Helper
+    fileprivate func removeRow(row: BaseRow) {
+        let rowIndex = row.indexPath!.row
+        form.allSections[0].remove(at: rowIndex)
+        if editingImageRow != nil {
+            editingImageRow = nil
+        }
+    }
+    
+    private func validateForm() -> Bool {
+        if !form.validate().isEmpty {
+            let message = Message(title: "El formulario no es valido.", backgroundColor: .red)
+            Whisper.show(whisper: message, to: navigationController!, action: .show)
+            return false
+        } else if imageCount() == 0 {
+            let message = Message(title: "Hay que añadir un imagen.", backgroundColor: .red)
+            Whisper.show(whisper: message, to: navigationController!, action: .show)
+            return false
+        }
+        return true
+    }
+    
+    private func imageCount() -> Int {
+        var i = -1 // there will be always one empty ImageRow to add an image
+        for row in form.allRows {
+            if let imageRow = row as? ImageRow {
+                i += 1
+            }
+        }
+        return i
     }
 }
 
@@ -229,6 +261,14 @@ extension BasicsViewController:  TOCropViewControllerDelegate {
         dismiss(animated: false)
         presentFilterViewController(image)
     }
+    
+    func cropViewController(_ cropViewController: TOCropViewController, didFinishCancelled cancelled: Bool) {
+        cropViewController.dismiss(animated: true, completion: {
+          self.removeRow(row: self.editingImageRow!)
+        })
+    }
+    
+    
 }
 
 extension BasicsViewController: SHViewControllerDelegate {
@@ -253,7 +293,7 @@ extension BasicsViewController: SHViewControllerDelegate {
     }
     
     func shViewControllerDidCancel() {
-        // This will be called when you cancel filtering the image.
+        removeRow(row: editingImageRow!)
     }
 }
 

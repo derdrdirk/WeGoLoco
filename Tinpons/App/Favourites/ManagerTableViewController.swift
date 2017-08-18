@@ -39,7 +39,7 @@ class ManagerTableViewController: UITableViewController, LoadingAnimationProtoco
         updateDataSource()
         
         refreshControl = UIRefreshControl()
-        refreshControl?.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl?.attributedTitle = NSAttributedString(string: "Tirar para actualizar")
         refreshControl?.addTarget(self, action: #selector(updateDataSource), for: UIControlEvents.valueChanged)
     }
     

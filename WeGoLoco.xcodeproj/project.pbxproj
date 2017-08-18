@@ -40,6 +40,7 @@
 		D41A5D5B1F39916F00D1191C /* UserPoolEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A5D5A1F39916F00D1191C /* UserPoolEmailViewController.swift */; };
 		D41A5D5E1F39959D00D1191C /* UserPoolPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A5D5D1F39959D00D1191C /* UserPoolPasswordViewController.swift */; };
 		D41A5D601F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A5D5F1F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift */; };
+		D41B112E1F46AD55007DAF6E /* Sizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B112D1F46AD55007DAF6E /* Sizes.swift */; };
 		D41EB2681F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2611F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m */; };
 		D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2631F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m */; };
 		D41EB26A1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2651F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m */; };
@@ -262,6 +263,7 @@
 		D41A5D5A1F39916F00D1191C /* UserPoolEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPoolEmailViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/UserPoolEmailViewController.swift; sourceTree = SOURCE_ROOT; };
 		D41A5D5D1F39959D00D1191C /* UserPoolPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPoolPasswordViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/UserPoolPasswordViewController.swift; sourceTree = SOURCE_ROOT; };
 		D41A5D5F1F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPoolEmailConfirmationViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/UserPoolEmailConfirmationViewController.swift; sourceTree = SOURCE_ROOT; };
+		D41B112D1F46AD55007DAF6E /* Sizes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sizes.swift; path = Tinpons/App/API/Sizes.swift; sourceTree = SOURCE_ROOT; };
 		D41EB2601F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_9HLT8N48WD_Empty.h; sourceTree = "<group>"; };
 		D41EB2611F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_9HLT8N48WD_Empty.m; sourceTree = "<group>"; };
 		D41EB2621F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_9HLT8N48WD_RequestSchema.h; sourceTree = "<group>"; };
@@ -641,6 +643,7 @@
 				D4EEF6591F2F9F8700297A5E /* Tinpon.swift */,
 				D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */,
 				D4025B421F3DD03600436442 /* Color.swift */,
+				D41B112D1F46AD55007DAF6E /* Sizes.swift */,
 				D47D70601F37045B003E0708 /* APIError.swift */,
 			);
 			name = Api;
@@ -880,6 +883,7 @@
 				D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */,
 				D41EB2701F3395A0003842E4 /* EmailConfirmationViewController.swift in Sources */,
 				D443C0F81EEC6CA300FD148F /* BackgroundKolodaAnimator.swift in Sources */,
+				D41B112E1F46AD55007DAF6E /* Sizes.swift in Sources */,
 				E7A30F0493F7667400000000 /* UtilityFunctions.swift in Sources */,
 				E7A30F04741B216700000000 /* AuthenticationProtocol.swift in Sources */,
 				E7A30F04B8261BDC00000000 /* UserPoolsIdentityProfile.swift in Sources */,
