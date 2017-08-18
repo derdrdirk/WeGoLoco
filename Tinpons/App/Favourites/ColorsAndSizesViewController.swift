@@ -10,8 +10,6 @@ import UIKit
 import Eureka
 import Whisper
 
-let colorDictionary = ["Azul" : #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1), "Negro" : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), "Rojo" : #colorLiteral(red: 1, green: 0.1491314173, blue: 0, alpha: 1)]
-
 class ColorsAndSizesViewController: FormViewController, LoadingAnimationProtocol {
     
     // MARK: LoadingAnimationProtocol
@@ -32,16 +30,27 @@ class ColorsAndSizesViewController: FormViewController, LoadingAnimationProtocol
         
         // Colors
         form +++ SelectableSection<ListCheckRow<String>>("Colores", selectionType: .multipleSelection) { $0.tag = "colorSection" }
-        let colors = ["negro", "azul", "rojo"]
+        let colors = Color.spanishColors
         for option in colors {
             form.last! <<< ListCheckRow<String>(option){ listRow in
                 listRow.title = option
-                listRow.selectableValue = option
+                listRow.selectableValue = Color(spanishName: option).name
                 listRow.value = nil
                 }.cellUpdate { cell, row in
-                    let color = colorDictionary[row.title!]
+                    let color = Color.colorDictionary[row.selectableValue!]
                     cell.tintColor = color
                     cell.textLabel?.textColor = color
+                    
+                    // text outline for better visibility
+//                    if row.title == "blanco" || row.title == "amarillo" || row.title == "gris" {
+//                        let strokeTextAttributes = [
+//                            NSStrokeColorAttributeName : UIColor.black,
+//                            NSForegroundColorAttributeName : color,
+//                            NSStrokeWidthAttributeName : -2.0,
+//                            ] as [String : Any]
+//                        
+//                        cell.textLabel?.attributedText = NSAttributedString(string: row.title!, attributes: strokeTextAttributes)
+//                    }
             }
         }
 

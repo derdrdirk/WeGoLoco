@@ -35,7 +35,7 @@ open class ColorCheckCell<T: Equatable> : Cell<T>, CellType {
         print("setup \(row.title)")
         accessoryType = .none
         
-        circleColor = colorDictionary[row.title!]
+        //circleColor = colorDictionary[row.title!]
         
         circleView.layer.borderColor = circleColor.cgColor
         circleView.layer.borderWidth = 1
