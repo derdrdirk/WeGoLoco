@@ -57,14 +57,17 @@ final class CategorySectionController: ListSectionController {
         guard let cell = collectionContext?.dequeueReusableCell(of: CategoryCell.self, for: self, at: index) as? CategoryCell else {
             fatalError()
         }
-        cell.backgroundColor = object?.color
-        cell.image = UIImage(named: "shirt")
-        cell.text = "\(index + 1)"
+        cell.image = UIImage(named: "ShirtNotSelected")
+        cell.text = "Shirt"
         return cell
     }
     
     override func didUpdate(to object: Any) {
         self.object = object as? CategoryItem
+    }
+    
+    override func didSelectItem(at index: Int) {
+        let cell = self.cellForItem(at: index) as! CategoryCell
     }
     
 }

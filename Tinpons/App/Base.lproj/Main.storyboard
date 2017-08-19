@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="OrN-g0-Z6P">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="p8H-ep-t55">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -168,7 +168,7 @@
                     <tabBarItem key="tabBarItem" title="" image="mi-favourite" id="ebJ-m8-Ril">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jd7-Ed-EQj">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="jd7-Ed-EQj">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.035294117649999998" blue="0.086274509799999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -216,7 +216,7 @@
             <objects>
                 <navigationController id="LfB-L5-P3L" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="Cbp-Nx-JGf"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="OXR-Cz-A2X">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="OXR-Cz-A2X">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.77647058820000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -266,7 +266,7 @@
         <scene sceneID="36f-YR-cYy">
             <objects>
                 <navigationController id="p8H-ep-t55" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="wDa-sv-Kwb">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="wDa-sv-Kwb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.77647058820000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -276,7 +276,7 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="p5A-2U-bQ0" kind="relationship" relationship="rootViewController" id="uRL-Yc-WFh"/>
+                        <segue destination="OrN-g0-Z6P" kind="relationship" relationship="rootViewController" id="HJJ-Am-BCQ"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15V-f1-pXb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -378,7 +378,7 @@
             <objects>
                 <navigationController id="Kpi-Xm-XQ0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="aBK-0P-8I7"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iHk-9t-19I">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iHk-9t-19I">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.77647058820000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -396,10 +396,10 @@
             </objects>
             <point key="canvasLocation" x="1689" y="518"/>
         </scene>
-        <!--Category Selector View Controller-->
+        <!--Category Selector Controller-->
         <scene sceneID="lhc-mo-hdY">
             <objects>
-                <viewController id="OrN-g0-Z6P" customClass="CategorySelectorViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OrN-g0-Z6P" customClass="CategorySelectorController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="kZ2-4P-Zlz"/>
                         <viewControllerLayoutGuide type="bottom" id="Cv0-wx-9UY"/>
@@ -409,17 +409,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" id="ufL-pU-7ob">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="Uzh-Ly-DdH">
+                            <connections>
+                                <action selector="touchContinue:" destination="OrN-g0-Z6P" id="obz-wO-9pf"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5SX-mY-cKK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-103" y="1628"/>
+            <point key="canvasLocation" x="3838" y="1285"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hpP-5X-TVq">
             <objects>
                 <navigationController id="o7V-gW-8HN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="hcs-Nb-vM5"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WUr-7k-hFm">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="WUr-7k-hFm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="tintColor" red="0.0" green="0.77647058820000003" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
@@ -551,7 +558,7 @@
             <objects>
                 <navigationController id="wzu-Na-rKZ" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" id="Mq1-Rf-Fpz"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="iG6-3H-mA5">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="iG6-3H-mA5">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <textAttributes key="titleTextAttributes">

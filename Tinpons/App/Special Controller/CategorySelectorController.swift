@@ -9,7 +9,7 @@
 import UIKit
 import IGListKit
 
-class CategorySelectorViewController: UIViewController, ListAdapterDataSource {
+class CategorySelectorController: UIViewController, ListAdapterDataSource {
 
     lazy var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self)
@@ -24,6 +24,8 @@ class CategorySelectorViewController: UIViewController, ListAdapterDataSource {
         super.viewDidLoad()
 
         view.addSubview(collectionView)
+        
+        collectionView.allowsMultipleSelection = true
         
         adapter.collectionView = collectionView
         adapter.dataSource = self
@@ -47,7 +49,27 @@ class CategorySelectorViewController: UIViewController, ListAdapterDataSource {
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? { return nil }
     
+    
+    // MARK: - Action
+    
+    @IBAction func touchContinue(_ sender: UIBarButtonItem) {
+        print(selectedCategories())
+    }
 
+    // MARK: - Helper
+    
+    private func selectedCategories() -> [String]? {
+        if let selectedIndexPaths = collectionView.indexPathsForSelectedItems {
+            var categories = [String]()
+            for indexPath in selectedIndexPaths {
+                let cell = collectionView.cellForItem(at: indexPath) as! CategoryCell
+                categories.append(cell.text!)
+            }
+            return categories
+        } else {
+            return nil
+        }
+    }
     /*
     // MARK: - Navigation
 

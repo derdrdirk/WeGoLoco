@@ -9,12 +9,12 @@
 import UIKit
 
 final class CategoryCell: UICollectionViewCell {
-    
     lazy private var imageView: UIImageView = {
         let imageView = UIImageView()
-        self.contentView.addSubview(imageView)
+        self.backgroundView = imageView
         return imageView
     }()
+    
     var image: UIImage? {
         get {
             return imageView.image
@@ -24,13 +24,12 @@ final class CategoryCell: UICollectionViewCell {
         }
     }
     
-    
     lazy private var label: UILabel = {
         let view = UILabel()
         view.backgroundColor = .clear
         view.textAlignment = .center
         view.textColor = .white
-        view.font = .boldSystemFont(ofSize: 18)
+        view.font = Font.body()
         self.contentView.addSubview(view)
         return view
     }()
@@ -44,10 +43,18 @@ final class CategoryCell: UICollectionViewCell {
         }
     }
     
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        label.frame = contentView.bounds
-        imageView.frame = contentView.bounds
+    override var isSelected: Bool {
+        didSet {
+            image = isSelected ? #imageLiteral(resourceName: "shirtNotSelected") : #imageLiteral(resourceName: "Shirt")
+        }
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        // add overlay
+       // self.contentView.insertSubview(overlay, aboveSubview: imageView)
+        
+        imageView.frame = contentView.bounds
+        label.frame = contentView.bounds
+    }
 }

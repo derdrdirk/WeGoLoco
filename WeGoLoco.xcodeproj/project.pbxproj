@@ -107,11 +107,15 @@
 		D4EA39AC1F47414900B6E6A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4EA39AE1F47414900B6E6A6 /* Main.storyboard */; };
 		D4EA39B21F47447E00B6E6A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4EA39B41F47447E00B6E6A6 /* Localizable.strings */; };
 		D4EA39BE1F47555100B6E6A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4EA39C01F47555100B6E6A6 /* InfoPlist.strings */; };
-		D4EA39C41F4783CD00B6E6A6 /* CategorySelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA39C31F4783CD00B6E6A6 /* CategorySelectorViewController.swift */; };
+		D4EA39C41F4783CD00B6E6A6 /* CategorySelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA39C31F4783CD00B6E6A6 /* CategorySelectorController.swift */; };
 		D4EEF65A1F2F9F8700297A5E /* Tinpon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEF6591F2F9F8700297A5E /* Tinpon.swift */; };
 		D4FA2EC91F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA2EC81F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift */; };
 		D4FA2ECC1F0CE85B00B287FB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA2ECB1F0CE85B00B287FB /* ProfileViewController.swift */; };
 		D4FA2ED21F0D10FD00B287FB /* DynamoDBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA2ED11F0D10FD00B287FB /* DynamoDBUser.swift */; };
+		D4FC3EA81F47F8A900F84689 /* Argon-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4FC3EA61F47F70E00F84689 /* Argon-Regular.otf */; };
+		D4FC3EA91F47F8AB00F84689 /* Jameson SS Base.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4FC3EA71F47F86A00F84689 /* Jameson SS Base.otf */; };
+		D4FC3EAB1F47FA1700F84689 /* Jameson SS Round.otf in Resources */ = {isa = PBXBuildFile; fileRef = D4FC3EAA1F47FA1700F84689 /* Jameson SS Round.otf */; };
+		D4FC3EAD1F47FA7700F84689 /* FontAndColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC3EAC1F47FA7700F84689 /* FontAndColors.swift */; };
 		D4FC90E31F163328002A6F9E /* SwipedTinpon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC90E21F163328002A6F9E /* SwipedTinpon.swift */; };
 		D4FC90E51F1669F8002A6F9E /* SwipedTinponsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FC90E41F1669F8002A6F9E /* SwipedTinponsCore.swift */; };
 		E7A30F040024501400000000 /* AWSDynamoDB.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1DD70E29BC3E8A3700000000 /* AWSDynamoDB.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -339,11 +343,15 @@
 		D4EA39BB1F4745CF00B6E6A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		D4EA39BF1F47555100B6E6A6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D4EA39C21F47573400B6E6A6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
-		D4EA39C31F4783CD00B6E6A6 /* CategorySelectorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategorySelectorViewController.swift; path = "Tinpons/App/Special Controller/CategorySelectorViewController.swift"; sourceTree = SOURCE_ROOT; };
+		D4EA39C31F4783CD00B6E6A6 /* CategorySelectorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategorySelectorController.swift; path = "Tinpons/App/Special Controller/CategorySelectorController.swift"; sourceTree = SOURCE_ROOT; };
 		D4EEF6591F2F9F8700297A5E /* Tinpon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tinpon.swift; path = Tinpons/App/API/Tinpon.swift; sourceTree = SOURCE_ROOT; };
 		D4FA2EC81F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamoDBSwipedTinpon.swift; path = Tinpons/AmazonAws/Models/NoSQL/DynamoDBSwipedTinpon.swift; sourceTree = SOURCE_ROOT; };
 		D4FA2ECB1F0CE85B00B287FB /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Tinpons/App/Profile/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		D4FA2ED11F0D10FD00B287FB /* DynamoDBUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamoDBUser.swift; path = Tinpons/AmazonAws/Models/NoSQL/DynamoDBUser.swift; sourceTree = SOURCE_ROOT; };
+		D4FC3EA61F47F70E00F84689 /* Argon-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Argon-Regular.otf"; path = "Assets/Fonts/Argon-Regular.otf"; sourceTree = "<group>"; };
+		D4FC3EA71F47F86A00F84689 /* Jameson SS Base.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Jameson SS Base.otf"; path = "Assets/Fonts/Jameson/Jameson SS Base.otf"; sourceTree = "<group>"; };
+		D4FC3EAA1F47FA1700F84689 /* Jameson SS Round.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Jameson SS Round.otf"; path = "Assets/Fonts/Jameson/Jameson SS Round.otf"; sourceTree = "<group>"; };
+		D4FC3EAC1F47FA7700F84689 /* FontAndColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FontAndColors.swift; path = "Tinpons/App/Special Controller/FontAndColors.swift"; sourceTree = SOURCE_ROOT; };
 		D4FC90E21F163328002A6F9E /* SwipedTinpon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipedTinpon.swift; path = Tinpons/AmazonAws/Models/NoSQL/SwipedTinpon.swift; sourceTree = SOURCE_ROOT; };
 		D4FC90E41F1669F8002A6F9E /* SwipedTinponsCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwipedTinponsCore.swift; path = Tinpons/AmazonAws/Models/NoSQL/SwipedTinponsCore.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -397,6 +405,7 @@
 		B401C9792DF24DB900000000 /* App */ = {
 			isa = PBXGroup;
 			children = (
+				D4FC3EAC1F47FA7700F84689 /* FontAndColors.swift */,
 				D4B95B951F1E84180078289F /* Extensions.swift */,
 				1DD70E29E394D56000000000 /* AppDelegate.swift */,
 				1DD70E292554733E00000000 /* Images.xcassets */,
@@ -731,6 +740,9 @@
 		D4CA25BC1F279879007AF347 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D4FC3EA61F47F70E00F84689 /* Argon-Regular.otf */,
+				D4FC3EA71F47F86A00F84689 /* Jameson SS Base.otf */,
+				D4FC3EAA1F47FA1700F84689 /* Jameson SS Round.otf */,
 				D4B7D1FD1F28C442008F3AE1 /* RemachineScript.ttf */,
 				D40EA7131F2A40CA00A44735 /* proxima-nova-soft-bold.ttf */,
 				D40EA7141F2A40CB00A44735 /* proxima-nova-soft-regular.ttf */,
@@ -741,7 +753,7 @@
 		D4EA39C51F4783D100B6E6A6 /* Special Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D4EA39C31F4783CD00B6E6A6 /* CategorySelectorViewController.swift */,
+				D4EA39C31F4783CD00B6E6A6 /* CategorySelectorController.swift */,
 				D48B7C051F47869000B1F84F /* CategorySectionController.swift */,
 				D48B7C071F47885A00B1F84F /* CategoryCell.swift */,
 			);
@@ -822,6 +834,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4FC3EA81F47F8A900F84689 /* Argon-Regular.otf in Resources */,
+				D4FC3EA91F47F8AB00F84689 /* Jameson SS Base.otf in Resources */,
 				D42994551F3F64550031B280 /* SHViewController.xib in Resources */,
 				D4B7D1FE1F28C442008F3AE1 /* RemachineScript.ttf in Resources */,
 				D42994531F3F64500031B280 /* SHCollectionViewCell.xib in Resources */,
@@ -832,6 +846,7 @@
 				D4E258221EEC1A6400B2B986 /* CustomOverlayView.xib in Resources */,
 				D40EA7161F2A40CB00A44735 /* proxima-nova-soft-regular.ttf in Resources */,
 				D40D975B1F3CEBD200B246D0 /* ColorCell.xib in Resources */,
+				D4FC3EAB1F47FA1700F84689 /* Jameson SS Round.otf in Resources */,
 				D4EA39BE1F47555100B6E6A6 /* InfoPlist.strings in Resources */,
 				D42994571F3F650A0031B280 /* Media.xcassets in Resources */,
 				D423ABA81F3B079300A6FE2A /* ProductVariationCell.xib in Resources */,
@@ -890,10 +905,11 @@
 				D41A5D5B1F39916F00D1191C /* UserPoolEmailViewController.swift in Sources */,
 				D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */,
 				D4AAB5A71F305A0900050E02 /* TinponsAPI.swift in Sources */,
+				D4FC3EAD1F47FA7700F84689 /* FontAndColors.swift in Sources */,
 				D41B11321F473CD3007DAF6E /* Categories.swift in Sources */,
 				D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */,
 				D4EEF65A1F2F9F8700297A5E /* Tinpon.swift in Sources */,
-				D4EA39C41F4783CD00B6E6A6 /* CategorySelectorViewController.swift in Sources */,
+				D4EA39C41F4783CD00B6E6A6 /* CategorySelectorController.swift in Sources */,
 				D40D97551F3CE61200B246D0 /* QuantitiesViewController.swift in Sources */,
 				E7A30F042B278B4700000000 /* UserPoolSignUpConfirmationViewController.swift in Sources */,
 				E7A30F04C071CC9E00000000 /* UserPoolMFAViewController.swift in Sources */,
