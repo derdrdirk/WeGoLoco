@@ -9,19 +9,22 @@
 import UIKit
 import IGListKit
 
-final class CategoryItem: NSObject {
+final class CategoryItems: NSObject {
     
-    let color: UIColor
-    let itemCount: Int
-    
-    init(color: UIColor, itemCount: Int) {
-        self.color = color
-        self.itemCount = itemCount
+    let categories: [String]
+    let gender: String!
+    init(gender: String) {
+        self.gender = gender
+        if gender == "male" {
+            self.categories = Categories.male
+        } else {
+            self.categories = Categories.female
+        }
     }
     
 }
 
-extension CategoryItem: ListDiffable {
+extension CategoryItems: ListDiffable {
     
     func diffIdentifier() -> NSObjectProtocol {
         return self
@@ -35,7 +38,7 @@ extension CategoryItem: ListDiffable {
 
 final class CategorySectionController: ListSectionController {
     
-    private var object: CategoryItem?
+    private var object: CategoryItems?
     
     override init() {
         super.init()
@@ -44,7 +47,7 @@ final class CategorySectionController: ListSectionController {
     }
     
     override func numberOfItems() -> Int {
-        return object?.itemCount ?? 0
+        return object!.categories.count
     }
     
     override func sizeForItem(at index: Int) -> CGSize {
@@ -57,13 +60,17 @@ final class CategorySectionController: ListSectionController {
         guard let cell = collectionContext?.dequeueReusableCell(of: CategoryCell.self, for: self, at: index) as? CategoryCell else {
             fatalError()
         }
-        cell.image = UIImage(named: "ShirtNotSelected")
-        cell.text = "Shirt"
+        let category = object!.categories[index]
+        // imageName = "male/Shoes"
+        let gender = object!.gender!
+        let imageName = "\(gender)/\(category)"
+        cell.image = UIImage(named: imageName)
+        cell.text = category
         return cell
     }
     
     override func didUpdate(to object: Any) {
-        self.object = object as? CategoryItem
+        self.object = object as? CategoryItems
     }
     
     override func didSelectItem(at index: Int) {

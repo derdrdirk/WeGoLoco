@@ -84,49 +84,7 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
                 $0.value = "👱"
                 }.cellSetup { segmentedCell, segmentedRow in
                     segmentedCell.tintColor = #colorLiteral(red: 0, green: 0.8166723847, blue: 0.9823040366, alpha: 1)
-                }.onChange { row in
-                    let categoryRow = self.form.rowBy(tag: "categoryRow") as! MultipleSelectorRow<String>
-                    categoryRow.options = ["jo", "no"]
-                    categoryRow.reload()
-                    
-            }
-            <<< MultipleSelectorRow<String>() {
-                $0.title = "Category"
-                $0.options = ["💁🏻", "🍐", "👦🏼", "🐗", "🐼", "🐻"]
-                $0.value = []
-                $0.tag = "categoryRow"
                 }
-                .onPresent { from, to in
-                    to.sectionKeyForValue = { option in
-                        switch option {
-                        case "💁🏻", "👦🏼": return "People"
-                        case "🐗", "🐼", "🐻": return "Animals"
-                        case "🍐": return "Food"
-                        default: return ""
-                        }
-                    }
-                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(BasicsViewController.multipleSelectorDone(_:)))
-            }
-            <<< PushRow<String>() {
-                $0.title = "Categoría"
-                $0.options = ["👕", "👖", "👞", "👜", "🕶"]
-                $0.value = "👕"
-                $0.selectorTitle = "Choose an Emoji!"
-                //$0.tag = "categoryRow"
-            }.cellSetup{ [unowned self] in
-                self.tinpon.category = $1.value
-            }.onPresent { from, to in
-                to.enableDeselection = false
-                to.sectionKeyForValue = { option in
-                    switch option {
-                    case "👕", "👖", "👞": return "Clothing"
-                    case "👜", "🕶": return "Accessoires"
-                    default: return ""
-                    }
-                }
-            }.onChange{ [unowned self] in
-                self.tinpon.category = $0.value
-            }
             <<< DecimalRow() {
                 $0.title = "Precio"
                 $0.formatter = DecimalFormatter()
@@ -155,7 +113,7 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
                 }.onCellSelection{[weak self] buttonCell, row in
                     guard let strongSelf = self else { return }
                     if strongSelf.validateForm() {
-                        strongSelf.performSegue(withIdentifier: "segueToColorsAndSizes", sender: self)
+                        strongSelf.performSegue(withIdentifier: "segueToSelectProductCategory", sender: self)
                     }
         }
     }
@@ -163,7 +121,6 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
     // MARK: guard Tinpon Basics
     fileprivate func guardTinponBasics() {
         tinpon.name = (form.rowBy(tag: "nameRow") as! TextRow).value
-        tinpon.category = (form.rowBy(tag: "categoryRow") as! PushRow).value
         tinpon.price = (form.rowBy(tag: "priceRow") as! DecimalRow).value
 
         for row in form.allRows {
@@ -230,8 +187,10 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         tinpon = Tinpon()
         guardTinponBasics()
-        let colorsAndSizesViewController = segue.destination as! ColorsAndSizesViewController
-        colorsAndSizesViewController.tinpon = self.tinpon
+        
+        let selectCategoryViewController = segue.destination as! SelectCategoryViewController
+        selectCategoryViewController.gender = getGender()
+        selectCategoryViewController.isMultipleSelection = false
     }
     
     // MARK: - Helper
@@ -240,6 +199,15 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
         form.allSections[0].remove(at: rowIndex)
         if editingImageRow != nil {
             editingImageRow = nil
+        }
+    }
+    
+    fileprivate func getGender() -> String {
+        let genderRow = form.rowBy(tag: "Gender") as! SegmentedRow<String>
+        if genderRow.value == "👱" {
+            return "male"
+        } else {
+            return "female"
         }
     }
     

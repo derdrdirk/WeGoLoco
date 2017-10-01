@@ -9,6 +9,14 @@
 import UIKit
 
 final class CategoryCell: UICollectionViewCell {
+    
+    lazy private var overlay: UIView = {
+        let view = UIView()
+        view.backgroundColor = UIColor.black
+        view.alpha = 0.4
+        self.backgroundView?.addSubview(view)
+        return view
+    }()
     lazy private var imageView: UIImageView = {
         let imageView = UIImageView()
         self.backgroundView = imageView
@@ -30,6 +38,7 @@ final class CategoryCell: UICollectionViewCell {
         view.textAlignment = .center
         view.textColor = .white
         view.font = Font.body()
+        view.adjustsFontSizeToFitWidth = true
         self.contentView.addSubview(view)
         return view
     }()
@@ -45,16 +54,14 @@ final class CategoryCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            image = isSelected ? #imageLiteral(resourceName: "shirtNotSelected") : #imageLiteral(resourceName: "Shirt")
+            overlay.backgroundColor = isSelected ? .blue : .black
         }
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        // add overlay
-       // self.contentView.insertSubview(overlay, aboveSubview: imageView)
-        
+        overlay.frame = contentView.bounds
         imageView.frame = contentView.bounds
-        label.frame = contentView.bounds
+        label.frame = CGRect(x: 10, y: 0, width: contentView.bounds.width - 2 * 10, height: contentView.bounds.height)
     }
 }

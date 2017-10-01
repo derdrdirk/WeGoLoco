@@ -107,8 +107,9 @@
 		D4EA39AC1F47414900B6E6A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D4EA39AE1F47414900B6E6A6 /* Main.storyboard */; };
 		D4EA39B21F47447E00B6E6A6 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4EA39B41F47447E00B6E6A6 /* Localizable.strings */; };
 		D4EA39BE1F47555100B6E6A6 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D4EA39C01F47555100B6E6A6 /* InfoPlist.strings */; };
-		D4EA39C41F4783CD00B6E6A6 /* CategorySelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA39C31F4783CD00B6E6A6 /* CategorySelectorController.swift */; };
+		D4EA39C41F4783CD00B6E6A6 /* SelectCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EA39C31F4783CD00B6E6A6 /* SelectCategoryViewController.swift */; };
 		D4EEF65A1F2F9F8700297A5E /* Tinpon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4EEF6591F2F9F8700297A5E /* Tinpon.swift */; };
+		D4F744621F6273E300560EAD /* SelectProductCategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4F744611F6273E300560EAD /* SelectProductCategoryViewController.swift */; };
 		D4FA2EC91F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA2EC81F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift */; };
 		D4FA2ECC1F0CE85B00B287FB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA2ECB1F0CE85B00B287FB /* ProfileViewController.swift */; };
 		D4FA2ED21F0D10FD00B287FB /* DynamoDBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4FA2ED11F0D10FD00B287FB /* DynamoDBUser.swift */; };
@@ -343,8 +344,9 @@
 		D4EA39BB1F4745CF00B6E6A6 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		D4EA39BF1F47555100B6E6A6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		D4EA39C21F47573400B6E6A6 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Main.strings; sourceTree = "<group>"; };
-		D4EA39C31F4783CD00B6E6A6 /* CategorySelectorController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategorySelectorController.swift; path = "Tinpons/App/Special Controller/CategorySelectorController.swift"; sourceTree = SOURCE_ROOT; };
+		D4EA39C31F4783CD00B6E6A6 /* SelectCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectCategoryViewController.swift; path = "Tinpons/App/Special Controller/SelectCategoryViewController.swift"; sourceTree = SOURCE_ROOT; };
 		D4EEF6591F2F9F8700297A5E /* Tinpon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Tinpon.swift; path = Tinpons/App/API/Tinpon.swift; sourceTree = SOURCE_ROOT; };
+		D4F744611F6273E300560EAD /* SelectProductCategoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SelectProductCategoryViewController.swift; path = Tinpons/App/AddProduct/SelectProductCategoryViewController.swift; sourceTree = SOURCE_ROOT; };
 		D4FA2EC81F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamoDBSwipedTinpon.swift; path = Tinpons/AmazonAws/Models/NoSQL/DynamoDBSwipedTinpon.swift; sourceTree = SOURCE_ROOT; };
 		D4FA2ECB1F0CE85B00B287FB /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProfileViewController.swift; path = Tinpons/App/Profile/ProfileViewController.swift; sourceTree = SOURCE_ROOT; };
 		D4FA2ED11F0D10FD00B287FB /* DynamoDBUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DynamoDBUser.swift; path = Tinpons/AmazonAws/Models/NoSQL/DynamoDBUser.swift; sourceTree = SOURCE_ROOT; };
@@ -617,6 +619,7 @@
 			isa = PBXGroup;
 			children = (
 				D443C0F91EEC728100FD148F /* BasicsViewController.swift */,
+				D4F744611F6273E300560EAD /* SelectProductCategoryViewController.swift */,
 				D40D97511F3CCCC600B246D0 /* ColorsAndSizesViewController.swift */,
 				D40D97541F3CE61200B246D0 /* QuantitiesViewController.swift */,
 				D40D975A1F3CEBD200B246D0 /* ColorCell.xib */,
@@ -753,7 +756,7 @@
 		D4EA39C51F4783D100B6E6A6 /* Special Controller */ = {
 			isa = PBXGroup;
 			children = (
-				D4EA39C31F4783CD00B6E6A6 /* CategorySelectorController.swift */,
+				D4EA39C31F4783CD00B6E6A6 /* SelectCategoryViewController.swift */,
 				D48B7C051F47869000B1F84F /* CategorySectionController.swift */,
 				D48B7C071F47885A00B1F84F /* CategoryCell.swift */,
 			);
@@ -909,7 +912,7 @@
 				D41B11321F473CD3007DAF6E /* Categories.swift in Sources */,
 				D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */,
 				D4EEF65A1F2F9F8700297A5E /* Tinpon.swift in Sources */,
-				D4EA39C41F4783CD00B6E6A6 /* CategorySelectorController.swift in Sources */,
+				D4EA39C41F4783CD00B6E6A6 /* SelectCategoryViewController.swift in Sources */,
 				D40D97551F3CE61200B246D0 /* QuantitiesViewController.swift in Sources */,
 				E7A30F042B278B4700000000 /* UserPoolSignUpConfirmationViewController.swift in Sources */,
 				E7A30F04C071CC9E00000000 /* UserPoolMFAViewController.swift in Sources */,
@@ -917,6 +920,7 @@
 				E7A30F040AAE5A4B00000000 /* AppDelegate.swift in Sources */,
 				D4512B481F18E448009B109C /* ManagerTableViewController.swift in Sources */,
 				D41A5D601F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift in Sources */,
+				D4F744621F6273E300560EAD /* SelectProductCategoryViewController.swift in Sources */,
 				D410C5E41F23A14D008D6C92 /* AWSConfiguration.swift in Sources */,
 				D4B7D2001F28C71A008F3AE1 /* MainTabBarController.swift in Sources */,
 				D4306C811F0E6BEC0073A11E /* Stores.swift in Sources */,

@@ -12,6 +12,9 @@ import Whisper
 
 class ColorsAndSizesViewController: FormViewController, LoadingAnimationProtocol {
     
+    // MARK: Setup
+    var category: String!
+    
     // MARK: LoadingAnimationProtocol
     var loadingAnimationView: UIView!
     var loadingAnimationOverlay: UIView!
@@ -26,7 +29,7 @@ class ColorsAndSizesViewController: FormViewController, LoadingAnimationProtocol
         tableView.isEditing = false
         
         // Sizes
-        sizeSection(category: tinpon.category!)
+        sizeSection(category: category)
         
         // Colors
         form +++ SelectableSection<ListCheckRow<String>>("Colores", selectionType: .multipleSelection) { $0.tag = "colorSection" }

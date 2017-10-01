@@ -9,26 +9,35 @@
 import UIKit
 import IGListKit
 
-class CategorySelectorController: UIViewController, ListAdapterDataSource {
+class SelectCategoryViewController: UIViewController, ListAdapterDataSource {
 
-    lazy var adapter: ListAdapter = {
+    public var gender: String!
+    public var isMultipleSelection: Bool!
+    public var segueWithIdentifier: String!
+    
+    public var singleSelection: String?
+    public var multipleSelection = [String]()
+
+    private var data = [Any]()
+    lazy private var adapter: ListAdapter = {
         return ListAdapter(updater: ListAdapterUpdater(), viewController: self)
     }()
-    let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
-    
-    let data: [CategoryItem] = [
-        CategoryItem(color: UIColor(red: 237/255.0, green: 73/255.0, blue: 86/255.0, alpha: 1), itemCount: 10)
-    ]
+    private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.addSubview(collectionView)
         
-        collectionView.allowsMultipleSelection = true
+        collectionView.backgroundColor = UIColor.white
+        collectionView.allowsMultipleSelection = isMultipleSelection
         
         adapter.collectionView = collectionView
         adapter.dataSource = self
+    
+        // data
+        data.append(CategoryItems(gender: gender))
+        adapter.performUpdates(animated: true, completion: nil)
     }
 
     override func viewDidLayoutSubviews() {
@@ -40,7 +49,7 @@ class CategorySelectorController: UIViewController, ListAdapterDataSource {
     // MARK: ListAdapterDataSource
     
     func objects(for listAdapter: ListAdapter) -> [ListDiffable] {
-        return data as [CategoryItem]
+        return data as! [CategoryItems]
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
@@ -53,7 +62,11 @@ class CategorySelectorController: UIViewController, ListAdapterDataSource {
     // MARK: - Action
     
     @IBAction func touchContinue(_ sender: UIBarButtonItem) {
-        print(selectedCategories())
+        if isMultipleSelection {
+            multipleSelection = selectedCategories()!
+        } else {
+            singleSelection = selectedCategories()![0]
+        }
     }
 
     // MARK: - Helper
@@ -70,6 +83,7 @@ class CategorySelectorController: UIViewController, ListAdapterDataSource {
             return nil
         }
     }
+    
     /*
     // MARK: - Navigation
 

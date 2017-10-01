@@ -9,5 +9,6 @@
 import Foundation
 
 class Categories {
-    static var man: [String : [String]] = ["Outwear" : ["Shirt", "T-Shirt", "Polo", "Pullover", "Jacket", "Coat"]]
+    static var male: [String] = ["Shirts", "T-Shirts & Polos", "Sweaters", "Coats", "Trousers & Chinos", "Shorts", "Accessories", "Shoes"]
+    static var female: [String] = ["Dresses", "Shirts & Tops", "Blouses", "Sweaters", "Coats", "Trousers", "Jeans", "Shorts & Skirts", "Accessories", "Shoes"]
 }
