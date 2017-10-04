@@ -41,7 +41,7 @@
 		D41A5D5E1F39959D00D1191C /* UserPoolPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A5D5D1F39959D00D1191C /* UserPoolPasswordViewController.swift */; };
 		D41A5D601F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A5D5F1F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift */; };
 		D41B112E1F46AD55007DAF6E /* Sizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B112D1F46AD55007DAF6E /* Sizes.swift */; };
-		D41B11321F473CD3007DAF6E /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B11311F473CD3007DAF6E /* Categories.swift */; };
+		D41B11321F473CD3007DAF6E /* GenderCategoriesSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B11311F473CD3007DAF6E /* GenderCategoriesSizes.swift */; };
 		D41EB2681F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2611F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m */; };
 		D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2631F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m */; };
 		D41EB26A1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2651F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m */; };
@@ -69,6 +69,7 @@
 		D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F51EEC699D00FD148F /* SwiperViewController.swift */; };
 		D443C0F81EEC6CA300FD148F /* BackgroundKolodaAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */; };
 		D443C0FA1EEC728100FD148F /* BasicsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D443C0F91EEC728100FD148F /* BasicsViewController.swift */; };
+		D44518431F851F620027250C /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44518421F851F620027250C /* CollectionViewController.swift */; };
 		D4512B481F18E448009B109C /* ManagerTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4512B471F18E448009B109C /* ManagerTableViewController.swift */; };
 		D4512B4A1F1930BE009B109C /* ManagerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4512B491F1930BE009B109C /* ManagerTableViewCell.swift */; };
 		D452206A1F2C924C00D01C43 /* Validator.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D45220691F2C924C00D01C43 /* Validator.framework */; };
@@ -90,6 +91,7 @@
 		D48B7C081F47885A00B1F84F /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48B7C071F47885A00B1F84F /* CategoryCell.swift */; };
 		D4A69BA01F3B13A900037002 /* ProductVariationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A69B9F1F3B13A900037002 /* ProductVariationRow.swift */; };
 		D4AAB5A71F305A0900050E02 /* TinponsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */; };
+		D4ACDD0B1F82460D001A0B61 /* SizesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ACDD0A1F82460D001A0B61 /* SizesViewController.swift */; };
 		D4B7D1FE1F28C442008F3AE1 /* RemachineScript.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D4B7D1FD1F28C442008F3AE1 /* RemachineScript.ttf */; };
 		D4B7D2001F28C71A008F3AE1 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B7D1FF1F28C71A008F3AE1 /* MainTabBarController.swift */; };
 		D4B95B961F1E84180078289F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B95B951F1E84180078289F /* Extensions.swift */; };
@@ -274,7 +276,7 @@
 		D41A5D5D1F39959D00D1191C /* UserPoolPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPoolPasswordViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/UserPoolPasswordViewController.swift; sourceTree = SOURCE_ROOT; };
 		D41A5D5F1F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPoolEmailConfirmationViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/UserPoolEmailConfirmationViewController.swift; sourceTree = SOURCE_ROOT; };
 		D41B112D1F46AD55007DAF6E /* Sizes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sizes.swift; path = Tinpons/App/API/Sizes.swift; sourceTree = SOURCE_ROOT; };
-		D41B11311F473CD3007DAF6E /* Categories.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Categories.swift; path = Tinpons/App/API/Categories.swift; sourceTree = SOURCE_ROOT; };
+		D41B11311F473CD3007DAF6E /* GenderCategoriesSizes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenderCategoriesSizes.swift; path = Tinpons/App/API/GenderCategoriesSizes.swift; sourceTree = SOURCE_ROOT; };
 		D41EB2601F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_9HLT8N48WD_Empty.h; sourceTree = "<group>"; };
 		D41EB2611F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_9HLT8N48WD_Empty.m; sourceTree = "<group>"; };
 		D41EB2621F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_9HLT8N48WD_RequestSchema.h; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 		D443C0F51EEC699D00FD148F /* SwiperViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SwiperViewController.swift; path = Tinpons/App/Swiper/SwiperViewController.swift; sourceTree = SOURCE_ROOT; };
 		D443C0F71EEC6CA300FD148F /* BackgroundKolodaAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BackgroundKolodaAnimator.swift; path = Tinpons/App/Swiper/BackgroundKolodaAnimator.swift; sourceTree = SOURCE_ROOT; };
 		D443C0F91EEC728100FD148F /* BasicsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BasicsViewController.swift; path = Tinpons/App/AddProduct/BasicsViewController.swift; sourceTree = SOURCE_ROOT; };
+		D44518421F851F620027250C /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewController.swift; path = "Tinpons/App/Special Controller/CollectionViewController.swift"; sourceTree = SOURCE_ROOT; };
 		D4512B471F18E448009B109C /* ManagerTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagerTableViewController.swift; path = Tinpons/App/Favourites/ManagerTableViewController.swift; sourceTree = SOURCE_ROOT; };
 		D4512B491F1930BE009B109C /* ManagerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ManagerTableViewCell.swift; path = Tinpons/App/Favourites/ManagerTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		D45220681F2C840400D01C43 /* Validator.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Validator.framework; path = Carthage/Build/iOS/Validator.framework; sourceTree = "<group>"; };
@@ -325,6 +328,7 @@
 		D4A69B9F1F3B13A900037002 /* ProductVariationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductVariationRow.swift; path = Tinpons/App/Favourites/ProductVariationRow.swift; sourceTree = SOURCE_ROOT; };
 		D4A69BA21F3B2CAD00037002 /* CoreActionSheetPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreActionSheetPicker.framework; path = Carthage/Build/iOS/CoreActionSheetPicker.framework; sourceTree = "<group>"; };
 		D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponsAPI.swift; path = Tinpons/App/API/TinponsAPI.swift; sourceTree = SOURCE_ROOT; };
+		D4ACDD0A1F82460D001A0B61 /* SizesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SizesViewController.swift; path = Tinpons/App/Favourites/SizesViewController.swift; sourceTree = SOURCE_ROOT; };
 		D4B7D1FD1F28C442008F3AE1 /* RemachineScript.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = RemachineScript.ttf; path = Assets/Fonts/RemachineScript.ttf; sourceTree = "<group>"; };
 		D4B7D1FF1F28C71A008F3AE1 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MainTabBarController.swift; path = Tinpons/App/MainTabBarController.swift; sourceTree = SOURCE_ROOT; };
 		D4B95B951F1E84180078289F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = Tinpons/AmazonAws/Models/NoSQL/Extensions.swift; sourceTree = SOURCE_ROOT; };
@@ -620,6 +624,7 @@
 			children = (
 				D443C0F91EEC728100FD148F /* BasicsViewController.swift */,
 				D4F744611F6273E300560EAD /* SelectProductCategoryViewController.swift */,
+				D4ACDD0A1F82460D001A0B61 /* SizesViewController.swift */,
 				D40D97511F3CCCC600B246D0 /* ColorsAndSizesViewController.swift */,
 				D40D97541F3CE61200B246D0 /* QuantitiesViewController.swift */,
 				D40D975A1F3CEBD200B246D0 /* ColorCell.xib */,
@@ -672,9 +677,9 @@
 				D410C5F11F24E443008D6C92 /* UsersAPI.swift */,
 				D4EEF6591F2F9F8700297A5E /* Tinpon.swift */,
 				D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */,
-				D41B11311F473CD3007DAF6E /* Categories.swift */,
-				D4025B421F3DD03600436442 /* Color.swift */,
+				D41B11311F473CD3007DAF6E /* GenderCategoriesSizes.swift */,
 				D41B112D1F46AD55007DAF6E /* Sizes.swift */,
+				D4025B421F3DD03600436442 /* Color.swift */,
 				D47D70601F37045B003E0708 /* APIError.swift */,
 			);
 			name = Api;
@@ -759,6 +764,7 @@
 				D4EA39C31F4783CD00B6E6A6 /* SelectCategoryViewController.swift */,
 				D48B7C051F47869000B1F84F /* CategorySectionController.swift */,
 				D48B7C071F47885A00B1F84F /* CategoryCell.swift */,
+				D44518421F851F620027250C /* CollectionViewController.swift */,
 			);
 			name = "Special Controller";
 			path = "Tinpons/App/Special Controller";
@@ -905,11 +911,12 @@
 				D4DA424D1F0E2CFB00A1C69E /* CustomCells.swift in Sources */,
 				D48B7C081F47885A00B1F84F /* CategoryCell.swift in Sources */,
 				D430CC8B1F2B2AF200174E5C /* EmailViewController.swift in Sources */,
+				D4ACDD0B1F82460D001A0B61 /* SizesViewController.swift in Sources */,
 				D41A5D5B1F39916F00D1191C /* UserPoolEmailViewController.swift in Sources */,
 				D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */,
 				D4AAB5A71F305A0900050E02 /* TinponsAPI.swift in Sources */,
 				D4FC3EAD1F47FA7700F84689 /* FontAndColors.swift in Sources */,
-				D41B11321F473CD3007DAF6E /* Categories.swift in Sources */,
+				D41B11321F473CD3007DAF6E /* GenderCategoriesSizes.swift in Sources */,
 				D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */,
 				D4EEF65A1F2F9F8700297A5E /* Tinpon.swift in Sources */,
 				D4EA39C41F4783CD00B6E6A6 /* SelectCategoryViewController.swift in Sources */,
@@ -930,6 +937,7 @@
 				D41EB26A1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_ResponseSchema.m in Sources */,
 				E7A30F043DD4F57200000000 /* FormTableCell.swift in Sources */,
 				D42994511F3F643A0031B280 /* SHViewController.swift in Sources */,
+				D44518431F851F620027250C /* CollectionViewController.swift in Sources */,
 				D48B7C061F47869000B1F84F /* CategorySectionController.swift in Sources */,
 				D4FA2EC91F0CD0C100B287FB /* DynamoDBSwipedTinpon.swift in Sources */,
 				E7A30F04FE04727700000000 /* TableInputCell.swift in Sources */,

@@ -11,7 +11,7 @@ import IGListKit
 
 class SelectCategoryViewController: UIViewController, ListAdapterDataSource {
 
-    public var gender: String!
+    public var gender: Gender!
     public var isMultipleSelection: Bool!
     public var segueWithIdentifier: String!
     
@@ -53,7 +53,10 @@ class SelectCategoryViewController: UIViewController, ListAdapterDataSource {
     }
     
     func listAdapter(_ listAdapter: ListAdapter, sectionControllerFor object: Any) -> ListSectionController {
-        return CategorySectionController()
+        let categorySectionController = CategorySectionController()
+        categorySectionController.isMultipleSelection = isMultipleSelection
+        categorySectionController.onContinue = onContinue
+        return categorySectionController
     }
     
     func emptyView(for listAdapter: ListAdapter) -> UIView? { return nil }
@@ -61,12 +64,16 @@ class SelectCategoryViewController: UIViewController, ListAdapterDataSource {
     
     // MARK: - Action
     
-    @IBAction func touchContinue(_ sender: UIBarButtonItem) {
+    func onContinue() {
         if isMultipleSelection {
             multipleSelection = selectedCategories()!
         } else {
             singleSelection = selectedCategories()![0]
         }
+    }
+    
+    @IBAction func touchContinue(_ sender: UIBarButtonItem) {
+       onContinue()
     }
 
     // MARK: - Helper

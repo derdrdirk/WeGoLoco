@@ -12,14 +12,10 @@ import IGListKit
 final class CategoryItems: NSObject {
     
     let categories: [String]
-    let gender: String!
-    init(gender: String) {
+    let gender: Gender!
+    init(gender: Gender) {
         self.gender = gender
-        if gender == "male" {
-            self.categories = Categories.male
-        } else {
-            self.categories = Categories.female
-        }
+        self.categories = Categories.getCategoriesFor(gender: gender)
     }
     
 }
@@ -38,6 +34,8 @@ extension CategoryItems: ListDiffable {
 
 final class CategorySectionController: ListSectionController {
     
+    public var isMultipleSelection: Bool!
+    public var onContinue: (() -> ())!
     private var object: CategoryItems?
     
     override init() {
@@ -73,8 +71,13 @@ final class CategorySectionController: ListSectionController {
         self.object = object as? CategoryItems
     }
     
+    // clicked on Category
     override func didSelectItem(at index: Int) {
         let cell = self.cellForItem(at: index) as! CategoryCell
+        
+        if !isMultipleSelection {
+            onContinue()
+        }
     }
     
 }

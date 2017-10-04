@@ -202,12 +202,12 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
         }
     }
     
-    fileprivate func getGender() -> String {
+    fileprivate func getGender() -> Gender {
         let genderRow = form.rowBy(tag: "Gender") as! SegmentedRow<String>
         if genderRow.value == "👱" {
-            return "male"
+            return .male
         } else {
-            return "female"
+            return .female
         }
     }
     

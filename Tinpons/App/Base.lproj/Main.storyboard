@@ -275,7 +275,7 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="p5A-2U-bQ0" kind="relationship" relationship="rootViewController" id="tVb-Cq-LLH"/>
+                        <segue destination="p5A-2U-bQ0" kind="relationship" relationship="rootViewController" id="7ur-Fd-cbF"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15V-f1-pXb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -321,10 +321,10 @@
             </objects>
             <point key="canvasLocation" x="3838" y="1979"/>
         </scene>
-        <!--Color and Sizes-->
+        <!--Sizes-->
         <scene sceneID="5PJ-jr-21a">
             <objects>
-                <viewController id="SoF-WO-b8x" customClass="ColorsAndSizesViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="SoF-WO-b8x" customClass="SizesViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="2Ri-6A-2a6"/>
                         <viewControllerLayoutGuide type="bottom" id="pd4-u2-6SA"/>
@@ -334,7 +334,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Color and Sizes" id="Kx5-Fi-VvY"/>
+                    <navigationItem key="navigationItem" title="Sizes" id="Kx5-Fi-VvY"/>
                     <connections>
                         <segue destination="nAS-J1-4rB" kind="show" identifier="segueToQuantities" id="eR5-0h-d9Q"/>
                     </connections>
@@ -395,7 +395,7 @@
             </objects>
             <point key="canvasLocation" x="1689" y="518"/>
         </scene>
-        <!--Select Product Category View Controller-->
+        <!--Categories-->
         <scene sceneID="lhc-mo-hdY">
             <objects>
                 <viewController id="OrN-g0-Z6P" customClass="SelectProductCategoryViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
@@ -408,8 +408,8 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="ufL-pU-7ob">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="Uzh-Ly-DdH">
+                    <navigationItem key="navigationItem" title="Categories" id="ufL-pU-7ob">
+                        <barButtonItem key="rightBarButtonItem" title="Next" id="Uzh-Ly-DdH">
                             <connections>
                                 <action selector="touchContinue:" destination="OrN-g0-Z6P" id="obz-wO-9pf"/>
                             </connections>

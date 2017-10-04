@@ -7,14 +7,15 @@
 //
 
 class SelectProductCategoryViewController: SelectCategoryViewController {
-    override func touchContinue(_ sender: UIBarButtonItem) {
-        super.touchContinue(sender)
+    override func onContinue() {
+        super.onContinue()
         performSegue(withIdentifier: "segueToColorsAndSizes", sender: nil)
     }
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let colorsAndSizesVC = segue.destination as! ColorsAndSizesViewController
-        colorsAndSizesVC.category = singleSelection
+        let sizesVC = segue.destination as! SizesViewController
+        sizesVC.gender = gender
+        sizesVC.category = Categories.getCategoryfrom(name: singleSelection!)
     }
 }
