@@ -20,7 +20,7 @@ class SizesViewController : FormViewController {
         
         // testing
         gender = .male
-        category = .jeans
+        category = .sweaters
         
         // add Next button
         addNextBarButtonItem()
@@ -49,8 +49,8 @@ class SizesViewController : FormViewController {
                 form.last! <<< CheckRow() {
                     $0.title = size.description
                     $0.value = false
-                    }.cellUpdate { _,_ in
-                        self.validate()
+                }.cellUpdate { _,_ in
+                    self.validate()
                 }
             }
         case .DoubleDoubleSize(let sizes):
@@ -62,8 +62,10 @@ class SizesViewController : FormViewController {
                 form.last! <<< MultipleSelectorRow<Double>() {
                     $0.title = width.description
                     $0.options = lengths!
-                    }.onPresent { from, to in
-                        to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+                }.onPresent { from, to in
+                    to.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .done, target: from, action: #selector(self.multipleSelectorDone(_:)))
+                }.cellUpdate { _,_ in
+                    self.validate()
                 }
             }
 
@@ -71,24 +73,65 @@ class SizesViewController : FormViewController {
 
     }
     
-    private func getSelectedSizes() -> [String] {
-        
-        var sizes = [String]()
-        if let formRows = form.allRows as? [CheckRow] {
-            for row in formRows {
-                if row.value! {
-                    sizes.append(row.title!)
+    private func getSelectedSizes() -> Sizes.Size {
+        let sizes = Sizes.getSizesFor(gender: gender, category: category)
+
+        switch sizes {
+        case .StringSize(_):
+            var result = [String]()
+            if let formRows = form.allRows as? [CheckRow] {
+                for row in formRows {
+                    if row.value! {
+                        result.append(row.title!)
+                    }
                 }
             }
+            return Sizes.Size.StringSize(result)
+        case .DoubleSize(_):
+            var result = [Double]()
+            if let formRows = form.allRows as? [CheckRow] {
+                for row in formRows {
+                    if row.value! {
+                        result.append(Double(row.title!)!)
+                    }
+                }
+            }
+            return Sizes.Size.DoubleSize(result)
+        case .DoubleDoubleSize(_):
+            var result = [Double:[Double]]()
+            if let formRows = form.allRows as? [MultipleSelectorRow<Double>] {
+                for row in formRows {
+                    if let selectedLengths = row.value, row.value!.count > 0 {
+                        result[Double(row.title!)!] = Array(selectedLengths)
+                    }
+                }
+            }
+            return Sizes.Size.DoubleDoubleSize(result)
         }
-        return sizes
     }
     
     private func isValid() -> Bool {
-        if getSelectedSizes().count > 0 {
-            return true
-        } else {
-            return false
+        let sizes = getSelectedSizes()
+        
+        switch sizes {
+        case .StringSize( let stringSizes):
+            if stringSizes.count > 0 {
+                return true
+            } else {
+                return false
+            }
+        case .DoubleSize( let doubleSizes ):
+            if doubleSizes.count > 0 {
+                return true
+            } else {
+                return false
+            }
+        case .DoubleDoubleSize( let doubleDoubleSizes ):
+            if doubleDoubleSizes.count > 0 {
+                return true
+            } else {
+                return false
+            }
         }
     }
     private func validate() {
