@@ -19,8 +19,8 @@ class SizesViewController : FormViewController {
         super.viewDidLoad()
         
         // testing
-        gender = .male
-        category = .sweaters
+//        gender = .male
+//        category = .sweaters
         
         // add Next button
         addNextBarButtonItem()
@@ -28,6 +28,13 @@ class SizesViewController : FormViewController {
         form +++ Section("\(category!) Sizes")
 
         addSizesRows()
+    }
+    
+    // MARK: - Navigation
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let colorVC = segue.destination as? ColorsViewController {
+           
+        }
     }
     
     // MARK: - Helpers
@@ -143,13 +150,16 @@ class SizesViewController : FormViewController {
     }
     
     private func addNextBarButtonItem() {
-        let barButtonItem = UIBarButtonItem()
-        barButtonItem.title = "Next"
+        let barButtonItem = UIBarButtonItem.init(title: "Next", style: .plain, target: self, action: #selector(self.segueToColors))
         barButtonItem.isEnabled = false
         self.navigationItem.rightBarButtonItem = barButtonItem
     }
     
-    func multipleSelectorDone(_ item:UIBarButtonItem) {
+    @objc private func segueToColors() {
+        self.performSegue(withIdentifier: "segueToColors", sender: self)
+    }
+    
+    @objc private func multipleSelectorDone(_ item:UIBarButtonItem) {
         _ = navigationController?.popViewController(animated: true)
     }
     

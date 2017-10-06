@@ -18,7 +18,7 @@
 		D40893F51F446305007479DA /* FavouriteTinponSectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40893F41F446305007479DA /* FavouriteTinponSectionController.swift */; };
 		D40893FC1F448636007479DA /* FavouriteTinponCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40893F81F4469A6007479DA /* FavouriteTinponCell.swift */; };
 		D40893FE1F4486AB007479DA /* FavouriteTinponCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40893F91F4469A6007479DA /* FavouriteTinponCell.xib */; };
-		D40D97521F3CCCC600B246D0 /* ColorsAndSizesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97511F3CCCC600B246D0 /* ColorsAndSizesViewController.swift */; };
+		D40D97521F3CCCC600B246D0 /* ColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97511F3CCCC600B246D0 /* ColorsViewController.swift */; };
 		D40D97551F3CE61200B246D0 /* QuantitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97541F3CE61200B246D0 /* QuantitiesViewController.swift */; };
 		D40D97571F3CEACF00B246D0 /* ColorCheckRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D40D97561F3CEACF00B246D0 /* ColorCheckRow.swift */; };
 		D40D975B1F3CEBD200B246D0 /* ColorCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D40D975A1F3CEBD200B246D0 /* ColorCell.xib */; };
@@ -40,7 +40,6 @@
 		D41A5D5B1F39916F00D1191C /* UserPoolEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A5D5A1F39916F00D1191C /* UserPoolEmailViewController.swift */; };
 		D41A5D5E1F39959D00D1191C /* UserPoolPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A5D5D1F39959D00D1191C /* UserPoolPasswordViewController.swift */; };
 		D41A5D601F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41A5D5F1F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift */; };
-		D41B112E1F46AD55007DAF6E /* Sizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B112D1F46AD55007DAF6E /* Sizes.swift */; };
 		D41B11321F473CD3007DAF6E /* GenderCategoriesSizes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41B11311F473CD3007DAF6E /* GenderCategoriesSizes.swift */; };
 		D41EB2681F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2611F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m */; };
 		D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */ = {isa = PBXBuildFile; fileRef = D41EB2631F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m */; };
@@ -257,7 +256,7 @@
 		D40893F41F446305007479DA /* FavouriteTinponSectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouriteTinponSectionController.swift; path = Tinpons/App/Favourites/FavouriteTinponSectionController.swift; sourceTree = SOURCE_ROOT; };
 		D40893F81F4469A6007479DA /* FavouriteTinponCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FavouriteTinponCell.swift; path = Tinpons/App/Favourites/FavouriteTinponCell.swift; sourceTree = SOURCE_ROOT; };
 		D40893F91F4469A6007479DA /* FavouriteTinponCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FavouriteTinponCell.xib; path = Tinpons/App/Favourites/FavouriteTinponCell.xib; sourceTree = SOURCE_ROOT; };
-		D40D97511F3CCCC600B246D0 /* ColorsAndSizesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorsAndSizesViewController.swift; path = Tinpons/App/Favourites/ColorsAndSizesViewController.swift; sourceTree = SOURCE_ROOT; };
+		D40D97511F3CCCC600B246D0 /* ColorsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorsViewController.swift; path = Tinpons/App/Favourites/ColorsViewController.swift; sourceTree = SOURCE_ROOT; };
 		D40D97541F3CE61200B246D0 /* QuantitiesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuantitiesViewController.swift; path = Tinpons/App/Favourites/QuantitiesViewController.swift; sourceTree = SOURCE_ROOT; };
 		D40D97561F3CEACF00B246D0 /* ColorCheckRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ColorCheckRow.swift; path = Tinpons/App/Favourites/ColorCheckRow.swift; sourceTree = SOURCE_ROOT; };
 		D40D975A1F3CEBD200B246D0 /* ColorCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ColorCell.xib; path = Tinpons/App/Favourites/ColorCell.xib; sourceTree = SOURCE_ROOT; };
@@ -275,7 +274,6 @@
 		D41A5D5A1F39916F00D1191C /* UserPoolEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPoolEmailViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/UserPoolEmailViewController.swift; sourceTree = SOURCE_ROOT; };
 		D41A5D5D1F39959D00D1191C /* UserPoolPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPoolPasswordViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/UserPoolPasswordViewController.swift; sourceTree = SOURCE_ROOT; };
 		D41A5D5F1F3995D400D1191C /* UserPoolEmailConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UserPoolEmailConfirmationViewController.swift; path = Tinpons/App/SignIn/FirstSignIn/UserPoolEmailConfirmationViewController.swift; sourceTree = SOURCE_ROOT; };
-		D41B112D1F46AD55007DAF6E /* Sizes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Sizes.swift; path = Tinpons/App/API/Sizes.swift; sourceTree = SOURCE_ROOT; };
 		D41B11311F473CD3007DAF6E /* GenderCategoriesSizes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GenderCategoriesSizes.swift; path = Tinpons/App/API/GenderCategoriesSizes.swift; sourceTree = SOURCE_ROOT; };
 		D41EB2601F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AWSAPI_9HLT8N48WD_Empty.h; sourceTree = "<group>"; };
 		D41EB2611F333CF2003842E4 /* AWSAPI_9HLT8N48WD_Empty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AWSAPI_9HLT8N48WD_Empty.m; sourceTree = "<group>"; };
@@ -625,7 +623,7 @@
 				D443C0F91EEC728100FD148F /* BasicsViewController.swift */,
 				D4F744611F6273E300560EAD /* SelectProductCategoryViewController.swift */,
 				D4ACDD0A1F82460D001A0B61 /* SizesViewController.swift */,
-				D40D97511F3CCCC600B246D0 /* ColorsAndSizesViewController.swift */,
+				D40D97511F3CCCC600B246D0 /* ColorsViewController.swift */,
 				D40D97541F3CE61200B246D0 /* QuantitiesViewController.swift */,
 				D40D975A1F3CEBD200B246D0 /* ColorCell.xib */,
 				D40D97561F3CEACF00B246D0 /* ColorCheckRow.swift */,
@@ -678,7 +676,6 @@
 				D4EEF6591F2F9F8700297A5E /* Tinpon.swift */,
 				D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */,
 				D41B11311F473CD3007DAF6E /* GenderCategoriesSizes.swift */,
-				D41B112D1F46AD55007DAF6E /* Sizes.swift */,
 				D4025B421F3DD03600436442 /* Color.swift */,
 				D47D70601F37045B003E0708 /* APIError.swift */,
 			);
@@ -948,7 +945,6 @@
 				D443C0F61EEC699D00FD148F /* SwiperViewController.swift in Sources */,
 				D41EB2701F3395A0003842E4 /* EmailConfirmationViewController.swift in Sources */,
 				D443C0F81EEC6CA300FD148F /* BackgroundKolodaAnimator.swift in Sources */,
-				D41B112E1F46AD55007DAF6E /* Sizes.swift in Sources */,
 				E7A30F0493F7667400000000 /* UtilityFunctions.swift in Sources */,
 				E7A30F04741B216700000000 /* AuthenticationProtocol.swift in Sources */,
 				E7A30F04B8261BDC00000000 /* UserPoolsIdentityProfile.swift in Sources */,
@@ -978,7 +974,7 @@
 				D4FC90E51F1669F8002A6F9E /* SwipedTinponsCore.swift in Sources */,
 				D45220731F2CD96200D01C43 /* CategoriesTableViewController.swift in Sources */,
 				D4512B4A1F1930BE009B109C /* ManagerTableViewCell.swift in Sources */,
-				D40D97521F3CCCC600B246D0 /* ColorsAndSizesViewController.swift in Sources */,
+				D40D97521F3CCCC600B246D0 /* ColorsViewController.swift in Sources */,
 				D41EB26B1F333CF2003842E4 /* AWSAPI_9HLT8N48WD_WeGoLocoClient.m in Sources */,
 				D410C5F21F24E443008D6C92 /* UsersAPI.swift in Sources */,
 				D4A69BA01F3B13A900037002 /* ProductVariationRow.swift in Sources */,

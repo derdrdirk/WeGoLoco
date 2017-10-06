@@ -275,7 +275,7 @@
                         </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="SoF-WO-b8x" kind="relationship" relationship="rootViewController" id="Gz8-Y6-Gq3"/>
+                        <segue destination="Ufu-ou-b0G" kind="relationship" relationship="rootViewController" id="kpr-Jo-Ivx"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="15V-f1-pXb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -336,12 +336,34 @@
                     </view>
                     <navigationItem key="navigationItem" title="Sizes" id="Kx5-Fi-VvY"/>
                     <connections>
-                        <segue destination="nAS-J1-4rB" kind="show" identifier="segueToQuantities" id="eR5-0h-d9Q"/>
+                        <segue destination="Ufu-ou-b0G" kind="show" identifier="segueToColors" id="poO-Xy-fEm"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Jgx-gJ-RYB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5215" y="1979"/>
+            <point key="canvasLocation" x="5270" y="1979"/>
+        </scene>
+        <!--Colors-->
+        <scene sceneID="jNr-Rz-RpZ">
+            <objects>
+                <viewController id="Ufu-ou-b0G" customClass="ColorsViewController" customModule="WeGoLoco" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IwU-T5-tc4"/>
+                        <viewControllerLayoutGuide type="bottom" id="aSK-rL-gcU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dLa-aB-Gme">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Colors" id="98O-Wv-MXJ"/>
+                    <connections>
+                        <segue destination="nAS-J1-4rB" kind="show" identifier="segueToQuantities" id="sGL-4V-QQX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pjD-KL-M1c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6025" y="1979"/>
         </scene>
         <!--Quantities-->
         <scene sceneID="74S-3e-Ls8">
@@ -370,7 +392,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zZT-wq-WMN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5932" y="1979"/>
+            <point key="canvasLocation" x="6798" y="1979"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Acf-FM-p9z">
@@ -421,7 +443,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5SX-mY-cKK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4519" y="1979"/>
+            <point key="canvasLocation" x="4537" y="1979"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="hpP-5X-TVq">
@@ -602,6 +624,6 @@
         <image name="mi-favourite" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="0kH-ur-MXs"/>
+        <segue reference="kpr-Jo-Ivx"/>
     </inferredMetricsTieBreakers>
 </document>
