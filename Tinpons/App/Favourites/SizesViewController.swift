@@ -9,7 +9,13 @@
 import Foundation
 import Eureka
 
-class SizesViewController : FormViewController {
+class SizesViewController : FormViewController, AddProductProtocol {
+    
+    // MARK: - AddProductProtocol
+    public var tinpon: Tinpon!
+    func guardTinpon() {
+        tinpon.sizes = getSelectedSizes()
+    }
     
     // MARK: - Model
     public var gender: Gender!
@@ -32,9 +38,9 @@ class SizesViewController : FormViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let colorVC = segue.destination as? ColorsViewController {
-           
-        }
+        guardTinpon()
+        let colorVC = segue.destination as! ColorsViewController
+        colorVC.tinpon = tinpon
     }
     
     // MARK: - Helpers

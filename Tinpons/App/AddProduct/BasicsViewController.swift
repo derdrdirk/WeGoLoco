@@ -1,4 +1,4 @@
-//
+ //
 //  AddProductViewController.swift
 //  Tinpons
 //
@@ -19,7 +19,23 @@ import PromiseKit
 import TOCropViewController
 
 
-class BasicsViewController: FormViewController, CLLocationManagerDelegate, LoadingAnimationProtocol {
+class BasicsViewController: FormViewController, AddProductProtocol, CLLocationManagerDelegate, LoadingAnimationProtocol {
+    
+    // MARK: - AddProductProtocol
+    var tinpon: Tinpon! = Tinpon()
+    func guardTinpon() {
+        tinpon.name = (form.rowBy(tag: "nameRow") as! TextRow).value
+        tinpon.price = (form.rowBy(tag: "priceRow") as! DecimalRow).value
+        tinpon.gender = getGender()
+        
+        for row in form.allRows {
+            if let image = (row as? ImageRow)?.value {
+                tinpon.images.append(image)
+                
+            }
+        }
+    }
+    
     
     // MARK: LoadingAnimationProtocol
     var loadingAnimationView: UIView!
@@ -29,7 +45,6 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
     let locationManager = CLLocationManager()
     @IBOutlet weak var progressView: UIProgressView!
     
-    var tinpon = Tinpon()
     var colorTextFields = [UITextField]()
     var colorPicker = UIPickerView()
     
@@ -97,11 +112,7 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
                     }
                 }.cellSetup { [unowned self] cell, row  in
                     cell.textField.keyboardType = .numberPad
-                    self.tinpon.price = row.value
-                }.onChange{ [unowned self] in
-                    self.tinpon.price = $0.value
-        }
-            <<< recursiveImageRow()
+                }            <<< recursiveImageRow()
         
         form +++ Section("") {
             $0.tag = "Continuar"
@@ -115,19 +126,6 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
                     if strongSelf.validateForm() {
                         strongSelf.performSegue(withIdentifier: "segueToSelectProductCategory", sender: self)
                     }
-        }
-    }
-    
-    // MARK: guard Tinpon Basics
-    fileprivate func guardTinponBasics() {
-        tinpon.name = (form.rowBy(tag: "nameRow") as! TextRow).value
-        tinpon.price = (form.rowBy(tag: "priceRow") as! DecimalRow).value
-
-        for row in form.allRows {
-            if let image = (row as? ImageRow)?.value {
-                tinpon.images.append(image)
-                
-            }
         }
     }
     
@@ -186,9 +184,10 @@ class BasicsViewController: FormViewController, CLLocationManagerDelegate, Loadi
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         tinpon = Tinpon()
-        guardTinponBasics()
+        guardTinpon()
         
-        let selectCategoryViewController = segue.destination as! SelectCategoryViewController
+        let selectCategoryViewController = segue.destination as! SelectProductCategoryViewController
+        selectCategoryViewController.tinpon = tinpon
         selectCategoryViewController.gender = getGender()
         selectCategoryViewController.isMultipleSelection = false
     }

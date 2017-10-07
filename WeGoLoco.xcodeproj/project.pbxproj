@@ -88,6 +88,7 @@
 		D480D0591EEBEF7200B4193A /* Koloda.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = D480D0561EEBEF3500B4193A /* Koloda.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		D48B7C061F47869000B1F84F /* CategorySectionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48B7C051F47869000B1F84F /* CategorySectionController.swift */; };
 		D48B7C081F47885A00B1F84F /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D48B7C071F47885A00B1F84F /* CategoryCell.swift */; };
+		D49F067D1F88B73B00108684 /* AddProductProtocoll.swift in Sources */ = {isa = PBXBuildFile; fileRef = D49F067C1F88B73B00108684 /* AddProductProtocoll.swift */; };
 		D4A69BA01F3B13A900037002 /* ProductVariationRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A69B9F1F3B13A900037002 /* ProductVariationRow.swift */; };
 		D4AAB5A71F305A0900050E02 /* TinponsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */; };
 		D4ACDD0B1F82460D001A0B61 /* SizesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4ACDD0A1F82460D001A0B61 /* SizesViewController.swift */; };
@@ -323,6 +324,7 @@
 		D480D0561EEBEF3500B4193A /* Koloda.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Koloda.framework; path = Carthage/Build/iOS/Koloda.framework; sourceTree = "<group>"; };
 		D48B7C051F47869000B1F84F /* CategorySectionController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategorySectionController.swift; path = "Tinpons/App/Special Controller/CategorySectionController.swift"; sourceTree = SOURCE_ROOT; };
 		D48B7C071F47885A00B1F84F /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CategoryCell.swift; path = "Tinpons/App/Special Controller/CategoryCell.swift"; sourceTree = SOURCE_ROOT; };
+		D49F067C1F88B73B00108684 /* AddProductProtocoll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddProductProtocoll.swift; path = Tinpons/App/Favourites/AddProductProtocoll.swift; sourceTree = SOURCE_ROOT; };
 		D4A69B9F1F3B13A900037002 /* ProductVariationRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ProductVariationRow.swift; path = Tinpons/App/Favourites/ProductVariationRow.swift; sourceTree = SOURCE_ROOT; };
 		D4A69BA21F3B2CAD00037002 /* CoreActionSheetPicker.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreActionSheetPicker.framework; path = Carthage/Build/iOS/CoreActionSheetPicker.framework; sourceTree = "<group>"; };
 		D4AAB5A61F305A0900050E02 /* TinponsAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TinponsAPI.swift; path = Tinpons/App/API/TinponsAPI.swift; sourceTree = SOURCE_ROOT; };
@@ -620,6 +622,7 @@
 		D40D97531F3CCCFB00B246D0 /* Add Product */ = {
 			isa = PBXGroup;
 			children = (
+				D49F067C1F88B73B00108684 /* AddProductProtocoll.swift */,
 				D443C0F91EEC728100FD148F /* BasicsViewController.swift */,
 				D4F744611F6273E300560EAD /* SelectProductCategoryViewController.swift */,
 				D4ACDD0A1F82460D001A0B61 /* SizesViewController.swift */,
@@ -913,6 +916,7 @@
 				D40308461F0FCBDE00BF1BD5 /* TinponOld.swift in Sources */,
 				D4AAB5A71F305A0900050E02 /* TinponsAPI.swift in Sources */,
 				D4FC3EAD1F47FA7700F84689 /* FontAndColors.swift in Sources */,
+				D49F067D1F88B73B00108684 /* AddProductProtocoll.swift in Sources */,
 				D41B11321F473CD3007DAF6E /* GenderCategoriesSizes.swift in Sources */,
 				D41EB2691F333CF2003842E4 /* AWSAPI_9HLT8N48WD_RequestSchema.m in Sources */,
 				D4EEF65A1F2F9F8700297A5E /* Tinpon.swift in Sources */,

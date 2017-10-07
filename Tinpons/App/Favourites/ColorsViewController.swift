@@ -10,7 +10,26 @@ import UIKit
 import Eureka
 import Whisper
 
-class ColorsViewController: FormViewController {
+class ColorsViewController: FormViewController, AddProductProtocol {
+    // MARK: - AddProductProtocoll
+    var tinpon: Tinpon!
+    func guardTinpon() {
+        tinpon.colors = selectedColors
+    }
+    
+    // MARK: - Model
+    var selectedColors: [Color] {
+        get {
+            let colorSection = form.sectionBy(tag: "colorSection") as! SelectableSection<ListCheckRow<String>>
+            let selectedRows = colorSection.selectedRows()
+            
+            var result = [Color]()
+            for row in selectedRows {
+                result.append(Color(name: row.value!))
+            }
+            return result
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,7 +70,10 @@ class ColorsViewController: FormViewController {
     
     // MARK: - Navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guardTinpon()
+        
         let quantitiesViewController = segue.destination as! QuantitiesViewController
+        quantitiesViewController.tinpon = tinpon
     }
     
     

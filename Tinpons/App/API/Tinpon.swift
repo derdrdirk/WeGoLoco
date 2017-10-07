@@ -38,6 +38,7 @@ class Tinpon: CustomStringConvertible {
     var active: Bool?
     var category: String?
     var createdAt: Date?
+    var gender: Gender?
     var imgUrl: String?
     var latitude: Double?
     var longitude: Double?
@@ -48,10 +49,14 @@ class Tinpon: CustomStringConvertible {
     var images = [UIImage]()
     var productVariations = [Color : ColorVariation]()
     
+    // temporary for addProduct
+    var sizes: Sizes.Size?
+    var colors = [Color]()
+    
     var mainImageCount: Int?
     
     var description: String {
-        return "id: \(id ?? 0)\n name: \(self.name ?? "")"
+        return "id: \(id ?? 0)\n name: \(self.name ?? "nil")\n gender: \(self.gender?.rawValue ?? "nil")\n price: \(self.price ?? 0.00)\n mainImages: \(images.count)"
     }
     
     init() {}

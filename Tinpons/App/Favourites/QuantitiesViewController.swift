@@ -13,7 +13,14 @@ import ImageRow
 import TOCropViewController
 import PromiseKit
 
-class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
+// Maps quantities of every possible product variation (Color & Size)
+// Displayed as Color Sections with Sizes as Rows
+class QuantitiesViewController: FormViewController, AddProductProtocol, LoadingAnimationProtocol {
+    //MARK: - AddProductProtocol
+    var tinpon: Tinpon!
+    func guardTinpon() {
+        
+    }
     
     // MARK: LoadingAnimationProtocol
     var loadingAnimationView: UIView!
@@ -21,7 +28,6 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
     var loadingAnimationIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    var tinpon: Tinpon!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,39 +36,66 @@ class QuantitiesViewController: FormViewController, LoadingAnimationProtocol {
         
         tableView.isEditing = false
         
-        productSections()
+        addColorSections()
     }
     
     
     
     // MARK: Sections
     
-    fileprivate func productSections() {
-        for productVariation in tinpon.productVariations {
-            let color = productVariation.key
+    fileprivate func addColorSections() {
+        for color in tinpon.colors {
             form +++ colorSection(color)
         }
     }
     
     fileprivate func colorSection(_ color: Color) -> Section {
         let section = MultivaluedSection(multivaluedOptions: [.Reorder, .Delete],
-                               header: color.spanishName,
-                               footer: "Swipe a la izquierda para borrar fillas.")
+                               header: color.name,
+                               footer: "Swipe left to remove size")
 
-        let colorVariation = tinpon.productVariations[color]!
-        
-        for sizeVariation in colorVariation.sizeVariations {
-            section <<< IntRow() {
-                $0.title = "Cuantidad - "+sizeVariation.size
-                $0.add(rule: RuleRequired())
-            }.cellUpdate { cell, row in
-                if !row.isValid {
-                    cell.titleLabel?.textColor = .red
+        switch tinpon.sizes! {
+        case .StringSize(let sizes):
+            for size in sizes {
+                section <<< IntRow() {
+                    $0.title = "Quantity - \(size)"
+                    $0.add(rule: RuleRequired())
+                }.cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
+                }
+            }
+        case .DoubleSize(let sizes):
+            for size in sizes {
+                section <<< IntRow() {
+                    $0.title = "Quantity - \(size)"
+                    $0.add(rule: RuleRequired())
+                }.cellUpdate { cell, row in
+                    if !row.isValid {
+                        cell.titleLabel?.textColor = .red
+                    }
+                }
+            }
+        case .DoubleDoubleSize(let sizes):
+            let widths = Array(sizes.keys.sorted())
+            for width in widths {
+                let lengths = sizes[width]!.sorted()
+                for length in lengths {
+                    section <<< IntRow() {
+                        $0.title = "Quantity - \(width)/\(length)"
+                        $0.add(rule: RuleRequired())
+                    }.cellUpdate { cell, row in
+                        if !row.isValid {
+                            cell.titleLabel?.textColor = .red
+                        }
+                    }
                 }
             }
         }
+
         
-        section <<< recursiveImageRow(color)
+        //section <<< recursiveImageRow(color)
         
         return section
     }
